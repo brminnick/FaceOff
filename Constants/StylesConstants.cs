@@ -8,9 +8,8 @@ namespace FaceOff
 		public static Style ButtonStyle = new Style(typeof(Label))
 		{
 			Setters = {
-				new Setter { Property = Button.BorderColorProperty, Value = Color.Black },
-				new Setter { Property = Button.BorderWidthProperty, Value = 2 },
-				new Setter { Property = Button.BorderRadiusProperty, Value = 10 }
+				new Setter { Property = Button.BackgroundColorProperty, Value = Color.FromHex("3192B3") },
+				new Setter { Property = Button.TextColorProperty, Value = Color.White }
 			}
 		};
 	}

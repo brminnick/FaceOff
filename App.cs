@@ -8,8 +8,10 @@ namespace FaceOff
 	{
 		public App()
 		{
-
-			MainPage = new PicturePage();
+			MainPage = new NavigationPage(new PicturePage())
+			{
+				BarBackgroundColor = Color.FromHex("#1FAECE")
+			};
 		}
 
 		protected override void OnStart()
