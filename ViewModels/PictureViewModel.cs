@@ -36,13 +36,8 @@ namespace FaceOff
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
-				if (imageMediaFile == null)
-					return;
 
-				var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
-
-
-				var emotionArray = await emotionClient.RecognizeAsync(GetPhotoStream(imageMediaFile, false));
+				var emotionArray = await GetEmotionResults(imageMediaFile);
 
 				Photo1ImageSource = ImageSource.FromStream(() =>
 				{
@@ -54,13 +49,8 @@ namespace FaceOff
 			TakePhoto2ButtonPressed = new Command(async () =>
 			{
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
-				if (imageMediaFile == null)
-					return;
 
-				var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
-
-
-				var emotionArray = await emotionClient.RecognizeAsync(GetPhotoStream(imageMediaFile, false));
+				var emotionArray = await GetEmotionResults(imageMediaFile);
 
 				Photo2ImageSource = ImageSource.FromStream(() =>
 				{
@@ -177,6 +167,17 @@ namespace FaceOff
 			});
 
 			return file;
+		}
+
+		async Task<Microsoft.ProjectOxford.Emotion.Contract.Emotion[]> GetEmotionResults(MediaFile mediaFile)
+		{
+			if (mediaFile == null)
+				return null;
+
+			var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
+
+
+			return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, false));
 		}
 
 		#endregion
