@@ -1,20 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 
-using Newtonsoft.Json;
+using Microsoft.ProjectOxford.Emotion;
 
 using Xamarin.Forms;
-
-using FaceOff.Model;
-using System.Net;
-using Microsoft.ProjectOxford.Emotion;
+using System;
+using Microsoft.ProjectOxford.Emotion.Contract;
+using Xamarin;
 
 namespace FaceOff
 {
@@ -22,49 +17,87 @@ namespace FaceOff
 	{
 		#region Constant Fields
 		readonly string _cognitiveServicesEmotionApiUrl = DependencyService.Get<EmotionApiUriHelper>().EmotionApiUri;
+		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
 		#endregion
 
 		#region Fields
 		ImageSource _photo1ImageSource, _photo2ImageSource;
-		bool _isTakePhoto1ButtonEnabled = true;
-		bool _isTakePhoto2ButtonEnabled = true;
+		string _photo1LabelText, _photo2LabelText;
+		bool _isTakeLeftPhotoButtonEnabled = false;
+		bool _isTakeRightPhotoButtonEnabled = true;
+		string _pageTitle;
+		int _emotionNumber;
+		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
 		#endregion
 
 		#region Constructors
 		public PictureViewModel()
 		{
+			SetEmotion();
+
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
-				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
+				Insights.Track(InsightsConstants.PhotoButton1Tapped);
 
-				var emotionArray = await GetEmotionResults(imageMediaFile);
+				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
+				if (imageMediaFile == null)
+					return;
+
+				IsTakeLeftPhotoButtonEnabled = false;
+
+				Photo1LabelText = "Calculating Score";
 
 				Photo1ImageSource = ImageSource.FromStream(() =>
 				{
-					return GetPhotoStream(imageMediaFile, true);
+					return GetPhotoStream(imageMediaFile, false);
 				});
-				IsTakePhoto1ButtonEnabled = false;
+
+				IsCalculatingPhoto1Score = true;
+				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
+				Photo1LabelText = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+				IsCalculatingPhoto1Score = false;
+
+				imageMediaFile.Dispose();
 			});
 
 			TakePhoto2ButtonPressed = new Command(async () =>
 			{
-				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
+				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
-				var emotionArray = await GetEmotionResults(imageMediaFile);
+				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
+				if (imageMediaFile == null)
+					return;
+
+				IsTakeRightPhotoButtonEnabled = false;
+				IsTakeLeftPhotoButtonEnabled = true;
+
+				Photo2LabelText = "Calculating Score";
 
 				Photo2ImageSource = ImageSource.FromStream(() =>
 				{
-					return GetPhotoStream(imageMediaFile, true);
+					return GetPhotoStream(imageMediaFile, false);
 				});
-				IsTakePhoto2ButtonEnabled = false;
+
+				IsCalculatingPhoto2Score = true;
+				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
+				Photo2LabelText = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+				IsCalculatingPhoto2Score = false;
+
+				imageMediaFile.Dispose();
 			});
 
 			ResetButtonPressed = new Command(() =>
 			{
+				Insights.Track(InsightsConstants.ResetButtonTapped);
+
+				SetEmotion();
+
 				Photo1ImageSource = null;
 				Photo2ImageSource = null;
-				IsTakePhoto1ButtonEnabled = true;
-				IsTakePhoto2ButtonEnabled = true;
+				IsTakeLeftPhotoButtonEnabled = false;
+				IsTakeRightPhotoButtonEnabled = true;
+				Photo1LabelText = null;
+				Photo2LabelText = null;
 			});
 		}
 		#endregion
@@ -83,8 +116,8 @@ namespace FaceOff
 			}
 			set
 			{
-				OnPropertyChanged("Photo1ImageSource");
 				_photo1ImageSource = value;
+				OnPropertyChanged("Photo1ImageSource");
 			}
 		}
 
@@ -96,45 +129,120 @@ namespace FaceOff
 			}
 			set
 			{
-				OnPropertyChanged("Photo2ImageSource");
 				_photo2ImageSource = value;
+				OnPropertyChanged("Photo2ImageSource");
 			}
 		}
 
 		public bool IsPhotoImage1Enabled
 		{
-			get { return !IsTakePhoto1ButtonEnabled; }
+			get { return !IsTakeLeftPhotoButtonEnabled; }
 		}
 		public bool IsPhotoImage2Enabled
 		{
-			get { return !IsTakePhoto2ButtonEnabled; }
+			get { return !IsTakeRightPhotoButtonEnabled; }
 		}
 
-		public bool IsTakePhoto1ButtonEnabled
+		public bool IsTakeLeftPhotoButtonEnabled
 		{
 			get
 			{
-				return _isTakePhoto1ButtonEnabled;
+				return _isTakeLeftPhotoButtonEnabled;
 			}
 			set
 			{
-				OnPropertyChanged("IsTakePhoto1ButtonEnabled");
+				_isTakeLeftPhotoButtonEnabled = value;
+				OnPropertyChanged("IsTakeLeftPhotoButtonEnabled");
 				OnPropertyChanged("IsPhotoImage1Enabled");
-				_isTakePhoto1ButtonEnabled = value;
 			}
 		}
 
-		public bool IsTakePhoto2ButtonEnabled
+		public bool IsTakeRightPhotoButtonEnabled
 		{
 			get
 			{
-				return _isTakePhoto2ButtonEnabled;
+				return _isTakeRightPhotoButtonEnabled;
 			}
 			set
 			{
-				OnPropertyChanged("IsTakePhoto2ButtonEnabled");
+				_isTakeRightPhotoButtonEnabled = value;
+				OnPropertyChanged("IsTakeRightPhotoButtonEnabled");
 				OnPropertyChanged("IsPhotoImage2Enabled");
-				_isTakePhoto2ButtonEnabled = value;
+			}
+		}
+
+		public string PageTitle
+		{
+			get
+			{
+				return _pageTitle;
+			}
+			set
+			{
+				_pageTitle = value;
+				OnPropertyChanged("PageTitle");
+			}
+		}
+
+		public string Photo1LabelText
+		{
+			get
+			{
+				return _photo1LabelText;
+			}
+			set
+			{
+				_photo1LabelText = value;
+				OnPropertyChanged("Photo1LabelText");
+			}
+		}
+
+		public string Photo2LabelText
+		{
+			get
+			{
+				return _photo2LabelText;
+			}
+			set
+			{
+				_photo2LabelText = value;
+				OnPropertyChanged("Photo2LabelText");
+			}
+		}
+
+		public bool IsCalculatingPhoto1Score
+		{
+			get
+			{
+				return _isCalculatingPhoto1Score;
+			}
+			set
+			{
+				_isCalculatingPhoto1Score = value;
+				OnPropertyChanged("IsCalculatingPhoto1Score");
+				OnPropertyChanged("IsResetButtonEnabled");
+			}
+		}
+
+		public bool IsCalculatingPhoto2Score
+		{
+			get
+			{
+				return _isCalculatingPhoto2Score;
+			}
+			set
+			{
+				_isCalculatingPhoto2Score = value;
+				OnPropertyChanged("IsCalculatingPhoto2Score");
+				OnPropertyChanged("IsResetButtonEnabled");
+			}
+		}
+
+		public bool IsResetButtonEnabled
+		{
+			get 
+			{
+				return !(IsCalculatingPhoto2Score || IsCalculatingPhoto1Score);
 			}
 		}
 		#endregion
@@ -169,15 +277,124 @@ namespace FaceOff
 			return file;
 		}
 
-		async Task<Microsoft.ProjectOxford.Emotion.Contract.Emotion[]> GetEmotionResults(MediaFile mediaFile)
+		async Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
 		{
 			if (mediaFile == null)
 				return null;
 
-			var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
+			try
+			{
+				var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
+
+				using (var handle = Insights.TrackTime(InsightsConstants.CalculateEmotion))
+				{
+					return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile));
+				}
+			}
+			catch (Exception e)
+			{
+				Insights.Report(e);
+				return null;
+			}
+		}
+
+		int GetRandomNumberForEmotion()
+		{
+			int randomNumber;
+
+			do
+			{
+				var rnd = new Random();
+				randomNumber = rnd.Next(0, _emotionStrings.Length);
+			} while (randomNumber == _emotionNumber);
+
+			return randomNumber;
+		}
+
+		void SetPageTitle(int emotionNumber)
+		{
+			PageTitle = _emotionStrings[emotionNumber];
+		}
+
+		void SetEmotion()
+		{
+			_emotionNumber = GetRandomNumberForEmotion();
+			SetPageTitle(_emotionNumber);
+		}
+
+		string GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
+		{
+			var errorMessage = "Error, No Face Detected";
+			float rawEmotionScore;
+
+			if (emotionResults == null || emotionResults.Length < 1)
+				return errorMessage;
+
+			try
+			{
+				switch (_emotionNumber)
+				{
+					case 0:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Anger;
+						break;
+					case 1:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Contempt;
+						break;
+					case 2:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Disgust;
+						break;
+					case 3:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Fear;
+						break;
+					case 4:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Happiness;
+						break;
+					case 5:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Neutral;
+						break;
+					case 6:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Sadness;
+						break;
+					case 7:
+						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
+						break;
+					default:
+						return errorMessage;
+				}
+
+				var emotionScoreAsPercentage = ConvertFloatToPercentage(rawEmotionScore);
+#if DEBUG
+				emotionScoreAsPercentage += $"\n{GetPhotoEmotionScoreDebug(emotionResults, emotionResultNumber)}";
+#endif
+				return emotionScoreAsPercentage;
+			}
+			catch (Exception e)
+			{
+				Insights.Report(e);
+				return errorMessage;
+			}
+		}
+
+		string GetPhotoEmotionScoreDebug(Emotion[] emotionResults, int emotionResultNumber)
+		{
+			string allEmotionsString = "";
+
+			allEmotionsString += $"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}\n";
+			allEmotionsString += $"Disgust: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Disgust)}\n";
+			allEmotionsString += $"Fear: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Fear)}\n";
+			allEmotionsString += $"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}\n";
+			allEmotionsString += $"Neutral: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Neutral)}\n";
+			allEmotionsString += $"Sadness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Sadness)}\n";
+			allEmotionsString += $"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}\n";
+
+			return allEmotionsString;
+		}
 
 
-			return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, false));
+		string ConvertFloatToPercentage(float floatToConvert)
+		{
+			return floatToConvert.ToString("#0.##%");
+
 		}
 
 		#endregion

@@ -1,12 +1,8 @@
-﻿using System;
-
+﻿using Android.OS;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
+
+using Xamarin;
 
 namespace FaceOff.Droid
 {
@@ -15,6 +11,20 @@ namespace FaceOff.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+#if DEBUG
+			Insights.Initialize(InsightsConstants.InsightsDebugApiKey, this);
+#else
+			Insights.Initialize(InsightsConstants.InsightsReleaseApiKey, this);
+#endif
+
+			Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
+			{
+				if (isStartupCrash)
+				{
+					Insights.PurgePendingCrashReports().Wait();
+				}
+			};
+
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
