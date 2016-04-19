@@ -141,7 +141,7 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\Launch Screen_1242x2208.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
