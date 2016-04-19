@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Net.Http;
+
 using ModernHttpClient;
 
 using FaceOff;
 using FaceOff.iOS;
+
+using Xamarin;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(HttpClientHelperiOS))]
@@ -22,6 +25,7 @@ namespace FaceOff.iOS
 				}
 				catch (Exception e)
 				{
+					Insights.Report(e);
 					return null;
 				}
 			}
