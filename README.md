@@ -6,4 +6,4 @@ The app will provide a random emotion that both players will portray. It then us
 ## About
 This is an Android and iOS app created using [Xamarin.Forms](https://www.xamarin.com/forms). The facial recognition uses [Microsoft's Coginitive Services Emotion API](https://www.microsoft.com/cognitive-services/). 
 
-[FaceOff Video](./FaceOff_GifDemo.gif)
+![FaceOff Demo](./FaceOff_GifDemo.gif)
