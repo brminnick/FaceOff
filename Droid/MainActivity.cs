@@ -6,31 +6,17 @@ using Xamarin;
 
 namespace FaceOff.Droid
 {
-	[Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
+	[Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
-		protected override void OnCreate(Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-#if DEBUG
-			Insights.Initialize(InsightsConstants.InsightsDebugApiKey, this);
-#else
-			Insights.Initialize(InsightsConstants.InsightsReleaseApiKey, this);
-#endif
-
-			Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
-			{
-				if (isStartupCrash)
-				{
-					Insights.PurgePendingCrashReports().Wait();
-				}
-			};
-
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
+			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
 			LoadApplication(new App());
 		}
