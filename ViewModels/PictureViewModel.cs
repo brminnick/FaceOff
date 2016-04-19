@@ -16,7 +16,6 @@ namespace FaceOff
 	public class PictureViewModel : BaseViewModel
 	{
 		#region Constant Fields
-		readonly string _cognitiveServicesEmotionApiUrl = DependencyService.Get<EmotionApiUriHelper>().EmotionApiUri;
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
 		#endregion
 
