@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Net.Http;
+
 using ModernHttpClient;
 
 using Xamarin.Forms;
+using Xamarin;
 
 using FaceOff;
 using FaceOff.Droid;
@@ -23,6 +25,7 @@ namespace FaceOff.Droid
 				}
 				catch (Exception e)
 				{
+					Insights.Report(e);
 					return null;
 				}
 			}

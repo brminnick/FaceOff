@@ -1853,8 +1853,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f020062
 			public const int mr_ic_settings_light = 2130837602;
 			
+			// aapt resource value: 0x7f020064
+			public const int notification_template_icon_bg = 2130837604;
+			
 			// aapt resource value: 0x7f020063
-			public const int notification_template_icon_bg = 2130837603;
+			public const int SplashScreen = 2130837603;
 			
 			static Drawable()
 			{
@@ -3090,6 +3093,9 @@ namespace FaceOff.Droid
 			
 			// aapt resource value: 0x7f070042
 			public const int RtlOverlay_Widget_AppCompat_SearchView_MagIcon = 2131165250;
+			
+			// aapt resource value: 0x7f070147
+			public const int Splash = 2131165511;
 			
 			// aapt resource value: 0x7f0700c0
 			public const int TextAppearance_AppCompat = 2131165376;

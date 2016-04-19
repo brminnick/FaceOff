@@ -1,9 +1,12 @@
 using System;
 
-using Android.App;
 using Android.OS;
+using Android.App;
 using Android.Runtime;
+
 using Plugin.CurrentActivity;
+
+using Xamarin;
 
 namespace FaceOff.Droid
 {
@@ -20,7 +23,20 @@ namespace FaceOff.Droid
         {
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
-            //A great place to initialize Xamarin.Insights and Dependency Services!
+
+#if DEBUG
+			Insights.Initialize(InsightsConstants.InsightsDebugApiKey, this);
+#else
+			Insights.Initialize(InsightsConstants.InsightsReleaseApiKey, this);
+#endif
+
+			Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
+			{
+				if (isStartupCrash)
+				{
+					Insights.PurgePendingCrashReports().Wait();
+				}
+			};
         }
 
         public override void OnTerminate()
