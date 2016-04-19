@@ -132,18 +132,6 @@ namespace FaceOff
 			};
 			#endregion
 
-			/*<StackLayout Padding="24,24,24,14" Spacing="14"	IsEnabled="{Binding IsBusy, Converter={x:Static local:InverseBoolConverter.Instance}}">
-
-					<local:SportButton Text="CHALLENGE" StyleId="challengeButton" HorizontalOptions="FillAndExpand"
-						BackgroundColor="{Binding League.Theme.Dark}" Clicked="HandleChallengeClicked" IsVisible="{Binding CanChallenge}" />
-
-					<local:SportButton Text="LEADERBOARD" StyleId="leaderboardButton" HorizontalOptions="FillAndExpand"
-						Clicked="HandleRankingsClicked" />
-
-					<local:SportButton Text="JOIN LEAGUE" StyleId="joinButton" HorizontalOptions="FillAndExpand" Clicked="HandleJoinClicked"
-						BackgroundColor="{Binding League.Theme.Dark}" IsVisible="{Binding IsMember, Converter={x:Static local:InverseBoolConverter.Instance}}" />
-				</StackLayout>*/
-
 			#region Create Relative Laout
 			var buttonImageRelativeLayout = new RelativeLayout();
 			buttonImageRelativeLayout.Children.Add(photo1Stack,
