@@ -17,10 +17,11 @@ namespace FaceOff
 	{
 		#region Constant Fields
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
-		readonly string[] _emotionStringsForAlertMessage = { "angry", "contempt", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
+		readonly string[] _emotionStringsForAlertMessage = { "angry", "pleased", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
 		const string ErrorMessage = "Error, No Face Detected";
-		const string MakeAFaceAlertMessage = "Make a face looking ";
+		const string MakeAFaceAlertMessage = "take a selfie looking ";
+		const string CalculatingScore = "Analyzing";
 		#endregion
 
 		#region Fields
@@ -28,6 +29,7 @@ namespace FaceOff
 		string _scoreButton1Text, _scoreButton2Text;
 		bool _isTakeLeftPhotoButtonEnabled = true;
 		bool _isTakeRightPhotoButtonEnabled = true;
+		bool _isResetButtonEnabled;
 		string _pageTitle;
 		int _emotionNumber;
 		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score, _image1IsVertical, _image2IsVertical;
@@ -38,21 +40,25 @@ namespace FaceOff
 		#region Constructors
 		public PictureViewModel()
 		{
+			IsResetButtonEnabled = false;
+			IsScore1ButtonEnabled = false;
+			IsScore2ButtonEnabled = false;
+
 			SetEmotion();
 
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
-				if (!(await DisplayEmotionAsPopUpAlert()))
+				if (!(await DisplayPopUpAlertAboutEmotion(1)))
 					return;
-					
+
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
 				if (imageMediaFile == null)
 					return;
 
 				IsTakeLeftPhotoButtonEnabled = false;
 
-				ScoreButton1Text = "Calculating Score";
+				ScoreButton1Text = CalculatingScore;
 				IsScore1ButtonVisable = true;
 
 				Photo1ImageSource = ImageSource.FromStream(() =>
@@ -67,12 +73,14 @@ namespace FaceOff
 				}
 
 				IsCalculatingPhoto1Score = true;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 				ScoreButton1Text = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
 				_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
 				IsCalculatingPhoto1Score = false;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 				IsScore1ButtonEnabled = true;
 
 				imageMediaFile.Dispose();
@@ -82,16 +90,17 @@ namespace FaceOff
 			{
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
-				if (!(await DisplayEmotionAsPopUpAlert()))
+				if (!(await DisplayPopUpAlertAboutEmotion(2)))
 					return;
-				
+
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
 				if (imageMediaFile == null)
 					return;
 
 				IsTakeRightPhotoButtonEnabled = false;
 
-				ScoreButton2Text = "Calculating Score";
+				ScoreButton2Text = CalculatingScore;
+
 				IsScore2ButtonVisable = true;
 
 				Photo2ImageSource = ImageSource.FromStream(() =>
@@ -106,12 +115,14 @@ namespace FaceOff
 				}
 
 				IsCalculatingPhoto2Score = true;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 				ScoreButton2Text = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
 				_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
 				IsCalculatingPhoto2Score = false;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 				IsScore2ButtonEnabled = true;
 
 				imageMediaFile.Dispose();
@@ -137,6 +148,19 @@ namespace FaceOff
 
 				IsScore1ButtonVisable = false;
 				IsScore2ButtonVisable = false;
+
+				_photo1Results = null;
+				_photo2Results = null;
+			});
+
+			Photo1ScoreButtonPressed = new Command(() =>
+			{
+				DisplayAllEmotionResultsAlert(_photo1Results, new EventArgs());
+			});
+
+			Photo2ScoreButtonPressed = new Command(() =>
+			{
+				DisplayAllEmotionResultsAlert(_photo2Results, new EventArgs());
 			});
 		}
 		#endregion
@@ -146,9 +170,13 @@ namespace FaceOff
 		public Command TakePhoto2ButtonPressed { get; protected set; }
 		public Command ResetButtonPressed { get; protected set; }
 		public Command SubmitButtonPressed { get; protected set; }
+		public Command Photo1ScoreButtonPressed { get; protected set; }
+		public Command Photo2ScoreButtonPressed { get; protected set; }
+
 
 		public event EventHandler RotateImage;
-		public event EventHandler DisplayAlert;
+		public event EventHandler DisplayEmtionBeforeCameraAlert;
+		public event EventHandler DisplayAllEmotionResultsAlert;
 
 		public ImageSource Photo1ImageSource
 		{
@@ -262,7 +290,6 @@ namespace FaceOff
 			{
 				_isCalculatingPhoto1Score = value;
 				OnPropertyChanged("IsCalculatingPhoto1Score");
-				OnPropertyChanged("IsResetButtonEnabled");
 			}
 		}
 
@@ -276,7 +303,6 @@ namespace FaceOff
 			{
 				_isCalculatingPhoto2Score = value;
 				OnPropertyChanged("IsCalculatingPhoto2Score");
-				OnPropertyChanged("IsResetButtonEnabled");
 			}
 		}
 
@@ -284,7 +310,12 @@ namespace FaceOff
 		{
 			get
 			{
-				return !(IsCalculatingPhoto2Score || IsCalculatingPhoto1Score);
+				return _isResetButtonEnabled;
+			}
+			set
+			{
+				_isResetButtonEnabled = value;
+				OnPropertyChanged("IsResetButtonEnabled");
 			}
 		}
 
@@ -485,7 +516,7 @@ namespace FaceOff
 			allEmotionsString += $"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}\n";
 			allEmotionsString += $"Neutral: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Neutral)}\n";
 			allEmotionsString += $"Sadness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Sadness)}\n";
-			allEmotionsString += $"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}\n";
+			allEmotionsString += $"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}";
 
 			return allEmotionsString;
 		}
@@ -511,14 +542,14 @@ namespace FaceOff
 			}
 		}
 
-		async Task<bool> DisplayEmotionAsPopUpAlert()
+		async Task<bool> DisplayPopUpAlertAboutEmotion(int playerNumber)
 		{
 			var alertMessage = new AlertMessage
 			{
-				Title = "Challenge: "+_emotionStrings[_emotionNumber],
-				Message = MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
+				Title = "Challenge: " + _emotionStrings[_emotionNumber],
+				Message = "Player " + playerNumber + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
 			};
-			DisplayAlert(alertMessage, new EventArgs());
+			DisplayEmtionBeforeCameraAlert(alertMessage, new EventArgs());
 
 			while (!UserHasAcknowledgedPopUp)
 			{
@@ -527,6 +558,11 @@ namespace FaceOff
 			UserHasAcknowledgedPopUp = false;
 
 			return UserResponseToAlert;
+		}
+
+		void DisplayPopUpAlertShowingAllEmotionResults(string emotionResults)
+		{
+			DisplayEmtionBeforeCameraAlert(emotionResults, new EventArgs());
 		}
 
 		#endregion
