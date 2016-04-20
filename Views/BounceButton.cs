@@ -2,14 +2,14 @@
 
 namespace FaceOff
 {
-	public class FaceOffButton : Button
+	public class BounceButton : Button
 	{
-		public FaceOffButton() : base()
+		public BounceButton() : base()
 		{
 			const int _animationTime = 100;
 			Clicked +=  (sender, e) =>
 			{
-				var btn = (FaceOffButton)sender;
+				var btn = (BounceButton)sender;
 
 				Device.BeginInvokeOnMainThread(async () =>
 				{

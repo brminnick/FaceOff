@@ -12,6 +12,13 @@ namespace FaceOff
 				new Setter { Property = Button.TextColorProperty, Value = Color.White }
 			}
 		};
+
+		public static Style StackLayoutStyle = new Style(typeof(StackLayout))
+		{
+			Setters = {
+				new Setter { Property = StackLayout.SpacingProperty, Value = 20 }
+			}
+		};
 	}
 }
 
