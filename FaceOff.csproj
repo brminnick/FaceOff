@@ -107,9 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Certificates.p12" />
     <None Include="packages.config" />
-    <None Include="Xcode_iOS_Wildcard.mobileprovision" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
