@@ -1,13 +1,17 @@
-﻿using Plugin.Media;
+﻿using System;
+
 using Xamarin.Forms;
 
 namespace FaceOff
 {
 	public class PicturePage : ContentPage
 	{
+		Image PhotoImage1, PhotoImage2;
 
 		public PicturePage()
 		{
+			var _androidVerticalPadding = 80;
+
 			var viewModel = new PictureViewModel();
 			BindingContext = viewModel;
 
@@ -15,20 +19,42 @@ namespace FaceOff
 			BackgroundColor = Color.FromHex("#91E2F4");
 
 
-			#region Create Photo Labels
-			var photo1Label = new Label
+			#region Create Score Button 1 Stack
+			var photo1ScoreButton = new BounceButton
 			{
 				HorizontalOptions = LayoutOptions.Center,
-				HorizontalTextAlignment = TextAlignment.Center
+				Style = StylesConstants.ButtonStyle
 			};
-			photo1Label.SetBinding(Label.TextProperty, "Photo1LabelText");
+			photo1ScoreButton.SetBinding(Button.TextProperty, "ScoreButton1Text");
+			photo1ScoreButton.SetBinding(IsEnabledProperty, "IsScore1ButtonEnabled");
+			photo1ScoreButton.SetBinding(IsVisibleProperty, "IsScore1ButtonVisable");
 
-			var photo2Label = new Label
+			var photo1ScoreButtonStack = new StackLayout
+			{
+				Padding = new Thickness(24, 24, 24, 24),
+				Children = {
+					photo1ScoreButton
+				}
+			};
+			#endregion
+
+			#region Create Score Button 2 Stack
+			var photo2ScoreButton = new BounceButton
 			{
 				HorizontalOptions = LayoutOptions.Center,
-				HorizontalTextAlignment = TextAlignment.Center
+				Style = StylesConstants.ButtonStyle
 			};
-			photo2Label.SetBinding(Label.TextProperty, "Photo2LabelText");
+			photo2ScoreButton.SetBinding(Button.TextProperty, "ScoreButton2Text");
+			photo2ScoreButton.SetBinding(IsEnabledProperty, "IsScore2ButtonEnabled");
+			photo2ScoreButton.SetBinding(IsVisibleProperty, "IsScore2ButtonVisable");
+
+			var photo2ScoreButtonStack = new StackLayout
+			{
+				Padding = new Thickness(24, 24, 24, 24),
+				Children = {
+					photo2ScoreButton
+				}
+			};
 			#endregion
 
 			#region Create Photo Activity Indicators
@@ -43,8 +69,8 @@ namespace FaceOff
 			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsCalculatingPhoto2Score");
 			#endregion
 
-			#region Create Photo 1 Stack
-			var takePhoto1Button = new FaceOffButton
+			#region Create Photo 1 Button Stack
+			var takePhoto1Button = new BounceButton
 			{
 				Text = "Take Photo",
 				Style = StylesConstants.ButtonStyle
@@ -62,8 +88,8 @@ namespace FaceOff
 			};
 			#endregion
 
-			#region Create Photo 2 Button
-			var takePhoto2Button = new FaceOffButton
+			#region Create Photo 2 Button Stack
+			var takePhoto2Button = new BounceButton
 			{
 				Text = "Take Photo",
 				Style = StylesConstants.ButtonStyle
@@ -82,21 +108,22 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo Image Containers
-			var photoImage1 = new Image();
-			photoImage1.SetBinding(Image.SourceProperty, "Photo1ImageSource");
-			photoImage1.SetBinding(Image.IsVisibleProperty, "IsPhotoImage1Enabled");
+			PhotoImage1 = new Image();
+			PhotoImage1.SetBinding(Image.SourceProperty, "Photo1ImageSource");
+			PhotoImage1.SetBinding(Image.IsVisibleProperty, "IsPhotoImage1Enabled");
 
-			var photoImage2 = new Image();
-			photoImage2.SetBinding(Image.SourceProperty, "Photo2ImageSource");
-			photoImage1.SetBinding(Image.IsVisibleProperty, "IsPhotoImage2Enabled");
+			PhotoImage2 = new Image();
+			PhotoImage2.SetBinding(Image.SourceProperty, "Photo2ImageSource");
+			PhotoImage2.SetBinding(Image.IsVisibleProperty, "IsPhotoImage2Enabled");
 			#endregion
 
 			#region Create Photo 1 Stack
 			var photo1Stack = new StackLayout
 			{
+				Style = StylesConstants.StackLayoutStyle,
 				Children = {
-					photoImage1,
-					photo1Label,
+					PhotoImage1,
+					photo1ScoreButtonStack,
 					photo1ActivityIndicator
 				},
 			};
@@ -105,16 +132,17 @@ namespace FaceOff
 			#region Create Photo 2 Stack
 			var photo2Stack = new StackLayout
 			{
+				Style = StylesConstants.StackLayoutStyle,
 				Children = {
-					photoImage2,
-					photo2Label,
+					PhotoImage2,
+					photo2ScoreButtonStack,
 					photo2ActivityIndicator
 				}
 			};
 			#endregion
 
 			#region Create Reset Button Stack
-			var resetButton = new FaceOffButton
+			var resetButton = new BounceButton
 			{
 				Text = "Reset",
 				Style = StylesConstants.ButtonStyle,
@@ -141,7 +169,10 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					return parent.Y;
+					if (Device.OS == TargetPlatform.Android)
+						return parent.Y + _androidVerticalPadding;
+					else
+						return parent.Y;
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
@@ -149,7 +180,10 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					return parent.Height * 7 / 8;
+					if (Device.OS == TargetPlatform.Android)
+						return (parent.Height * 6 / 8) - _androidVerticalPadding;
+					else
+						return parent.Height * 6 / 8;
 				})
 			);
 
@@ -160,7 +194,10 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					return parent.Y;
+					if (Device.OS == TargetPlatform.Android)
+						return parent.Y + _androidVerticalPadding;
+					else
+						return parent.Y;
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
@@ -168,7 +205,10 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					return parent.Height * 7 / 8;
+					if (Device.OS == TargetPlatform.Android)
+						return (parent.Height * 6 / 8) - _androidVerticalPadding;
+					else
+						return parent.Height * 6 / 8;
 				})
 			);
 
@@ -209,7 +249,7 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					return parent.Height * 7 / 8;
+					return parent.Height * 6 / 8;
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
@@ -222,11 +262,34 @@ namespace FaceOff
 			);
 			#endregion
 
-			#region Set Page Content and Padding
+			#region Set Page Content, Padding, and Events
+			viewModel.RotateImage += HandleRotateImage;
+
 			Content = new ScrollView{
 				Content = buttonImageRelativeLayout
 			};
 			#endregion
+		}
+
+		void HandleRotateImage(object sender, EventArgs e)
+		{
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				var scalingFactor = 1.5;
+
+				var parameters = (RotatableImageParameters)sender;
+
+				if (parameters.ImageNumberToRotate == 1)
+				{
+					PhotoImage1.RotateTo(parameters.DegreesOfClockwiseRotation);
+					PhotoImage1.ScaleTo(scalingFactor);
+				}
+				else if(parameters.ImageNumberToRotate == 2)
+				{
+					PhotoImage2.RotateTo(parameters.DegreesOfClockwiseRotation);
+					PhotoImage2.ScaleTo(scalingFactor);
+				}
+			});
 		}
 
 	}
