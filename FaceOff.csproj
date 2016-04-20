@@ -59,7 +59,7 @@
     <Compile Include="Constants\InsightsConstants.cs" />
     <Compile Include="Views\BounceButton.cs" />
     <Compile Include="Helper Models\RotatableImageParameters.cs" />
-    <Compile Include="Helpers\AlertMessage.cs" />
+    <Compile Include="Helper Models\AlertMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -119,7 +119,6 @@
     <Folder Include="Services\Common\" />
     <Folder Include="Services\Common\Contract\" />
     <Folder Include="Views\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
