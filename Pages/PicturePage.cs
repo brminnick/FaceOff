@@ -13,14 +13,12 @@ namespace FaceOff
 
 		public PicturePage()
 		{
-			var _androidVerticalPadding = 80;
-
 			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
 			BackgroundColor = Color.FromHex("#91E2F4");
 
 
 			#region Create Score Button 1 Stack
-			var photo1ScoreButton = new BounceButton
+			var photo1ScoreButton = new Button
 			{
 				Style = StylesConstants.ButtonStyle
 			};
@@ -39,7 +37,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Score Button 2 Stack
-			var photo2ScoreButton = new BounceButton
+			var photo2ScoreButton = new Button
 			{
 				Style = StylesConstants.ButtonStyle
 			};
@@ -70,7 +68,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo 1 Button Stack
-			var takePhoto1Button = new BounceButton
+			var takePhoto1Button = new Button
 			{
 				Text = "Take Photo",
 				Style = StylesConstants.ButtonStyle
@@ -89,7 +87,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo 2 Button Stack
-			var takePhoto2Button = new BounceButton
+			var takePhoto2Button = new Button
 			{
 				Text = "Take Photo",
 				Style = StylesConstants.ButtonStyle
@@ -142,7 +140,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Reset Button Stack
-			var resetButton = new BounceButton
+			var resetButton = new Button
 			{
 				Text = "Reset",
 				Style = StylesConstants.ButtonStyle,
@@ -169,9 +167,6 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					if (Device.OS == TargetPlatform.Android)
-						return parent.Y + _androidVerticalPadding;
-					else
 						return parent.Y;
 				}),
 				Constraint.RelativeToParent(parent =>
@@ -180,9 +175,6 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					if (Device.OS == TargetPlatform.Android)
-						return (parent.Height * 7 / 8) - _androidVerticalPadding;
-					else
 						return parent.Height * 7 / 8;
 				})
 			);
@@ -194,9 +186,6 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					if (Device.OS == TargetPlatform.Android)
-						return parent.Y + _androidVerticalPadding;
-					else
 						return parent.Y;
 				}),
 				Constraint.RelativeToParent(parent =>
@@ -205,9 +194,6 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					if (Device.OS == TargetPlatform.Android)
-						return (parent.Height * 7 / 8) - _androidVerticalPadding;
-					else
 						return parent.Height * 7 / 8;
 				})
 			);
