@@ -149,6 +149,12 @@
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_1242x2208.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_750x1334.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_640x1136.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_640x960.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_768x1024.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_1536x2048.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_180x180.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_167x167.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_152x152.png" />
@@ -162,19 +168,13 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_80x80_2.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_76x76.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_72x72.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_58x58.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_58x58_2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_58x58.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_57x57.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_50x50.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_40x40.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_29x29_1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Faceoff_Icon_29x29_2.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_1242x2208.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_750x1334.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_640x1136.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_640x960.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_768x1024.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_1536x2048.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
