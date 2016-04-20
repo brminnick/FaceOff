@@ -30,6 +30,7 @@ namespace FaceOff
 			photo1ScoreButton.SetBinding(Button.TextProperty, "ScoreButton1Text");
 			photo1ScoreButton.SetBinding(IsEnabledProperty, "IsScore1ButtonEnabled");
 			photo1ScoreButton.SetBinding(IsVisibleProperty, "IsScore1ButtonVisable");
+			photo1ScoreButton.SetBinding(Button.CommandProperty, "Photo1ScoreButtonPressed");
 
 			var photo1ScoreButtonStack = new StackLayout
 			{
@@ -48,6 +49,7 @@ namespace FaceOff
 			photo2ScoreButton.SetBinding(Button.TextProperty, "ScoreButton2Text");
 			photo2ScoreButton.SetBinding(IsEnabledProperty, "IsScore2ButtonEnabled");
 			photo2ScoreButton.SetBinding(IsVisibleProperty, "IsScore2ButtonVisable");
+			photo2ScoreButton.SetBinding(Button.CommandProperty, "Photo2ScoreButtonPressed");
 
 			var photo2ScoreButtonStack = new StackLayout
 			{
@@ -182,9 +184,9 @@ namespace FaceOff
 				Constraint.RelativeToParent(parent =>
 				{
 					if (Device.OS == TargetPlatform.Android)
-						return (parent.Height * 6 / 8) - _androidVerticalPadding;
+						return (parent.Height * 7 / 8) - _androidVerticalPadding;
 					else
-						return parent.Height * 6 / 8;
+						return parent.Height * 7 / 8;
 				})
 			);
 
@@ -207,9 +209,9 @@ namespace FaceOff
 				Constraint.RelativeToParent(parent =>
 				{
 					if (Device.OS == TargetPlatform.Android)
-						return (parent.Height * 6 / 8) - _androidVerticalPadding;
+						return (parent.Height * 7 / 8) - _androidVerticalPadding;
 					else
-						return parent.Height * 6 / 8;
+						return parent.Height * 7 / 8;
 				})
 			);
 
@@ -250,7 +252,7 @@ namespace FaceOff
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
-					return parent.Height * 6 / 8;
+					return parent.Height * 7 / 8 - resetButtonStack.Height;
 				}),
 				Constraint.RelativeToParent(parent =>
 				{
@@ -265,7 +267,8 @@ namespace FaceOff
 
 			#region Set Page Content, Padding, and Events
 			ViewModel.RotateImage += HandleRotateImage;
-			ViewModel.DisplayAlert += HandleDisplayAlert;
+			ViewModel.DisplayEmtionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
+			ViewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
 
 			Content = new ScrollView
 			{
@@ -295,7 +298,7 @@ namespace FaceOff
 			});
 		}
 
-		async void HandleDisplayAlert(object sender, EventArgs e)
+		async void HandleDisplayEmtionBeforeCameraAlert(object sender, EventArgs e)
 		{
 			var alertMessage = (AlertMessage)sender;
 			bool userResponseToAlert = false;
@@ -304,6 +307,12 @@ namespace FaceOff
 
 			ViewModel.UserResponseToAlert = userResponseToAlert;
 			ViewModel.UserHasAcknowledgedPopUp = true;
+		}
+
+		void HandleDisplayAllEmotionResultsAlert(object sender, EventArgs e)
+		{
+			var allEmotionResults = (string)sender;
+			DisplayAlert("Results", allEmotionResults, "OK");
 		}
 	}
 }
