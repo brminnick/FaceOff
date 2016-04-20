@@ -17,7 +17,7 @@ namespace FaceOff
 	{
 		#region Constant Fields
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
-		readonly string[] _emotionStringsForAlertMessage = { "angry", "pleased", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
+		readonly string[] _emotionStringsForAlertMessage = { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
 		const string ErrorMessage = "No Face Detected";
 		const string MakeAFaceAlertMessage = "take a selfie looking ";
@@ -32,7 +32,7 @@ namespace FaceOff
 		bool _isResetButtonEnabled;
 		string _pageTitle;
 		int _emotionNumber;
-		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score, _image1IsVertical, _image2IsVertical;
+		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
 		bool _isScore1ButtonEnabled, _isScore2ButtonEnabled, _isScore1ButtonVisable, _isScore2ButtonVisable;
 		string _photo1Results, _photo2Results;
 		#endregion
@@ -52,8 +52,11 @@ namespace FaceOff
 					return;
 
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
+
 				if (imageMediaFile == null)
 					return;
+				else
+					Insights.Track (InsightsConstants.PhotoTaken);
 
 				IsTakeLeftPhotoButtonEnabled = false;
 
@@ -64,12 +67,6 @@ namespace FaceOff
 				{
 					return GetPhotoStream(imageMediaFile, false);
 				});
-
-				if (!_image1IsVertical)
-				{
-					EnsureAndroidImageIsVertical(270, 1);
-					_image1IsVertical = true;
-				}
 
 				IsCalculatingPhoto1Score = true;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
@@ -84,7 +81,7 @@ namespace FaceOff
 				}
 				else
 					ScoreButton1Text = $"Score: {emotionScore}";
-				
+
 				_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
 				IsCalculatingPhoto1Score = false;
@@ -118,12 +115,6 @@ namespace FaceOff
 					return GetPhotoStream(imageMediaFile, false);
 				});
 
-				if (!_image2IsVertical)
-				{
-					EnsureAndroidImageIsVertical(270, 2);
-					_image2IsVertical = true;
-				}
-
 				IsCalculatingPhoto2Score = true;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
@@ -137,7 +128,7 @@ namespace FaceOff
 				}
 				else
 					ScoreButton2Text = $"Score: {emotionScore}";
-				
+
 				_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
 				IsCalculatingPhoto2Score = false;
@@ -438,7 +429,7 @@ namespace FaceOff
 			{
 				var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
 
-				using (var handle = Insights.TrackTime(InsightsConstants.CalculateEmotion))
+				using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
 				{
 					return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile));
 				}
@@ -532,6 +523,7 @@ namespace FaceOff
 			string allEmotionsString = "";
 
 			allEmotionsString += $"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}\n";
+			allEmotionsString += $"Contempt: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Contempt)}\n";
 			allEmotionsString += $"Disgust: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Disgust)}\n";
 			allEmotionsString += $"Fear: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Fear)}\n";
 			allEmotionsString += $"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}\n";
@@ -549,18 +541,15 @@ namespace FaceOff
 
 		}
 
-		void EnsureAndroidImageIsVertical(int degreesOfClockwiseRotation, int imageNumberToRotate)
+		void RotateImageToVertical(int degreesOfClockwiseRotation, int imageNumberToRotate)
 		{
-			if (Device.OS == TargetPlatform.Android)
+			var parameters = new RotatableImageParameters
 			{
-				var parameters = new RotatableImageParameters
-				{
-					DegreesOfClockwiseRotation = degreesOfClockwiseRotation,
-					ImageNumberToRotate = imageNumberToRotate
+				DegreesOfClockwiseRotation = degreesOfClockwiseRotation,
+				ImageNumberToRotate = imageNumberToRotate
 
-				};
-				RotateImage(parameters, new EventArgs());
-			}
+			};
+			RotateImage(parameters, new EventArgs());
 		}
 
 		async Task<bool> DisplayPopUpAlertAboutEmotion(int playerNumber)

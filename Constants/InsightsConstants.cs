@@ -14,10 +14,11 @@
 		public static string ResultsButton1Tapped = "Results Button 1 Tapped";
 		public static string ResultsButton2Tapped = "Results Button 2 Tapped";
 		public static string NoFaceDetected = "No Face Detected";
+		public static string PhotoTaken = "Photo Taken";
 		#endregion
 
 		#region Track Time Events
-		public static string CalculateEmotion = "Calculate Emotion";
+		public static string AnalyzeEmotion = "Analyze Emotion";
 		#endregion
 	}
 }
