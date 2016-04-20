@@ -17,26 +17,40 @@ namespace FaceOff
 	{
 		#region Constant Fields
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
+		readonly string[] _emotionStringsForAlertMessage = { "angry", "pleased", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
+
+		const string ErrorMessage = "Error, No Face Detected";
+		const string MakeAFaceAlertMessage = "take a selfie looking ";
+		const string CalculatingScore = "Analyzing";
 		#endregion
 
 		#region Fields
 		ImageSource _photo1ImageSource, _photo2ImageSource;
-		string _photo1LabelText, _photo2LabelText;
-		bool _isTakeLeftPhotoButtonEnabled = false;
+		string _scoreButton1Text, _scoreButton2Text;
+		bool _isTakeLeftPhotoButtonEnabled = true;
 		bool _isTakeRightPhotoButtonEnabled = true;
+		bool _isResetButtonEnabled;
 		string _pageTitle;
 		int _emotionNumber;
-		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
+		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score, _image1IsVertical, _image2IsVertical;
+		bool _isScore1ButtonEnabled, _isScore2ButtonEnabled, _isScore1ButtonVisable, _isScore2ButtonVisable;
+		string _photo1Results, _photo2Results;
 		#endregion
 
 		#region Constructors
 		public PictureViewModel()
 		{
+			IsResetButtonEnabled = false;
+			IsScore1ButtonEnabled = false;
+			IsScore2ButtonEnabled = false;
+
 			SetEmotion();
 
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
+				if (!(await DisplayPopUpAlertAboutEmotion(1)))
+					return;
 
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
 				if (imageMediaFile == null)
@@ -44,17 +58,30 @@ namespace FaceOff
 
 				IsTakeLeftPhotoButtonEnabled = false;
 
-				Photo1LabelText = "Calculating Score";
+				ScoreButton1Text = CalculatingScore;
+				IsScore1ButtonVisable = true;
 
 				Photo1ImageSource = ImageSource.FromStream(() =>
 				{
 					return GetPhotoStream(imageMediaFile, false);
 				});
 
+				if (!_image1IsVertical)
+				{
+					EnsureAndroidImageIsVertical(270, 1);
+					_image1IsVertical = true;
+				}
+
 				IsCalculatingPhoto1Score = true;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-				Photo1LabelText = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+				ScoreButton1Text = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+				_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+
 				IsCalculatingPhoto1Score = false;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+				IsScore1ButtonEnabled = true;
 
 				imageMediaFile.Dispose();
 			});
@@ -63,24 +90,40 @@ namespace FaceOff
 			{
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
+				if (!(await DisplayPopUpAlertAboutEmotion(2)))
+					return;
+
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
 				if (imageMediaFile == null)
 					return;
 
 				IsTakeRightPhotoButtonEnabled = false;
-				IsTakeLeftPhotoButtonEnabled = true;
 
-				Photo2LabelText = "Calculating Score";
+				ScoreButton2Text = CalculatingScore;
+
+				IsScore2ButtonVisable = true;
 
 				Photo2ImageSource = ImageSource.FromStream(() =>
 				{
 					return GetPhotoStream(imageMediaFile, false);
 				});
 
+				if (!_image2IsVertical)
+				{
+					EnsureAndroidImageIsVertical(270, 2);
+					_image2IsVertical = true;
+				}
+
 				IsCalculatingPhoto2Score = true;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-				Photo2LabelText = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+				ScoreButton2Text = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+				_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+
 				IsCalculatingPhoto2Score = false;
+				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+				IsScore2ButtonEnabled = true;
 
 				imageMediaFile.Dispose();
 			});
@@ -93,10 +136,31 @@ namespace FaceOff
 
 				Photo1ImageSource = null;
 				Photo2ImageSource = null;
-				IsTakeLeftPhotoButtonEnabled = false;
+
+				IsTakeLeftPhotoButtonEnabled = true;
 				IsTakeRightPhotoButtonEnabled = true;
-				Photo1LabelText = null;
-				Photo2LabelText = null;
+
+				ScoreButton1Text = null;
+				ScoreButton2Text = null;
+
+				IsScore1ButtonEnabled = false;
+				IsScore2ButtonEnabled = false;
+
+				IsScore1ButtonVisable = false;
+				IsScore2ButtonVisable = false;
+
+				_photo1Results = null;
+				_photo2Results = null;
+			});
+
+			Photo1ScoreButtonPressed = new Command(() =>
+			{
+				DisplayAllEmotionResultsAlert(_photo1Results, new EventArgs());
+			});
+
+			Photo2ScoreButtonPressed = new Command(() =>
+			{
+				DisplayAllEmotionResultsAlert(_photo2Results, new EventArgs());
 			});
 		}
 		#endregion
@@ -106,6 +170,13 @@ namespace FaceOff
 		public Command TakePhoto2ButtonPressed { get; protected set; }
 		public Command ResetButtonPressed { get; protected set; }
 		public Command SubmitButtonPressed { get; protected set; }
+		public Command Photo1ScoreButtonPressed { get; protected set; }
+		public Command Photo2ScoreButtonPressed { get; protected set; }
+
+
+		public event EventHandler RotateImage;
+		public event EventHandler DisplayEmtionBeforeCameraAlert;
+		public event EventHandler DisplayAllEmotionResultsAlert;
 
 		public ImageSource Photo1ImageSource
 		{
@@ -183,29 +254,29 @@ namespace FaceOff
 			}
 		}
 
-		public string Photo1LabelText
+		public string ScoreButton1Text
 		{
 			get
 			{
-				return _photo1LabelText;
+				return _scoreButton1Text;
 			}
 			set
 			{
-				_photo1LabelText = value;
-				OnPropertyChanged("Photo1LabelText");
+				_scoreButton1Text = value;
+				OnPropertyChanged("ScoreButton1Text");
 			}
 		}
 
-		public string Photo2LabelText
+		public string ScoreButton2Text
 		{
 			get
 			{
-				return _photo2LabelText;
+				return _scoreButton2Text;
 			}
 			set
 			{
-				_photo2LabelText = value;
-				OnPropertyChanged("Photo2LabelText");
+				_scoreButton2Text = value;
+				OnPropertyChanged("ScoreButton2Text");
 			}
 		}
 
@@ -219,7 +290,6 @@ namespace FaceOff
 			{
 				_isCalculatingPhoto1Score = value;
 				OnPropertyChanged("IsCalculatingPhoto1Score");
-				OnPropertyChanged("IsResetButtonEnabled");
 			}
 		}
 
@@ -233,17 +303,77 @@ namespace FaceOff
 			{
 				_isCalculatingPhoto2Score = value;
 				OnPropertyChanged("IsCalculatingPhoto2Score");
-				OnPropertyChanged("IsResetButtonEnabled");
 			}
 		}
 
 		public bool IsResetButtonEnabled
 		{
-			get 
+			get
 			{
-				return !(IsCalculatingPhoto2Score || IsCalculatingPhoto1Score);
+				return _isResetButtonEnabled;
+			}
+			set
+			{
+				_isResetButtonEnabled = value;
+				OnPropertyChanged("IsResetButtonEnabled");
 			}
 		}
+
+		public bool IsScore1ButtonEnabled
+		{
+			get
+			{
+				return _isScore1ButtonEnabled;
+			}
+			set
+			{
+				_isScore1ButtonEnabled = value;
+				OnPropertyChanged("IsScore1ButtonEnabled");
+			}
+		}
+
+		public bool IsScore2ButtonEnabled
+		{
+			get
+			{
+				return _isScore2ButtonEnabled;
+			}
+			set
+			{
+				_isScore2ButtonEnabled = value;
+				OnPropertyChanged("IsScore2ButtonEnabled");
+			}
+		}
+
+		public bool IsScore1ButtonVisable
+		{
+			get
+			{
+				return _isScore1ButtonVisable;
+			}
+			set
+			{
+				_isScore1ButtonVisable = value;
+				OnPropertyChanged("IsScore1ButtonVisable");
+			}
+		}
+
+		public bool IsScore2ButtonVisable
+		{
+			get
+			{
+				return _isScore2ButtonVisable;
+			}
+			set
+			{
+				_isScore2ButtonVisable = value;
+				OnPropertyChanged("IsScore2ButtonVisable");
+			}
+		}
+
+		public bool UserHasAcknowledgedPopUp { get; set; } = false;
+		public bool UserResponseToAlert { get; set; }
+
 		#endregion
 
 		#region Methods
@@ -259,6 +389,7 @@ namespace FaceOff
 
 		async Task<MediaFile> GetMediaFileFromCamera(string directory, string filename)
 		{
+
 			await CrossMedia.Current.Initialize();
 
 			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -324,11 +455,10 @@ namespace FaceOff
 
 		string GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
 		{
-			var errorMessage = "Error, No Face Detected";
 			float rawEmotionScore;
 
 			if (emotionResults == null || emotionResults.Length < 1)
-				return errorMessage;
+				return ErrorMessage;
 
 			try
 			{
@@ -359,24 +489,25 @@ namespace FaceOff
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
 						break;
 					default:
-						return errorMessage;
+						return ErrorMessage;
 				}
 
 				var emotionScoreAsPercentage = ConvertFloatToPercentage(rawEmotionScore);
-#if DEBUG
-				emotionScoreAsPercentage += $"\n{GetPhotoEmotionScoreDebug(emotionResults, emotionResultNumber)}";
-#endif
+
 				return emotionScoreAsPercentage;
 			}
 			catch (Exception e)
 			{
 				Insights.Report(e);
-				return errorMessage;
+				return ErrorMessage;
 			}
 		}
 
-		string GetPhotoEmotionScoreDebug(Emotion[] emotionResults, int emotionResultNumber)
+		string GetStringOfAllPhotoEmotionScores(Emotion[] emotionResults, int emotionResultNumber)
 		{
+			if (emotionResults == null || emotionResults.Length < 1)
+				return ErrorMessage;
+
 			string allEmotionsString = "";
 
 			allEmotionsString += $"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}\n";
@@ -385,7 +516,7 @@ namespace FaceOff
 			allEmotionsString += $"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}\n";
 			allEmotionsString += $"Neutral: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Neutral)}\n";
 			allEmotionsString += $"Sadness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Sadness)}\n";
-			allEmotionsString += $"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}\n";
+			allEmotionsString += $"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}";
 
 			return allEmotionsString;
 		}
@@ -395,6 +526,43 @@ namespace FaceOff
 		{
 			return floatToConvert.ToString("#0.##%");
 
+		}
+
+		void EnsureAndroidImageIsVertical(int degreesOfClockwiseRotation, int imageNumberToRotate)
+		{
+			if (Device.OS == TargetPlatform.Android)
+			{
+				var parameters = new RotatableImageParameters
+				{
+					DegreesOfClockwiseRotation = degreesOfClockwiseRotation,
+					ImageNumberToRotate = imageNumberToRotate
+
+				};
+				RotateImage(parameters, new EventArgs());
+			}
+		}
+
+		async Task<bool> DisplayPopUpAlertAboutEmotion(int playerNumber)
+		{
+			var alertMessage = new AlertMessage
+			{
+				Title = "Challenge: " + _emotionStrings[_emotionNumber],
+				Message = "Player " + playerNumber + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
+			};
+			DisplayEmtionBeforeCameraAlert(alertMessage, new EventArgs());
+
+			while (!UserHasAcknowledgedPopUp)
+			{
+				await Task.Delay(5);
+			}
+			UserHasAcknowledgedPopUp = false;
+
+			return UserResponseToAlert;
+		}
+
+		void DisplayPopUpAlertShowingAllEmotionResults(string emotionResults)
+		{
+			DisplayEmtionBeforeCameraAlert(emotionResults, new EventArgs());
 		}
 
 		#endregion
