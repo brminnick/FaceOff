@@ -8,6 +8,7 @@ This is an Android and iOS app created using [Xamarin.Forms](https://www.xamarin
 
 ### Author
 Brandon Minnick
+
 Xamarin Customer Success Engineer
 
 
