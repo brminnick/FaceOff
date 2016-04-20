@@ -58,7 +58,7 @@
     <Compile Include="Services\EmotionApiUriHelper.cs" />
     <Compile Include="Constants\InsightsConstants.cs" />
     <Compile Include="Views\BounceButton.cs" />
-    <Compile Include="Helpers\RotatableImageParameters.cs" />
+    <Compile Include="Helper Models\RotatableImageParameters.cs" />
     <Compile Include="Helpers\AlertMessage.cs" />
   </ItemGroup>
   <ItemGroup>

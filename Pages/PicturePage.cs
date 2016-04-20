@@ -15,9 +15,6 @@ namespace FaceOff
 		{
 			var _androidVerticalPadding = 80;
 
-			ViewModel = new PictureViewModel();
-			BindingContext = ViewModel;
-
 			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
 			BackgroundColor = Color.FromHex("#91E2F4");
 
@@ -265,7 +262,10 @@ namespace FaceOff
 			);
 			#endregion
 
-			#region Set Page Content, Padding, and Events
+			#region Initialize View Model, Set Page Content, Binding Context, and Events
+			ViewModel = new PictureViewModel();
+			BindingContext = ViewModel;
+
 			ViewModel.RotateImage += HandleRotateImage;
 			ViewModel.DisplayEmtionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
 			ViewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
@@ -277,6 +277,7 @@ namespace FaceOff
 			#endregion
 		}
 
+		#region Create Event Handlers
 		void HandleRotateImage(object sender, EventArgs e)
 		{
 			Device.BeginInvokeOnMainThread(() =>
@@ -314,6 +315,7 @@ namespace FaceOff
 			var allEmotionResults = (string)sender;
 			DisplayAlert("Results", allEmotionResults, "OK");
 		}
+		#endregion
 	}
 }
 

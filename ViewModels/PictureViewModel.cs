@@ -1,15 +1,15 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 
 using Microsoft.ProjectOxford.Emotion;
-
-using Xamarin.Forms;
-using System;
 using Microsoft.ProjectOxford.Emotion.Contract;
+
 using Xamarin;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -19,7 +19,7 @@ namespace FaceOff
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
 		readonly string[] _emotionStringsForAlertMessage = { "angry", "pleased", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
-		const string ErrorMessage = "Error, No Face Detected";
+		const string ErrorMessage = "No Face Detected";
 		const string MakeAFaceAlertMessage = "take a selfie looking ";
 		const string CalculatingScore = "Analyzing";
 		#endregion
@@ -41,13 +41,12 @@ namespace FaceOff
 		public PictureViewModel()
 		{
 			IsResetButtonEnabled = false;
-			IsScore1ButtonEnabled = false;
-			IsScore2ButtonEnabled = false;
 
 			SetEmotion();
 
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
+				IsScore1ButtonEnabled = false;
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
 				if (!(await DisplayPopUpAlertAboutEmotion(1)))
 					return;
@@ -76,7 +75,16 @@ namespace FaceOff
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-				ScoreButton1Text = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+
+				var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+				if (emotionScore.Contains(ErrorMessage))
+				{
+					Insights.Track(InsightsConstants.NoFaceDetected);
+					ScoreButton1Text = ErrorMessage;
+				}
+				else
+					ScoreButton1Text = $"Score: {emotionScore}";
+				
 				_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
 				IsCalculatingPhoto1Score = false;
@@ -88,6 +96,8 @@ namespace FaceOff
 
 			TakePhoto2ButtonPressed = new Command(async () =>
 			{
+				IsScore2ButtonEnabled = false;
+
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
 				if (!(await DisplayPopUpAlertAboutEmotion(2)))
@@ -118,7 +128,16 @@ namespace FaceOff
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-				ScoreButton2Text = $"Score: {GetPhotoEmotionScore(emotionArray, 0)}";
+
+				var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+				if (emotionScore.Contains(ErrorMessage))
+				{
+					Insights.Track(InsightsConstants.NoFaceDetected);
+					ScoreButton2Text = ErrorMessage;
+				}
+				else
+					ScoreButton2Text = $"Score: {emotionScore}";
+				
 				_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
 				IsCalculatingPhoto2Score = false;
@@ -155,11 +174,13 @@ namespace FaceOff
 
 			Photo1ScoreButtonPressed = new Command(() =>
 			{
+				Insights.Track(InsightsConstants.ResultsButton1Tapped);
 				DisplayAllEmotionResultsAlert(_photo1Results, new EventArgs());
 			});
 
 			Photo2ScoreButtonPressed = new Command(() =>
 			{
+				Insights.Track(InsightsConstants.ResultsButton2Tapped);
 				DisplayAllEmotionResultsAlert(_photo2Results, new EventArgs());
 			});
 		}
@@ -546,7 +567,7 @@ namespace FaceOff
 		{
 			var alertMessage = new AlertMessage
 			{
-				Title = "Challenge: " + _emotionStrings[_emotionNumber],
+				Title = _emotionStrings[_emotionNumber],
 				Message = "Player " + playerNumber + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
 			};
 			DisplayEmtionBeforeCameraAlert(alertMessage, new EventArgs());
