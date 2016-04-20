@@ -17,6 +17,10 @@ namespace FaceOff
 	{
 		#region Constant Fields
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
+		readonly string[] _emotionStringsForAlertMessage = { "angry", "contempt", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
+
+		const string ErrorMessage = "Error, No Face Detected";
+		const string MakeAFaceAlertMessage = "Make a face looking ";
 		#endregion
 
 		#region Fields
@@ -39,7 +43,9 @@ namespace FaceOff
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
-
+				if (!(await DisplayEmotionAsPopUpAlert()))
+					return;
+					
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
 				if (imageMediaFile == null)
 					return;
@@ -76,6 +82,9 @@ namespace FaceOff
 			{
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
+				if (!(await DisplayEmotionAsPopUpAlert()))
+					return;
+				
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
 				if (imageMediaFile == null)
 					return;
@@ -331,6 +340,9 @@ namespace FaceOff
 			}
 		}
 
+		public bool UserHasAcknowledgedPopUp { get; set; } = false;
+		public bool UserResponseToAlert { get; set; }
+
 		#endregion
 
 		#region Methods
@@ -346,6 +358,7 @@ namespace FaceOff
 
 		async Task<MediaFile> GetMediaFileFromCamera(string directory, string filename)
 		{
+
 			await CrossMedia.Current.Initialize();
 
 			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -411,11 +424,10 @@ namespace FaceOff
 
 		string GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
 		{
-			var errorMessage = "Error, No Face Detected";
 			float rawEmotionScore;
 
 			if (emotionResults == null || emotionResults.Length < 1)
-				return errorMessage;
+				return ErrorMessage;
 
 			try
 			{
@@ -446,7 +458,7 @@ namespace FaceOff
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
 						break;
 					default:
-						return errorMessage;
+						return ErrorMessage;
 				}
 
 				var emotionScoreAsPercentage = ConvertFloatToPercentage(rawEmotionScore);
@@ -456,12 +468,15 @@ namespace FaceOff
 			catch (Exception e)
 			{
 				Insights.Report(e);
-				return errorMessage;
+				return ErrorMessage;
 			}
 		}
 
 		string GetStringOfAllPhotoEmotionScores(Emotion[] emotionResults, int emotionResultNumber)
 		{
+			if (emotionResults == null || emotionResults.Length < 1)
+				return ErrorMessage;
+
 			string allEmotionsString = "";
 
 			allEmotionsString += $"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}\n";
@@ -494,6 +509,24 @@ namespace FaceOff
 				};
 				RotateImage(parameters, new EventArgs());
 			}
+		}
+
+		async Task<bool> DisplayEmotionAsPopUpAlert()
+		{
+			var alertMessage = new AlertMessage
+			{
+				Title = "Challenge: "+_emotionStrings[_emotionNumber],
+				Message = MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
+			};
+			DisplayAlert(alertMessage, new EventArgs());
+
+			while (!UserHasAcknowledgedPopUp)
+			{
+				await Task.Delay(5);
+			}
+			UserHasAcknowledgedPopUp = false;
+
+			return UserResponseToAlert;
 		}
 
 		#endregion

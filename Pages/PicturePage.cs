@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace FaceOff
 {
@@ -8,12 +9,14 @@ namespace FaceOff
 	{
 		Image PhotoImage1, PhotoImage2;
 
+		PictureViewModel ViewModel;
+
 		public PicturePage()
 		{
 			var _androidVerticalPadding = 80;
 
-			var viewModel = new PictureViewModel();
-			BindingContext = viewModel;
+			ViewModel = new PictureViewModel();
+			BindingContext = ViewModel;
 
 			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
 			BackgroundColor = Color.FromHex("#91E2F4");
@@ -22,7 +25,6 @@ namespace FaceOff
 			#region Create Score Button 1 Stack
 			var photo1ScoreButton = new BounceButton
 			{
-				HorizontalOptions = LayoutOptions.Center,
 				Style = StylesConstants.ButtonStyle
 			};
 			photo1ScoreButton.SetBinding(Button.TextProperty, "ScoreButton1Text");
@@ -41,7 +43,6 @@ namespace FaceOff
 			#region Create Score Button 2 Stack
 			var photo2ScoreButton = new BounceButton
 			{
-				HorizontalOptions = LayoutOptions.Center,
 				Style = StylesConstants.ButtonStyle
 			};
 			photo2ScoreButton.SetBinding(Button.TextProperty, "ScoreButton2Text");
@@ -263,9 +264,11 @@ namespace FaceOff
 			#endregion
 
 			#region Set Page Content, Padding, and Events
-			viewModel.RotateImage += HandleRotateImage;
+			ViewModel.RotateImage += HandleRotateImage;
+			ViewModel.DisplayAlert += HandleDisplayAlert;
 
-			Content = new ScrollView{
+			Content = new ScrollView
+			{
 				Content = buttonImageRelativeLayout
 			};
 			#endregion
@@ -284,7 +287,7 @@ namespace FaceOff
 					PhotoImage1.RotateTo(parameters.DegreesOfClockwiseRotation);
 					PhotoImage1.ScaleTo(scalingFactor);
 				}
-				else if(parameters.ImageNumberToRotate == 2)
+				else if (parameters.ImageNumberToRotate == 2)
 				{
 					PhotoImage2.RotateTo(parameters.DegreesOfClockwiseRotation);
 					PhotoImage2.ScaleTo(scalingFactor);
@@ -292,6 +295,16 @@ namespace FaceOff
 			});
 		}
 
+		async void HandleDisplayAlert(object sender, EventArgs e)
+		{
+			var alertMessage = (AlertMessage)sender;
+			bool userResponseToAlert = false;
+
+			userResponseToAlert = await DisplayAlert(alertMessage.Title, alertMessage.Message, "OK", "Cancel");
+
+			ViewModel.UserResponseToAlert = userResponseToAlert;
+			ViewModel.UserHasAcknowledgedPopUp = true;
+		}
 	}
 }
 
