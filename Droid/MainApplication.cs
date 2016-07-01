@@ -24,11 +24,7 @@ namespace FaceOff.Droid
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
 
-#if DEBUG
-			Insights.Initialize(InsightsConstants.InsightsDebugApiKey, this);
-#else
-			Insights.Initialize(InsightsConstants.InsightsReleaseApiKey, this);
-#endif
+			Insights.Initialize(InsightsConstants.InsightsApiKey, this);
 
 			Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
 			{

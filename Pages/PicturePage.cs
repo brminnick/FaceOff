@@ -7,9 +7,11 @@ namespace FaceOff
 {
 	public class PicturePage : ContentPage
 	{
-		Image PhotoImage1, PhotoImage2;
+		const int _frameImagePadding = 10;
 
-		PictureViewModel ViewModel;
+		FrameImage _photoImage1, _photoImage2;
+		BounceButton _photo1ScoreButton, _photo2ScoreButton;
+		PictureViewModel _viewModel;
 
 		public PicturePage()
 		{
@@ -18,39 +20,33 @@ namespace FaceOff
 
 
 			#region Create Score Button 1 Stack
-			var photo1ScoreButton = new Button
-			{
-				Style = StylesConstants.ButtonStyle
-			};
-			photo1ScoreButton.SetBinding(Button.TextProperty, "ScoreButton1Text");
-			photo1ScoreButton.SetBinding(IsEnabledProperty, "IsScore1ButtonEnabled");
-			photo1ScoreButton.SetBinding(IsVisibleProperty, "IsScore1ButtonVisable");
-			photo1ScoreButton.SetBinding(Button.CommandProperty, "Photo1ScoreButtonPressed");
+			_photo1ScoreButton = new BounceButton();
+			_photo1ScoreButton.SetBinding(Button.TextProperty, "ScoreButton1Text");
+			_photo1ScoreButton.SetBinding(IsEnabledProperty, "IsScore1ButtonEnabled");
+			_photo1ScoreButton.SetBinding(IsVisibleProperty, "IsScore1ButtonVisable");
+			_photo1ScoreButton.SetBinding(Button.CommandProperty, "Photo1ScoreButtonPressed");
 
 			var photo1ScoreButtonStack = new StackLayout
 			{
 				Padding = new Thickness(24, 24, 24, 24),
 				Children = {
-					photo1ScoreButton
+					_photo1ScoreButton
 				}
 			};
 			#endregion
 
 			#region Create Score Button 2 Stack
-			var photo2ScoreButton = new Button
-			{
-				Style = StylesConstants.ButtonStyle
-			};
-			photo2ScoreButton.SetBinding(Button.TextProperty, "ScoreButton2Text");
-			photo2ScoreButton.SetBinding(IsEnabledProperty, "IsScore2ButtonEnabled");
-			photo2ScoreButton.SetBinding(IsVisibleProperty, "IsScore2ButtonVisable");
-			photo2ScoreButton.SetBinding(Button.CommandProperty, "Photo2ScoreButtonPressed");
+			_photo2ScoreButton = new BounceButton();
+			_photo2ScoreButton.SetBinding(Button.TextProperty, "ScoreButton2Text");
+			_photo2ScoreButton.SetBinding(IsEnabledProperty, "IsScore2ButtonEnabled");
+			_photo2ScoreButton.SetBinding(IsVisibleProperty, "IsScore2ButtonVisable");
+			_photo2ScoreButton.SetBinding(Button.CommandProperty, "Photo2ScoreButtonPressed");
 
 			var photo2ScoreButtonStack = new StackLayout
 			{
 				Padding = new Thickness(24, 24, 24, 24),
 				Children = {
-					photo2ScoreButton
+					_photo2ScoreButton
 				}
 			};
 			#endregion
@@ -68,14 +64,13 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo 1 Button Stack
-			var takePhoto1Button = new Button
+			var takePhoto1Button = new BounceButton
 			{
-				Text = "Take Photo",
-				Style = StylesConstants.ButtonStyle
+				Text = "Take Photo"
 			};
 			takePhoto1Button.SetBinding(Button.CommandProperty, "TakePhoto1ButtonPressed");
-			takePhoto1Button.SetBinding(Button.IsEnabledProperty, "IsTakeLeftPhotoButtonEnabled");
-			takePhoto1Button.SetBinding(Button.IsVisibleProperty, "IsTakeLeftPhotoButtonEnabled");
+			takePhoto1Button.SetBinding(IsEnabledProperty, "IsTakeLeftPhotoButtonEnabled");
+			takePhoto1Button.SetBinding(IsVisibleProperty, "IsTakeLeftPhotoButtonVisible");
 
 			var takePhoto1ButtonStack = new StackLayout
 			{
@@ -87,14 +82,13 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo 2 Button Stack
-			var takePhoto2Button = new Button
+			var takePhoto2Button = new BounceButton
 			{
-				Text = "Take Photo",
-				Style = StylesConstants.ButtonStyle
+				Text = "Take Photo"
 			};
 			takePhoto2Button.SetBinding(Button.CommandProperty, "TakePhoto2ButtonPressed");
-			takePhoto2Button.SetBinding(Button.IsEnabledProperty, "IsTakeRightPhotoButtonEnabled");
-			takePhoto2Button.SetBinding(Button.IsVisibleProperty, "IsTakeRightPhotoButtonEnabled");
+			takePhoto2Button.SetBinding(IsEnabledProperty, "IsTakeRightPhotoButtonEnabled");
+			takePhoto2Button.SetBinding(IsVisibleProperty, "IsTakeRightPhotoButtonVisible");
 
 			var takePhoto2ButtonStack = new StackLayout
 			{
@@ -106,13 +100,13 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo Image Containers
-			PhotoImage1 = new Image();
-			PhotoImage1.SetBinding(Image.SourceProperty, "Photo1ImageSource");
-			PhotoImage1.SetBinding(Image.IsVisibleProperty, "IsPhotoImage1Enabled");
+			_photoImage1 = new FrameImage();
+			_photoImage1.ContentImage.SetBinding(Image.SourceProperty, "Photo1ImageSource");
+			_photoImage1.SetBinding(IsVisibleProperty, "IsPhotoImage1Enabled");
 
-			PhotoImage2 = new Image();
-			PhotoImage2.SetBinding(Image.SourceProperty, "Photo2ImageSource");
-			PhotoImage2.SetBinding(Image.IsVisibleProperty, "IsPhotoImage2Enabled");
+			_photoImage2 = new FrameImage();
+			_photoImage2.ContentImage.SetBinding(Image.SourceProperty, "Photo2ImageSource");
+			_photoImage2.SetBinding(IsVisibleProperty, "IsPhotoImage2Enabled");
 			#endregion
 
 			#region Create Photo 1 Stack
@@ -120,7 +114,7 @@ namespace FaceOff
 			{
 				Style = StylesConstants.StackLayoutStyle,
 				Children = {
-					PhotoImage1,
+					_photoImage1,
 					photo1ScoreButtonStack,
 					photo1ActivityIndicator
 				},
@@ -132,7 +126,7 @@ namespace FaceOff
 			{
 				Style = StylesConstants.StackLayoutStyle,
 				Children = {
-					PhotoImage2,
+					_photoImage2,
 					photo2ScoreButtonStack,
 					photo2ActivityIndicator
 				}
@@ -140,10 +134,9 @@ namespace FaceOff
 			#endregion
 
 			#region Create Reset Button Stack
-			var resetButton = new Button
+			var resetButton = new BounceButton
 			{
-				Text = "Reset",
-				Style = StylesConstants.ButtonStyle,
+				Text = "Reset"
 			};
 			resetButton.SetBinding(Button.CommandProperty, "ResetButtonPressed");
 			resetButton.SetBinding(Button.IsEnabledProperty, "IsResetButtonEnabled");
@@ -160,101 +153,44 @@ namespace FaceOff
 
 			#region Create Relative Laout
 			var buttonImageRelativeLayout = new RelativeLayout();
+
 			buttonImageRelativeLayout.Children.Add(photo1Stack,
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.X;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-						return parent.Y;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width / 2;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-						return parent.Height * 7 / 8;
-				})
+				Constraint.RelativeToParent(parent => parent.X + _frameImagePadding),
+				Constraint.RelativeToParent(parent => parent.Y + _frameImagePadding),
+				Constraint.RelativeToParent(parent => parent.Width / 2 - 2 * _frameImagePadding),
+				Constraint.RelativeToParent(parent => parent.Height * 7 / 8)
 			);
 
 			buttonImageRelativeLayout.Children.Add(photo2Stack,
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width / 2;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-						return parent.Y;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width / 2;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-						return parent.Height * 7 / 8;
-				})
+				Constraint.RelativeToParent(parent => parent.Width / 2 + _frameImagePadding),
+				Constraint.RelativeToParent(parent => parent.Y + _frameImagePadding),
+				Constraint.RelativeToParent(parent => parent.Width / 2 - 2 * _frameImagePadding),
+				Constraint.RelativeToParent(parent => parent.Height * 7 / 8)
 			);
 
 			buttonImageRelativeLayout.Children.Add(takePhoto1ButtonStack,
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.X;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Y;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width / 2;
-				})
+				Constraint.RelativeToParent(parent => parent.X),
+				Constraint.RelativeToParent(parent => parent.Y),
+				Constraint.RelativeToParent(parent => parent.Width / 2)
 			);
 
 			buttonImageRelativeLayout.Children.Add(takePhoto2ButtonStack,
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width / 2;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Y;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width / 2;
-				})
+				Constraint.RelativeToParent(parent => parent.Width / 2),
+				Constraint.RelativeToParent(parent => parent.Y),
+				Constraint.RelativeToParent(parent => parent.Width / 2)
 			);
 
 			buttonImageRelativeLayout.Children.Add(resetButtonStack,
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.X;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Height * 7 / 8 - resetButtonStack.Height;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Width;
-				}),
-				Constraint.RelativeToParent(parent =>
-				{
-					return parent.Height * 1 / 8;
-				})
+				Constraint.RelativeToParent(parent => parent.X),
+				Constraint.RelativeToParent(parent => parent.Height * 7 / 8 - resetButtonStack.Height),
+				Constraint.RelativeToParent(parent => parent.Width),
+				Constraint.RelativeToParent(parent => parent.Height * 1 / 8)
 			);
 			#endregion
 
-			#region Initialize View Model, Set Page Content, Binding Context, and Events
-			ViewModel = new PictureViewModel();
-			BindingContext = ViewModel;
-
-			ViewModel.RotateImage += HandleRotateImage;
-			ViewModel.DisplayEmtionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
-			ViewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
+			#region Initialize View Model, Set Page Content, and Binding Context
+			_viewModel = new PictureViewModel();
+			BindingContext = _viewModel;
 
 			Content = new ScrollView
 			{
@@ -263,24 +199,52 @@ namespace FaceOff
 			#endregion
 		}
 
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			#region Subscribe Event Handlers
+			_viewModel.RotateImage += HandleRotateImage;
+			_viewModel.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
+			_viewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
+			_viewModel.DisplayEmtionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
+			_viewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
+			_viewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
+			#endregion
+		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+
+			#region Unsubscribe Event Handlers
+			_viewModel.RotateImage -= HandleRotateImage;
+			_viewModel.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
+			_viewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
+			_viewModel.DisplayEmtionBeforeCameraAlert -= HandleDisplayEmtionBeforeCameraAlert;
+			_viewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
+			_viewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
+			#endregion
+		}
+
 		#region Create Event Handlers
 		void HandleRotateImage(object sender, EventArgs e)
 		{
+			var scalingFactor = 1.5;
+			var parameters = (RotatableImageParameters)sender;
+
 			Device.BeginInvokeOnMainThread(() =>
 			{
-				var scalingFactor = 1.5;
-
-				var parameters = (RotatableImageParameters)sender;
 
 				if (parameters.ImageNumberToRotate == 1)
 				{
-					PhotoImage1.RotateTo(parameters.DegreesOfClockwiseRotation);
-					PhotoImage1.ScaleTo(scalingFactor);
+					_photoImage1.RotateTo(parameters.DegreesOfClockwiseRotation);
+					_photoImage1.ScaleTo(scalingFactor);
 				}
 				else if (parameters.ImageNumberToRotate == 2)
 				{
-					PhotoImage2.RotateTo(parameters.DegreesOfClockwiseRotation);
-					PhotoImage2.ScaleTo(scalingFactor);
+					_photoImage2.RotateTo(parameters.DegreesOfClockwiseRotation);
+					_photoImage2.ScaleTo(scalingFactor);
 				}
 			});
 		}
@@ -292,14 +256,50 @@ namespace FaceOff
 
 			userResponseToAlert = await DisplayAlert(alertMessage.Title, alertMessage.Message, "OK", "Cancel");
 
-			ViewModel.UserResponseToAlert = userResponseToAlert;
-			ViewModel.UserHasAcknowledgedPopUp = true;
+			_viewModel.UserResponseToAlert = userResponseToAlert;
+			_viewModel.UserHasAcknowledgedPopUp = true;
 		}
 
 		void HandleDisplayAllEmotionResultsAlert(object sender, EventArgs e)
 		{
 			var allEmotionResults = (string)sender;
 			DisplayAlert("Results", allEmotionResults, "OK");
+		}
+
+		void HandleDisplayNoCameraAvailableAlert(object sender, EventArgs e)
+		{
+			DisplayAlert("Error", "No Camera Available", "OK");
+		}
+
+		void HandleRevealScoreButton1WithAnimation(object sender, EventArgs e)
+		{
+			Device.BeginInvokeOnMainThread(async () =>
+			{
+				_photo1ScoreButton.Scale = 0;
+				_viewModel.IsScore1ButtonVisable = true;
+
+				await _photo1ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonMaxSize, AnimationConstants.ScoreButonAninmationTime);
+				await _photo1ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonNormalSize, AnimationConstants.ScoreButonAninmationTime);
+
+				_viewModel.IsScore1ButtonEnabled = true;
+				_viewModel.IsTakeRightPhotoButtonEnabled = !_viewModel.IsPhotoImage2Enabled;
+			});
+		}
+
+		void HandleRevealScoreButton2WithAnimation(object sender, EventArgs e)
+		{
+			Device.BeginInvokeOnMainThread(async () =>
+			{
+				_photo2ScoreButton.Scale = 0;
+				_viewModel.IsScore2ButtonVisable = true;
+
+				await _photo2ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonMaxSize, AnimationConstants.ScoreButonAninmationTime);
+				await _photo2ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonNormalSize, AnimationConstants.ScoreButonAninmationTime);
+
+				_viewModel.IsScore2ButtonEnabled = true;
+				_viewModel.IsTakeLeftPhotoButtonEnabled = !_viewModel.IsPhotoImage1Enabled;
+			});
+
 		}
 		#endregion
 	}
