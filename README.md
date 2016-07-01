@@ -6,6 +6,10 @@ The app will provide a random emotion that both players will portray. It then us
 ## About
 This is an Android and iOS app created using [Xamarin.Forms](https://www.xamarin.com/forms). The facial recognition uses [Microsoft's Coginitive Services Emotion API](https://www.microsoft.com/cognitive-services/). 
 
+To access Microsoft's Coginitive Services Emotion API from this app, sign up for a [free API Key](https://www.microsoft.com/cognitive-services/en-us/emotion-api) and insert it to the code [here](https://github.com/brminnick/FaceOff/blob/master/Constants/CognitiveServicesConstants.cs#L8). After adding your API Key, remove the diagnostic directive [located here](https://github.com/brminnick/FaceOff/blob/master/Constants/CognitiveServicesConstants.cs#L6).
+
+Data submitted may be retained by Microsoft for service improvement purposes, along with the other stipulations noted in the following documents: [Cognitive Services TOU](https://go.microsoft.com/fwlink/?LinkId=533207), [Developer Code of Conduct](http://go.microsoft.com/fwlink/?LinkId=698895)
+
 ### Author
 Brandon Minnick
 
