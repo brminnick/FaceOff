@@ -9,9 +9,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.minnick.faceoff</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -45,5 +43,9 @@
 	</dict>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>CFBundleVersion</key>
+	<string>3</string>
 </dict>
 </plist>

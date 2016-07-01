@@ -28,13 +28,23 @@ namespace FaceOff
 		ImageSource _photo1ImageSource, _photo2ImageSource;
 		string _scoreButton1Text, _scoreButton2Text;
 		bool _isTakeLeftPhotoButtonEnabled = true;
+		bool _isTakeLeftPhotoButtonVisible = true;
 		bool _isTakeRightPhotoButtonEnabled = true;
+		bool _isTakeRightPhotoButtonVisible = true;
 		bool _isResetButtonEnabled;
 		string _pageTitle;
 		int _emotionNumber;
 		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
 		bool _isScore1ButtonEnabled, _isScore2ButtonEnabled, _isScore1ButtonVisable, _isScore2ButtonVisable;
+		bool _isPhotoImage1Enabled, _isPhotoImage2Enabled;
 		string _photo1Results, _photo2Results;
+
+		public event EventHandler RotateImage;
+		public event EventHandler DisplayEmtionBeforeCameraAlert;
+		public event EventHandler DisplayAllEmotionResultsAlert;
+		public event EventHandler DisplayNoCameraAvailableAlert;
+		public event EventHandler RevealScoreButton1WithAnimation;
+		public event EventHandler RevealScoreButton2WithAnimation;
 		#endregion
 
 		#region Constructors
@@ -46,8 +56,11 @@ namespace FaceOff
 
 			TakePhoto1ButtonPressed = new Command(async () =>
 			{
+				IsTakeRightPhotoButtonEnabled = false;
 				IsScore1ButtonEnabled = false;
+
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
+
 				if (!(await DisplayPopUpAlertAboutEmotion(1)))
 					return;
 
@@ -55,13 +68,15 @@ namespace FaceOff
 
 				if (imageMediaFile == null)
 					return;
-				else
-					Insights.Track (InsightsConstants.PhotoTaken);
+
+				IsPhotoImage1Enabled = true;
+
+				Insights.Track (InsightsConstants.PhotoTaken);
 
 				IsTakeLeftPhotoButtonEnabled = false;
+				IsTakeLeftPhotoButtonVisible = false;
 
 				ScoreButton1Text = CalculatingScore;
-				IsScore1ButtonVisable = true;
 
 				Photo1ImageSource = ImageSource.FromStream(() =>
 				{
@@ -86,13 +101,15 @@ namespace FaceOff
 
 				IsCalculatingPhoto1Score = false;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-				IsScore1ButtonEnabled = true;
+
+				RevealScoreButton1WithAnimation(this, new EventArgs());
 
 				imageMediaFile.Dispose();
 			});
 
 			TakePhoto2ButtonPressed = new Command(async () =>
 			{
+				IsTakeLeftPhotoButtonEnabled = false;
 				IsScore2ButtonEnabled = false;
 
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
@@ -104,11 +121,12 @@ namespace FaceOff
 				if (imageMediaFile == null)
 					return;
 
+				IsPhotoImage2Enabled = true;
+
 				IsTakeRightPhotoButtonEnabled = false;
+				IsTakeRightPhotoButtonVisible = false;
 
 				ScoreButton2Text = CalculatingScore;
-
-				IsScore2ButtonVisable = true;
 
 				Photo2ImageSource = ImageSource.FromStream(() =>
 				{
@@ -133,7 +151,8 @@ namespace FaceOff
 
 				IsCalculatingPhoto2Score = false;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-				IsScore2ButtonEnabled = true;
+
+				RevealScoreButton2WithAnimation(this, new EventArgs());
 
 				imageMediaFile.Dispose();
 			});
@@ -148,7 +167,10 @@ namespace FaceOff
 				Photo2ImageSource = null;
 
 				IsTakeLeftPhotoButtonEnabled = true;
+				IsTakeLeftPhotoButtonVisible = true;
+
 				IsTakeRightPhotoButtonEnabled = true;
+				IsTakeRightPhotoButtonVisible = true;
 
 				ScoreButton1Text = null;
 				ScoreButton2Text = null;
@@ -161,6 +183,9 @@ namespace FaceOff
 
 				_photo1Results = null;
 				_photo2Results = null;
+
+				IsPhotoImage1Enabled = false;
+				IsPhotoImage2Enabled = false;
 			});
 
 			Photo1ScoreButtonPressed = new Command(() =>
@@ -184,11 +209,6 @@ namespace FaceOff
 		public Command SubmitButtonPressed { get; protected set; }
 		public Command Photo1ScoreButtonPressed { get; protected set; }
 		public Command Photo2ScoreButtonPressed { get; protected set; }
-
-
-		public event EventHandler RotateImage;
-		public event EventHandler DisplayEmtionBeforeCameraAlert;
-		public event EventHandler DisplayAllEmotionResultsAlert;
 
 		public ImageSource Photo1ImageSource
 		{
@@ -218,11 +238,28 @@ namespace FaceOff
 
 		public bool IsPhotoImage1Enabled
 		{
-			get { return !IsTakeLeftPhotoButtonEnabled; }
+			get 
+			{ 
+				return _isPhotoImage1Enabled; 
+			}
+			set
+			{
+				_isPhotoImage1Enabled = value;
+				OnPropertyChanged("IsPhotoImage1Enabled");
+			}
 		}
+
 		public bool IsPhotoImage2Enabled
 		{
-			get { return !IsTakeRightPhotoButtonEnabled; }
+			get
+			{
+				return _isPhotoImage2Enabled;
+			}
+			set
+			{
+				_isPhotoImage2Enabled = value;
+				OnPropertyChanged("IsPhotoImage2Enabled");
+			}
 		}
 
 		public bool IsTakeLeftPhotoButtonEnabled
@@ -235,7 +272,19 @@ namespace FaceOff
 			{
 				_isTakeLeftPhotoButtonEnabled = value;
 				OnPropertyChanged("IsTakeLeftPhotoButtonEnabled");
-				OnPropertyChanged("IsPhotoImage1Enabled");
+			}
+		}
+
+		public bool IsTakeLeftPhotoButtonVisible
+		{
+			get
+			{
+				return _isTakeLeftPhotoButtonVisible;
+			}
+			set
+			{
+				_isTakeLeftPhotoButtonVisible = value;
+				OnPropertyChanged("IsTakeLeftPhotoButtonVisible");
 			}
 		}
 
@@ -249,7 +298,19 @@ namespace FaceOff
 			{
 				_isTakeRightPhotoButtonEnabled = value;
 				OnPropertyChanged("IsTakeRightPhotoButtonEnabled");
-				OnPropertyChanged("IsPhotoImage2Enabled");
+			}
+		}
+
+		public bool IsTakeRightPhotoButtonVisible
+		{
+			get
+			{
+				return _isTakeRightPhotoButtonVisible;
+			}
+			set
+			{
+				_isTakeRightPhotoButtonVisible = value;
+				OnPropertyChanged("IsTakeRightPhotoButtonVisible");
 			}
 		}
 
@@ -401,12 +462,11 @@ namespace FaceOff
 
 		async Task<MediaFile> GetMediaFileFromCamera(string directory, string filename)
 		{
-
 			await CrossMedia.Current.Initialize();
 
 			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
 			{
-				//Todo Handle case when no camera is available
+				DisplayNoCameraAvailableAlert(this, new EventArgs());
 				return null;
 			}
 

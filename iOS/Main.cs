@@ -9,11 +9,7 @@ namespace FaceOff.iOS
 		// This is the main entry point of the application.
 		static void Main(string[] args)
 		{
-#if DEBUG
-			Insights.Initialize(InsightsConstants.InsightsDebugApiKey);
-#else
-			Xamarin.Insights.Initialize (InsightsConstants.InsightsReleaseApiKey);
-#endif
+			Insights.Initialize(InsightsConstants.InsightsApiKey);
 
 			Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
 			{

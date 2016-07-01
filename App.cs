@@ -6,6 +6,8 @@ namespace FaceOff
 {
 	public class App : Application
 	{
+		public static bool IsBounceButtonAnimationInProgress;
+
 		public App()
 		{
 			MainPage = new NavigationPage(new PicturePage())
