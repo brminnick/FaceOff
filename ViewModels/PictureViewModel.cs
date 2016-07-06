@@ -45,6 +45,8 @@ namespace FaceOff
 		public event EventHandler DisplayNoCameraAvailableAlert;
 		public event EventHandler RevealScoreButton1WithAnimation;
 		public event EventHandler RevealScoreButton2WithAnimation;
+		public event EventHandler RevealPhotoImage1WithAnimation;
+		public event EventHandler RevealPhotoImage2WithAnimation;
 		#endregion
 
 		#region Constructors
@@ -69,7 +71,7 @@ namespace FaceOff
 				if (imageMediaFile == null)
 					return;
 
-				IsPhotoImage1Enabled = true;
+				RevealPhotoImage1WithAnimation(this, new EventArgs());
 
 				Insights.Track (InsightsConstants.PhotoTaken);
 
@@ -78,6 +80,7 @@ namespace FaceOff
 
 				ScoreButton1Text = CalculatingScore;
 
+
 				Photo1ImageSource = ImageSource.FromStream(() =>
 				{
 					return GetPhotoStream(imageMediaFile, false);
@@ -85,6 +88,11 @@ namespace FaceOff
 
 				IsCalculatingPhoto1Score = true;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
+				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+				
+				RevealScoreButton1WithAnimation(this, new EventArgs());
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -102,9 +110,10 @@ namespace FaceOff
 				IsCalculatingPhoto1Score = false;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-				RevealScoreButton1WithAnimation(this, new EventArgs());
-
 				imageMediaFile.Dispose();
+
+				//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
+				await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
 			});
 
 			TakePhoto2ButtonPressed = new Command(async () =>
@@ -121,7 +130,7 @@ namespace FaceOff
 				if (imageMediaFile == null)
 					return;
 
-				IsPhotoImage2Enabled = true;
+				RevealPhotoImage2WithAnimation(this, new EventArgs());
 
 				IsTakeRightPhotoButtonEnabled = false;
 				IsTakeRightPhotoButtonVisible = false;
@@ -135,6 +144,11 @@ namespace FaceOff
 
 				IsCalculatingPhoto2Score = true;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
+				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+				
+				RevealScoreButton2WithAnimation(this, new EventArgs());
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -152,9 +166,10 @@ namespace FaceOff
 				IsCalculatingPhoto2Score = false;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-				RevealScoreButton2WithAnimation(this, new EventArgs());
-
 				imageMediaFile.Dispose();
+
+				//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
+				await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
 			});
 
 			ResetButtonPressed = new Command(() =>
