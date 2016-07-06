@@ -205,6 +205,8 @@ namespace FaceOff
 
 			#region Subscribe Event Handlers
 			_viewModel.RotateImage += HandleRotateImage;
+			_viewModel.RevealPhotoImage1WithAnimation += HandleRevealPhoto1WithAnimation;
+			_viewModel.RevealPhotoImage2WithAnimation += HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
 			_viewModel.DisplayEmtionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
@@ -219,6 +221,8 @@ namespace FaceOff
 
 			#region Unsubscribe Event Handlers
 			_viewModel.RotateImage -= HandleRotateImage;
+			_viewModel.RevealPhotoImage1WithAnimation -= HandleRevealPhoto1WithAnimation;
+			_viewModel.RevealPhotoImage2WithAnimation -= HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
 			_viewModel.DisplayEmtionBeforeCameraAlert -= HandleDisplayEmtionBeforeCameraAlert;
@@ -227,7 +231,7 @@ namespace FaceOff
 			#endregion
 		}
 
-		#region Create Event Handlers
+		#region Methods
 		void HandleRotateImage(object sender, EventArgs e)
 		{
 			var scalingFactor = 1.5;
@@ -298,6 +302,31 @@ namespace FaceOff
 
 				_viewModel.IsScore2ButtonEnabled = true;
 				_viewModel.IsTakeLeftPhotoButtonEnabled = !_viewModel.IsPhotoImage1Enabled;
+			});
+
+		}
+
+		void HandleRevealPhoto1WithAnimation(object sender, EventArgs e)
+		{
+			Device.BeginInvokeOnMainThread(async () =>
+			{
+				_photoImage1.Scale = 0;
+				_viewModel.IsPhotoImage1Enabled = true;
+
+				await _photoImage1?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
+				await _photoImage1?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
+			});
+		}
+
+		void HandleRevealPhoto2WithAnimation(object sender, EventArgs e)
+		{
+			Device.BeginInvokeOnMainThread(async () =>
+			{
+				_photoImage2.Scale = 0;
+				_viewModel.IsPhotoImage2Enabled = true;
+
+				await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
+				await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
 			});
 
 		}

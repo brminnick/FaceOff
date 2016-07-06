@@ -13,6 +13,12 @@
 		public const double ScoreButtonMaxSize = 1.2;
 		public const double ScoreButtonNormalSize = 1;
 		#endregion
+
+		#region PhotoImage Constants
+		public const int PhotoImageAninmationTime = 250;
+		public const double PhotoImageMaxSize = 1.2;
+		public const double PhotoImageNormalSize = 1;
+		#endregion
 	}
 }
 
