@@ -64,16 +64,27 @@ namespace FaceOff
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
 
 				if (!(await DisplayPopUpAlertAboutEmotion(1)))
+				{
+					IsTakeRightPhotoButtonEnabled = true;
+					IsScore1ButtonEnabled = true;
 					return;
+				}
 
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
 
 				if (imageMediaFile == null)
+				{
+					IsTakeRightPhotoButtonEnabled = true;
+					IsScore1ButtonEnabled = true;
 					return;
-
+				}
+				//Ensure the event is subscribed
+				while (RevealPhotoImage1WithAnimation == null)
+					await Task.Delay(100);
+				
 				RevealPhotoImage1WithAnimation(this, new EventArgs());
 
-				Insights.Track (InsightsConstants.PhotoTaken);
+				Insights.Track(InsightsConstants.PhotoTaken);
 
 				IsTakeLeftPhotoButtonEnabled = false;
 				IsTakeLeftPhotoButtonVisible = false;
@@ -91,7 +102,10 @@ namespace FaceOff
 
 				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
 				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
-				
+				//Ensure the event is subscribed
+				while (RevealScoreButton1WithAnimation == null)
+					await Task.Delay(100);
+
 				RevealScoreButton1WithAnimation(this, new EventArgs());
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
@@ -124,12 +138,23 @@ namespace FaceOff
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
 				if (!(await DisplayPopUpAlertAboutEmotion(2)))
+				{
+					IsTakeLeftPhotoButtonEnabled = true;
+					IsScore2ButtonEnabled = true;
 					return;
+				}
 
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
 				if (imageMediaFile == null)
+				{
+					IsTakeLeftPhotoButtonEnabled = true;
+					IsScore2ButtonEnabled = true;
 					return;
-
+				}
+				//Ensure the event is subscribed
+				while (RevealPhotoImage2WithAnimation == null)
+					await Task.Delay(100);
+				
 				RevealPhotoImage2WithAnimation(this, new EventArgs());
 
 				IsTakeRightPhotoButtonEnabled = false;
@@ -147,7 +172,11 @@ namespace FaceOff
 
 				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
 				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
-				
+
+				//Ensure the event is subscribed
+				while (RevealScoreButton2WithAnimation == null)
+					await Task.Delay(100);
+
 				RevealScoreButton2WithAnimation(this, new EventArgs());
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
@@ -253,9 +282,9 @@ namespace FaceOff
 
 		public bool IsPhotoImage1Enabled
 		{
-			get 
-			{ 
-				return _isPhotoImage1Enabled; 
+			get
+			{
+				return _isPhotoImage1Enabled;
 			}
 			set
 			{
