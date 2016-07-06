@@ -45,6 +45,8 @@ namespace FaceOff
 		public event EventHandler DisplayNoCameraAvailableAlert;
 		public event EventHandler RevealScoreButton1WithAnimation;
 		public event EventHandler RevealScoreButton2WithAnimation;
+		public event EventHandler RevealPhotoImage1WithAnimation;
+		public event EventHandler RevealPhotoImage2WithAnimation;
 		#endregion
 
 		#region Constructors
@@ -62,21 +64,33 @@ namespace FaceOff
 				Insights.Track(InsightsConstants.PhotoButton1Tapped);
 
 				if (!(await DisplayPopUpAlertAboutEmotion(1)))
+				{
+					IsTakeRightPhotoButtonEnabled = true;
+					IsScore1ButtonEnabled = true;
 					return;
+				}
 
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
 
 				if (imageMediaFile == null)
+				{
+					IsTakeRightPhotoButtonEnabled = true;
+					IsScore1ButtonEnabled = true;
 					return;
+				}
+				//Ensure the event is subscribed
+				while (RevealPhotoImage1WithAnimation == null)
+					await Task.Delay(100);
+				
+				RevealPhotoImage1WithAnimation(this, new EventArgs());
 
-				IsPhotoImage1Enabled = true;
-
-				Insights.Track (InsightsConstants.PhotoTaken);
+				Insights.Track(InsightsConstants.PhotoTaken);
 
 				IsTakeLeftPhotoButtonEnabled = false;
 				IsTakeLeftPhotoButtonVisible = false;
 
 				ScoreButton1Text = CalculatingScore;
+
 
 				Photo1ImageSource = ImageSource.FromStream(() =>
 				{
@@ -85,6 +99,14 @@ namespace FaceOff
 
 				IsCalculatingPhoto1Score = true;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
+				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+				//Ensure the event is subscribed
+				while (RevealScoreButton1WithAnimation == null)
+					await Task.Delay(100);
+
+				RevealScoreButton1WithAnimation(this, new EventArgs());
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -102,9 +124,10 @@ namespace FaceOff
 				IsCalculatingPhoto1Score = false;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-				RevealScoreButton1WithAnimation(this, new EventArgs());
-
 				imageMediaFile.Dispose();
+
+				//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
+				await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
 			});
 
 			TakePhoto2ButtonPressed = new Command(async () =>
@@ -115,13 +138,24 @@ namespace FaceOff
 				Insights.Track(InsightsConstants.PhotoButton2Tapped);
 
 				if (!(await DisplayPopUpAlertAboutEmotion(2)))
+				{
+					IsTakeLeftPhotoButtonEnabled = true;
+					IsScore2ButtonEnabled = true;
 					return;
+				}
 
 				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
 				if (imageMediaFile == null)
+				{
+					IsTakeLeftPhotoButtonEnabled = true;
+					IsScore2ButtonEnabled = true;
 					return;
-
-				IsPhotoImage2Enabled = true;
+				}
+				//Ensure the event is subscribed
+				while (RevealPhotoImage2WithAnimation == null)
+					await Task.Delay(100);
+				
+				RevealPhotoImage2WithAnimation(this, new EventArgs());
 
 				IsTakeRightPhotoButtonEnabled = false;
 				IsTakeRightPhotoButtonVisible = false;
@@ -135,6 +169,15 @@ namespace FaceOff
 
 				IsCalculatingPhoto2Score = true;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
+				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+
+				//Ensure the event is subscribed
+				while (RevealScoreButton2WithAnimation == null)
+					await Task.Delay(100);
+
+				RevealScoreButton2WithAnimation(this, new EventArgs());
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -152,9 +195,10 @@ namespace FaceOff
 				IsCalculatingPhoto2Score = false;
 				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-				RevealScoreButton2WithAnimation(this, new EventArgs());
-
 				imageMediaFile.Dispose();
+
+				//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
+				await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
 			});
 
 			ResetButtonPressed = new Command(() =>
@@ -238,9 +282,9 @@ namespace FaceOff
 
 		public bool IsPhotoImage1Enabled
 		{
-			get 
-			{ 
-				return _isPhotoImage1Enabled; 
+			get
+			{
+				return _isPhotoImage1Enabled;
 			}
 			set
 			{
