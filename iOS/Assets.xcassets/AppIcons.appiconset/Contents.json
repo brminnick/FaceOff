@@ -1,121 +1,115 @@
 {
   "images": [
     {
-      "filename": "Faceoff_Icon_29x29_1.png",
+      "filename": "29 - Spotlight 2.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_58x58_2.png",
+      "filename": "58 - Settings 2.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_87x87.png",
+      "filename": "87 - Spotlight 2.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_80x80_1.png",
+      "filename": "80 - Spotlight 2.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_120x120_2.png",
+      "filename": "120 - iPhone 2.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_57x57.png",
       "size": "57x57",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_114x114.png",
       "size": "57x57",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_120x120_1.png",
+      "filename": "120 - iPhone.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_180x180.png",
+      "filename": "180 - iPhone 6 Plus.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "Faceoff_Icon_29x29_2.png",
+      "filename": "29 - Spotlight.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_58x58.png",
+      "filename": "58 - Settings.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_40x40.png",
+      "filename": "40 - iPad Spotlight.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_80x80_2.png",
+      "filename": "80 - Spotlight.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_50x50.png",
       "size": "50x50",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_100x100.png",
       "size": "50x50",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_167x167.png",
+      "filename": "167 - iPad Plus.png",
       "size": "83.5x83.5",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_72x72.png",
       "size": "72x72",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_144x144.png",
       "size": "72x72",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_76x76.png",
+      "filename": "76 - iPad (@1x).png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Faceoff_Icon_152x152.png",
+      "filename": "152 - iPad.png",
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
