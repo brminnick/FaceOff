@@ -15,10 +15,10 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="UWP.App">
-      <uap:VisualElements DisplayName="FaceOff" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="FaceOff pits two players against eachother to see who can reflect an emotion best!&#xD;&#xA;&#xD;&#xA;The app will provide a random emotion that both players will portray. It then uses the facial recognition technology to determine who exhibited the emotion best!" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements DisplayName="FaceOff" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="FaceOff pits two players against eachother to see who can reflect an emotion best! The app will provide a random emotion that both players will portray. It then uses the facial recognition technology to determine who exhibited the emotion best!" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\Square310x310Logo.png" Square71x71Logo="Assets\Square71x71Logo.png" ShortName="FaceOff">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="portrait" />
         </uap:InitialRotationPreference>
