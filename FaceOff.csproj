@@ -37,7 +37,6 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Constants\StylesConstants.cs" />
     <Compile Include="Constants\CognitiveServicesConstants.cs" />
-    <Compile Include="Services\IHttpClientHelper.cs" />
     <Compile Include="Constants\InsightsConstants.cs" />
     <Compile Include="Helper Models\RotatableImageParameters.cs" />
     <Compile Include="Helper Models\AlertMessage.cs" />
@@ -96,10 +95,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets" Condition="Exists('packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" />
