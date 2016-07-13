@@ -169,20 +169,48 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Launch Screen_1536x2048.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\180 - iPhone 6 Plus.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\120 - iPhone.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\120 - iPhone 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\167 - iPad Plus.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\40 - iPad Spotlight.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\76 - iPad %28%401x%29.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\152 - iPad.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\80 - Spotlight.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\29 - Spotlight.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\58 - Settings.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\80 - Spotlight 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\29 - Spotlight 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\58 - Settings 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\87 - Spotlight 2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\180 - iPhone 6 Plus.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\120 - iPhone.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\120 - iPhone 2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\167 - iPad Plus.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\40 - iPad Spotlight.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\76 - iPad %28%401x%29.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\152 - iPad.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\80 - Spotlight.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\29 - Spotlight.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\58 - Settings.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\80 - Spotlight 2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\29 - Spotlight 2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\58 - Settings 2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\87 - Spotlight 2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
