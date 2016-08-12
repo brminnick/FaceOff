@@ -4,13 +4,8 @@ using Xamarin.UITest;
 
 namespace FaceOff.UITests
 {
-	[TestFixture(Platform.Android)]
-	[TestFixture(Platform.iOS)]
 	public class Tests : TestSetUp
 	{
-		IApp app;
-		Platform platform;
-
 		public Tests(Platform platform) : base(platform)
 		{
 		}
@@ -19,6 +14,13 @@ namespace FaceOff.UITests
 		public void SmokeTest()
 		{
 		}
+
+		[Test]
+		public void TakePicture1()
+		{
+			PicturePage.TapTakePhoto1Button();
+		}
+
 	}
 }
 

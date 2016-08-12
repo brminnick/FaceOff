@@ -8,24 +8,25 @@ namespace FaceOff.UITests
 	[TestFixture(Platform.iOS)]
 	public abstract class TestSetUp
 	{
-		protected IApp App;
-		protected Platform Platform;
+		protected IApp app;
+		protected Platform platform;
 
 		protected PicturePage PicturePage;
 
 		protected TestSetUp(Platform platform)
 		{
-			Platform = platform;
+			this.platform = platform;
 		}
 
 		[SetUp]
 		public virtual void TestSetup()
 		{
-			App = AppInitializer.StartApp(Platform);
+			app = AppInitializer.StartApp(platform);
 
-			PicturePage = new PicturePage(App, Platform);
+			PicturePage = new PicturePage(app, platform);
+			PicturePage.WaitForPicturePageToLoad();
 
-			App.Screenshot("App Launched");
+			app.Screenshot("App Launched");
 		}
 	}
 }
