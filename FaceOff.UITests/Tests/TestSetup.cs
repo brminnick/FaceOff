@@ -12,6 +12,7 @@ namespace FaceOff.UITests
 		protected Platform platform;
 
 		protected PicturePage PicturePage;
+		protected CameraPage CameraPage;
 
 		protected TestSetUp(Platform platform)
 		{
@@ -24,6 +25,8 @@ namespace FaceOff.UITests
 			app = AppInitializer.StartApp(platform);
 
 			PicturePage = new PicturePage(app, platform);
+			CameraPage = new CameraPage(app, platform);
+
 			PicturePage.WaitForPicturePageToLoad();
 
 			app.Screenshot("App Launched");
