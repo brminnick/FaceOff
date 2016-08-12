@@ -6,11 +6,12 @@ namespace FaceOff
 	{
 		Image _contentImage;
 
-		public FrameImage()
+		public FrameImage(string automationId)
 		{
 			HasShadow = false;
 			ContentImage = new Image();
 			Content = ContentImage;
+			AutomationId = automationId;
 		}
 		public Image ContentImage
 		{
