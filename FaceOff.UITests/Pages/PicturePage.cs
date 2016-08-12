@@ -89,6 +89,21 @@ namespace FaceOff.UITests
 		{
 			return app.Query(EmotionLabel)[0]?.Text;
 		}
+
+		public void WaitForPhotoImage1()
+		{
+			app.WaitForElement(PhotoImage1);
+		}
+
+		public void WaitForPhotoImage2()
+		{
+			app.WaitForElement(PhotoImage2);
+		}
+
+		public void WaitForPicturePageToLoad()
+		{
+			app.WaitForElement(TakePhoto1Button);
+		}
 	}
 }
 
