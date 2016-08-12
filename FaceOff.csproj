@@ -43,6 +43,7 @@
     <Compile Include="Views\BounceButton.cs" />
     <Compile Include="Constants\AnimationConstants.cs" />
     <Compile Include="Views\FrameImage.cs" />
+    <Compile Include="Constants\AutomationIdConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Media">
