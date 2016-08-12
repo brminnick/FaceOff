@@ -90,7 +90,13 @@ namespace FaceOff.UITests
 
 		public string GetEmotion()
 		{
-			return app.Query(EmotionLabel)[0]?.Text;
+			if (IsiOS)
+			{
+				var temp = app.Invoke("getPicturePageTitle:", "");
+				return app.Invoke("getPicturePageTitle:", "").ToString();
+			}
+
+			return (string)app.Invoke("GetPicturePageTitle");
 		}
 
 		public void WaitForPhotoImage1()

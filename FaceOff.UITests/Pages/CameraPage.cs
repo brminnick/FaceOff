@@ -1,4 +1,4 @@
-﻿using Xamarin.UITest;
+﻿ using Xamarin.UITest;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 

@@ -2,7 +2,9 @@
 using Android.App;
 using Android.Content.PM;
 
-using Xamarin;
+using Java.Interop;
+
+using Xamarin.Forms;
 
 namespace FaceOff.Droid
 {
@@ -20,6 +22,16 @@ namespace FaceOff.Droid
 
 			LoadApplication(new App());
 		}
+
+		#region Xamarin Test Cloud Back Door Methods
+#if DEBUG
+		[Export("GetPicturePageTitle")]
+		public string GetPicturePageTitle()
+		{
+			return ((NavigationPage)Xamarin.Forms.Application.Current.MainPage).CurrentPage.Title;
+		}
+#endif
+		#endregion
 	}
 }
 
