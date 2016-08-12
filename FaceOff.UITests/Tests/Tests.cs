@@ -18,7 +18,17 @@ namespace FaceOff.UITests
 		[Test]
 		public void TakePicture1()
 		{
+			//Arrange
+
+			//Act
 			PicturePage.TapTakePhoto1Button();
+			PicturePage.TapOK();
+
+			CameraPage.TapPhotoCaptureButton();
+			CameraPage.TapUsePhotoButton();
+
+			//Assert
+			Assert.IsTrue(PicturePage.ScoreButton1Query().Length > 0);
 		}
 
 	}

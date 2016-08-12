@@ -1,6 +1,9 @@
 ﻿using Xamarin.UITest;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
+using Xamarin.UITest.Queries;
+using System;
+
 namespace FaceOff.UITests
 {
 	public class PicturePage : BasePage
@@ -9,15 +12,15 @@ namespace FaceOff.UITests
 
 		readonly Query Photo1ActivityIndicator;
 		readonly Query Photo2ActivityIndicator;
-		 
+
 		readonly Query PhotoImage1;
 		readonly Query PhotoImage2;
-		 
+
 		readonly Query ResetButton;
-		 
+
 		readonly Query ScoreButton1;
 		readonly Query ScoreButton2;
-		 
+
 		readonly Query TakePhoto1Button;
 		readonly Query TakePhoto2Button;
 
@@ -103,6 +106,30 @@ namespace FaceOff.UITests
 		public void WaitForPicturePageToLoad()
 		{
 			app.WaitForElement(TakePhoto1Button);
+		}
+
+		public void TapOK()
+		{
+			app.Tap("OK");
+			app.Screenshot("Tapped OK");
+		}
+
+		public void TapCancel()
+		{
+			app.Tap("Cancel");
+			app.Screenshot("Tapped Cancel");
+		}
+
+		public AppResult[] ScoreButton1Query()
+		{
+			app.WaitForElement(ScoreButton1, "Score Button 1 Did Not Appear", new TimeSpan(0, 0, 5));
+			return app.Query(ScoreButton1);
+		}
+
+		public AppResult[] ScoreButton2Query()
+		{
+			app.WaitForElement(ScoreButton2, "Score Button 2 Did Not Appear", new TimeSpan(0, 0, 5));
+			return app.Query(ScoreButton2);
 		}
 	}
 }

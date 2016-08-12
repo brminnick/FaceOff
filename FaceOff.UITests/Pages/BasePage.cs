@@ -5,15 +5,15 @@ namespace FaceOff.UITests
 	public class BasePage
 	{
 		protected readonly IApp app;
-		protected readonly bool OnAndroid;
-		protected readonly bool OniOS;
+		protected readonly bool IsAndroid;
+		protected readonly bool IsiOS;
 
 		protected BasePage(IApp app, Platform platform)
 		{
 			this.app = app;
 
-			OnAndroid = platform == Platform.Android;
-			OniOS = platform == Platform.iOS;
+			IsAndroid = platform == Platform.Android;
+			IsiOS = platform == Platform.iOS;
 		}
 	}
 }
