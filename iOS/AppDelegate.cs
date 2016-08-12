@@ -1,5 +1,7 @@
-﻿using Foundation;
-using UIKit;
+﻿using UIKit;
+using Foundation;
+
+using Xamarin.Forms;
 
 namespace FaceOff.iOS
 {
@@ -18,6 +20,17 @@ namespace FaceOff.iOS
 
 			return base.FinishedLaunching(app, options);
 		}
+
+		#region Xamarin Test Cloud Back Door Methods
+
+#if ENABLE_TEST_CLOUD
+		[Export("getPicturePageTitle:")]
+		public NSString GetPicturePageTitle(NSString noValue)
+		{
+			return new NSString(((NavigationPage)Xamarin.Forms.Application.Current.MainPage).CurrentPage.Title);
+		}
+#endif
+		#endregion
 	}
 }
 
