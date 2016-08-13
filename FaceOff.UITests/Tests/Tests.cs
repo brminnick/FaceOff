@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 
 using Xamarin.UITest;
+using Xamarin.UITest.iOS;
 
 namespace FaceOff.UITests
 {
@@ -76,6 +77,40 @@ namespace FaceOff.UITests
 			//Assert
 			secondEmotion = PicturePage.GetEmotion();
 			Assert.AreNotEqual(firstEmotion, secondEmotion);
+		}
+
+		[Test]
+		public void VerifyPhoto1Results()
+		{
+			//Arrange
+			if(app is iOSApp)
+				app.Invoke("useDefaultImageForPhoto1:", "");
+			else
+				app.Invoke("UseDefaultImageForPhoto1");
+
+			//Act
+			app.Screenshot("Test Image Loaded");
+			PicturePage.TapScoreButton1();
+
+			//Assert
+			Assert.IsTrue(app.Query("Results").Length > 0);
+		}
+
+		[Test]
+		public void VerifyPhoto2Results()
+		{
+			//Arrange
+			if (app is iOSApp)
+				app.Invoke("useDefaultImageForPhoto2:", "");
+			else
+				app.Invoke("UseDefaultImageForPhoto2");
+
+			//Act
+			app.Screenshot("Test Image Loaded");
+			PicturePage.TapScoreButton2();
+
+			//Assert
+			Assert.IsTrue(app.Query("Results").Length > 0);
 		}
 	}
 }

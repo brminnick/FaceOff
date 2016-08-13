@@ -1,6 +1,4 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -8,9 +6,11 @@ namespace FaceOff
 	{
 		public static bool IsBounceButtonAnimationInProgress;
 
+		readonly PicturePage _picturePage = new PicturePage();
+
 		public App()
 		{
-			MainPage = new NavigationPage(new PicturePage())
+			MainPage = new NavigationPage(_picturePage)
 			{
 				BarBackgroundColor = Color.FromHex("#1FAECE")
 			};
@@ -30,6 +30,17 @@ namespace FaceOff
 		{
 			// Handle when your app resumes
 		}
+#if DEBUG
+		public void UseDefaultImageForPhoto1()
+		{
+			_picturePage.SetPhotoImage1("Happy");
+		}
+
+		public void UseDefaultImageForPhoto2()
+		{
+			_picturePage.SetPhotoImage2("Happy");
+		}
+#endif
 	}
 }
 
