@@ -6,10 +6,11 @@ namespace FaceOff
 {
 	public class BounceButton : Button
 	{
-		public BounceButton() : base()
+		public BounceButton(string automationId) : base()
 		{
 			Clicked += HandleButtonClick;
 			Style = StylesConstants.ButtonStyle;
+			AutomationId = automationId;
 		}
 
 		void HandleButtonClick(object sender, EventArgs e)

@@ -81,8 +81,8 @@ namespace FaceOff
 				//Ensure the event is subscribed
 				while (RevealPhotoImage1WithAnimation == null)
 					await Task.Delay(100);
-				
-				RevealPhotoImage1WithAnimation(this, new EventArgs());
+
+				RevealPhotoImage1WithAnimation(null, EventArgs.Empty);
 
 				Insights.Track(InsightsConstants.PhotoTaken);
 
@@ -106,7 +106,7 @@ namespace FaceOff
 				while (RevealScoreButton1WithAnimation == null)
 					await Task.Delay(100);
 
-				RevealScoreButton1WithAnimation(this, new EventArgs());
+				RevealScoreButton1WithAnimation(null, EventArgs.Empty);
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -154,8 +154,8 @@ namespace FaceOff
 				//Ensure the event is subscribed
 				while (RevealPhotoImage2WithAnimation == null)
 					await Task.Delay(100);
-				
-				RevealPhotoImage2WithAnimation(this, new EventArgs());
+
+				RevealPhotoImage2WithAnimation(null, EventArgs.Empty);
 
 				IsTakeRightPhotoButtonEnabled = false;
 				IsTakeRightPhotoButtonVisible = false;
@@ -177,7 +177,7 @@ namespace FaceOff
 				while (RevealScoreButton2WithAnimation == null)
 					await Task.Delay(100);
 
-				RevealScoreButton2WithAnimation(this, new EventArgs());
+				RevealScoreButton2WithAnimation(null, EventArgs.Empty);
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -563,9 +563,13 @@ namespace FaceOff
 			PageTitle = _emotionStrings[emotionNumber];
 		}
 
-		void SetEmotion()
+		void SetEmotion(int? emotionNumber = null)
 		{
-			_emotionNumber = GetRandomNumberForEmotion();
+			if (emotionNumber != null && emotionNumber >= 0 && emotionNumber <= _emotionStrings.Length - 1)
+				_emotionNumber = (int)emotionNumber;
+			else
+				_emotionNumber = GetRandomNumberForEmotion();
+
 			SetPageTitle(_emotionNumber);
 		}
 
@@ -638,7 +642,6 @@ namespace FaceOff
 			return allEmotionsString;
 		}
 
-
 		string ConvertFloatToPercentage(float floatToConvert)
 		{
 			return floatToConvert.ToString("#0.##%");
@@ -677,6 +680,58 @@ namespace FaceOff
 		void DisplayPopUpAlertShowingAllEmotionResults(string emotionResults)
 		{
 			DisplayEmtionBeforeCameraAlert(emotionResults, new EventArgs());
+		}
+
+		public void SetPhotoImage1(string photo1ImageString)
+		{
+			Photo1ImageSource = photo1ImageString;
+
+			var allEmotionsString = "";
+			allEmotionsString += $"Anger: 0%\n";
+			allEmotionsString += $"Contempt: 0%\n";
+			allEmotionsString += $"Disgust: 0%\n";
+			allEmotionsString += $"Fear: 0%\n";
+			allEmotionsString += $"Happiness: 100%\n";
+			allEmotionsString += $"Neutral: 0%\n";
+			allEmotionsString += $"Sadness: 0%\n";
+			allEmotionsString += $"Surprise: 0%";
+
+			_photo1Results = allEmotionsString;
+			ScoreButton1Text = "Score: 100%";
+
+			SetEmotion(4);
+
+			IsTakeLeftPhotoButtonEnabled = false;
+			IsTakeLeftPhotoButtonVisible = false;
+
+			RevealPhotoImage1WithAnimation(null, EventArgs.Empty);
+			RevealScoreButton1WithAnimation(null, EventArgs.Empty);
+		}
+
+		public void SetPhotoImage2(string photo2ImageString)
+		{
+			Photo2ImageSource = photo2ImageString;
+
+			var allEmotionsString = "";
+			allEmotionsString += $"Anger: 0%\n";
+			allEmotionsString += $"Contempt: 0%\n";
+			allEmotionsString += $"Disgust: 0%\n";
+			allEmotionsString += $"Fear: 0%\n";
+			allEmotionsString += $"Happiness: 100%\n";
+			allEmotionsString += $"Neutral: 0%\n";
+			allEmotionsString += $"Sadness: 0%\n";
+			allEmotionsString += $"Surprise: 0%";
+
+			_photo2Results = allEmotionsString;
+			ScoreButton2Text = "Score: 100%";
+
+			SetEmotion(4);
+
+			IsTakeRightPhotoButtonEnabled = false;
+			IsTakeRightPhotoButtonVisible = false;
+
+			RevealPhotoImage2WithAnimation(null, EventArgs.Empty);
+			RevealScoreButton2WithAnimation(null, EventArgs.Empty);
 		}
 
 		#endregion
