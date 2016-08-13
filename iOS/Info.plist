@@ -9,11 +9,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.minnick.faceoff</string>
 	<key>CFBundleShortVersionString</key>
-<<<<<<< HEAD
 	<string>1.3.2</string>
-=======
-	<string>1.3</string>
->>>>>>> master
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -50,10 +46,6 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
 	<string>8</string>
-=======
-	<string>6</string>
->>>>>>> master
 </dict>
 </plist>

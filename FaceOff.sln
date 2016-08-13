@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.Droid", "Droid\Face
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UWP", "UWP\FaceOff.UWP.csproj", "{7E3407D5-2430-4086-8852-4C20F5B6F78F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UITests", "FaceOff.UITests\FaceOff.UITests.csproj", "{0A4CFB91-046F-4236-BB46-982FDADDA01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UITests", "UITests\FaceOff.UITests.csproj", "{0A4CFB91-046F-4236-BB46-982FDADDA01D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
