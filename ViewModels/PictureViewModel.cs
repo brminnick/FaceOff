@@ -262,8 +262,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_photo1ImageSource = value;
-				OnPropertyChanged("Photo1ImageSource");
+				SetProperty<ImageSource>(ref _photo1ImageSource, value);
 			}
 		}
 
@@ -275,8 +274,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_photo2ImageSource = value;
-				OnPropertyChanged("Photo2ImageSource");
+				SetProperty<ImageSource>(ref _photo2ImageSource, value);
 			}
 		}
 
@@ -288,8 +286,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isPhotoImage1Enabled = value;
-				OnPropertyChanged("IsPhotoImage1Enabled");
+				SetProperty<bool>(ref _isPhotoImage1Enabled, value);
 			}
 		}
 
@@ -301,8 +298,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isPhotoImage2Enabled = value;
-				OnPropertyChanged("IsPhotoImage2Enabled");
+				SetProperty<bool>(ref _isPhotoImage2Enabled, value);
 			}
 		}
 
@@ -314,8 +310,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isTakeLeftPhotoButtonEnabled = value;
-				OnPropertyChanged("IsTakeLeftPhotoButtonEnabled");
+				SetProperty<bool>(ref _isTakeLeftPhotoButtonEnabled, value);
 			}
 		}
 
@@ -327,8 +322,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isTakeLeftPhotoButtonVisible = value;
-				OnPropertyChanged("IsTakeLeftPhotoButtonVisible");
+				SetProperty<bool>(ref _isTakeLeftPhotoButtonVisible, value);
 			}
 		}
 
@@ -340,8 +334,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isTakeRightPhotoButtonEnabled = value;
-				OnPropertyChanged("IsTakeRightPhotoButtonEnabled");
+				SetProperty<bool>(ref _isTakeRightPhotoButtonEnabled, value);
 			}
 		}
 
@@ -353,8 +346,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isTakeRightPhotoButtonVisible = value;
-				OnPropertyChanged("IsTakeRightPhotoButtonVisible");
+				SetProperty<bool>(ref _isTakeRightPhotoButtonVisible, value);
 			}
 		}
 
@@ -366,8 +358,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_pageTitle = value;
-				OnPropertyChanged("PageTitle");
+				SetProperty<string>(ref _pageTitle, value);
 			}
 		}
 
@@ -379,8 +370,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_scoreButton1Text = value;
-				OnPropertyChanged("ScoreButton1Text");
+				SetProperty<string>(ref _scoreButton1Text, value);
 			}
 		}
 
@@ -392,8 +382,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_scoreButton2Text = value;
-				OnPropertyChanged("ScoreButton2Text");
+				SetProperty<string>(ref _scoreButton2Text, value);
 			}
 		}
 
@@ -405,8 +394,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isCalculatingPhoto1Score = value;
-				OnPropertyChanged("IsCalculatingPhoto1Score");
+				SetProperty<bool>(ref _isCalculatingPhoto1Score, value);
 			}
 		}
 
@@ -418,8 +406,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isCalculatingPhoto2Score = value;
-				OnPropertyChanged("IsCalculatingPhoto2Score");
+				SetProperty<bool>(ref _isCalculatingPhoto2Score, value);
 			}
 		}
 
@@ -431,8 +418,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isResetButtonEnabled = value;
-				OnPropertyChanged("IsResetButtonEnabled");
+				SetProperty<bool>(ref _isResetButtonEnabled, value);
 			}
 		}
 
@@ -444,8 +430,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isScore1ButtonEnabled = value;
-				OnPropertyChanged("IsScore1ButtonEnabled");
+				SetProperty<bool>(ref _isScore1ButtonEnabled, value);
 			}
 		}
 
@@ -457,8 +442,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isScore2ButtonEnabled = value;
-				OnPropertyChanged("IsScore2ButtonEnabled");
+				SetProperty<bool>(ref _isScore2ButtonEnabled, value);
 			}
 		}
 
@@ -470,8 +454,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isScore1ButtonVisable = value;
-				OnPropertyChanged("IsScore1ButtonVisable");
+				SetProperty<bool>(ref _isScore1ButtonVisable, value);
 			}
 		}
 
@@ -483,8 +466,7 @@ namespace FaceOff
 			}
 			set
 			{
-				_isScore2ButtonVisable = value;
-				OnPropertyChanged("IsScore2ButtonVisable");
+				SetProperty<bool>(ref _isScore2ButtonVisable, value);
 			}
 		}
 

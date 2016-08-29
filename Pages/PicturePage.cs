@@ -321,7 +321,6 @@ namespace FaceOff
 				_viewModel.IsScore2ButtonEnabled = true;
 				_viewModel.IsTakeLeftPhotoButtonEnabled = !_viewModel.IsPhotoImage1Enabled;
 			});
-
 		}
 
 		void HandleRevealPhoto1WithAnimation(object sender, EventArgs e)
@@ -346,7 +345,6 @@ namespace FaceOff
 				await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
 				await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
 			});
-
 		}
 
 		public void SetPhotoImage1(string photoImageSource)
