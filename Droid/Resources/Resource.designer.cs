@@ -26,6 +26,7 @@ namespace FaceOff.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FaceOff.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
