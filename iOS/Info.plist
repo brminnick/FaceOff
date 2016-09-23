@@ -48,6 +48,6 @@
 	<key>CFBundleVersion</key>
 	<string>9</string>
 	<key>NSCameraUsageDescription</key>
-	<string>FaceOff requires the camera to capture your emotion</string>
+	<string>FaceOff uses the camera to capture your emotion</string>
 </dict>
 </plist>
