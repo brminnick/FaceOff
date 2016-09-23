@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.3.3" package="com.minnick.faceoff" android:versionCode="9">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.3.4" package="com.minnick.faceoff" android:versionCode="10">
 	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="FaceOff"></application>
 </manifest>
