@@ -48,6 +48,10 @@
     <Compile Include="Constants\AutomationIdConstants.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ProjectOxford.Emotion, Version=1.0.331.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ProjectOxford.Emotion.1.0.331\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Emotion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Plugin.Media">
       <HintPath>packages\Xam.Plugin.Media.2.3.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Plugin.Media.dll</HintPath>
       <Private>False</Private>
@@ -86,9 +90,6 @@
     </Reference>
     <Reference Include="Microsoft.ProjectOxford.Common">
       <HintPath>packages\Microsoft.ProjectOxford.Common.1.0.308\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ProjectOxford.Emotion">
-      <HintPath>packages\Microsoft.ProjectOxford.Emotion.1.0.326\lib\portable45-net45+win8+wp8+wpa81\Microsoft.ProjectOxford.Emotion.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
