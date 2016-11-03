@@ -229,6 +229,7 @@ namespace FaceOff
 			_viewModel.DisplayEmotionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
 			_viewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
+			_viewModel.DisplayMultipleFacesDetectedAlert += HandleDisplayMultipleFacesDetectedAlert;
 			#endregion
 		}
 
@@ -244,6 +245,7 @@ namespace FaceOff
 			_viewModel.DisplayEmotionBeforeCameraAlert -= HandleDisplayEmtionBeforeCameraAlert;
 			_viewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
+			_viewModel.DisplayMultipleFacesDetectedAlert -= HandleDisplayMultipleFacesDetectedAlert;
 			#endregion
 		}
 
@@ -322,6 +324,11 @@ namespace FaceOff
 				await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
 				await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
 			});
+		}
+
+		async void HandleDisplayMultipleFacesDetectedAlert(object sender, EventArgs e)
+		{
+			await DisplayAlert("Error: Multiple Faces Detected", "Ensure only one face is captured in the photo", "Ok");
 		}
 
 		public void SetPhotoImage1(string photoImageSource)
