@@ -1,5 +1,4 @@
-﻿using System;
-namespace FaceOff
+﻿namespace FaceOff
 {
 	public static class CognitiveServicesConstants
 	{
@@ -8,4 +7,3 @@ namespace FaceOff
 		public const string EmotionApiKey = "[Add Emotion API Key Here]";
 	}
 }
-
