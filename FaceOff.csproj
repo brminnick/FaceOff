@@ -38,7 +38,6 @@
     <Compile Include="ViewModels\PictureViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Constants\StylesConstants.cs" />
-    <Compile Include="Constants\CognitiveServicesConstants.cs" />
     <Compile Include="Constants\InsightsConstants.cs" />
     <Compile Include="Models\RotatableImageParameters.cs" />
     <Compile Include="Models\AlertMessage.cs" />
@@ -46,6 +45,7 @@
     <Compile Include="Constants\AnimationConstants.cs" />
     <Compile Include="Views\FrameImage.cs" />
     <Compile Include="Constants\AutomationIdConstants.cs" />
+    <Compile Include="Constants\CognitiveServicesConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
