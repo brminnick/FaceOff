@@ -39,9 +39,9 @@ namespace FaceOff
 		bool _isPhotoImage1Enabled, _isPhotoImage2Enabled;
 		string _photo1Results, _photo2Results;
 
-		public event EventHandler RotateImage;
-		public event EventHandler DisplayEmtionBeforeCameraAlert;
-		public event EventHandler DisplayAllEmotionResultsAlert;
+		public event EventHandler<AlertMessageEventArgs> DisplayEmotionBeforeCameraAlert;
+		public event EventHandler<TextEventArgs> DisplayAllEmotionResultsAlert;
+		public event EventHandler DisplayMultipleFacesDetectedAlert;
 		public event EventHandler DisplayNoCameraAvailableAlert;
 		public event EventHandler RevealScoreButton1WithAnimation;
 		public event EventHandler RevealScoreButton2WithAnimation;
@@ -82,7 +82,7 @@ namespace FaceOff
 				while (RevealPhotoImage1WithAnimation == null)
 					await Task.Delay(100);
 
-				RevealPhotoImage1WithAnimation(null, EventArgs.Empty);
+				OnRevealPhotoImage1WithAnimation();
 
 				Insights.Track(InsightsConstants.PhotoTaken);
 
@@ -106,7 +106,7 @@ namespace FaceOff
 				while (RevealScoreButton1WithAnimation == null)
 					await Task.Delay(100);
 
-				RevealScoreButton1WithAnimation(null, EventArgs.Empty);
+				OnRevealScoreButton1WithAnimation();
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -155,7 +155,7 @@ namespace FaceOff
 				while (RevealPhotoImage2WithAnimation == null)
 					await Task.Delay(100);
 
-				RevealPhotoImage2WithAnimation(null, EventArgs.Empty);
+				OnRevealPhotoImage2WithAnimation();
 
 				IsTakeRightPhotoButtonEnabled = false;
 				IsTakeRightPhotoButtonVisible = false;
@@ -177,7 +177,7 @@ namespace FaceOff
 				while (RevealScoreButton2WithAnimation == null)
 					await Task.Delay(100);
 
-				RevealScoreButton2WithAnimation(null, EventArgs.Empty);
+				OnRevealScoreButton2WithAnimation();
 
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
@@ -235,13 +235,13 @@ namespace FaceOff
 			Photo1ScoreButtonPressed = new Command(() =>
 			{
 				Insights.Track(InsightsConstants.ResultsButton1Tapped);
-				DisplayAllEmotionResultsAlert(_photo1Results, new EventArgs());
+				OnDisplayAllEmotionResultsAlert(_photo1Results);
 			});
 
 			Photo2ScoreButtonPressed = new Command(() =>
 			{
 				Insights.Track(InsightsConstants.ResultsButton2Tapped);
-				DisplayAllEmotionResultsAlert(_photo2Results, new EventArgs());
+				OnDisplayAllEmotionResultsAlert(_photo2Results);
 			});
 		}
 		#endregion
@@ -492,7 +492,7 @@ namespace FaceOff
 
 			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
 			{
-				DisplayNoCameraAvailableAlert(this, new EventArgs());
+				OnDisplayNoCameraAvailableAlert();
 				return null;
 			}
 
@@ -562,6 +562,12 @@ namespace FaceOff
 			if (emotionResults == null || emotionResults.Length < 1)
 				return ErrorMessage;
 
+			if (emotionResults.Length > 1)
+			{
+				OnDisplayMultipleFacesError();
+				return ErrorMessage;
+			}
+
 			try
 			{
 				switch (_emotionNumber)
@@ -630,25 +636,14 @@ namespace FaceOff
 
 		}
 
-		void RotateImageToVertical(int degreesOfClockwiseRotation, int imageNumberToRotate)
-		{
-			var parameters = new RotatableImageParameters
-			{
-				DegreesOfClockwiseRotation = degreesOfClockwiseRotation,
-				ImageNumberToRotate = imageNumberToRotate
-
-			};
-			RotateImage(parameters, new EventArgs());
-		}
-
 		async Task<bool> DisplayPopUpAlertAboutEmotion(int playerNumber)
 		{
-			var alertMessage = new AlertMessage
+			var alertMessage = new AlertMessageModel
 			{
 				Title = _emotionStrings[_emotionNumber],
 				Message = "Player " + playerNumber + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
 			};
-			DisplayEmtionBeforeCameraAlert(alertMessage, new EventArgs());
+			OnDisplayEmotionBeforeCameraAlert(alertMessage);
 
 			while (!UserHasAcknowledgedPopUp)
 			{
@@ -657,11 +652,6 @@ namespace FaceOff
 			UserHasAcknowledgedPopUp = false;
 
 			return UserResponseToAlert;
-		}
-
-		void DisplayPopUpAlertShowingAllEmotionResults(string emotionResults)
-		{
-			DisplayEmtionBeforeCameraAlert(emotionResults, new EventArgs());
 		}
 
 		public void SetPhotoImage1(string photo1ImageString)
@@ -686,8 +676,8 @@ namespace FaceOff
 			IsTakeLeftPhotoButtonEnabled = false;
 			IsTakeLeftPhotoButtonVisible = false;
 
-			RevealPhotoImage1WithAnimation(null, EventArgs.Empty);
-			RevealScoreButton1WithAnimation(null, EventArgs.Empty);
+			OnRevealPhotoImage1WithAnimation();
+			OnRevealScoreButton1WithAnimation();
 		}
 
 		public void SetPhotoImage2(string photo2ImageString)
@@ -712,10 +702,57 @@ namespace FaceOff
 			IsTakeRightPhotoButtonEnabled = false;
 			IsTakeRightPhotoButtonVisible = false;
 
-			RevealPhotoImage2WithAnimation(null, EventArgs.Empty);
-			RevealScoreButton2WithAnimation(null, EventArgs.Empty);
+			OnRevealPhotoImage2WithAnimation();
+			OnRevealScoreButton2WithAnimation();
 		}
 
+		void OnDisplayAllEmotionResultsAlert(string emotionResults)
+		{
+			var handle = DisplayAllEmotionResultsAlert;
+			handle?.Invoke(null, new TextEventArgs(emotionResults));
+		}
+
+		void OnDisplayNoCameraAvailableAlert()
+		{
+			var handle = DisplayNoCameraAvailableAlert;
+			handle?.Invoke(null, EventArgs.Empty);
+		}
+
+		void OnDisplayEmotionBeforeCameraAlert(AlertMessageModel alertMessage)
+		{
+			var handle = DisplayEmotionBeforeCameraAlert;
+			handle?.Invoke(null, new AlertMessageEventArgs(alertMessage));
+		}
+
+		void OnRevealPhotoImage1WithAnimation()
+		{
+			var handle = RevealPhotoImage1WithAnimation;
+			handle.Invoke(null, EventArgs.Empty);
+		}
+
+		void OnRevealScoreButton1WithAnimation()
+		{
+			var handle = RevealScoreButton1WithAnimation;
+			handle.Invoke(null, EventArgs.Empty);;
+		}
+
+		void OnRevealPhotoImage2WithAnimation()
+		{
+			var handle = RevealPhotoImage2WithAnimation;
+			handle?.Invoke(null, EventArgs.Empty);
+		}
+
+		void OnRevealScoreButton2WithAnimation()
+		{
+			var handle = RevealScoreButton2WithAnimation;
+			handle?.Invoke(null, EventArgs.Empty);
+		}
+
+		void OnDisplayMultipleFacesError()
+		{
+			var handle = DisplayMultipleFacesDetectedAlert;
+			handle?.Invoke(null, EventArgs.Empty);
+		}
 		#endregion
 	}
 }
