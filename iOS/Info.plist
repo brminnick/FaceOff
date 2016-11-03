@@ -9,7 +9,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.minnick.faceoff</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -48,6 +48,6 @@
 	<key>NSCameraUsageDescription</key>
 	<string>FaceOff uses the camera to capture your emotion</string>
 	<key>CFBundleVersion</key>
-	<string>11</string>
+	<string>12</string>
 </dict>
 </plist>

@@ -47,6 +47,7 @@
     <Compile Include="Constants\CognitiveServicesConstants.cs" />
     <Compile Include="EventArgs\AlertMessageEventArgs.cs" />
     <Compile Include="EventArgs\TextEventArgs.cs" />
+    <Compile Include="Services\ICameraService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -99,6 +100,7 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="EventArgs\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
