@@ -2,6 +2,11 @@
 
 using UIKit;
 
+using Xamarin.Forms;
+
+using FaceOff.iOS;
+
+[assembly: Dependency(typeof(CameraService_iOS))]
 namespace FaceOff.iOS
 {
 	public class CameraService_iOS : ICameraService
@@ -10,7 +15,7 @@ namespace FaceOff.iOS
 		{
 			return () =>
 		  	{
-				var imageView = new UIImageView(UIImage.FromBundle("face-template-overlay.png"));
+				var imageView = new UIImageView(UIImage.FromBundle("Camera-Face-Overlay.png"));
 				imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 
 				var screen = UIScreen.MainScreen.Bounds;
