@@ -222,12 +222,11 @@ namespace FaceOff
 			base.OnAppearing();
 
 			#region Subscribe Event Handlers
-			_viewModel.RotateImage += HandleRotateImage;
 			_viewModel.RevealPhotoImage1WithAnimation += HandleRevealPhoto1WithAnimation;
 			_viewModel.RevealPhotoImage2WithAnimation += HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
-			_viewModel.DisplayEmtionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
+			_viewModel.DisplayEmotionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
 			_viewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
 			#endregion
@@ -238,42 +237,20 @@ namespace FaceOff
 			base.OnDisappearing();
 
 			#region Unsubscribe Event Handlers
-			_viewModel.RotateImage -= HandleRotateImage;
 			_viewModel.RevealPhotoImage1WithAnimation -= HandleRevealPhoto1WithAnimation;
 			_viewModel.RevealPhotoImage2WithAnimation -= HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
-			_viewModel.DisplayEmtionBeforeCameraAlert -= HandleDisplayEmtionBeforeCameraAlert;
+			_viewModel.DisplayEmotionBeforeCameraAlert -= HandleDisplayEmtionBeforeCameraAlert;
 			_viewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
 			#endregion
 		}
 
 		#region Methods
-		void HandleRotateImage(object sender, EventArgs e)
+		async void HandleDisplayEmtionBeforeCameraAlert(object sender, AlertMessageEventArgs e)
 		{
-			var scalingFactor = 1.5;
-			var parameters = (RotatableImageParameters)sender;
-
-			Device.BeginInvokeOnMainThread(() =>
-			{
-
-				if (parameters.ImageNumberToRotate == 1)
-				{
-					_photoImage1.RotateTo(parameters.DegreesOfClockwiseRotation);
-					_photoImage1.ScaleTo(scalingFactor);
-				}
-				else if (parameters.ImageNumberToRotate == 2)
-				{
-					_photoImage2.RotateTo(parameters.DegreesOfClockwiseRotation);
-					_photoImage2.ScaleTo(scalingFactor);
-				}
-			});
-		}
-
-		async void HandleDisplayEmtionBeforeCameraAlert(object sender, EventArgs e)
-		{
-			var alertMessage = (AlertMessage)sender;
+			var alertMessage = e.Message;
 			bool userResponseToAlert = false;
 
 			userResponseToAlert = await DisplayAlert(alertMessage.Title, alertMessage.Message, "OK", "Cancel");
@@ -282,9 +259,9 @@ namespace FaceOff
 			_viewModel.UserHasAcknowledgedPopUp = true;
 		}
 
-		void HandleDisplayAllEmotionResultsAlert(object sender, EventArgs e)
+		void HandleDisplayAllEmotionResultsAlert(object sender, TextEventArgs e)
 		{
-			var allEmotionResults = (string)sender;
+			var allEmotionResults = e.Text;
 			DisplayAlert("Results", allEmotionResults, "OK");
 		}
 
