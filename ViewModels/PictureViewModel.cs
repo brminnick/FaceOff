@@ -516,7 +516,8 @@ namespace FaceOff
 			{
 				Directory = directory,
 				Name = filename,
-				DefaultCamera = CameraDevice.Front
+				DefaultCamera = CameraDevice.Front,
+				OverlayViewProvider = DependencyService.Get<ICameraService>()?.GetCameraOverlay()
 			});
 
 			return file;
