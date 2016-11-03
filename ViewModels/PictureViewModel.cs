@@ -19,7 +19,7 @@ namespace FaceOff
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
 		readonly string[] _emotionStringsForAlertMessage = { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
-		const string ErrorMessage = "No Face Detected";
+		readonly string[] ErrorMessage = { "No Face Detected", "Error" };
 		const string MakeAFaceAlertMessage = "take a selfie looking ";
 		const string CalculatingScore = "Analyzing";
 		#endregion
@@ -111,10 +111,17 @@ namespace FaceOff
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
 				var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
-				if (emotionScore.Contains(ErrorMessage))
+
+				bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
+
+				if (doesEmotionScoreContainErrorMessage)
 				{
-					Insights.Track(InsightsConstants.NoFaceDetected);
-					ScoreButton1Text = ErrorMessage;
+					if (emotionScore.Contains(ErrorMessage[0]))
+						Insights.Track(InsightsConstants.NoFaceDetected);
+					else if (emotionScore.Contains(ErrorMessage[1]))
+						Insights.Track(InsightsConstants.MultipleFacesDetected);
+
+					ScoreButton1Text = emotionScore;
 				}
 				else
 					ScoreButton1Text = $"Score: {emotionScore}";
@@ -182,13 +189,22 @@ namespace FaceOff
 				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
 
 				var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
-				if (emotionScore.Contains(ErrorMessage))
+
+				bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
+
+				if (doesEmotionScoreContainErrorMessage)
 				{
-					Insights.Track(InsightsConstants.NoFaceDetected);
-					ScoreButton2Text = ErrorMessage;
+					if (emotionScore.Contains(ErrorMessage[0]))
+						Insights.Track(InsightsConstants.NoFaceDetected);
+					else if (emotionScore.Contains(ErrorMessage[1]))
+						Insights.Track(InsightsConstants.MultipleFacesDetected);
+
+					ScoreButton2Text = emotionScore;
 				}
 				else
+				{
 					ScoreButton2Text = $"Score: {emotionScore}";
+				}
 
 				_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
 
@@ -560,12 +576,12 @@ namespace FaceOff
 			float rawEmotionScore;
 
 			if (emotionResults == null || emotionResults.Length < 1)
-				return ErrorMessage;
+				return ErrorMessage[0];
 
 			if (emotionResults.Length > 1)
 			{
 				OnDisplayMultipleFacesError();
-				return ErrorMessage;
+				return ErrorMessage[1];
 			}
 
 			try
@@ -597,7 +613,7 @@ namespace FaceOff
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
 						break;
 					default:
-						return ErrorMessage;
+						return ErrorMessage[0];
 				}
 
 				var emotionScoreAsPercentage = ConvertFloatToPercentage(rawEmotionScore);
@@ -607,14 +623,14 @@ namespace FaceOff
 			catch (Exception e)
 			{
 				Insights.Report(e);
-				return ErrorMessage;
+				return ErrorMessage[0];
 			}
 		}
 
 		string GetStringOfAllPhotoEmotionScores(Emotion[] emotionResults, int emotionResultNumber)
 		{
 			if (emotionResults == null || emotionResults.Length < 1)
-				return ErrorMessage;
+				return ErrorMessage[0];
 
 			string allEmotionsString = "";
 
@@ -706,6 +722,17 @@ namespace FaceOff
 			OnRevealScoreButton2WithAnimation();
 		}
 
+		bool DoesStringContainErrorMessage(string stringToCheck)
+		{
+			foreach (string errorMessage in ErrorMessage)
+			{
+				if (stringToCheck.Contains(errorMessage))
+					return true;
+			}
+
+			return false;
+		}
+
 		void OnDisplayAllEmotionResultsAlert(string emotionResults)
 		{
 			var handle = DisplayAllEmotionResultsAlert;
@@ -727,13 +754,13 @@ namespace FaceOff
 		void OnRevealPhotoImage1WithAnimation()
 		{
 			var handle = RevealPhotoImage1WithAnimation;
-			handle.Invoke(null, EventArgs.Empty);
+			handle?.Invoke(null, EventArgs.Empty);
 		}
 
 		void OnRevealScoreButton1WithAnimation()
 		{
 			var handle = RevealScoreButton1WithAnimation;
-			handle.Invoke(null, EventArgs.Empty);;
+			handle?.Invoke(null, EventArgs.Empty); ;
 		}
 
 		void OnRevealPhotoImage2WithAnimation()
