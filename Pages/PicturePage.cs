@@ -6,12 +6,17 @@ namespace FaceOff
 {
 	public class PicturePage : ContentPage
 	{
+		#region Field Constants
 		const int _frameImagePadding = 10;
+		#endregion
 
+		#region Fields
 		FrameImage _photoImage1, _photoImage2;
 		BounceButton _photo1ScoreButton, _photo2ScoreButton;
 		PictureViewModel _viewModel;
+		#endregion
 
+		#region Constructors
 		public PicturePage()
 		{
 			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
@@ -216,7 +221,9 @@ namespace FaceOff
 			};
 			#endregion
 		}
+		#endregion
 
+		#region Methods
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
@@ -249,7 +256,6 @@ namespace FaceOff
 			#endregion
 		}
 
-		#region Methods
 		async void HandleDisplayEmtionBeforeCameraAlert(object sender, AlertMessageEventArgs e)
 		{
 			var alertMessage = e.Message;
