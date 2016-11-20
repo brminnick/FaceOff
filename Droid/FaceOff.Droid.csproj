@@ -124,11 +124,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Plugin.Media.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.2.6.0\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugin.Media.2.6.1\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Plugin.Media">
-      <HintPath>..\packages\Xam.Plugin.Media.2.6.0\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugin.Media.2.6.1\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
