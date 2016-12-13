@@ -12,7 +12,7 @@ namespace FaceOff.UITests
 		}
 
 		[Test]
-		public void SmokeTest()
+		public void LaunchApp()
 		{
 		}
 
