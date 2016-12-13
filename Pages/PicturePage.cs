@@ -17,7 +17,7 @@ namespace FaceOff
 		#endregion
 
 		#region Constructors
-		public PicturePage()
+		public PicturePage(string player1, string player2)
 		{
 			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
 			BackgroundColor = Color.FromHex("#91E2F4");
