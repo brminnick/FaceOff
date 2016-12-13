@@ -12,7 +12,8 @@ namespace FaceOff
 		{
 			MainPage = new NavigationPage(startPage)
 			{
-				BarBackgroundColor = Color.FromHex("#1FAECE")
+				BarBackgroundColor = Color.FromHex("#1FAECE"),
+				BarTextColor = Color.White
 			};
 		}
 

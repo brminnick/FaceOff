@@ -5,7 +5,7 @@ namespace FaceOff
 {
 	public static class StylesConstants
 	{
-		public static Style ButtonStyle = new Style(typeof(Label))
+		public static Style ButtonStyle = new Style(typeof(Button))
 		{
 			Setters = {
 				new Setter { Property = Button.BackgroundColorProperty, Value = Color.FromHex("3192B3") },

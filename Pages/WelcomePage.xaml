@@ -1,18 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:local="clr-namespace:FaceOff;assembly=FaceOff"
 		x:Class="FaceOff.WelcomePage"
-		Title="Face Off!">
+		Title="Face Off"
+		BackgroundColor="#91E2F4">
 	<ContentPage.Content>
 		<StackLayout Padding="20" VerticalOptions="Center">
-			<Label Text="Player 1:" FontSize="24"/>
-			<Entry Text="{Binding Player1}" Placeholder="Enter Name"/>
+			<Label 
+				Text="Player 1:" 
+				FontSize="24"/>
+			<Entry 
+				Text="{Binding Player1}" 
+				Placeholder="Enter Name" />
 
+			<Label 
+				Text="Player 2:" FontSize="24"/>
+			<Entry 
+				Text="{Binding Player2}" 
+				Placeholder="Enter Name" />
 
-			<Label Text="Player 2:" FontSize="24"/>
-			<Entry Text="{Binding Player2}" Placeholder="Enter Name"/>
-
-			<Button Margin="0,20,0,0" 
+			<local:BounceButton 
+					Margin="0,20,0,0" 
 					Text="Start Game" 
 					Command="{Binding StartGame}"
 					IsEnabled="{Binding GameIsReady}" />
