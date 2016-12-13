@@ -28,9 +28,9 @@ namespace FaceOff
 		ImageSource _photo1ImageSource, _photo2ImageSource;
 		string _scoreButton1Text, _scoreButton2Text;
 		bool _isTakeLeftPhotoButtonEnabled = true;
-		bool _isTakeLeftPhotoButtonVisible = true;
+		bool _isTakeLeftPhotoButtonStackVisible = true;
 		bool _isTakeRightPhotoButtonEnabled = true;
-		bool _isTakeRightPhotoButtonVisible = true;
+		bool _isTakeRightPhotoButtonStackVisible = true;
 		bool _isResetButtonEnabled;
 		string _pageTitle;
 		int _emotionNumber;
@@ -87,7 +87,7 @@ namespace FaceOff
 				Insights.Track(InsightsConstants.PhotoTaken);
 
 				IsTakeLeftPhotoButtonEnabled = false;
-				IsTakeLeftPhotoButtonVisible = false;
+				IsTakeLeftPhotoButtonStackVisible = false;
 
 				ScoreButton1Text = CalculatingScore;
 
@@ -165,7 +165,7 @@ namespace FaceOff
 				OnRevealPhotoImage2WithAnimation();
 
 				IsTakeRightPhotoButtonEnabled = false;
-				IsTakeRightPhotoButtonVisible = false;
+				IsTakeRightPhotoButtonStackVisible = false;
 
 				ScoreButton2Text = CalculatingScore;
 
@@ -227,10 +227,10 @@ namespace FaceOff
 				Photo2ImageSource = null;
 
 				IsTakeLeftPhotoButtonEnabled = true;
-				IsTakeLeftPhotoButtonVisible = true;
+				IsTakeLeftPhotoButtonStackVisible = true;
 
 				IsTakeRightPhotoButtonEnabled = true;
-				IsTakeRightPhotoButtonVisible = true;
+				IsTakeRightPhotoButtonStackVisible = true;
 
 				ScoreButton1Text = null;
 				ScoreButton2Text = null;
@@ -330,15 +330,15 @@ namespace FaceOff
 			}
 		}
 
-		public bool IsTakeLeftPhotoButtonVisible
+		public bool IsTakeLeftPhotoButtonStackVisible
 		{
 			get
 			{
-				return _isTakeLeftPhotoButtonVisible;
+				return _isTakeLeftPhotoButtonStackVisible;
 			}
 			set
 			{
-				SetProperty<bool>(ref _isTakeLeftPhotoButtonVisible, value);
+				SetProperty<bool>(ref _isTakeLeftPhotoButtonStackVisible, value);
 			}
 		}
 
@@ -354,15 +354,15 @@ namespace FaceOff
 			}
 		}
 
-		public bool IsTakeRightPhotoButtonVisible
+		public bool IsTakeRightPhotoButtonStackVisible
 		{
 			get
 			{
-				return _isTakeRightPhotoButtonVisible;
+				return _isTakeRightPhotoButtonStackVisible;
 			}
 			set
 			{
-				SetProperty<bool>(ref _isTakeRightPhotoButtonVisible, value);
+				SetProperty<bool>(ref _isTakeRightPhotoButtonStackVisible, value);
 			}
 		}
 
@@ -691,7 +691,7 @@ namespace FaceOff
 			SetEmotion(4);
 
 			IsTakeLeftPhotoButtonEnabled = false;
-			IsTakeLeftPhotoButtonVisible = false;
+			IsTakeLeftPhotoButtonStackVisible = false;
 
 			OnRevealPhotoImage1WithAnimation();
 			OnRevealScoreButton1WithAnimation();
@@ -717,7 +717,7 @@ namespace FaceOff
 			SetEmotion(4);
 
 			IsTakeRightPhotoButtonEnabled = false;
-			IsTakeRightPhotoButtonVisible = false;
+			IsTakeRightPhotoButtonStackVisible = false;
 
 			OnRevealPhotoImage2WithAnimation();
 			OnRevealScoreButton2WithAnimation();

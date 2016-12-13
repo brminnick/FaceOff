@@ -17,11 +17,12 @@ namespace FaceOff
 		#endregion
 
 		#region Constructors
-		public PicturePage(string player1, string player2)
+		public PicturePage(string player1NameText, string player2NameText)
 		{
 			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
 			BackgroundColor = Color.FromHex("#91E2F4");
 
+			NavigationPage.SetHasBackButton(this, false);
 
 			#region Create Score Button 1 Stack
 			_photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1AutomationId);
@@ -80,15 +81,23 @@ namespace FaceOff
 			};
 			takePhoto1Button.SetBinding(Button.CommandProperty, "TakePhoto1ButtonPressed");
 			takePhoto1Button.SetBinding(IsEnabledProperty, "IsTakeLeftPhotoButtonEnabled");
-			takePhoto1Button.SetBinding(IsVisibleProperty, "IsTakeLeftPhotoButtonVisible");
+
+			var player1NameLabel = new Label
+			{
+				Text = player1NameText,
+				HorizontalOptions = LayoutOptions.Center
+			};
 
 			var takePhoto1ButtonStack = new StackLayout
 			{
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Padding = new Thickness(24, 24, 24, 24),
 				Children = {
+					player1NameLabel,
 					takePhoto1Button
 				}
 			};
+			takePhoto1ButtonStack.SetBinding(StackLayout.IsVisibleProperty, "IsTakeLeftPhotoButtonStackVisible");
 			#endregion
 
 			#region Create Photo 2 Button Stack
@@ -98,15 +107,23 @@ namespace FaceOff
 			};
 			takePhoto2Button.SetBinding(Button.CommandProperty, "TakePhoto2ButtonPressed");
 			takePhoto2Button.SetBinding(IsEnabledProperty, "IsTakeRightPhotoButtonEnabled");
-			takePhoto2Button.SetBinding(IsVisibleProperty, "IsTakeRightPhotoButtonVisible");
+
+			var player2NameLabel = new Label
+			{
+				Text = player2NameText,
+				HorizontalOptions = LayoutOptions.Center,
+			};
 
 			var takePhoto2ButtonStack = new StackLayout
 			{
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Padding = new Thickness(24, 24, 24, 24),
 				Children = {
+					player2NameLabel,
 					takePhoto2Button
 				}
 			};
+			takePhoto2ButtonStack.SetBinding(IsVisibleProperty, "IsTakeRightPhotoButtonStackVisible");
 			#endregion
 
 			#region Create Photo Image Containers
@@ -173,7 +190,6 @@ namespace FaceOff
 			hiddenEmotionLabel.SetBinding(Label.TextProperty, "PageTitle");
 			#endregion
 
-
 			#region Create Relative Laout
 			var buttonImageRelativeLayout = new RelativeLayout();
 
@@ -233,7 +249,7 @@ namespace FaceOff
 			_viewModel.RevealPhotoImage2WithAnimation += HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
-			_viewModel.DisplayEmotionBeforeCameraAlert += HandleDisplayEmtionBeforeCameraAlert;
+			_viewModel.DisplayEmotionBeforeCameraAlert += HandleDisplayEmotionBeforeCameraAlert;
 			_viewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
 			_viewModel.DisplayMultipleFacesDetectedAlert += HandleDisplayMultipleFacesDetectedAlert;
@@ -249,14 +265,14 @@ namespace FaceOff
 			_viewModel.RevealPhotoImage2WithAnimation -= HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
-			_viewModel.DisplayEmotionBeforeCameraAlert -= HandleDisplayEmtionBeforeCameraAlert;
+			_viewModel.DisplayEmotionBeforeCameraAlert -= HandleDisplayEmotionBeforeCameraAlert;
 			_viewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
 			_viewModel.DisplayMultipleFacesDetectedAlert -= HandleDisplayMultipleFacesDetectedAlert;
 			#endregion
 		}
 
-		async void HandleDisplayEmtionBeforeCameraAlert(object sender, AlertMessageEventArgs e)
+		async void HandleDisplayEmotionBeforeCameraAlert(object sender, AlertMessageEventArgs e)
 		{
 			var alertMessage = e.Message;
 			bool userResponseToAlert = false;
