@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.Windows.Input;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Runtime.CompilerServices;
+
 using Xamarin.Forms;
 
 namespace FaceOff
@@ -26,7 +26,7 @@ namespace FaceOff
 			{
 				_player1 = value;
 				OnPropertyChanged();
-				OnPropertyChanged(nameof(GameIsReady));
+				OnPropertyChanged(nameof(IsGameReady));
 			}
 		}
 
@@ -37,11 +37,11 @@ namespace FaceOff
 			{
 				player2 = value;
 				OnPropertyChanged();
-				OnPropertyChanged(nameof(GameIsReady));
+				OnPropertyChanged(nameof(IsGameReady));
 			}
 		}
 
-		public bool GameIsReady
+		public bool IsGameReady
 		{
 			get
 			{
@@ -78,7 +78,7 @@ namespace FaceOff
 		void OnPropertyChanged([CallerMemberName]string name = "")
 		{
 			var handle = PropertyChanged;
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+			handle?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
 
 		async Task DisplayEmptyPlayerNameAlert(string playerName)
