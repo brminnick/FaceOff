@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Input;
 using System.Threading.Tasks;
 
 using Plugin.Media;
@@ -22,6 +23,8 @@ namespace FaceOff
 		readonly string[] ErrorMessage = { "No Face Detected", "Error" };
 		const string MakeAFaceAlertMessage = "take a selfie looking ";
 		const string CalculatingScore = "Analyzing";
+
+		readonly string _player1NameText, _player2NameText;
 		#endregion
 
 		#region Fields
@@ -38,6 +41,9 @@ namespace FaceOff
 		bool _isScore1ButtonEnabled, _isScore2ButtonEnabled, _isScore1ButtonVisable, _isScore2ButtonVisable;
 		bool _isPhotoImage1Enabled, _isPhotoImage2Enabled;
 		string _photo1Results, _photo2Results;
+		ICommand _takePhoto1ButtonPressed, _takePhoto2ButtonPressed;
+		ICommand _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
+		ICommand _resetButtonPressed;
 
 		public event EventHandler<AlertMessageEventArgs> DisplayEmotionBeforeCameraAlert;
 		public event EventHandler<TextEventArgs> DisplayAllEmotionResultsAlert;
@@ -50,225 +56,37 @@ namespace FaceOff
 		#endregion
 
 		#region Constructors
-		public PictureViewModel()
+		public PictureViewModel(string player1NameText, string player2NameText)
 		{
 			IsResetButtonEnabled = false;
 
+			_player1NameText = player1NameText;
+			_player2NameText = player2NameText;
+
 			SetEmotion();
-
-			TakePhoto1ButtonPressed = new Command(async () =>
-			{
-				IsTakeRightPhotoButtonEnabled = false;
-				IsScore1ButtonEnabled = false;
-
-				Insights.Track(InsightsConstants.PhotoButton1Tapped);
-
-				if (!(await DisplayPopUpAlertAboutEmotion(1)))
-				{
-					IsTakeRightPhotoButtonEnabled = true;
-					IsScore1ButtonEnabled = true;
-					return;
-				}
-
-				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
-
-				if (imageMediaFile == null)
-				{
-					IsTakeRightPhotoButtonEnabled = true;
-					IsScore1ButtonEnabled = true;
-					return;
-				}
-				//Ensure the event is subscribed
-				while (RevealPhotoImage1WithAnimation == null)
-					await Task.Delay(100);
-
-				OnRevealPhotoImage1WithAnimation();
-
-				Insights.Track(InsightsConstants.PhotoTaken);
-
-				IsTakeLeftPhotoButtonEnabled = false;
-				IsTakeLeftPhotoButtonStackVisible = false;
-
-				ScoreButton1Text = CalculatingScore;
-
-
-				Photo1ImageSource = ImageSource.FromStream(() =>
-				{
-					return GetPhotoStream(imageMediaFile, false);
-				});
-
-				IsCalculatingPhoto1Score = true;
-				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
-				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
-				//Ensure the event is subscribed
-				while (RevealScoreButton1WithAnimation == null)
-					await Task.Delay(100);
-
-				OnRevealScoreButton1WithAnimation();
-
-				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-
-				var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
-
-				bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
-
-				if (doesEmotionScoreContainErrorMessage)
-				{
-					if (emotionScore.Contains(ErrorMessage[0]))
-						Insights.Track(InsightsConstants.NoFaceDetected);
-					else if (emotionScore.Contains(ErrorMessage[1]))
-						Insights.Track(InsightsConstants.MultipleFacesDetected);
-
-					ScoreButton1Text = emotionScore;
-				}
-				else
-					ScoreButton1Text = $"Score: {emotionScore}";
-
-				_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
-
-				IsCalculatingPhoto1Score = false;
-				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-				imageMediaFile.Dispose();
-
-				//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
-				await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
-			});
-
-			TakePhoto2ButtonPressed = new Command(async () =>
-			{
-				IsTakeLeftPhotoButtonEnabled = false;
-				IsScore2ButtonEnabled = false;
-
-				Insights.Track(InsightsConstants.PhotoButton2Tapped);
-
-				if (!(await DisplayPopUpAlertAboutEmotion(2)))
-				{
-					IsTakeLeftPhotoButtonEnabled = true;
-					IsScore2ButtonEnabled = true;
-					return;
-				}
-
-				var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
-				if (imageMediaFile == null)
-				{
-					IsTakeLeftPhotoButtonEnabled = true;
-					IsScore2ButtonEnabled = true;
-					return;
-				}
-				//Ensure the event is subscribed
-				while (RevealPhotoImage2WithAnimation == null)
-					await Task.Delay(100);
-
-				OnRevealPhotoImage2WithAnimation();
-
-				IsTakeRightPhotoButtonEnabled = false;
-				IsTakeRightPhotoButtonStackVisible = false;
-
-				ScoreButton2Text = CalculatingScore;
-
-				Photo2ImageSource = ImageSource.FromStream(() =>
-				{
-					return GetPhotoStream(imageMediaFile, false);
-				});
-
-				IsCalculatingPhoto2Score = true;
-				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-				//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
-				await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
-
-				//Ensure the event is subscribed
-				while (RevealScoreButton2WithAnimation == null)
-					await Task.Delay(100);
-
-				OnRevealScoreButton2WithAnimation();
-
-				var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-
-				var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
-
-				bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
-
-				if (doesEmotionScoreContainErrorMessage)
-				{
-					if (emotionScore.Contains(ErrorMessage[0]))
-						Insights.Track(InsightsConstants.NoFaceDetected);
-					else if (emotionScore.Contains(ErrorMessage[1]))
-						Insights.Track(InsightsConstants.MultipleFacesDetected);
-
-					ScoreButton2Text = emotionScore;
-				}
-				else
-				{
-					ScoreButton2Text = $"Score: {emotionScore}";
-				}
-
-				_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
-
-				IsCalculatingPhoto2Score = false;
-				IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-				imageMediaFile.Dispose();
-
-				//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
-				await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
-			});
-
-			ResetButtonPressed = new Command(() =>
-			{
-				Insights.Track(InsightsConstants.ResetButtonTapped);
-
-				SetEmotion();
-
-				Photo1ImageSource = null;
-				Photo2ImageSource = null;
-
-				IsTakeLeftPhotoButtonEnabled = true;
-				IsTakeLeftPhotoButtonStackVisible = true;
-
-				IsTakeRightPhotoButtonEnabled = true;
-				IsTakeRightPhotoButtonStackVisible = true;
-
-				ScoreButton1Text = null;
-				ScoreButton2Text = null;
-
-				IsScore1ButtonEnabled = false;
-				IsScore2ButtonEnabled = false;
-
-				IsScore1ButtonVisable = false;
-				IsScore2ButtonVisable = false;
-
-				_photo1Results = null;
-				_photo2Results = null;
-
-				IsPhotoImage1Enabled = false;
-				IsPhotoImage2Enabled = false;
-			});
-
-			Photo1ScoreButtonPressed = new Command(() =>
-			{
-				Insights.Track(InsightsConstants.ResultsButton1Tapped);
-				OnDisplayAllEmotionResultsAlert(_photo1Results);
-			});
-
-			Photo2ScoreButtonPressed = new Command(() =>
-			{
-				Insights.Track(InsightsConstants.ResultsButton2Tapped);
-				OnDisplayAllEmotionResultsAlert(_photo2Results);
-			});
 		}
 		#endregion
 
 		#region Properties
-		public Command TakePhoto1ButtonPressed { get; protected set; }
-		public Command TakePhoto2ButtonPressed { get; protected set; }
-		public Command ResetButtonPressed { get; protected set; }
-		public Command SubmitButtonPressed { get; protected set; }
-		public Command Photo1ScoreButtonPressed { get; protected set; }
-		public Command Photo2ScoreButtonPressed { get; protected set; }
+		public ICommand TakePhoto1ButtonPressed =>
+		_takePhoto1ButtonPressed ??
+		(_takePhoto1ButtonPressed = new Command(async () => await ExecuteTakePhoto1ButtonPressed()));
+
+		public ICommand TakePhoto2ButtonPressed =>
+		_takePhoto2ButtonPressed ??
+		(_takePhoto2ButtonPressed = new Command(async () => await ExecuteTakePhoto2ButtonPressed()));
+
+		public ICommand ResetButtonPressed =>
+		_resetButtonPressed ??
+		(_resetButtonPressed = new Command(ExecuteResetButtonPressed));
+
+		public ICommand Photo1ScoreButtonPressed =>
+		_photo1ScoreButtonPressed ??
+		(_photo1ScoreButtonPressed = new Command(ExecutePhoto1ScoreButtonPressed));
+
+		public ICommand Photo2ScoreButtonPressed =>
+		 _photo2ScoreButtonPressed ??
+		 (_photo2ScoreButtonPressed = new Command(ExecutePhoto2ScoreButtonPressed));
 
 		public ImageSource Photo1ImageSource
 		{
@@ -380,10 +198,213 @@ namespace FaceOff
 
 		public bool HasUserAcknowledgedPopUp { get; set; } = false;
 		public bool UserResponseToAlert { get; set; }
-
 		#endregion
 
 		#region Methods
+		async Task ExecuteTakePhoto1ButtonPressed()
+		{
+			IsTakeRightPhotoButtonEnabled = false;
+			IsScore1ButtonEnabled = false;
+
+			Insights.Track(InsightsConstants.PhotoButton1Tapped);
+
+			if (!(await DisplayPopUpAlertAboutEmotion(_player1NameText)))
+			{
+				IsTakeRightPhotoButtonEnabled = true;
+				IsScore1ButtonEnabled = true;
+				return;
+			}
+
+			var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
+
+			if (imageMediaFile == null)
+			{
+				IsTakeRightPhotoButtonEnabled = true;
+				IsScore1ButtonEnabled = true;
+				return;
+			}
+			//Ensure the event is subscribed
+			while (RevealPhotoImage1WithAnimation == null)
+				await Task.Delay(100);
+
+			OnRevealPhotoImage1WithAnimation();
+
+			Insights.Track(InsightsConstants.PhotoTaken);
+
+			IsTakeLeftPhotoButtonEnabled = false;
+			IsTakeLeftPhotoButtonStackVisible = false;
+
+			ScoreButton1Text = CalculatingScore;
+
+
+			Photo1ImageSource = ImageSource.FromStream(() =>
+			{
+				return GetPhotoStream(imageMediaFile, false);
+			});
+
+			IsCalculatingPhoto1Score = true;
+			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+			//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
+			await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+			//Ensure the event is subscribed
+			while (RevealScoreButton1WithAnimation == null)
+				await Task.Delay(100);
+
+			OnRevealScoreButton1WithAnimation();
+
+			var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
+
+			var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+
+			bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
+
+			if (doesEmotionScoreContainErrorMessage)
+			{
+				if (emotionScore.Contains(ErrorMessage[0]))
+					Insights.Track(InsightsConstants.NoFaceDetected);
+				else if (emotionScore.Contains(ErrorMessage[1]))
+					Insights.Track(InsightsConstants.MultipleFacesDetected);
+
+				ScoreButton1Text = emotionScore;
+			}
+			else
+				ScoreButton1Text = $"Score: {emotionScore}";
+
+			_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+
+			IsCalculatingPhoto1Score = false;
+			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+			imageMediaFile.Dispose();
+
+			//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
+			await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
+		}
+
+		async Task ExecuteTakePhoto2ButtonPressed()
+		{
+			IsTakeLeftPhotoButtonEnabled = false;
+			IsScore2ButtonEnabled = false;
+
+			Insights.Track(InsightsConstants.PhotoButton2Tapped);
+
+			if (!(await DisplayPopUpAlertAboutEmotion(_player2NameText)))
+			{
+				IsTakeLeftPhotoButtonEnabled = true;
+				IsScore2ButtonEnabled = true;
+				return;
+			}
+
+			var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
+			if (imageMediaFile == null)
+			{
+				IsTakeLeftPhotoButtonEnabled = true;
+				IsScore2ButtonEnabled = true;
+				return;
+			}
+			//Ensure the event is subscribed
+			while (RevealPhotoImage2WithAnimation == null)
+				await Task.Delay(100);
+
+			OnRevealPhotoImage2WithAnimation();
+
+			IsTakeRightPhotoButtonEnabled = false;
+			IsTakeRightPhotoButtonStackVisible = false;
+
+			ScoreButton2Text = CalculatingScore;
+
+			Photo2ImageSource = ImageSource.FromStream(() =>
+			{
+				return GetPhotoStream(imageMediaFile, false);
+			});
+
+			IsCalculatingPhoto2Score = true;
+			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+			//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
+			await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+
+			//Ensure the event is subscribed
+			while (RevealScoreButton2WithAnimation == null)
+				await Task.Delay(100);
+
+			OnRevealScoreButton2WithAnimation();
+
+			var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
+
+			var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+
+			bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
+
+			if (doesEmotionScoreContainErrorMessage)
+			{
+				if (emotionScore.Contains(ErrorMessage[0]))
+					Insights.Track(InsightsConstants.NoFaceDetected);
+				else if (emotionScore.Contains(ErrorMessage[1]))
+					Insights.Track(InsightsConstants.MultipleFacesDetected);
+
+				ScoreButton2Text = emotionScore;
+			}
+			else
+			{
+				ScoreButton2Text = $"Score: {emotionScore}";
+			}
+
+			_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+
+			IsCalculatingPhoto2Score = false;
+			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
+			imageMediaFile.Dispose();
+
+			//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
+			await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
+		}
+
+		void ExecuteResetButtonPressed()
+		{
+			Insights.Track(InsightsConstants.ResetButtonTapped);
+
+			SetEmotion();
+
+			Photo1ImageSource = null;
+			Photo2ImageSource = null;
+
+			IsTakeLeftPhotoButtonEnabled = true;
+			IsTakeLeftPhotoButtonStackVisible = true;
+
+			IsTakeRightPhotoButtonEnabled = true;
+			IsTakeRightPhotoButtonStackVisible = true;
+
+			ScoreButton1Text = null;
+			ScoreButton2Text = null;
+
+			IsScore1ButtonEnabled = false;
+			IsScore2ButtonEnabled = false;
+
+			IsScore1ButtonVisable = false;
+			IsScore2ButtonVisable = false;
+
+			_photo1Results = null;
+			_photo2Results = null;
+
+			IsPhotoImage1Enabled = false;
+			IsPhotoImage2Enabled = false;
+		}
+
+		void ExecutePhoto1ScoreButtonPressed()
+		{
+			Insights.Track(InsightsConstants.ResultsButton1Tapped);
+			OnDisplayAllEmotionResultsAlert(_photo1Results);
+		}
+
+		void ExecutePhoto2ScoreButtonPressed()
+		{
+			Insights.Track(InsightsConstants.ResultsButton2Tapped);
+			OnDisplayAllEmotionResultsAlert(_photo2Results);
+		}
+
 		Stream GetPhotoStream(MediaFile mediaFile, bool disposeMediaFile)
 		{
 			var stream = mediaFile.GetStream();
@@ -545,12 +566,12 @@ namespace FaceOff
 
 		}
 
-		async Task<bool> DisplayPopUpAlertAboutEmotion(int playerNumber)
+		async Task<bool> DisplayPopUpAlertAboutEmotion(string playerName)
 		{
 			var alertMessage = new AlertMessageModel
 			{
 				Title = _emotionStrings[_emotionNumber],
-				Message = "Player " + playerNumber + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
+				Message = playerName + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
 			};
 			OnDisplayEmotionBeforeCameraAlert(alertMessage);
 

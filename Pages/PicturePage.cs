@@ -228,7 +228,7 @@ namespace FaceOff
 			#endregion
 
 			#region Initialize View Model, Set Page Content, and Binding Context
-			_viewModel = new PictureViewModel();
+			_viewModel = new PictureViewModel(player1NameText, player2NameText);
 			BindingContext = _viewModel;
 
 			Content = new ScrollView
