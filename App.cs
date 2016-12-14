@@ -6,14 +6,19 @@ namespace FaceOff
 	{
 		public static bool IsBounceButtonAnimationInProgress;
 
-		readonly WelcomePage startPage = new WelcomePage();
+		//readonly PicturePage _picturePage = new PicturePage("Player1", "Player2");
 
 		public App()
 		{
-			MainPage = new NavigationPage(startPage)
+			MainPage = new NavigationPage(new WelcomePage())
 			{
 				BarBackgroundColor = Color.FromHex("#1FAECE")
 			};
+
+			//MainPage = new NavigationPage(_picturePage)
+			//{
+			//	BarBackgroundColor = Color.FromHex("#1FAECE")
+			//};
 		}
 
 		protected override void OnStart()
