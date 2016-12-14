@@ -296,8 +296,7 @@ namespace FaceOff
 			IsCalculatingPhoto1Score = true;
 			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-			//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
-			await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5));
 
 			await WaitForEventToBeSubscribed(RevealScoreButton1WithAnimation);
 
@@ -328,8 +327,7 @@ namespace FaceOff
 
 			imageMediaFile.Dispose();
 
-			//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
-			await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
+			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
 		}
 
 		async Task ExecuteTakePhoto2ButtonPressed()
@@ -371,10 +369,8 @@ namespace FaceOff
 			IsCalculatingPhoto2Score = true;
 			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-			//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
-			await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
+			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5));
 
-			//Ensure the event is subscribed
 			await WaitForEventToBeSubscribed(RevealScoreButton2WithAnimation);
 
 			OnRevealScoreButton2WithAnimation();
@@ -406,8 +402,7 @@ namespace FaceOff
 
 			imageMediaFile.Dispose();
 
-			//Yeild to the UI Thread to ensure the ScoreButtonAnimation has completed
-			await Task.Delay((int)(AnimationConstants.ScoreButonAninmationTime * 2.5));
+			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
 		}
 
 		void ExecuteResetButtonPressed()
@@ -646,6 +641,11 @@ namespace FaceOff
 		{
 			while (eventToWaitFor == null)
 				await Task.Delay(100);
+		}
+
+		async Task WaitForAnimationsToFinish(int waitTimeInSeconds)
+		{
+			await Task.Delay(waitTimeInSeconds);
 		}
 
 		void OnDisplayAllEmotionResultsAlert(string emotionResults)
