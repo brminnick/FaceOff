@@ -37,12 +37,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInitializer.cs" />
-    <Compile Include="Tests\Tests.cs" />
+    <Compile Include="Tests\PicturePageTests.cs" />
     <Compile Include="Pages\PicturePage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Tests\TestSetup.cs" />
     <Compile Include="Tests\ReplTests.cs" />
     <Compile Include="Pages\CameraPage.cs" />
+    <Compile Include="Pages\WelcomePage.cs" />
+    <Compile Include="Tests\WelcomePageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

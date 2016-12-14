@@ -28,7 +28,7 @@ namespace FaceOff
 			NavigationPage.SetHasBackButton(this, false);
 
 			#region Create Score Button 1 Stack
-			_photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1AutomationId);
+			_photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1);
 			_photo1ScoreButton.SetBinding(Button.TextProperty, nameof(_viewModel.ScoreButton1Text));
 			_photo1ScoreButton.SetBinding(IsEnabledProperty, nameof(_viewModel.IsScore1ButtonEnabled));
 			_photo1ScoreButton.SetBinding(IsVisibleProperty, nameof(_viewModel.IsScore1ButtonVisable));
@@ -44,7 +44,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Score Button 2 Stack
-			_photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2AutomationId);
+			_photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2);
 			_photo2ScoreButton.SetBinding(Button.TextProperty, nameof(_viewModel.ScoreButton2Text));
 			_photo2ScoreButton.SetBinding(IsEnabledProperty, nameof(_viewModel.IsScore2ButtonEnabled));
 			_photo2ScoreButton.SetBinding(IsVisibleProperty, nameof(_viewModel.IsScore2ButtonVisable));
@@ -62,7 +62,7 @@ namespace FaceOff
 			#region Create Photo Activity Indicators
 			var photo1ActivityIndicator = new ActivityIndicator
 			{
-				AutomationId = AutomationIdConstants.Photo1ActivityIndicatorAutomationId
+				AutomationId = AutomationIdConstants.Photo1ActivityIndicator
 			};
 			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(_viewModel.IsCalculatingPhoto1Score));
 			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsEnabledProperty, nameof(_viewModel.IsCalculatingPhoto1Score));
@@ -70,7 +70,7 @@ namespace FaceOff
 
 			var photo2ActivityIndicator = new ActivityIndicator
 			{
-				AutomationId = AutomationIdConstants.Photo2ActivityIndicatorAutomationId
+				AutomationId = AutomationIdConstants.Photo2ActivityIndicator
 			};
 			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(_viewModel.IsCalculatingPhoto2Score));
 			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsEnabledProperty, nameof(_viewModel.IsCalculatingPhoto2Score));
@@ -78,7 +78,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo 1 Button Stack
-			var takePhoto1Button = new BounceButton(AutomationIdConstants.TakePhoto1ButtonAutomationId)
+			var takePhoto1Button = new BounceButton(AutomationIdConstants.TakePhoto1Button)
 			{
 				Text = "Take Photo"
 			};
@@ -104,7 +104,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo 2 Button Stack
-			var takePhoto2Button = new BounceButton(AutomationIdConstants.TakePhoto2ButtonAutomationId)
+			var takePhoto2Button = new BounceButton(AutomationIdConstants.TakePhoto2Button)
 			{
 				Text = "Take Photo"
 			};
@@ -130,11 +130,11 @@ namespace FaceOff
 			#endregion
 
 			#region Create Photo Image Containers
-			_photoImage1 = new FrameImage(AutomationIdConstants.PhotoImage1AutomationId);
+			_photoImage1 = new FrameImage(AutomationIdConstants.PhotoImage1);
 			_photoImage1.ContentImage.SetBinding(Image.SourceProperty, nameof(_viewModel.Photo1ImageSource));
 			_photoImage1.SetBinding(IsVisibleProperty, nameof(_viewModel.IsPhotoImage1Enabled));
 
-			_photoImage2 = new FrameImage(AutomationIdConstants.PhotoImage2AutomationId);
+			_photoImage2 = new FrameImage(AutomationIdConstants.PhotoImage2);
 			_photoImage2.ContentImage.SetBinding(Image.SourceProperty, nameof(_viewModel.Photo2ImageSource));
 			_photoImage2.SetBinding(IsVisibleProperty, nameof(_viewModel.IsPhotoImage2Enabled));
 			#endregion
@@ -164,7 +164,7 @@ namespace FaceOff
 			#endregion
 
 			#region Create Reset Button Stack
-			var resetButton = new BounceButton(AutomationIdConstants.ResetButtonAutomationId)
+			var resetButton = new BounceButton(AutomationIdConstants.ResetButton)
 			{
 				Text = "Reset"
 			};
@@ -188,7 +188,7 @@ namespace FaceOff
 			{
 				IsVisible = false,
 				IsEnabled = false,
-				AutomationId = AutomationIdConstants.EmotionLabelAutomationId
+				AutomationId = AutomationIdConstants.EmotionLabel
 			};
 			hiddenEmotionLabel.SetBinding(Label.TextProperty, nameof(_viewModel.PageTitle));
 			#endregion

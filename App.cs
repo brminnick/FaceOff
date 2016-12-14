@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+
+using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -6,44 +8,41 @@ namespace FaceOff
 	{
 		public static bool IsBounceButtonAnimationInProgress;
 
-		//readonly PicturePage _picturePage = new PicturePage("Player1", "Player2");
-
 		public App()
 		{
-			MainPage = new NavigationPage(new WelcomePage())
+			var welcomePage = new NavigationPage(new WelcomePage())
 			{
 				BarBackgroundColor = Color.FromHex("#1FAECE")
 			};
 
-			//MainPage = new NavigationPage(_picturePage)
-			//{
-			//	BarBackgroundColor = Color.FromHex("#1FAECE")
-			//};
-		}
+			MainPage = welcomePage;
 
-		protected override void OnStart()
-		{
-			// Handle when your app starts
-		}
-
-		protected override void OnSleep()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume()
-		{
-			// Handle when your app resumes
 		}
 #if DEBUG
 		public void UseDefaultImageForPhoto1()
 		{
-			//_picturePage.SetPhotoImage1("Happy");
+			PicturePage currentPage;
+			var currentNavigationPage = Current.MainPage as NavigationPage;
+
+			if (currentNavigationPage.CurrentPage is PicturePage)
+				currentPage = Current.MainPage as PicturePage;
+			else
+				return;
+
+			currentPage.SetPhotoImage1("Happy");
 		}
 
 		public void UseDefaultImageForPhoto2()
 		{
-			//_picturePage.SetPhotoImage2("Happy");
+			PicturePage currentPage;
+			var currentNavigationPage = Current.MainPage as NavigationPage;
+
+			if (currentNavigationPage.CurrentPage is PicturePage)
+				currentPage = Current.MainPage as PicturePage;
+			else
+				return;
+
+			currentPage.SetPhotoImage2("Happy");
 		}
 #endif
 	}

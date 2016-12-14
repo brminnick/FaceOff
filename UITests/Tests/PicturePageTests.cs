@@ -5,15 +5,21 @@ using Xamarin.UITest.iOS;
 
 namespace FaceOff.UITests
 {
-	public class Tests : TestSetUp
+	public class PicturePageTests : TestSetUp
 	{
-		public Tests(Platform platform) : base(platform)
+		public PicturePageTests(Platform platform) : base(platform)
 		{
 		}
 
-		[Test]
-		public void LaunchApp()
+		public override void TestSetup()
 		{
+			base.TestSetup();
+
+			WelcomePage.EnterPlayer1Name("First Player");
+			WelcomePage.EnterPlayer2Name("Second Player");
+			WelcomePage.TapStartGameButton();
+			
+			PicturePage.WaitForPicturePageToLoad();
 		}
 
 		[Test]
