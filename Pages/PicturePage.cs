@@ -19,17 +19,20 @@ namespace FaceOff
 		#region Constructors
 		public PicturePage(string player1NameText, string player2NameText)
 		{
-			this.SetBinding(ContentPage.TitleProperty, "PageTitle");
+			_viewModel = new PictureViewModel(player1NameText, player2NameText);
+			BindingContext = _viewModel;
+
+			this.SetBinding(ContentPage.TitleProperty, nameof(_viewModel.PageTitle));
 			BackgroundColor = Color.FromHex("#91E2F4");
 
 			NavigationPage.SetHasBackButton(this, false);
 
 			#region Create Score Button 1 Stack
 			_photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1AutomationId);
-			_photo1ScoreButton.SetBinding(Button.TextProperty, "ScoreButton1Text");
-			_photo1ScoreButton.SetBinding(IsEnabledProperty, "IsScore1ButtonEnabled");
-			_photo1ScoreButton.SetBinding(IsVisibleProperty, "IsScore1ButtonVisable");
-			_photo1ScoreButton.SetBinding(Button.CommandProperty, "Photo1ScoreButtonPressed");
+			_photo1ScoreButton.SetBinding(Button.TextProperty, nameof(_viewModel.ScoreButton1Text));
+			_photo1ScoreButton.SetBinding(IsEnabledProperty, nameof(_viewModel.IsScore1ButtonEnabled));
+			_photo1ScoreButton.SetBinding(IsVisibleProperty, nameof(_viewModel.IsScore1ButtonVisable));
+			_photo1ScoreButton.SetBinding(Button.CommandProperty, nameof(_viewModel.Photo1ScoreButtonPressed));
 
 			var photo1ScoreButtonStack = new StackLayout
 			{
@@ -42,10 +45,10 @@ namespace FaceOff
 
 			#region Create Score Button 2 Stack
 			_photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2AutomationId);
-			_photo2ScoreButton.SetBinding(Button.TextProperty, "ScoreButton2Text");
-			_photo2ScoreButton.SetBinding(IsEnabledProperty, "IsScore2ButtonEnabled");
-			_photo2ScoreButton.SetBinding(IsVisibleProperty, "IsScore2ButtonVisable");
-			_photo2ScoreButton.SetBinding(Button.CommandProperty, "Photo2ScoreButtonPressed");
+			_photo2ScoreButton.SetBinding(Button.TextProperty, nameof(_viewModel.ScoreButton2Text));
+			_photo2ScoreButton.SetBinding(IsEnabledProperty, nameof(_viewModel.IsScore2ButtonEnabled));
+			_photo2ScoreButton.SetBinding(IsVisibleProperty, nameof(_viewModel.IsScore2ButtonVisable));
+			_photo2ScoreButton.SetBinding(Button.CommandProperty, nameof(_viewModel.Photo2ScoreButtonPressed));
 
 			var photo2ScoreButtonStack = new StackLayout
 			{
@@ -61,17 +64,17 @@ namespace FaceOff
 			{
 				AutomationId = AutomationIdConstants.Photo1ActivityIndicatorAutomationId
 			};
-			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsCalculatingPhoto1Score");
-			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsEnabledProperty, "IsCalculatingPhoto1Score");
-			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsCalculatingPhoto1Score");
+			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(_viewModel.IsCalculatingPhoto1Score));
+			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsEnabledProperty, nameof(_viewModel.IsCalculatingPhoto1Score));
+			photo1ActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, nameof(_viewModel.IsCalculatingPhoto1Score));
 
 			var photo2ActivityIndicator = new ActivityIndicator
 			{
 				AutomationId = AutomationIdConstants.Photo2ActivityIndicatorAutomationId
 			};
-			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsCalculatingPhoto2Score");
-			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsEnabledProperty, "IsCalculatingPhoto2Score");
-			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsCalculatingPhoto2Score");
+			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(_viewModel.IsCalculatingPhoto2Score));
+			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsEnabledProperty, nameof(_viewModel.IsCalculatingPhoto2Score));
+			photo2ActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, nameof(_viewModel.IsCalculatingPhoto2Score));
 			#endregion
 
 			#region Create Photo 1 Button Stack
@@ -79,8 +82,8 @@ namespace FaceOff
 			{
 				Text = "Take Photo"
 			};
-			takePhoto1Button.SetBinding(Button.CommandProperty, "TakePhoto1ButtonPressed");
-			takePhoto1Button.SetBinding(IsEnabledProperty, "IsTakeLeftPhotoButtonEnabled");
+			takePhoto1Button.SetBinding(Button.CommandProperty, nameof(_viewModel.TakePhoto1ButtonPressed));
+			takePhoto1Button.SetBinding(IsEnabledProperty, nameof(_viewModel.IsTakeLeftPhotoButtonEnabled));
 
 			var player1NameLabel = new Label
 			{
@@ -97,7 +100,7 @@ namespace FaceOff
 					takePhoto1Button
 				}
 			};
-			takePhoto1ButtonStack.SetBinding(StackLayout.IsVisibleProperty, "IsTakeLeftPhotoButtonStackVisible");
+			takePhoto1ButtonStack.SetBinding(StackLayout.IsVisibleProperty, nameof(_viewModel.IsTakeLeftPhotoButtonStackVisible));
 			#endregion
 
 			#region Create Photo 2 Button Stack
@@ -105,8 +108,8 @@ namespace FaceOff
 			{
 				Text = "Take Photo"
 			};
-			takePhoto2Button.SetBinding(Button.CommandProperty, "TakePhoto2ButtonPressed");
-			takePhoto2Button.SetBinding(IsEnabledProperty, "IsTakeRightPhotoButtonEnabled");
+			takePhoto2Button.SetBinding(Button.CommandProperty, nameof(_viewModel.TakePhoto2ButtonPressed));
+			takePhoto2Button.SetBinding(IsEnabledProperty, nameof(_viewModel.IsTakeRightPhotoButtonEnabled));
 
 			var player2NameLabel = new Label
 			{
@@ -123,17 +126,17 @@ namespace FaceOff
 					takePhoto2Button
 				}
 			};
-			takePhoto2ButtonStack.SetBinding(IsVisibleProperty, "IsTakeRightPhotoButtonStackVisible");
+			takePhoto2ButtonStack.SetBinding(IsVisibleProperty, nameof(_viewModel.IsTakeRightPhotoButtonStackVisible));
 			#endregion
 
 			#region Create Photo Image Containers
 			_photoImage1 = new FrameImage(AutomationIdConstants.PhotoImage1AutomationId);
-			_photoImage1.ContentImage.SetBinding(Image.SourceProperty, "Photo1ImageSource");
-			_photoImage1.SetBinding(IsVisibleProperty, "IsPhotoImage1Enabled");
+			_photoImage1.ContentImage.SetBinding(Image.SourceProperty, nameof(_viewModel.Photo1ImageSource));
+			_photoImage1.SetBinding(IsVisibleProperty, nameof(_viewModel.IsPhotoImage1Enabled));
 
 			_photoImage2 = new FrameImage(AutomationIdConstants.PhotoImage2AutomationId);
-			_photoImage2.ContentImage.SetBinding(Image.SourceProperty, "Photo2ImageSource");
-			_photoImage2.SetBinding(IsVisibleProperty, "IsPhotoImage2Enabled");
+			_photoImage2.ContentImage.SetBinding(Image.SourceProperty, nameof(_viewModel.Photo2ImageSource));
+			_photoImage2.SetBinding(IsVisibleProperty, nameof(_viewModel.IsPhotoImage2Enabled));
 			#endregion
 
 			#region Create Photo 1 Stack
@@ -165,9 +168,9 @@ namespace FaceOff
 			{
 				Text = "Reset"
 			};
-			resetButton.SetBinding(Button.CommandProperty, "ResetButtonPressed");
-			resetButton.SetBinding(Button.IsEnabledProperty, "IsResetButtonEnabled");
-			resetButton.SetBinding(IsVisibleProperty, "IsResetButtonEnabled");
+			resetButton.SetBinding(Button.CommandProperty, nameof(_viewModel.ResetButtonPressed));
+			resetButton.SetBinding(Button.IsEnabledProperty, nameof(_viewModel.IsResetButtonEnabled));
+			resetButton.SetBinding(IsVisibleProperty, nameof(_viewModel.IsResetButtonEnabled));
 
 			var resetButtonStack = new StackLayout
 			{
@@ -187,7 +190,7 @@ namespace FaceOff
 				IsEnabled = false,
 				AutomationId = AutomationIdConstants.EmotionLabelAutomationId
 			};
-			hiddenEmotionLabel.SetBinding(Label.TextProperty, "PageTitle");
+			hiddenEmotionLabel.SetBinding(Label.TextProperty, nameof(_viewModel.PageTitle));
 			#endregion
 
 			#region Create Relative Laout
@@ -227,9 +230,8 @@ namespace FaceOff
 			);
 			#endregion
 
-			#region Initialize View Model, Set Page Content, and Binding Context
-			_viewModel = new PictureViewModel(player1NameText, player2NameText);
-			BindingContext = _viewModel;
+			#region Set Page Content
+
 
 			Content = new ScrollView
 			{
