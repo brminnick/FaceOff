@@ -61,18 +61,7 @@ namespace FaceOff
 		#region Methods
 		async Task ExecuteStartGame()
 		{
-			if (string.IsNullOrWhiteSpace(_player1))
-			{
-				await DisplayEmptyPlayerNameAlert("Player 1");
-			}
-			else if (string.IsNullOrWhiteSpace(player2))
-			{
-				await DisplayEmptyPlayerNameAlert("Player 2");
-			}
-			else
-			{
-				await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(_player1, player2));
-			}
+			await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(_player1, player2));
 		}
 
 		void OnPropertyChanged([CallerMemberName]string name = "")
