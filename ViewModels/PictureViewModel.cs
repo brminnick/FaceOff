@@ -470,6 +470,7 @@ namespace FaceOff
 
 			var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
 			{
+				PhotoSize = PhotoSize.Small,
 				Directory = directory,
 				Name = filename,
 				DefaultCamera = CameraDevice.Front,
