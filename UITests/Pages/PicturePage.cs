@@ -26,21 +26,21 @@ namespace FaceOff.UITests
 
 		public PicturePage(IApp app, Platform platform) : base(app, platform)
 		{
-			EmotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabelAutomationId);
+			EmotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
 
-			Photo1ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo1ActivityIndicatorAutomationId);
-			Photo2ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo2ActivityIndicatorAutomationId);
+			Photo1ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo1ActivityIndicator);
+			Photo2ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo2ActivityIndicator);
 
-			PhotoImage1 = x => x.Marked(AutomationIdConstants.PhotoImage1AutomationId);
-			PhotoImage2 = x => x.Marked(AutomationIdConstants.PhotoImage2AutomationId);
+			PhotoImage1 = x => x.Marked(AutomationIdConstants.PhotoImage1);
+			PhotoImage2 = x => x.Marked(AutomationIdConstants.PhotoImage2);
 
-			ResetButton = x => x.Marked(AutomationIdConstants.ResetButtonAutomationId);
+			ResetButton = x => x.Marked(AutomationIdConstants.ResetButton);
 
-			ScoreButton1 = x => x.Marked(AutomationIdConstants.ScoreButton1AutomationId);
-			ScoreButton2 = x => x.Marked(AutomationIdConstants.ScoreButton2AutomationId);
+			ScoreButton1 = x => x.Marked(AutomationIdConstants.ScoreButton1);
+			ScoreButton2 = x => x.Marked(AutomationIdConstants.ScoreButton2);
 
-			TakePhoto1Button = x => x.Marked(AutomationIdConstants.TakePhoto1ButtonAutomationId);
-			TakePhoto2Button = x => x.Marked(AutomationIdConstants.TakePhoto2ButtonAutomationId);
+			TakePhoto1Button = x => x.Marked(AutomationIdConstants.TakePhoto1Button);
+			TakePhoto2Button = x => x.Marked(AutomationIdConstants.TakePhoto2Button);
 		}
 
 		public void TapResetButton()

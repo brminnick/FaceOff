@@ -7,11 +7,12 @@ using Xamarin.Forms;
 
 namespace FaceOff
 {
-	public class WelcomeViewModel : INotifyPropertyChanged
+	public class WelcomeViewModel : BaseViewModel
 	{
 		#region Fields
 		string _player1, _player2;
 		ICommand _startGame;
+		bool _isGameReady;
 		#endregion
 
 		#region Events
@@ -25,8 +26,7 @@ namespace FaceOff
 			set
 			{
 				_player1 = value;
-				OnPropertyChanged(nameof(Player1));
-				OnPropertyChanged(nameof(IsGameReady));
+				SetProperty(ref _player1, value);
 			}
 		}
 
@@ -36,43 +36,8 @@ namespace FaceOff
 			set
 			{
 				_player2 = value;
-				OnPropertyChanged(nameof(Player2));
-				OnPropertyChanged(nameof(IsGameReady));
+				SetProperty(ref _player2, value);
 			}
-		}
-
-		public bool IsGameReady
-		{
-			get
-			{
-				return !string.IsNullOrWhiteSpace(_player1) && !string.IsNullOrWhiteSpace(_player2);
-			}
-		}
-
-		public ICommand StartGame
-		{
-			get
-			{
-				return _startGame ?? (_startGame = new Command(async () => await ExecuteStartGame()));
-			}
-		}
-		#endregion
-
-		#region Methods
-		async Task ExecuteStartGame()
-		{
-			await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(_player1, _player2));
-		}
-
-		void OnPropertyChanged([CallerMemberName]string name = "")
-		{
-			var handle = PropertyChanged;
-			handle?.Invoke(this, new PropertyChangedEventArgs(name));
-		}
-
-		async Task DisplayEmptyPlayerNameAlert(string playerName)
-		{
-			await Application.Current.MainPage.DisplayAlert("Error", $"{playerName} is blank", "OK");
 		}
 		#endregion
 	}
