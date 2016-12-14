@@ -201,6 +201,58 @@ namespace FaceOff
 		#endregion
 
 		#region Methods
+		public void SetPhotoImage1(string photo1ImageString)
+		{
+			Photo1ImageSource = photo1ImageString;
+
+			var allEmotionsString = "";
+			allEmotionsString += $"Anger: 0%\n";
+			allEmotionsString += $"Contempt: 0%\n";
+			allEmotionsString += $"Disgust: 0%\n";
+			allEmotionsString += $"Fear: 0%\n";
+			allEmotionsString += $"Happiness: 100%\n";
+			allEmotionsString += $"Neutral: 0%\n";
+			allEmotionsString += $"Sadness: 0%\n";
+			allEmotionsString += $"Surprise: 0%";
+
+			_photo1Results = allEmotionsString;
+			ScoreButton1Text = "Score: 100%";
+
+			SetEmotion(4);
+
+			IsTakeLeftPhotoButtonEnabled = false;
+			IsTakeLeftPhotoButtonStackVisible = false;
+
+			OnRevealPhotoImage1WithAnimation();
+			OnRevealScoreButton1WithAnimation();
+		}
+
+		public void SetPhotoImage2(string photo2ImageString)
+		{
+			Photo2ImageSource = photo2ImageString;
+
+			var allEmotionsString = "";
+			allEmotionsString += $"Anger: 0%\n";
+			allEmotionsString += $"Contempt: 0%\n";
+			allEmotionsString += $"Disgust: 0%\n";
+			allEmotionsString += $"Fear: 0%\n";
+			allEmotionsString += $"Happiness: 100%\n";
+			allEmotionsString += $"Neutral: 0%\n";
+			allEmotionsString += $"Sadness: 0%\n";
+			allEmotionsString += $"Surprise: 0%";
+
+			_photo2Results = allEmotionsString;
+			ScoreButton2Text = "Score: 100%";
+
+			SetEmotion(4);
+
+			IsTakeRightPhotoButtonEnabled = false;
+			IsTakeRightPhotoButtonStackVisible = false;
+
+			OnRevealPhotoImage2WithAnimation();
+			OnRevealScoreButton2WithAnimation();
+		}
+
 		async Task ExecuteTakePhoto1ButtonPressed()
 		{
 			IsTakeRightPhotoButtonEnabled = false;
@@ -223,9 +275,8 @@ namespace FaceOff
 				IsScore1ButtonEnabled = true;
 				return;
 			}
-			//Ensure the event is subscribed
-			while (RevealPhotoImage1WithAnimation == null)
-				await Task.Delay(100);
+
+			await WaitForEventToBeSubscribed(RevealPhotoImage1WithAnimation);
 
 			OnRevealPhotoImage1WithAnimation();
 
@@ -247,9 +298,8 @@ namespace FaceOff
 
 			//Yeild to the UI Thread to ensure the PhotoImageAnimation has completed
 			await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
-			//Ensure the event is subscribed
-			while (RevealScoreButton1WithAnimation == null)
-				await Task.Delay(100);
+
+			await WaitForEventToBeSubscribed(RevealScoreButton1WithAnimation);
 
 			OnRevealScoreButton1WithAnimation();
 
@@ -303,9 +353,8 @@ namespace FaceOff
 				IsScore2ButtonEnabled = true;
 				return;
 			}
-			//Ensure the event is subscribed
-			while (RevealPhotoImage2WithAnimation == null)
-				await Task.Delay(100);
+
+			await WaitForEventToBeSubscribed(RevealPhotoImage2WithAnimation);
 
 			OnRevealPhotoImage2WithAnimation();
 
@@ -326,8 +375,7 @@ namespace FaceOff
 			await Task.Delay((int)(AnimationConstants.PhotoImageAninmationTime * 2.5));
 
 			//Ensure the event is subscribed
-			while (RevealScoreButton2WithAnimation == null)
-				await Task.Delay(100);
+			await WaitForEventToBeSubscribed(RevealScoreButton2WithAnimation);
 
 			OnRevealScoreButton2WithAnimation();
 
@@ -563,7 +611,6 @@ namespace FaceOff
 		string ConvertFloatToPercentage(float floatToConvert)
 		{
 			return floatToConvert.ToString("#0.##%");
-
 		}
 
 		async Task<bool> DisplayPopUpAlertAboutEmotion(string playerName)
@@ -584,58 +631,6 @@ namespace FaceOff
 			return UserResponseToAlert;
 		}
 
-		public void SetPhotoImage1(string photo1ImageString)
-		{
-			Photo1ImageSource = photo1ImageString;
-
-			var allEmotionsString = "";
-			allEmotionsString += $"Anger: 0%\n";
-			allEmotionsString += $"Contempt: 0%\n";
-			allEmotionsString += $"Disgust: 0%\n";
-			allEmotionsString += $"Fear: 0%\n";
-			allEmotionsString += $"Happiness: 100%\n";
-			allEmotionsString += $"Neutral: 0%\n";
-			allEmotionsString += $"Sadness: 0%\n";
-			allEmotionsString += $"Surprise: 0%";
-
-			_photo1Results = allEmotionsString;
-			ScoreButton1Text = "Score: 100%";
-
-			SetEmotion(4);
-
-			IsTakeLeftPhotoButtonEnabled = false;
-			IsTakeLeftPhotoButtonStackVisible = false;
-
-			OnRevealPhotoImage1WithAnimation();
-			OnRevealScoreButton1WithAnimation();
-		}
-
-		public void SetPhotoImage2(string photo2ImageString)
-		{
-			Photo2ImageSource = photo2ImageString;
-
-			var allEmotionsString = "";
-			allEmotionsString += $"Anger: 0%\n";
-			allEmotionsString += $"Contempt: 0%\n";
-			allEmotionsString += $"Disgust: 0%\n";
-			allEmotionsString += $"Fear: 0%\n";
-			allEmotionsString += $"Happiness: 100%\n";
-			allEmotionsString += $"Neutral: 0%\n";
-			allEmotionsString += $"Sadness: 0%\n";
-			allEmotionsString += $"Surprise: 0%";
-
-			_photo2Results = allEmotionsString;
-			ScoreButton2Text = "Score: 100%";
-
-			SetEmotion(4);
-
-			IsTakeRightPhotoButtonEnabled = false;
-			IsTakeRightPhotoButtonStackVisible = false;
-
-			OnRevealPhotoImage2WithAnimation();
-			OnRevealScoreButton2WithAnimation();
-		}
-
 		bool DoesStringContainErrorMessage(string stringToCheck)
 		{
 			foreach (string errorMessage in ErrorMessage)
@@ -645,6 +640,12 @@ namespace FaceOff
 			}
 
 			return false;
+		}
+
+		async Task WaitForEventToBeSubscribed(EventHandler eventToWaitFor)
+		{
+			while (eventToWaitFor == null)
+				await Task.Delay(100);
 		}
 
 		void OnDisplayAllEmotionResultsAlert(string emotionResults)

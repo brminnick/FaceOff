@@ -6,11 +6,16 @@ namespace FaceOff
 	{
 		public static bool IsBounceButtonAnimationInProgress;
 
-		readonly WelcomePage startPage = new WelcomePage();
+		readonly PicturePage _picturePage = new PicturePage("Player1", "Player2");
 
 		public App()
 		{
-			MainPage = new NavigationPage(startPage)
+			//MainPage = new NavigationPage(new WelcomePage())
+			//{
+			//	BarBackgroundColor = Color.FromHex("#1FAECE")
+			//};
+
+			MainPage = new NavigationPage(_picturePage)
 			{
 				BarBackgroundColor = Color.FromHex("#1FAECE")
 			};
@@ -33,12 +38,12 @@ namespace FaceOff
 #if DEBUG
 		public void UseDefaultImageForPhoto1()
 		{
-			//_picturePage.SetPhotoImage1("Happy");
+			_picturePage.SetPhotoImage1("Happy");
 		}
 
 		public void UseDefaultImageForPhoto2()
 		{
-			//_picturePage.SetPhotoImage2("Happy");
+			_picturePage.SetPhotoImage2("Happy");
 		}
 #endif
 	}
