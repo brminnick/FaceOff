@@ -10,7 +10,7 @@ namespace FaceOff
 	public class WelcomeViewModel : INotifyPropertyChanged
 	{
 		#region Fields
-		string _player1, player2;
+		string _player1, _player2;
 		ICommand _startGame;
 		#endregion
 
@@ -25,18 +25,18 @@ namespace FaceOff
 			set
 			{
 				_player1 = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof(Player1));
 				OnPropertyChanged(nameof(IsGameReady));
 			}
 		}
 
 		public string Player2
 		{
-			get { return player2; }
+			get { return _player2; }
 			set
 			{
-				player2 = value;
-				OnPropertyChanged();
+				_player2 = value;
+				OnPropertyChanged(nameof(Player2));
 				OnPropertyChanged(nameof(IsGameReady));
 			}
 		}
@@ -45,7 +45,7 @@ namespace FaceOff
 		{
 			get
 			{
-				return !string.IsNullOrWhiteSpace(_player1) && !string.IsNullOrWhiteSpace(player2);
+				return !string.IsNullOrWhiteSpace(_player1) && !string.IsNullOrWhiteSpace(_player2);
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace FaceOff
 		#region Methods
 		async Task ExecuteStartGame()
 		{
-			await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(_player1, player2));
+			await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(_player1, _player2));
 		}
 
 		void OnPropertyChanged([CallerMemberName]string name = "")
