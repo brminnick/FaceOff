@@ -9,20 +9,27 @@ namespace FaceOff
 {
 	public class WelcomeViewModel : INotifyPropertyChanged
 	{
+		#region Fields
+		string _player1, player2;
+		ICommand _startGame;
+		#endregion
 
-		string player1;
+		#region Events
+		public event PropertyChangedEventHandler PropertyChanged;
+		#endregion
+
+		#region Properties
 		public string Player1
 		{
-			get { return player1; }
+			get { return _player1; }
 			set
 			{
-				player1 = value;
+				_player1 = value;
 				OnPropertyChanged();
 				OnPropertyChanged(nameof(GameIsReady));
 			}
 		}
 
-		string player2;
 		public string Player2
 		{
 			get { return player2; }
@@ -36,36 +43,48 @@ namespace FaceOff
 
 		public bool GameIsReady
 		{
-			get 
+			get
 			{
-				return !string.IsNullOrWhiteSpace(player1) && !string.IsNullOrWhiteSpace(player2);
+				return !string.IsNullOrWhiteSpace(_player1) && !string.IsNullOrWhiteSpace(player2);
 			}
 		}
 
-		ICommand startGame;
 		public ICommand StartGame
 		{
 			get
 			{
-				return startGame ?? (startGame = new Command(async () => await ExecuteStartGame()));
+				return _startGame ?? (_startGame = new Command(async () => await ExecuteStartGame()));
 			}
 		}
+		#endregion
 
+		#region Methods
 		async Task ExecuteStartGame()
 		{
-			if (string.IsNullOrWhiteSpace(player1) ||
-			   string.IsNullOrWhiteSpace(player2))
+			if (string.IsNullOrWhiteSpace(_player1))
 			{
-				return;
+				await DisplayEmptyPlayerNameAlert("Player 1");
 			}
-
-			await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(player1, player2));
+			else if (string.IsNullOrWhiteSpace(player2))
+			{
+				await DisplayEmptyPlayerNameAlert("Player 2");
+			}
+			else
+			{
+				await Application.Current.MainPage.Navigation.PushAsync(new PicturePage(_player1, player2));
+			}
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
 		void OnPropertyChanged([CallerMemberName]string name = "")
 		{
+			var handle = PropertyChanged;
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
+
+		async Task DisplayEmptyPlayerNameAlert(string playerName)
+		{
+			await Application.Current.MainPage.DisplayAlert("Error", $"{playerName} is blank", "OK");
+		}
+		#endregion
 	}
 }
