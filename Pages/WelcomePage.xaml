@@ -6,26 +6,30 @@
 		Title="Face Off"
 		BackgroundColor="#91E2F4">
 	<ContentPage.Content>
+
 		<StackLayout Padding="20" VerticalOptions="Center">
+
 			<Label 
-				Text="Player 1:" 
+				Text="Player 1"
 				FontSize="24"/>
 			<Entry 
-				Text="{Binding Player1}" 
-				Placeholder="Enter Name" />
+				Text="{Binding Player1}"
+				Placeholder="Enter Name"/>
 
 			<Label 
-				Text="Player 2:" FontSize="24"/>
+				Text="Player 2"
+				FontSize="24"/>
 			<Entry 
-				Text="{Binding Player2}" 
-				Placeholder="Enter Name" />
+				Text="{Binding Player2}"
+				Placeholder="Enter Name"/>
 
-			<local:BounceButton 
-					Margin="0,20,0,0" 
-					Text="Start Game" 
-					Command="{Binding StartGame}"
-					IsEnabled="{Binding GameIsReady}" />
-				
+			<local:BounceButton
+				Margin="0,20,0,0"
+				Text="Start Game"
+				Command="{Binding StartGame}"
+				IsEnabled="{Binding IsGameReady}"/>
+
 		</StackLayout>
+	
 	</ContentPage.Content>
 </ContentPage>
