@@ -280,7 +280,7 @@ namespace FaceOff
 			userResponseToAlert = await DisplayAlert(alertMessage.Title, alertMessage.Message, "OK", "Cancel");
 
 			_viewModel.UserResponseToAlert = userResponseToAlert;
-			_viewModel.UserHasAcknowledgedPopUp = true;
+			_viewModel.HasUserAcknowledgedPopUp = true;
 		}
 
 		void HandleDisplayAllEmotionResultsAlert(object sender, TextEventArgs e)

@@ -272,221 +272,113 @@ namespace FaceOff
 
 		public ImageSource Photo1ImageSource
 		{
-			get
-			{
-				return _photo1ImageSource;
-			}
-			set
-			{
-				SetProperty<ImageSource>(ref _photo1ImageSource, value);
-			}
+			get { return _photo1ImageSource; }
+			set { SetProperty(ref _photo1ImageSource, value); }
 		}
 
 		public ImageSource Photo2ImageSource
 		{
-			get
-			{
-				return _photo2ImageSource;
-			}
-			set
-			{
-				SetProperty<ImageSource>(ref _photo2ImageSource, value);
-			}
+			get { return _photo2ImageSource; }
+			set { SetProperty(ref _photo2ImageSource, value); }
 		}
 
 		public bool IsPhotoImage1Enabled
 		{
-			get
-			{
-				return _isPhotoImage1Enabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isPhotoImage1Enabled, value);
-			}
+			get { return _isPhotoImage1Enabled; }
+			set { SetProperty(ref _isPhotoImage1Enabled, value); }
 		}
 
 		public bool IsPhotoImage2Enabled
 		{
-			get
-			{
-				return _isPhotoImage2Enabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isPhotoImage2Enabled, value);
-			}
+			get { return _isPhotoImage2Enabled; }
+			set { SetProperty(ref _isPhotoImage2Enabled, value); }
 		}
 
 		public bool IsTakeLeftPhotoButtonEnabled
 		{
-			get
-			{
-				return _isTakeLeftPhotoButtonEnabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isTakeLeftPhotoButtonEnabled, value);
-			}
+			get { return _isTakeLeftPhotoButtonEnabled; }
+			set { SetProperty(ref _isTakeLeftPhotoButtonEnabled, value); }
 		}
 
 		public bool IsTakeLeftPhotoButtonStackVisible
 		{
-			get
-			{
-				return _isTakeLeftPhotoButtonStackVisible;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isTakeLeftPhotoButtonStackVisible, value);
-			}
+			get { return _isTakeLeftPhotoButtonStackVisible; }
+			set { SetProperty(ref _isTakeLeftPhotoButtonStackVisible, value); }
 		}
 
 		public bool IsTakeRightPhotoButtonEnabled
 		{
-			get
-			{
-				return _isTakeRightPhotoButtonEnabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isTakeRightPhotoButtonEnabled, value);
-			}
+			get { return _isTakeRightPhotoButtonEnabled; }
+			set { SetProperty(ref _isTakeRightPhotoButtonEnabled, value); }
 		}
 
 		public bool IsTakeRightPhotoButtonStackVisible
 		{
-			get
-			{
-				return _isTakeRightPhotoButtonStackVisible;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isTakeRightPhotoButtonStackVisible, value);
-			}
+			get { return _isTakeRightPhotoButtonStackVisible; }
+			set { SetProperty(ref _isTakeRightPhotoButtonStackVisible, value); }
 		}
 
 		public string PageTitle
 		{
-			get
-			{
-				return _pageTitle;
-			}
-			set
-			{
-				SetProperty<string>(ref _pageTitle, value);
-			}
+			get { return _pageTitle; }
+			set { SetProperty(ref _pageTitle, value); }
 		}
 
 		public string ScoreButton1Text
 		{
-			get
-			{
-				return _scoreButton1Text;
-			}
-			set
-			{
-				SetProperty<string>(ref _scoreButton1Text, value);
-			}
+			get { return _scoreButton1Text; }
+			set { SetProperty(ref _scoreButton1Text, value); }
 		}
 
 		public string ScoreButton2Text
 		{
-			get
-			{
-				return _scoreButton2Text;
-			}
-			set
-			{
-				SetProperty<string>(ref _scoreButton2Text, value);
-			}
+			get { return _scoreButton2Text; }
+			set { SetProperty(ref _scoreButton2Text, value); }
 		}
 
 		public bool IsCalculatingPhoto1Score
 		{
-			get
-			{
-				return _isCalculatingPhoto1Score;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isCalculatingPhoto1Score, value);
-			}
+			get { return _isCalculatingPhoto1Score; }
+			set { SetProperty(ref _isCalculatingPhoto1Score, value); }
 		}
 
 		public bool IsCalculatingPhoto2Score
 		{
-			get
-			{
-				return _isCalculatingPhoto2Score;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isCalculatingPhoto2Score, value);
-			}
+			get { return _isCalculatingPhoto2Score; }
+			set { SetProperty(ref _isCalculatingPhoto2Score, value); }
 		}
 
 		public bool IsResetButtonEnabled
 		{
-			get
-			{
-				return _isResetButtonEnabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isResetButtonEnabled, value);
-			}
+			get { return _isResetButtonEnabled; }
+			set { SetProperty(ref _isResetButtonEnabled, value); }
 		}
 
 		public bool IsScore1ButtonEnabled
 		{
-			get
-			{
-				return _isScore1ButtonEnabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isScore1ButtonEnabled, value);
-			}
+			get { return _isScore1ButtonEnabled; }
+			set { SetProperty(ref _isScore1ButtonEnabled, value); }
 		}
 
 		public bool IsScore2ButtonEnabled
 		{
-			get
-			{
-				return _isScore2ButtonEnabled;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isScore2ButtonEnabled, value);
-			}
+			get { return _isScore2ButtonEnabled; }
+			set { SetProperty(ref _isScore2ButtonEnabled, value); }
 		}
 
 		public bool IsScore1ButtonVisable
 		{
-			get
-			{
-				return _isScore1ButtonVisable;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isScore1ButtonVisable, value);
-			}
+			get { return _isScore1ButtonVisable; }
+			set { SetProperty(ref _isScore1ButtonVisable, value); }
 		}
 
 		public bool IsScore2ButtonVisable
 		{
-			get
-			{
-				return _isScore2ButtonVisable;
-			}
-			set
-			{
-				SetProperty<bool>(ref _isScore2ButtonVisable, value);
-			}
+			get { return _isScore2ButtonVisable; }
+			set { SetProperty(ref _isScore2ButtonVisable, value); }
 		}
 
-		public bool UserHasAcknowledgedPopUp { get; set; } = false;
+		public bool HasUserAcknowledgedPopUp { get; set; } = false;
 		public bool UserResponseToAlert { get; set; }
 
 		#endregion
@@ -662,11 +554,11 @@ namespace FaceOff
 			};
 			OnDisplayEmotionBeforeCameraAlert(alertMessage);
 
-			while (!UserHasAcknowledgedPopUp)
+			while (!HasUserAcknowledgedPopUp)
 			{
 				await Task.Delay(5);
 			}
-			UserHasAcknowledgedPopUp = false;
+			HasUserAcknowledgedPopUp = false;
 
 			return UserResponseToAlert;
 		}
