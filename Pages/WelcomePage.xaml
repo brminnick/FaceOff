@@ -7,30 +7,31 @@
 		BackgroundColor="#91E2F4">
 	<ContentPage.Content>
 
-		<StackLayout Padding="20" VerticalOptions="Center">
+		<ScrollView>
 			
-			<Label 
-				Text="Player 1"
-				FontSize="24"/>
-			<Entry 
-				Text="{Binding Player1}"
-				Placeholder="Enter Name"
-				x:Name = "Player1Entry"/>
+			<StackLayout Padding="20" VerticalOptions="Center">
+				
+				<local:DarkBlueLabel
+					Text="Player 1"/>
+				<Entry 
+					Text="{Binding Player1}"
+					Placeholder="Enter Name"
+					x:Name = "Player1Entry"/>
 
-			<Label 
-				Text="Player 2"
-				FontSize="24"/>
-			<Entry 
-				Text="{Binding Player2}"
-				Placeholder="Enter Name"
+				<local:DarkBlueLabel 
+					Text="Player 2"/>
+				<Entry 
+					Text="{Binding Player2}"
+					Placeholder="Enter Name"
 					x:Name = "Player2Entry"/>
 
-			<local:BounceButton
-				x:Name = "StartGameButton"
-				Margin="0,20,0,0"
-				Text="Start Game"/>
+				<local:BounceButton
+					x:Name = "StartGameButton"
+					Margin="0,20,0,0"
+					Text="Start Game"/>
 
-		</StackLayout>
-	
+			</StackLayout>
+			
+		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

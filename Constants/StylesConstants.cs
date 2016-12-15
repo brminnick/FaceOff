@@ -19,6 +19,13 @@ namespace FaceOff
 				new Setter { Property = StackLayout.SpacingProperty, Value = 50 }
 			}
 		};
+
+		public static Style LabelStyle = new Style(typeof(Label))
+		{
+			Setters = {
+				new Setter { Property = Label.TextColorProperty, Value = Color.FromHex("2C7797") }
+			}
+		};
 	}
 }
 

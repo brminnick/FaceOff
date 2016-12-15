@@ -26,14 +26,12 @@ namespace FaceOff.UITests
 				return ConfigureApp
 					.Android
 					.PreferIdeSettings()
-					.EnableLocalScreenshots()
 					.StartApp();
 			}
 
 			return ConfigureApp
 				.iOS
 				.PreferIdeSettings()
-				.EnableLocalScreenshots()
 				.StartApp();
 		}
 	}

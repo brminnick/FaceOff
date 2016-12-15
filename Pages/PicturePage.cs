@@ -85,7 +85,7 @@ namespace FaceOff
 			takePhoto1Button.SetBinding(Button.CommandProperty, nameof(_viewModel.TakePhoto1ButtonPressed));
 			takePhoto1Button.SetBinding(IsEnabledProperty, nameof(_viewModel.IsTakeLeftPhotoButtonEnabled));
 
-			var player1NameLabel = new Label
+			var player1NameLabel = new DarkBlueLabel
 			{
 				Text = player1NameText,
 				HorizontalOptions = LayoutOptions.Center
@@ -111,7 +111,7 @@ namespace FaceOff
 			takePhoto2Button.SetBinding(Button.CommandProperty, nameof(_viewModel.TakePhoto2ButtonPressed));
 			takePhoto2Button.SetBinding(IsEnabledProperty, nameof(_viewModel.IsTakeRightPhotoButtonEnabled));
 
-			var player2NameLabel = new Label
+			var player2NameLabel = new DarkBlueLabel
 			{
 				Text = player2NameText,
 				HorizontalOptions = LayoutOptions.Center,
@@ -179,18 +179,6 @@ namespace FaceOff
 					resetButton
 				}
 			};
-			#endregion
-
-			#region Create Hidden Label
-			//This label will not appear on the screen, 
-			//but it will allow the UITest to determine the current Emotion
-			var hiddenEmotionLabel = new Label
-			{
-				IsVisible = false,
-				IsEnabled = false,
-				AutomationId = AutomationIdConstants.EmotionLabel
-			};
-			hiddenEmotionLabel.SetBinding(Label.TextProperty, nameof(_viewModel.PageTitle));
 			#endregion
 
 			#region Create Relative Laout

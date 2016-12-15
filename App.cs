@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -12,7 +13,8 @@ namespace FaceOff
 		{
 			var welcomePage = new NavigationPage(new WelcomePage())
 			{
-				BarBackgroundColor = Color.FromHex("#1FAECE")
+				BarBackgroundColor = Color.FromHex("1FAECE"),
+				BarTextColor = Color.White
 			};
 
 			MainPage = welcomePage;
@@ -22,10 +24,10 @@ namespace FaceOff
 		public void UseDefaultImageForPhoto1()
 		{
 			PicturePage currentPage;
-			var currentNavigationPage = Current.MainPage as NavigationPage;
+			var currentNavigationPage = GetCurrentPage();
 
-			if (currentNavigationPage.CurrentPage is PicturePage)
-				currentPage = Current.MainPage as PicturePage;
+			if (currentNavigationPage is PicturePage)
+				currentPage = currentNavigationPage as PicturePage;
 			else
 				return;
 
@@ -35,14 +37,19 @@ namespace FaceOff
 		public void UseDefaultImageForPhoto2()
 		{
 			PicturePage currentPage;
-			var currentNavigationPage = Current.MainPage as NavigationPage;
+			var currentNavigationPage = GetCurrentPage();
 
-			if (currentNavigationPage.CurrentPage is PicturePage)
-				currentPage = Current.MainPage as PicturePage;
+			if (currentNavigationPage is PicturePage)
+				currentPage = currentNavigationPage as PicturePage;
 			else
 				return;
 
 			currentPage.SetPhotoImage2("Happy");
+		}
+
+		Page GetCurrentPage()
+		{
+			return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
 		}
 #endif
 	}
