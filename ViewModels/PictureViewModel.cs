@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -20,11 +22,17 @@ namespace FaceOff
 		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
 		readonly string[] _emotionStringsForAlertMessage = { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
-		readonly string[] ErrorMessage = { "No Face Detected", "Error" };
-		const string MakeAFaceAlertMessage = "take a selfie looking ";
-		const string CalculatingScore = "Analyzing";
+		const string _makeAFaceAlertMessage = "take a selfie looking ";
+		const string _calculatingScoreMessage = "Analyzing";
 
 		readonly string _player1NameText, _player2NameText;
+
+		readonly Dictionary<ErrorMessageType, string> _errorMessageDictionary = new Dictionary<ErrorMessageType, string>
+		{
+			{ ErrorMessageType.NoFaceDetected, "No Face Detected" },
+			{ ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
+			{ ErrorMessageType.GenericError, "Error" }
+		};
 		#endregion
 
 		#region Fields
@@ -285,8 +293,7 @@ namespace FaceOff
 			IsTakeLeftPhotoButtonEnabled = false;
 			IsTakeLeftPhotoButtonStackVisible = false;
 
-			ScoreButton1Text = CalculatingScore;
-
+			ScoreButton1Text = _calculatingScoreMessage;
 
 			Photo1ImageSource = ImageSource.FromStream(() =>
 			{
@@ -306,14 +313,24 @@ namespace FaceOff
 
 			var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
 
-			bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
+			var doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
 
 			if (doesEmotionScoreContainErrorMessage)
 			{
-				if (emotionScore.Contains(ErrorMessage[0]))
-					Insights.Track(InsightsConstants.NoFaceDetected);
-				else if (emotionScore.Contains(ErrorMessage[1]))
-					Insights.Track(InsightsConstants.MultipleFacesDetected);
+				var errorMessageKey = _errorMessageDictionary.FirstOrDefault(x => x.Value.Contains(emotionScore)).Key;
+
+				switch (errorMessageKey)
+				{
+					case ErrorMessageType.NoFaceDetected:
+						Insights.Track(_errorMessageDictionary[ErrorMessageType.NoFaceDetected]);
+						break;
+					case ErrorMessageType.MultipleFacesDetected:
+						Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+						break;
+					case ErrorMessageType.GenericError:
+						Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+						break;
+				}
 
 				ScoreButton1Text = emotionScore;
 			}
@@ -359,7 +376,7 @@ namespace FaceOff
 			IsTakeRightPhotoButtonEnabled = false;
 			IsTakeRightPhotoButtonStackVisible = false;
 
-			ScoreButton2Text = CalculatingScore;
+			ScoreButton2Text = _calculatingScoreMessage;
 
 			Photo2ImageSource = ImageSource.FromStream(() =>
 			{
@@ -383,10 +400,20 @@ namespace FaceOff
 
 			if (doesEmotionScoreContainErrorMessage)
 			{
-				if (emotionScore.Contains(ErrorMessage[0]))
-					Insights.Track(InsightsConstants.NoFaceDetected);
-				else if (emotionScore.Contains(ErrorMessage[1]))
-					Insights.Track(InsightsConstants.MultipleFacesDetected);
+				var errorMessageKey = _errorMessageDictionary.FirstOrDefault(x => x.Value.Contains(emotionScore)).Key;
+
+				switch (errorMessageKey)
+				{
+					case ErrorMessageType.NoFaceDetected:
+						Insights.Track(_errorMessageDictionary[ErrorMessageType.NoFaceDetected]);
+						break;
+					case ErrorMessageType.MultipleFacesDetected:
+						Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+						break;
+					case ErrorMessageType.GenericError:
+						Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+						break;
+				}
 
 				ScoreButton2Text = emotionScore;
 			}
@@ -534,12 +561,12 @@ namespace FaceOff
 			float rawEmotionScore;
 
 			if (emotionResults == null || emotionResults.Length < 1)
-				return ErrorMessage[0];
+				return _errorMessageDictionary[ErrorMessageType.NoFaceDetected];
 
 			if (emotionResults.Length > 1)
 			{
 				OnDisplayMultipleFacesError();
-				return ErrorMessage[1];
+				return _errorMessageDictionary[ErrorMessageType.MultipleFacesDetected];
 			}
 
 			try
@@ -571,7 +598,7 @@ namespace FaceOff
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
 						break;
 					default:
-						return ErrorMessage[0];
+						return _errorMessageDictionary[ErrorMessageType.GenericError];
 				}
 
 				var emotionScoreAsPercentage = ConvertFloatToPercentage(rawEmotionScore);
@@ -581,14 +608,14 @@ namespace FaceOff
 			catch (Exception e)
 			{
 				Insights.Report(e);
-				return ErrorMessage[0];
+				return _errorMessageDictionary[ErrorMessageType.GenericError];
 			}
 		}
 
 		string GetStringOfAllPhotoEmotionScores(Emotion[] emotionResults, int emotionResultNumber)
 		{
 			if (emotionResults == null || emotionResults.Length < 1)
-				return ErrorMessage[0];
+				return _errorMessageDictionary[ErrorMessageType.GenericError];
 
 			string allEmotionsString = "";
 
@@ -614,7 +641,7 @@ namespace FaceOff
 			var alertMessage = new AlertMessageModel
 			{
 				Title = _emotionStrings[_emotionNumber],
-				Message = playerName + ", " + MakeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
+				Message = playerName + ", " + _makeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
 			};
 			OnDisplayEmotionBeforeCameraAlert(alertMessage);
 
@@ -629,9 +656,9 @@ namespace FaceOff
 
 		bool DoesStringContainErrorMessage(string stringToCheck)
 		{
-			foreach (string errorMessage in ErrorMessage)
+			foreach (KeyValuePair<ErrorMessageType, string> errorMessageDictionaryEntry in _errorMessageDictionary)
 			{
-				if (stringToCheck.Contains(errorMessage))
+				if (stringToCheck.Contains(errorMessageDictionaryEntry.Value))
 					return true;
 			}
 
@@ -697,6 +724,13 @@ namespace FaceOff
 			handle?.Invoke(null, EventArgs.Empty);
 		}
 		#endregion
+	}
+
+	enum ErrorMessageType
+	{
+		NoFaceDetected,
+		MultipleFacesDetected,
+		GenericError
 	}
 }
 

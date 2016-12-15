@@ -8,8 +8,6 @@
 
 		#region Track Events
 		public const string GameStarted = "Game Started";
-		public const string MultipleFacesDetected = "Multiple Faces Detected";
-		public const string NoFaceDetected = "No Face Detected";
 		public const string PhotoButton1Tapped = "Photo Button 1 Tapped";
 		public const string PhotoButton2Tapped = "Photo Button 2 Tapped";
 		public const string PhotoTaken = "Photo Taken";
