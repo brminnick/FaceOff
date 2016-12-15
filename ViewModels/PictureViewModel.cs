@@ -25,6 +25,8 @@ namespace FaceOff
 		const string _makeAFaceAlertMessage = "take a selfie looking ";
 		const string _calculatingScoreMessage = "Analyzing";
 
+		const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
+
 		readonly string _player1NameText, _player2NameText;
 
 		readonly Dictionary<ErrorMessageType, string> _errorMessageDictionary = new Dictionary<ErrorMessageType, string>
@@ -263,53 +265,58 @@ namespace FaceOff
 
 		async Task ExecuteTakePhoto1ButtonPressed()
 		{
-			IsTakeRightPhotoButtonEnabled = false;
-			IsScore1ButtonEnabled = false;
+			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player1, _player1NameText));
+		}
 
-			Insights.Track(InsightsConstants.PhotoButton1Tapped);
+		async Task ExecuteTakePhoto2ButtonPressed()
+		{
+			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player2, _player2NameText));
+		}
 
-			if (!(await DisplayPopUpAlertAboutEmotion(_player1NameText)))
+		async Task ExecuteTakePhoto(PlayerModel playerModel)
+		{
+			LogPhotoButtonTapped(playerModel.PlayerNumber);
+
+			DisableButtons(playerModel.PlayerNumber);
+
+			if (!(await DisplayPopUpAlertAboutEmotion(playerModel.PlayerName)))
 			{
-				IsTakeRightPhotoButtonEnabled = true;
-				IsScore1ButtonEnabled = true;
+				EnableButtons(playerModel.PlayerNumber);
 				return;
 			}
 
-			var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage1");
+			playerModel.ImageMediaFile = await GetMediaFileFromCamera("FaceOff", playerModel.PlayerNumber);
 
-			if (imageMediaFile == null)
+			if (playerModel.ImageMediaFile == null)
 			{
-				IsTakeRightPhotoButtonEnabled = true;
-				IsScore1ButtonEnabled = true;
+				EnableButtons(playerModel.PlayerNumber);
 				return;
 			}
 
-			await WaitForEventToBeSubscribed(RevealPhotoImage1WithAnimation);
+			await WaitForRevealPhotoImageWithAnimationEventToBeSubscribed(playerModel.PlayerNumber);
 
-			OnRevealPhotoImage1WithAnimation();
+			RevealPhoto(playerModel.PlayerNumber);
 
 			Insights.Track(InsightsConstants.PhotoTaken);
 
-			IsTakeLeftPhotoButtonEnabled = false;
-			IsTakeLeftPhotoButtonStackVisible = false;
+			SetIsEnabledForCurrentPhotoButton(false, playerModel.PlayerNumber);
+			SetIsVisibleForCurrentPhotoStack(false, playerModel.PlayerNumber);
 
-			ScoreButton1Text = _calculatingScoreMessage;
+			SetScoreButtonText(_calculatingScoreMessage, playerModel.PlayerNumber);
 
-			Photo1ImageSource = ImageSource.FromStream(() =>
-			{
-				return GetPhotoStream(imageMediaFile, false);
-			});
+			SetPhotoImageSource(playerModel.ImageMediaFile, playerModel.PlayerNumber);
 
-			IsCalculatingPhoto1Score = true;
-			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+			SetIsCalculatingPhotoScore(true, playerModel.PlayerNumber);
+
+			SetResetButtonIsEnabled();
 
 			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5));
 
-			await WaitForEventToBeSubscribed(RevealScoreButton1WithAnimation);
+			await WaitForRevealScoreButtonWithAnimationEventToBeSubscribed(playerModel.PlayerNumber);
 
-			OnRevealScoreButton1WithAnimation();
+			RevealPhotoButton(playerModel.PlayerNumber);
 
-			var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
+			var emotionArray = await GetEmotionResultsFromMediaFile(playerModel.ImageMediaFile, false);
 
 			var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
 
@@ -332,102 +339,19 @@ namespace FaceOff
 						break;
 				}
 
-				ScoreButton1Text = emotionScore;
+				SetScoreButtonText(emotionScore, playerModel.PlayerNumber);
 			}
 			else
-				ScoreButton1Text = $"Score: {emotionScore}";
+				SetScoreButtonText($"Score: {emotionScore}", playerModel.PlayerNumber);
 
-			_photo1Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+			var results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+			SetPhotoResultsText(results, playerModel.PlayerNumber);
 
-			IsCalculatingPhoto1Score = false;
-			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+			SetIsCalculatingPhotoScore(false, playerModel.PlayerNumber);
 
-			imageMediaFile.Dispose();
+			SetResetButtonIsEnabled();
 
-			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
-		}
-
-		async Task ExecuteTakePhoto2ButtonPressed()
-		{
-			IsTakeLeftPhotoButtonEnabled = false;
-			IsScore2ButtonEnabled = false;
-
-			Insights.Track(InsightsConstants.PhotoButton2Tapped);
-
-			if (!(await DisplayPopUpAlertAboutEmotion(_player2NameText)))
-			{
-				IsTakeLeftPhotoButtonEnabled = true;
-				IsScore2ButtonEnabled = true;
-				return;
-			}
-
-			var imageMediaFile = await GetMediaFileFromCamera("FaceOff", "PhotoImage2");
-			if (imageMediaFile == null)
-			{
-				IsTakeLeftPhotoButtonEnabled = true;
-				IsScore2ButtonEnabled = true;
-				return;
-			}
-
-			await WaitForEventToBeSubscribed(RevealPhotoImage2WithAnimation);
-
-			OnRevealPhotoImage2WithAnimation();
-
-			IsTakeRightPhotoButtonEnabled = false;
-			IsTakeRightPhotoButtonStackVisible = false;
-
-			ScoreButton2Text = _calculatingScoreMessage;
-
-			Photo2ImageSource = ImageSource.FromStream(() =>
-			{
-				return GetPhotoStream(imageMediaFile, false);
-			});
-
-			IsCalculatingPhoto2Score = true;
-			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5));
-
-			await WaitForEventToBeSubscribed(RevealScoreButton2WithAnimation);
-
-			OnRevealScoreButton2WithAnimation();
-
-			var emotionArray = await GetEmotionResultsFromMediaFile(imageMediaFile, false);
-
-			var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
-
-			bool doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
-
-			if (doesEmotionScoreContainErrorMessage)
-			{
-				var errorMessageKey = _errorMessageDictionary.FirstOrDefault(x => x.Value.Contains(emotionScore)).Key;
-
-				switch (errorMessageKey)
-				{
-					case ErrorMessageType.NoFaceDetected:
-						Insights.Track(_errorMessageDictionary[ErrorMessageType.NoFaceDetected]);
-						break;
-					case ErrorMessageType.MultipleFacesDetected:
-						Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
-						break;
-					case ErrorMessageType.GenericError:
-						Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
-						break;
-				}
-
-				ScoreButton2Text = emotionScore;
-			}
-			else
-			{
-				ScoreButton2Text = $"Score: {emotionScore}";
-			}
-
-			_photo2Results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
-
-			IsCalculatingPhoto2Score = false;
-			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-			imageMediaFile.Dispose();
+			playerModel.ImageMediaFile.Dispose();
 
 			await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
 		}
@@ -485,7 +409,7 @@ namespace FaceOff
 			return stream;
 		}
 
-		async Task<MediaFile> GetMediaFileFromCamera(string directory, string filename)
+		async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
 		{
 			await CrossMedia.Current.Initialize();
 
@@ -499,7 +423,7 @@ namespace FaceOff
 			{
 				PhotoSize = PhotoSize.Small,
 				Directory = directory,
-				Name = filename,
+				Name = playerNumber.ToString(),
 				DefaultCamera = CameraDevice.Front,
 				OverlayViewProvider = DependencyService.Get<ICameraService>()?.GetCameraOverlay()
 			});
@@ -671,9 +595,231 @@ namespace FaceOff
 				await Task.Delay(100);
 		}
 
+		async Task WaitForRevealPhotoImageWithAnimationEventToBeSubscribed(PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					await WaitForEventToBeSubscribed(RevealPhotoImage1WithAnimation);
+					break;
+				case PlayerNumberType.Player2:
+					await WaitForEventToBeSubscribed(RevealPhotoImage2WithAnimation);
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
 		async Task WaitForAnimationsToFinish(int waitTimeInSeconds)
 		{
 			await Task.Delay(waitTimeInSeconds);
+		}
+
+		void RevealPhoto(PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					OnRevealPhotoImage1WithAnimation();
+					break;
+				case PlayerNumberType.Player2:
+					OnRevealPhotoImage2WithAnimation();
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetIsEnabledForOppositePhotoButton(bool isEnabled, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					IsTakeRightPhotoButtonEnabled = isEnabled;
+					break;
+				case PlayerNumberType.Player2:
+					IsTakeLeftPhotoButtonEnabled = isEnabled;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetIsEnabledForCurrentPlayerScoreButton(bool isEnabled, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					IsScore1ButtonEnabled = isEnabled;
+					break;
+				case PlayerNumberType.Player2:
+					IsScore2ButtonEnabled = isEnabled;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetIsEnabledForButtons(bool isEnabled, PlayerNumberType playerNumber)
+		{
+			SetIsEnabledForOppositePhotoButton(isEnabled, playerNumber);
+			SetIsEnabledForCurrentPlayerScoreButton(isEnabled, playerNumber);
+		}
+
+		void EnableButtons(PlayerNumberType playerNumber)
+		{
+			SetIsEnabledForButtons(true, playerNumber);
+		}
+
+		void DisableButtons(PlayerNumberType playerNumber)
+		{
+			SetIsEnabledForButtons(false, playerNumber);
+		}
+
+		void SetIsEnabledForCurrentPhotoButton(bool isEnabled, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					IsTakeLeftPhotoButtonEnabled = isEnabled;
+					break;
+				case PlayerNumberType.Player2:
+					IsTakeRightPhotoButtonEnabled = isEnabled;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetScoreButtonText(string scoreButtonText, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					ScoreButton1Text = scoreButtonText;
+					break;
+				case PlayerNumberType.Player2:
+					ScoreButton2Text = scoreButtonText;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetIsVisibleForCurrentPhotoStack(bool isVisible, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					IsTakeLeftPhotoButtonStackVisible = isVisible;
+					break;
+				case PlayerNumberType.Player2:
+					IsTakeRightPhotoButtonStackVisible = isVisible;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetPhotoImageSource(MediaFile imageMediaFile, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					Photo1ImageSource = ImageSource.FromStream(() =>
+					{
+						return GetPhotoStream(imageMediaFile, false);
+					});
+					break;
+				case PlayerNumberType.Player2:
+					Photo2ImageSource = ImageSource.FromStream(() =>
+					{
+						return GetPhotoStream(imageMediaFile, false);
+					});
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetIsCalculatingPhotoScore(bool isCalculatingScore, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					IsCalculatingPhoto1Score = isCalculatingScore;
+					break;
+				case PlayerNumberType.Player2:
+					IsCalculatingPhoto2Score = isCalculatingScore;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetResetButtonIsEnabled()
+		{
+			IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+		}
+
+		async Task WaitForRevealScoreButtonWithAnimationEventToBeSubscribed(PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					await WaitForEventToBeSubscribed(RevealScoreButton1WithAnimation);
+					break;
+				case PlayerNumberType.Player2:
+					await WaitForEventToBeSubscribed(RevealScoreButton2WithAnimation);
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void RevealPhotoButton(PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					OnRevealScoreButton1WithAnimation();
+					break;
+				case PlayerNumberType.Player2:
+					OnRevealScoreButton2WithAnimation();
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void SetPhotoResultsText(string results, PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					_photo1Results = results;
+					break;
+				case PlayerNumberType.Player2:
+					_photo2Results = results;
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
+		}
+
+		void LogPhotoButtonTapped(PlayerNumberType playerNumber)
+		{
+			switch (playerNumber)
+			{
+				case PlayerNumberType.Player1:
+					Insights.Track(InsightsConstants.PhotoButton1Tapped);
+					break;
+				case PlayerNumberType.Player2:
+					Insights.Track(InsightsConstants.PhotoButton2Tapped);
+					break;
+				default:
+					throw new Exception(_playerNumberNotImplentedExceptionText);
+			}
 		}
 
 		void OnDisplayAllEmotionResultsAlert(string emotionResults)
