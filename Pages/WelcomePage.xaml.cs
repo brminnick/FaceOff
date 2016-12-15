@@ -1,4 +1,6 @@
 ﻿using System;
+
+using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,11 +40,20 @@ namespace FaceOff
 			var isPlayer2EntryTextEmpty = string.IsNullOrWhiteSpace(Player2Entry.Text);
 
 			if (isPlayer1EntryTextEmpty)
+			{
+				Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.Player1NameEmpty);
 				DisplayEmptyPlayerNameAlert(1);
+			}
 			else if (isPlayer2EntryTextEmpty)
+			{
+				Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.Player2NameEmpty);
 				DisplayEmptyPlayerNameAlert(2);
+			}
 			else
+			{
+				Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.GameStarted);
 				await Navigation.PushAsync(new PicturePage(Player1Entry.Text, Player2Entry.Text));
+			}
 		}
 
 		void DisplayEmptyPlayerNameAlert(int playerNumber)
