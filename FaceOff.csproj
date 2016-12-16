@@ -53,6 +53,7 @@
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DarkBlueLabel.cs" />
+    <Compile Include="Models\PlayerModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Insights">
