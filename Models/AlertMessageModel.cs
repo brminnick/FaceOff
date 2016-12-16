@@ -1,5 +1,4 @@
-﻿using System;
-namespace FaceOff
+﻿namespace FaceOff
 {
 	public class AlertMessageModel
 	{
