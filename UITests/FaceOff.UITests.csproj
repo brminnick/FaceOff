@@ -63,6 +63,12 @@
       <Project>{7603FF43-E29B-4C5B-93ED-29AAC1E300A9}</Project>
       <Name>FaceOff</Name>
     </ProjectReference>
+    <ProjectReference Include="..\iOS\FaceOff.iOS.csproj">
+      <Project>{D9466562-859D-4760-BF8A-DB4983B5F6BA}</Project>
+      <Name>FaceOff.iOS</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

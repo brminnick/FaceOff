@@ -6,7 +6,7 @@ using Xamarin.UITest.Queries;
 
 namespace FaceOff.UITests
 {
-	public class AppInitializer
+	public static class AppInitializer
 	{
 		public static IApp StartApp(Platform platform)
 		{
