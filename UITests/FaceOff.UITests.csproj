@@ -31,8 +31,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.UITest">
-      <HintPath>..\packages\Xamarin.UITest.2.0.3\lib\Xamarin.UITest.dll</HintPath>
+    <Reference Include="Xamarin.UITest, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.UITest.2.0.4\lib\Xamarin.UITest.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +59,7 @@
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\FaceOff.csproj">
+    <ProjectReference Include="..\FaceOff\FaceOff.csproj">
       <Project>{7603FF43-E29B-4C5B-93ED-29AAC1E300A9}</Project>
       <Name>FaceOff</Name>
     </ProjectReference>
