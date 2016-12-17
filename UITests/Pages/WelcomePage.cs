@@ -1,4 +1,7 @@
 ﻿using Xamarin.UITest;
+
+using FaceOff.Shared;
+
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 
 namespace FaceOff.UITests

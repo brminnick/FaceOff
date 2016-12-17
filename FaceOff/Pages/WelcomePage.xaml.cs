@@ -4,6 +4,8 @@ using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using FaceOff.Shared;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FaceOff
 {
