@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff", "FaceOff\FaceOff.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.iOS", "iOS\FaceOff.iOS.csproj", "{D9466562-859D-4760-BF8A-DB4983B5F6BA}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FaceOff.Shared", "Shared\FaceOff.Shared.shproj", "{CDEBC040-8ABC-4393-84D8-75E5C8A049BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

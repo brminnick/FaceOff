@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 
+using FaceOff.Shared;
+
 namespace FaceOff
 {
 	public class PicturePage : ContentPage
