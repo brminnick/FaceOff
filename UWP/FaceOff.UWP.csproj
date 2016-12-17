@@ -159,7 +159,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FaceOff.csproj">
+    <ProjectReference Include="..\FaceOff\FaceOff.csproj">
       <Project>{7603ff43-e29b-4c5b-93ed-29aac1e300a9}</Project>
       <Name>FaceOff</Name>
     </ProjectReference>
