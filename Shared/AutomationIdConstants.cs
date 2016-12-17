@@ -1,4 +1,4 @@
-﻿namespace FaceOff
+﻿namespace FaceOff.Shared
 {
 	public static class AutomationIdConstants
 	{
