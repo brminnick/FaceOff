@@ -64,10 +64,6 @@
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\FaceOff.csproj">
-      <Project>{7603FF43-E29B-4C5B-93ED-29AAC1E300A9}</Project>
-      <Name>FaceOff</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
