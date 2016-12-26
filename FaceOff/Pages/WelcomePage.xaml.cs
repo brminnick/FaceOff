@@ -60,7 +60,7 @@ namespace FaceOff
 
 		void DisplayEmptyPlayerNameAlert(int playerNumber)
 		{
-			DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK");
+			Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
 		}
 
 		void PopulateAutomationIDs()
