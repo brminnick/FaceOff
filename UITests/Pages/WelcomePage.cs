@@ -74,10 +74,10 @@ namespace FaceOff.UITests
 		{
 			if (IsAndroid)
 			{
-				return app.Query(x => x.Marked(entryAutomationId).Invoke("getHint")).FirstOrDefault().ToString();
+				return app.Query(x => x.Marked(entryAutomationId)?.Invoke("getHint"))?.FirstOrDefault()?.ToString();
 			}
 
-			return app.Query(x => x.Marked(entryAutomationId).Invoke("placeholder")).FirstOrDefault().ToString();
+			return app.Query(x => x.Marked(entryAutomationId)?.Invoke("placeholder"))?.FirstOrDefault()?.ToString();
 		}
 		#endregion
 	}
