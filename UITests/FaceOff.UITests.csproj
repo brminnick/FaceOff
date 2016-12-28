@@ -40,7 +40,7 @@
     <Compile Include="Tests\PicturePageTests.cs" />
     <Compile Include="Pages\PicturePage.cs" />
     <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="Tests\TestSetup.cs" />
+    <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\ReplTests.cs" />
     <Compile Include="Pages\CameraPage.cs" />
     <Compile Include="Pages\WelcomePage.cs" />

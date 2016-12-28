@@ -5,7 +5,7 @@ using FaceOff.Shared;
 
 namespace FaceOff.UITests
 {
-	public class WelcomePageTests : TestSetUp
+	public class WelcomePageTests : BaseTest
 	{
 		public WelcomePageTests(Platform platform) : base(platform)
 		{
