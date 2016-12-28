@@ -18,6 +18,7 @@ namespace FaceOff
 			BindingContext = new WelcomeViewModel();
 
 			PopulateAutomationIDs();
+			PopulatePlaceholderText();
 		}
 		#endregion
 
@@ -68,6 +69,12 @@ namespace FaceOff
 			Player1Entry.AutomationId = AutomationIdConstants.Player1Entry;
 			Player2Entry.AutomationId = AutomationIdConstants.Player2Entry;
 			StartGameButton.AutomationId = AutomationIdConstants.StartGameButton;
+		}
+
+		void PopulatePlaceholderText()
+		{
+			Player1Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
+			Player2Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
 		}
 		#endregion
 	}
