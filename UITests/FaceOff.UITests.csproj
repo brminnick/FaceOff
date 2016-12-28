@@ -31,9 +31,8 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.UITest, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.UITest.2.0.4\lib\Xamarin.UITest.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xamarin.UITest">
+      <HintPath>..\packages\Xamarin.UITest.2.0.5\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -41,7 +40,7 @@
     <Compile Include="Tests\PicturePageTests.cs" />
     <Compile Include="Pages\PicturePage.cs" />
     <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="Tests\TestSetup.cs" />
+    <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\ReplTests.cs" />
     <Compile Include="Pages\CameraPage.cs" />
     <Compile Include="Pages\WelcomePage.cs" />
@@ -68,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="..\Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\Shared\FaceOff.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ namespace FaceOff.UITests
 {
 	[TestFixture(Platform.Android)]
 	[TestFixture(Platform.iOS)]
-	public abstract class TestSetUp
+	public abstract class BaseTest
 	{
 		protected IApp app;
 		protected Platform platform;
@@ -15,7 +15,7 @@ namespace FaceOff.UITests
 		protected CameraPage CameraPage;
 		protected WelcomePage WelcomePage;
 
-		protected TestSetUp(Platform platform)
+		protected BaseTest(Platform platform)
 		{
 			this.platform = platform;
 		}
@@ -28,6 +28,8 @@ namespace FaceOff.UITests
 			PicturePage = new PicturePage(app, platform);
 			CameraPage = new CameraPage(app, platform);
 			WelcomePage = new WelcomePage(app, platform);
+
+			WelcomePage.WaitForPageToLoad();
 
 			app.Screenshot("App Launched");
 		}

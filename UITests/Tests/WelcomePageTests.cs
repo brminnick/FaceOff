@@ -1,10 +1,11 @@
 ﻿using NUnit.Framework;
 
 using Xamarin.UITest;
+using FaceOff.Shared;
 
 namespace FaceOff.UITests
 {
-	public class WelcomePageTests : TestSetUp
+	public class WelcomePageTests : BaseTest
 	{
 		public WelcomePageTests(Platform platform) : base(platform)
 		{
@@ -19,12 +20,18 @@ namespace FaceOff.UITests
 		public void TapSubmitButton_NoPlayerNameEntered()
 		{
 			//Arrange
+			string actualPlayer1PlaceholderText, actualPlayer2PlaceholderText;
 
 			//Act
+			actualPlayer1PlaceholderText = WelcomePage.Player1EntryPlaceholderText;
+			actualPlayer2PlaceholderText = WelcomePage.Player2EntryPlaceholderText;
+
 			WelcomePage.TapStartGameButton();
 
 			//Assert
-			Assert.IsTrue(WelcomePage.IsErrorMessageDisplayed());
+			Assert.IsTrue(WelcomePage.IsErrorMessageDisplayed);
+			Assert.AreEqual(PlaceholderConstants.WelcomePagePlaceholderText, actualPlayer1PlaceholderText);
+			Assert.AreEqual(PlaceholderConstants.WelcomePagePlaceholderText, actualPlayer2PlaceholderText);
 		}
 
 		[Test]
@@ -38,7 +45,7 @@ namespace FaceOff.UITests
 			WelcomePage.TapStartGameButton();
 
 			//Assert
-			Assert.IsTrue(WelcomePage.IsErrorMessageDisplayed());
+			Assert.IsTrue(WelcomePage.IsErrorMessageDisplayed);
 		}
 
 		[Test]
@@ -52,7 +59,7 @@ namespace FaceOff.UITests
 			WelcomePage.TapStartGameButton();
 
 			//Assert
-			Assert.IsTrue(WelcomePage.IsErrorMessageDisplayed());
+			Assert.IsTrue(WelcomePage.IsErrorMessageDisplayed);
 		}
 
 		public void TapSubmitButton_BothPlayerNamesEntered()
