@@ -5,7 +5,7 @@ using Xamarin.UITest.iOS;
 
 namespace FaceOff.UITests
 {
-	public class PicturePageTests : TestSetUp
+	public class PicturePageTests : BaseTest
 	{
 		public PicturePageTests(Platform platform) : base(platform)
 		{
@@ -38,7 +38,7 @@ namespace FaceOff.UITests
 			CameraPage.TapUsePhotoButton();
 
 			//Assert
-			Assert.IsTrue(PicturePage.ScoreButton1Query().Length > 0);
+			Assert.IsTrue(PicturePage.IsScoreButton1Visible);
 		}
 
 		[Test]
@@ -57,14 +57,14 @@ namespace FaceOff.UITests
 			CameraPage.TapUsePhotoButton();
 
 			//Assert
-			Assert.IsTrue(PicturePage.ScoreButton2Query().Length > 0);
+			Assert.IsTrue(PicturePage.IsScoreButton2Visible);
 		}
 
 		[Test]
 		public void VerifyResetButton()
 		{
 			//Arrange
-			string firstEmotion = PicturePage.GetEmotion();
+			string firstEmotion = PicturePage.Emotion;
 			string secondEmotion;
 
 			//Act
@@ -81,7 +81,7 @@ namespace FaceOff.UITests
 			PicturePage.TapResetButton();
 
 			//Assert
-			secondEmotion = PicturePage.GetEmotion();
+			secondEmotion = PicturePage.Emotion;
 			Assert.AreNotEqual(firstEmotion, secondEmotion);
 		}
 

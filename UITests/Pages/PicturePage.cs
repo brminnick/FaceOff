@@ -11,6 +11,7 @@ namespace FaceOff.UITests
 {
 	public class PicturePage : BasePage
 	{
+		#region Constant Fields
 		readonly Query EmotionLabel;
 
 		readonly Query Photo1ActivityIndicator;
@@ -26,7 +27,9 @@ namespace FaceOff.UITests
 
 		readonly Query TakePhoto1Button;
 		readonly Query TakePhoto2Button;
+		#endregion
 
+		#region Constructors
 		public PicturePage(IApp app, Platform platform) : base(app, platform)
 		{
 			EmotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
@@ -45,7 +48,20 @@ namespace FaceOff.UITests
 			TakePhoto1Button = x => x.Marked(AutomationIdConstants.TakePhoto1Button);
 			TakePhoto2Button = x => x.Marked(AutomationIdConstants.TakePhoto2Button);
 		}
+		#endregion
 
+		#region Properties
+		public string Emotion =>
+			GetEmotionUsingBackdoors();
+
+		public bool IsScoreButton1Visible =>
+			ScoreButton1Query().Length > 0;
+
+		public bool IsScoreButton2Visible =>
+			ScoreButton2Query().Length > 0;
+		#endregion
+
+		#region Methods
 		public void TapResetButton()
 		{
 			app.ScrollDownTo(ResetButton);
@@ -91,17 +107,6 @@ namespace FaceOff.UITests
 			app.WaitForNoElement(Photo2ActivityIndicator);
 		}
 
-		public string GetEmotion()
-		{
-			if (IsiOS)
-			{
-				var temp = app.Invoke("getPicturePageTitle:", "");
-				return app.Invoke("getPicturePageTitle:", "").ToString();
-			}
-
-			return (string)app.Invoke("GetPicturePageTitle");
-		}
-
 		public void WaitForPhotoImage1()
 		{
 			app.WaitForElement(PhotoImage1);
@@ -129,17 +134,26 @@ namespace FaceOff.UITests
 			app.Screenshot("Tapped Cancel");
 		}
 
-		public AppResult[] ScoreButton1Query()
+		string GetEmotionUsingBackdoors()
+		{
+			if (IsiOS)
+				return app.Invoke("getPicturePageTitle:", "").ToString();
+
+			return app.Invoke("GetPicturePageTitle").ToString();
+		}
+
+		AppResult[] ScoreButton1Query()
 		{
 			app.WaitForElement(ScoreButton1, "Score Button 1 Did Not Appear", new TimeSpan(0, 0, 5));
 			return app.Query(ScoreButton1);
 		}
 
-		public AppResult[] ScoreButton2Query()
+		AppResult[] ScoreButton2Query()
 		{
 			app.WaitForElement(ScoreButton2, "Score Button 2 Did Not Appear", new TimeSpan(0, 0, 5));
 			return app.Query(ScoreButton2);
 		}
+		#endregion
 	}
 }
 
