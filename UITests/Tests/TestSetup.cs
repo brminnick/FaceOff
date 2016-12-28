@@ -29,6 +29,8 @@ namespace FaceOff.UITests
 			CameraPage = new CameraPage(app, platform);
 			WelcomePage = new WelcomePage(app, platform);
 
+			WelcomePage.WaitForPageToLoad();
+
 			app.Screenshot("App Launched");
 		}
 	}

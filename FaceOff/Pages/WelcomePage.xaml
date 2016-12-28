@@ -15,14 +15,12 @@
 					Text="Player 1"/>
 				<Entry 
 					Text="{Binding Player1}"
-					Placeholder="Enter Name"
 					x:Name = "Player1Entry"/>
 
 				<local:DarkBlueLabel 
 					Text="Player 2"/>
 				<Entry 
 					Text="{Binding Player2}"
-					Placeholder="Enter Name"
 					x:Name = "Player2Entry"/>
 
 				<local:BounceButton
