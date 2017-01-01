@@ -57,7 +57,7 @@ namespace FaceOff
 			else
 			{
 				Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.GameStarted);
-				await Navigation.PushAsync(new PicturePage(Player1Entry.Text, Player2Entry.Text));
+				await Navigation.PushAsync(new PicturePage());
 			}
 		}
 
