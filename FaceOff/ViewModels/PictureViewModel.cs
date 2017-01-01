@@ -27,8 +27,6 @@ namespace FaceOff
 
 		const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
 
-		readonly string _player1NameText, _player2NameText;
-
 		readonly Dictionary<ErrorMessageType, string> _errorMessageDictionary = new Dictionary<ErrorMessageType, string>
 		{
 			{ ErrorMessageType.NoFaceDetected, "No Face Detected" },
@@ -66,12 +64,9 @@ namespace FaceOff
 		#endregion
 
 		#region Constructors
-		public PictureViewModel(string player1NameText, string player2NameText)
+		public PictureViewModel()
 		{
 			IsResetButtonEnabled = false;
-
-			_player1NameText = player1NameText;
-			_player2NameText = player2NameText;
 
 			SetEmotion();
 		}
@@ -265,12 +260,12 @@ namespace FaceOff
 
 		async Task ExecuteTakePhoto1ButtonPressed()
 		{
-			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player1, _player1NameText));
+			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
 		}
 
 		async Task ExecuteTakePhoto2ButtonPressed()
 		{
-			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player2, _player2NameText));
+			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
 		}
 
 		async Task ExecuteTakePhoto(PlayerModel playerModel)
