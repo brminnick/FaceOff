@@ -19,6 +19,8 @@ namespace FaceOff
 
 			PopulateAutomationIDs();
 			PopulatePlaceholderText();
+
+			NavigationPage.SetBackButtonTitle(this, "");
 		}
 		#endregion
 
