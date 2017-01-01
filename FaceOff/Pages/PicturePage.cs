@@ -19,9 +19,9 @@ namespace FaceOff
 		#endregion
 
 		#region Constructors
-		public PicturePage(string player1NameText, string player2NameText)
+		public PicturePage()
 		{
-			_viewModel = new PictureViewModel(player1NameText, player2NameText);
+			_viewModel = new PictureViewModel();
 			BindingContext = _viewModel;
 
 			this.SetBinding<PictureViewModel>(TitleProperty, vm => vm.PageTitle);
@@ -85,7 +85,7 @@ namespace FaceOff
 
 			var player1NameLabel = new DarkBlueLabel
 			{
-				Text = player1NameText,
+				Text = Settings.Player1Name,
 				HorizontalOptions = LayoutOptions.Center
 			};
 
@@ -111,7 +111,7 @@ namespace FaceOff
 
 			var player2NameLabel = new DarkBlueLabel
 			{
-				Text = player2NameText,
+				Text = Settings.Player2Name,
 				HorizontalOptions = LayoutOptions.Center,
 			};
 
