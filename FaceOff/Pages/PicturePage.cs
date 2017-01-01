@@ -24,10 +24,8 @@ namespace FaceOff
 			_viewModel = new PictureViewModel(player1NameText, player2NameText);
 			BindingContext = _viewModel;
 
-			this.SetBinding<PictureViewModel>(ContentPage.TitleProperty, vm => vm.PageTitle);
+			this.SetBinding<PictureViewModel>(TitleProperty, vm => vm.PageTitle);
 			BackgroundColor = Color.FromHex("#91E2F4");
-
-			NavigationPage.SetHasBackButton(this, false);
 
 			#region Create Score Button 1 Stack
 			_photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1);
