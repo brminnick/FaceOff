@@ -20,7 +20,7 @@ namespace FaceOff.Droid
 
 			if (Control != null && customEntry != null)
 			{
-				SetReturnType(customEntry);
+				SetKeyboardButtonType(customEntry.ReturnType);
 
 				Control.EditorAction += (object sender, TextView.EditorActionEventArgs args) =>
 				{
@@ -32,11 +32,9 @@ namespace FaceOff.Droid
 			}
 		}
 
-		void SetReturnType(EntryWithCustomKeyboardReturnButton entry)
+		void SetKeyboardButtonType(ReturnType returnType)
 		{
-			var type = entry.ReturnType;
-
-			switch (type)
+			switch (returnType)
 			{
 				case ReturnType.Go:
 					Control.ImeOptions = ImeAction.Go;
