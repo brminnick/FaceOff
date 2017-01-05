@@ -13,13 +13,13 @@
 				
 				<local:DarkBlueLabel
 					Text="Player 1"/>
-				<Entry 
+				<local:EntryWithCustomKeyboardReturnButton
 					Text="{Binding Player1}"
 					x:Name = "Player1Entry"/>
 
 				<local:DarkBlueLabel 
 					Text="Player 2"/>
-				<Entry 
+				<local:EntryWithCustomKeyboardReturnButton 
 					Text="{Binding Player2}"
 					x:Name = "Player2Entry"/>
 
