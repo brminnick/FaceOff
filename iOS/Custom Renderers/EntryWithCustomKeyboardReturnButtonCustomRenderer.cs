@@ -18,7 +18,7 @@ namespace FaceOff.iOS
 
 			if (Control != null && customEntry != null)
 			{
-				SetReturnType(customEntry);
+				SetKeyboardButtonType(customEntry.ReturnType);
 
 				Control.ShouldReturn += (UITextField tf) =>
 				{
@@ -28,11 +28,9 @@ namespace FaceOff.iOS
 			}
 		}
 
-		void SetReturnType(EntryWithCustomKeyboardReturnButton entry)
+		void SetKeyboardButtonType(ReturnType returnType)
 		{
-			var type = entry.ReturnType;
-
-			switch (type)
+			switch (returnType)
 			{
 				case ReturnType.Go:
 					Control.ReturnKeyType = UIReturnKeyType.Go;
