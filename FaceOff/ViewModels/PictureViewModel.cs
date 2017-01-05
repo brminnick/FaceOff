@@ -19,7 +19,6 @@ namespace FaceOff
 	public class PictureViewModel : BaseViewModel
 	{
 		#region Constant Fields
-		readonly string[] _emotionStrings = { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
 		readonly string[] _emotionStringsForAlertMessage = { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
 		const string _makeAFaceAlertMessage = "take a selfie looking ";
@@ -33,6 +32,18 @@ namespace FaceOff
 			{ ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
 			{ ErrorMessageType.GenericError, "Error" }
 		};
+
+		readonly Dictionary<EmotionType, string> _emotionDictionary = new Dictionary<EmotionType, string>
+		{
+			{ EmotionType.Anger, "Anger" },
+			{ EmotionType.Contempt, "Contempt" },
+			{ EmotionType.Disgust, "Disgust"},
+			{ EmotionType.Fear, "Fear" },
+			{ EmotionType.Happiness, "Happiness" },
+			{ EmotionType.Neutral, "Neutral" },
+			{ EmotionType.Sadness, "Sadness" },
+			{ EmotionType.Surprise, "Surprise" }
+		};
 		#endregion
 
 		#region Fields
@@ -44,23 +55,14 @@ namespace FaceOff
 		bool _isTakeRightPhotoButtonStackVisible = true;
 		bool _isResetButtonEnabled;
 		string _pageTitle;
-		int _emotionNumber;
 		bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
 		bool _isScore1ButtonEnabled, _isScore2ButtonEnabled, _isScore1ButtonVisable, _isScore2ButtonVisable;
 		bool _isPhotoImage1Enabled, _isPhotoImage2Enabled;
 		string _photo1Results, _photo2Results;
+		EmotionType _currentEmotionType;
 		ICommand _takePhoto1ButtonPressed, _takePhoto2ButtonPressed;
 		ICommand _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
 		ICommand _resetButtonPressed;
-
-		public event EventHandler<AlertMessageEventArgs> DisplayEmotionBeforeCameraAlert;
-		public event EventHandler<TextEventArgs> DisplayAllEmotionResultsAlert;
-		public event EventHandler DisplayMultipleFacesDetectedAlert;
-		public event EventHandler DisplayNoCameraAvailableAlert;
-		public event EventHandler RevealScoreButton1WithAnimation;
-		public event EventHandler RevealScoreButton2WithAnimation;
-		public event EventHandler RevealPhotoImage1WithAnimation;
-		public event EventHandler RevealPhotoImage2WithAnimation;
 		#endregion
 
 		#region Constructors
@@ -68,7 +70,7 @@ namespace FaceOff
 		{
 			IsResetButtonEnabled = false;
 
-			SetEmotion();
+			SetRandomEmotion();
 		}
 		#endregion
 
@@ -205,6 +207,23 @@ namespace FaceOff
 		public bool UserResponseToAlert { get; set; }
 		#endregion
 
+		#region Events
+		public event EventHandler<AlertMessageEventArgs> DisplayEmotionBeforeCameraAlert;
+		public event EventHandler<TextEventArgs> DisplayAllEmotionResultsAlert;
+		public event EventHandler DisplayMultipleFacesDetectedAlert;
+		public event EventHandler DisplayNoCameraAvailableAlert;
+		public event EventHandler RevealScoreButton1WithAnimation;
+		public event EventHandler RevealScoreButton2WithAnimation;
+		public event EventHandler RevealPhotoImage1WithAnimation;
+		public event EventHandler RevealPhotoImage2WithAnimation;
+		#endregion
+
+		#region Enums
+		enum ErrorMessageType { NoFaceDetected, MultipleFacesDetected, GenericError }
+
+		enum EmotionType { Anger, Contempt, Disgust, Fear, Happiness, Neutral, Sadness, Surprise };
+		#endregion
+
 		#region Methods
 		public void SetPhotoImage1(string photo1ImageString)
 		{
@@ -223,7 +242,7 @@ namespace FaceOff
 			_photo1Results = allEmotionsString;
 			ScoreButton1Text = "Score: 100%";
 
-			SetEmotion(4);
+			SetEmotion(EmotionType.Happiness);
 
 			IsTakeLeftPhotoButtonEnabled = false;
 			IsTakeLeftPhotoButtonStackVisible = false;
@@ -249,7 +268,7 @@ namespace FaceOff
 			_photo2Results = allEmotionsString;
 			ScoreButton2Text = "Score: 100%";
 
-			SetEmotion(4);
+			SetEmotion(EmotionType.Happiness);
 
 			IsTakeRightPhotoButtonEnabled = false;
 			IsTakeRightPhotoButtonStackVisible = false;
@@ -355,7 +374,7 @@ namespace FaceOff
 		{
 			Insights.Track(InsightsConstants.ResetButtonTapped);
 
-			SetEmotion();
+			SetRandomEmotion();
 
 			Photo1ImageSource = null;
 			Photo2ImageSource = null;
@@ -447,32 +466,56 @@ namespace FaceOff
 			}
 		}
 
-		int GetRandomNumberForEmotion()
+		EmotionType GetRandomEmotionType()
 		{
+			var rnd = new Random();
 			int randomNumber;
 
 			do
 			{
-				var rnd = new Random();
-				randomNumber = rnd.Next(0, _emotionStrings.Length);
-			} while (randomNumber == _emotionNumber);
+				randomNumber = rnd.Next(0, _emotionDictionary.Count);
+			} while (randomNumber == (int)_currentEmotionType);
 
-			return randomNumber;
+			switch (randomNumber)
+			{
+				case 0:
+					return EmotionType.Anger;
+				case 1:
+					return EmotionType.Contempt;
+				case 2:
+					return EmotionType.Disgust;
+				case 3:
+					return EmotionType.Fear;
+				case 4:
+					return EmotionType.Happiness;
+				case 5:
+					return EmotionType.Neutral;
+				case 6:
+					return EmotionType.Sadness;
+				case 7:
+					return EmotionType.Surprise;
+				default:
+					throw new Exception("Invalid Emotion Type");
+			}
 		}
 
-		void SetPageTitle(int emotionNumber)
+		void SetPageTitle(EmotionType emotionType)
 		{
-			PageTitle = _emotionStrings[emotionNumber];
+			PageTitle = _emotionDictionary[emotionType];
 		}
 
-		void SetEmotion(int? emotionNumber = null)
+		void SetRandomEmotion()
 		{
-			if (emotionNumber != null && emotionNumber >= 0 && emotionNumber <= _emotionStrings.Length - 1)
-				_emotionNumber = (int)emotionNumber;
-			else
-				_emotionNumber = GetRandomNumberForEmotion();
+			_currentEmotionType = GetRandomEmotionType();
 
-			SetPageTitle(_emotionNumber);
+			SetPageTitle(_currentEmotionType);
+		}
+
+		void SetEmotion(EmotionType emotionType)
+		{
+			_currentEmotionType = emotionType;
+
+			SetPageTitle(_currentEmotionType);
 		}
 
 		string GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
@@ -490,30 +533,30 @@ namespace FaceOff
 
 			try
 			{
-				switch (_emotionNumber)
+				switch (_currentEmotionType)
 				{
-					case 0:
+					case EmotionType.Anger:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Anger;
 						break;
-					case 1:
+					case EmotionType.Contempt:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Contempt;
 						break;
-					case 2:
+					case EmotionType.Disgust:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Disgust;
 						break;
-					case 3:
+					case EmotionType.Fear:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Fear;
 						break;
-					case 4:
+					case EmotionType.Happiness:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Happiness;
 						break;
-					case 5:
+					case EmotionType.Neutral:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Neutral;
 						break;
-					case 6:
+					case EmotionType.Sadness:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Sadness;
 						break;
-					case 7:
+					case EmotionType.Surprise:
 						rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
 						break;
 					default:
@@ -559,8 +602,8 @@ namespace FaceOff
 		{
 			var alertMessage = new AlertMessageModel
 			{
-				Title = _emotionStrings[_emotionNumber],
-				Message = playerName + ", " + _makeAFaceAlertMessage + _emotionStringsForAlertMessage[_emotionNumber]
+				Title = _emotionDictionary[_currentEmotionType],
+				Message = playerName + ", " + _makeAFaceAlertMessage + _emotionStringsForAlertMessage[(int)_currentEmotionType]
 			};
 			OnDisplayEmotionBeforeCameraAlert(alertMessage);
 
@@ -865,13 +908,6 @@ namespace FaceOff
 			handle?.Invoke(null, EventArgs.Empty);
 		}
 		#endregion
-	}
-
-	enum ErrorMessageType
-	{
-		NoFaceDetected,
-		MultipleFacesDetected,
-		GenericError
 	}
 }
 
