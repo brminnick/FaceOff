@@ -19,6 +19,7 @@ namespace FaceOff
 
 			PopulateAutomationIDs();
 			PopulatePlaceholderText();
+			SetEntryReturnTypes();
 
 			NavigationPage.SetBackButtonTitle(this, "");
 		}
@@ -30,6 +31,8 @@ namespace FaceOff
 			base.OnAppearing();
 
 			StartGameButton.Clicked += HandleStartGameButtonClicked;
+			Player1Entry.Completed += HandlePlayer1EntryCompleted;
+			Player2Entry.Completed += HandleStartGameButtonClicked;
 		}
 
 		protected override void OnDisappearing()
@@ -37,6 +40,13 @@ namespace FaceOff
 			base.OnDisappearing();
 
 			StartGameButton.Clicked -= HandleStartGameButtonClicked;
+			Player1Entry.Completed -= HandlePlayer1EntryCompleted;
+			Player2Entry.Completed -= HandleStartGameButtonClicked;
+		}
+
+		void HandlePlayer1EntryCompleted(object sender, EventArgs e)
+		{
+			Player2Entry.Focus();
 		}
 
 		async void HandleStartGameButtonClicked(object sender, EventArgs e)
@@ -77,6 +87,12 @@ namespace FaceOff
 		{
 			Player1Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
 			Player2Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
+		}
+
+		void SetEntryReturnTypes()
+		{
+			Player1Entry.ReturnType = ReturnType.Next;
+			Player2Entry.ReturnType = ReturnType.Go;
 		}
 		#endregion
 	}

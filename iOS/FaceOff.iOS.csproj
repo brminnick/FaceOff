@@ -208,6 +208,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Services\" />
+    <Folder Include="Custom Renderers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -218,6 +219,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\CameraService_iOS.cs" />
+    <Compile Include="Custom Renderers\EntryWithCustomKeyboardReturnButtonCustomRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Happy.png" Condition="'$(Configuration)'=='Debug'" />
