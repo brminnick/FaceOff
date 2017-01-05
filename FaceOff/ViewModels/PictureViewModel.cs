@@ -13,6 +13,7 @@ using Microsoft.ProjectOxford.Emotion.Contract;
 
 using Xamarin;
 using Xamarin.Forms;
+using System.Text;
 
 namespace FaceOff
 {
@@ -579,18 +580,18 @@ namespace FaceOff
 			if (emotionResults == null || emotionResults.Length < 1)
 				return _errorMessageDictionary[ErrorMessageType.GenericError];
 
-			string allEmotionsString = "";
+			var allEmotionsString = new StringBuilder();
 
-			allEmotionsString += $"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}\n";
-			allEmotionsString += $"Contempt: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Contempt)}\n";
-			allEmotionsString += $"Disgust: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Disgust)}\n";
-			allEmotionsString += $"Fear: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Fear)}\n";
-			allEmotionsString += $"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}\n";
-			allEmotionsString += $"Neutral: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Neutral)}\n";
-			allEmotionsString += $"Sadness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Sadness)}\n";
-			allEmotionsString += $"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}";
+			allEmotionsString.AppendLine($"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}");
+			allEmotionsString.AppendLine($"Contempt: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Contempt)}");
+			allEmotionsString.AppendLine($"Disgust: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Disgust)}");
+			allEmotionsString.AppendLine($"Fear: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Fear)}");
+			allEmotionsString.AppendLine($"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}");
+			allEmotionsString.AppendLine($"Neutral: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Neutral)}");
+			allEmotionsString.AppendLine($"Sadness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Sadness)}");
+			allEmotionsString.Append($"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}");
 
-			return allEmotionsString;
+			return allEmotionsString.ToString();
 		}
 
 		string ConvertFloatToPercentage(float floatToConvert)
