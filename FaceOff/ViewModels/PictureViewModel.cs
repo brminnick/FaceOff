@@ -609,7 +609,7 @@ namespace FaceOff
 
 			while (!HasUserAcknowledgedPopUp)
 			{
-				await Task.Delay(5);
+				await Task.Delay(500);
 			}
 			HasUserAcknowledgedPopUp = false;
 
