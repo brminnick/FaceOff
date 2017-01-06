@@ -45,9 +45,9 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>FaceOff uses the camera to capture your emotion</string>
-	<key>CFBundleVersion</key>
-	<string>19</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.1</string>
+	<string>2.3.0</string>
+	<key>CFBundleVersion</key>
+	<string>20</string>
 </dict>
 </plist>
