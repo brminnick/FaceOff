@@ -101,6 +101,7 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <AssemblyName>FaceOff.iOS</AssemblyName>
+    <CodesignProvision>6b08daa0-0111-4153-af10-6359cc500a75</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
