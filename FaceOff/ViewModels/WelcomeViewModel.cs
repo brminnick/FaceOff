@@ -1,7 +1,4 @@
-﻿using System.Windows.Input;
-using System.ComponentModel;
-
-namespace FaceOff
+﻿namespace FaceOff
 {
 	public class WelcomeViewModel : BaseViewModel
 	{

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Plugin.Media;
+using Plugin.Connectivity;
 using Plugin.Media.Abstractions;
 
+using Microsoft.ProjectOxford.Common;
 using Microsoft.ProjectOxford.Emotion;
 using Microsoft.ProjectOxford.Emotion.Contract;
 
 using Xamarin;
 using Xamarin.Forms;
-using System.Text;
 
 namespace FaceOff
 {
@@ -29,6 +31,8 @@ namespace FaceOff
 
 		readonly Dictionary<ErrorMessageType, string> _errorMessageDictionary = new Dictionary<ErrorMessageType, string>
 		{
+			{ ErrorMessageType.ConnectionToCognitiveServicesFailed, "Connection Failed" },
+			{ ErrorMessageType.InvalidAPIKey, "Invalid API Key"},
 			{ ErrorMessageType.NoFaceDetected, "No Face Detected" },
 			{ ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
 			{ ErrorMessageType.GenericError, "Error" }
@@ -206,6 +210,10 @@ namespace FaceOff
 
 		public bool HasUserAcknowledgedPopUp { get; set; } = false;
 		public bool UserResponseToAlert { get; set; }
+
+		bool IsInternetConnectionAvailable =>
+			CrossConnectivity.Current.IsConnected && Task.Run(async () => await CrossConnectivity.Current.IsRemoteReachable("google.com")).Result;
+
 		#endregion
 
 		#region Events
@@ -220,7 +228,7 @@ namespace FaceOff
 		#endregion
 
 		#region Enums
-		enum ErrorMessageType { NoFaceDetected, MultipleFacesDetected, GenericError }
+		enum ErrorMessageType { NoFaceDetected, MultipleFacesDetected, ConnectionToCognitiveServicesFailed, InvalidAPIKey, GenericError }
 
 		enum EmotionType { Anger, Contempt, Disgust, Fear, Happiness, Neutral, Sadness, Surprise };
 		#endregion
@@ -331,9 +339,25 @@ namespace FaceOff
 
 			RevealPhotoButton(playerModel.PlayerNumber);
 
-			var emotionArray = await GetEmotionResultsFromMediaFile(playerModel.ImageMediaFile, false);
+			Emotion[] emotionArray;
+			string emotionScore;
+			try
+			{
+				emotionArray = await GetEmotionResultsFromMediaFile(playerModel.ImageMediaFile, false);
 
-			var emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+				emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+			}
+			catch (Exception e)
+			{
+				Insights.Report(e);
+
+				emotionArray = null;
+
+				if ((e is ClientException) && ((ClientException)e).HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+					emotionScore = _errorMessageDictionary[ErrorMessageType.InvalidAPIKey];
+				else
+					emotionScore = _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
+			}
 
 			var doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
 
@@ -451,20 +475,13 @@ namespace FaceOff
 			if (mediaFile == null)
 				return null;
 
-			try
-			{
-				var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
+			var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
 
-				using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
-				{
-					return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile));
-				}
-			}
-			catch (Exception e)
+			using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
 			{
-				Insights.Report(e);
-				return null;
+				return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile));
 			}
+
 		}
 
 		EmotionType GetRandomEmotionType()
@@ -522,6 +539,9 @@ namespace FaceOff
 		string GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
 		{
 			float rawEmotionScore;
+
+			if (!IsInternetConnectionAvailable)
+				return _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
 
 			if (emotionResults == null || emotionResults.Length < 1)
 				return _errorMessageDictionary[ErrorMessageType.NoFaceDetected];
