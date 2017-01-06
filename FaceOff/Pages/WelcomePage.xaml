@@ -9,7 +9,7 @@
 
 		<ScrollView>
 			
-			<StackLayout Padding="20" VerticalOptions="Center">
+			<StackLayout Padding="20">
 				
 				<local:DarkBlueLabel
 					Text="Player 1"/>
