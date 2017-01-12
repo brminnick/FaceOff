@@ -129,14 +129,6 @@
     <Reference Include="Calabash">
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.20.3\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Media.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.2.6.1\lib\Xamarin.iOS10\Plugin.Media.Abstractions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Plugin.Media">
-      <HintPath>..\packages\Xam.Plugin.Media.2.6.1\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.ProjectOxford.Common">
       <HintPath>..\packages\Microsoft.ProjectOxford.Common.1.0.308\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Common.dll</HintPath>
     </Reference>
@@ -162,10 +154,18 @@
       <HintPath>..\packages\Xamarin.Forms.2.3.3.180\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Connectivity.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Connectivity.2.2.12\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugin.Connectivity.2.3.0\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Connectivity">
-      <HintPath>..\packages\Xam.Plugin.Connectivity.2.2.12\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugin.Connectivity.2.3.0\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.Abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
