@@ -19,38 +19,6 @@ namespace FaceOff
 			MainPage = welcomePage;
 
 		}
-#if DEBUG
-		public void UseDefaultImageForPhoto1()
-		{
-			PicturePage currentPage;
-			var currentNavigationPage = GetCurrentPage();
-
-			if (currentNavigationPage is PicturePage)
-				currentPage = currentNavigationPage as PicturePage;
-			else
-				return;
-
-			currentPage.SetPhotoImage1("Happy");
-		}
-
-		public void UseDefaultImageForPhoto2()
-		{
-			PicturePage currentPage;
-			var currentNavigationPage = GetCurrentPage();
-
-			if (currentNavigationPage is PicturePage)
-				currentPage = currentNavigationPage as PicturePage;
-			else
-				return;
-
-			currentPage.SetPhotoImage2("Happy");
-		}
-
-		Page GetCurrentPage()
-		{
-			return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
-		}
-#endif
 	}
 }
 

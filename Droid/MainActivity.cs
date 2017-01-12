@@ -6,12 +6,13 @@ using Java.Interop;
 
 using Xamarin.Forms;
 
+using Plugin.Permissions;
+
 namespace FaceOff.Droid
 {
 	[Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
-		App _app;
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			TabLayoutResource = Resource.Layout.Tabbar;
@@ -21,7 +22,12 @@ namespace FaceOff.Droid
 
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-			LoadApplication(_app = new App());
+			LoadApplication(new App());
+		}
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
 
 		#region Xamarin Test Cloud Back Door Methods
@@ -35,13 +41,13 @@ namespace FaceOff.Droid
 		[Export("UseDefaultImageForPhoto1")]
 		public void UseDefaultImageForPhoto1()
 		{
-			_app.UseDefaultImageForPhoto1();
+			BackdoorHelpers.UseDefaultImageForPhoto1();
 		}
 
 		[Export("UseDefaultImageForPhoto2")]
 		public void UseDefaultImageForPhoto2()
 		{
-			_app.UseDefaultImageForPhoto2();
+			BackdoorHelpers.UseDefaultImageForPhoto2();
 		}
 #endif
 		#endregion
