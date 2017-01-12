@@ -6,6 +6,8 @@ using Java.Interop;
 
 using Xamarin.Forms;
 
+using Plugin.Permissions;
+
 namespace FaceOff.Droid
 {
 	[Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
@@ -22,6 +24,11 @@ namespace FaceOff.Droid
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
 			LoadApplication(_app = new App());
+		}
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
 
 		#region Xamarin Test Cloud Back Door Methods
