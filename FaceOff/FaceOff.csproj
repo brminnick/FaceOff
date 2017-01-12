@@ -55,6 +55,7 @@
     <Compile Include="Services\ICameraService.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Views\EntryWithCustomKeyboardReturnButton.cs" />
+    <Compile Include="Helpers\BackdoorHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Insights">
