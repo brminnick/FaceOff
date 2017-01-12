@@ -42,13 +42,13 @@ namespace FaceOff.Droid
 		[Export("UseDefaultImageForPhoto1")]
 		public void UseDefaultImageForPhoto1()
 		{
-			_app.UseDefaultImageForPhoto1();
+			BackdoorHelpers.UseDefaultImageForPhoto1();
 		}
 
 		[Export("UseDefaultImageForPhoto2")]
 		public void UseDefaultImageForPhoto2()
 		{
-			_app.UseDefaultImageForPhoto2();
+			BackdoorHelpers.UseDefaultImageForPhoto2();
 		}
 #endif
 		#endregion
