@@ -228,16 +228,6 @@ namespace FaceOff
 		#endregion
 
 		#region Methods
-		public void SetPhotoImage1(string photoImageSource)
-		{
-			_viewModel.SetPhotoImage1(photoImageSource);
-		}
-
-		public void SetPhotoImage2(string photoImageSource)
-		{
-			_viewModel.SetPhotoImage2(photoImageSource);
-		}
-
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();

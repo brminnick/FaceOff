@@ -44,10 +44,14 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>FaceOff uses the camera to capture your emotion</string>
+	<string>FaceOff uses the camera to capture your emotion!</string>
 	<key>CFBundleShortVersionString</key>
 	<string>2.3.0</string>
 	<key>CFBundleVersion</key>
 	<string>20</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>FaceOff uses your microphone to capture audio for your videos!</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>FaceOff can save your pictures to your photos library! </string>
 </dict>
 </plist>
