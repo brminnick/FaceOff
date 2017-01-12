@@ -8,8 +8,6 @@ namespace FaceOff.iOS
 	[Register("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 	{
-		App _app;
-
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 #if ENABLE_TEST_CLOUD
@@ -17,7 +15,7 @@ namespace FaceOff.iOS
 #endif
 			global::Xamarin.Forms.Forms.Init();
 
-			LoadApplication(_app = new App());
+			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);
 		}
