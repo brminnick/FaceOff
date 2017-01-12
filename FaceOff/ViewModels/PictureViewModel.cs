@@ -234,21 +234,22 @@ namespace FaceOff
 		#endregion
 
 		#region Methods
-		public void SetPhotoImage1(string photo1ImageString)
+		#if DEBUG
+		public void SetPhotoImage1ToHappyForUITest(string photo1ImageString)
 		{
 			Photo1ImageSource = photo1ImageString;
 
-			var allEmotionsString = "";
-			allEmotionsString += $"Anger: 0%\n";
-			allEmotionsString += $"Contempt: 0%\n";
-			allEmotionsString += $"Disgust: 0%\n";
-			allEmotionsString += $"Fear: 0%\n";
-			allEmotionsString += $"Happiness: 100%\n";
-			allEmotionsString += $"Neutral: 0%\n";
-			allEmotionsString += $"Sadness: 0%\n";
-			allEmotionsString += $"Surprise: 0%";
+			var allEmotionsStringBuilder = new StringBuilder();
+			allEmotionsStringBuilder.AppendLine($"Anger: 0%");
+			allEmotionsStringBuilder.AppendLine($"Contempt: 0%");
+			allEmotionsStringBuilder.AppendLine($"Disgust: 0%");
+			allEmotionsStringBuilder.AppendLine($"Fear: 0%");
+			allEmotionsStringBuilder.AppendLine($"Happiness: 100%");
+			allEmotionsStringBuilder.AppendLine($"Neutral: 0%");
+			allEmotionsStringBuilder.AppendLine($"Sadness: 0%");
+			allEmotionsStringBuilder.AppendLine($"Surprise: 0%");
 
-			_photo1Results = allEmotionsString;
+			_photo1Results = allEmotionsStringBuilder.ToString();
 			ScoreButton1Text = "Score: 100%";
 
 			SetEmotion(EmotionType.Happiness);
@@ -260,21 +261,21 @@ namespace FaceOff
 			OnRevealScoreButton1WithAnimation();
 		}
 
-		public void SetPhotoImage2(string photo2ImageString)
+		public void SetPhotoImage2ToHappyForUITest(string photo2ImageString)
 		{
 			Photo2ImageSource = photo2ImageString;
 
-			var allEmotionsString = "";
-			allEmotionsString += $"Anger: 0%\n";
-			allEmotionsString += $"Contempt: 0%\n";
-			allEmotionsString += $"Disgust: 0%\n";
-			allEmotionsString += $"Fear: 0%\n";
-			allEmotionsString += $"Happiness: 100%\n";
-			allEmotionsString += $"Neutral: 0%\n";
-			allEmotionsString += $"Sadness: 0%\n";
-			allEmotionsString += $"Surprise: 0%";
+			var allEmotionsStringBuilder = new StringBuilder();
+			allEmotionsStringBuilder.AppendLine($"Anger: 0%");
+			allEmotionsStringBuilder.AppendLine($"Contempt: 0%");
+			allEmotionsStringBuilder.AppendLine($"Disgust: 0%");
+			allEmotionsStringBuilder.AppendLine($"Fear: 0%");
+			allEmotionsStringBuilder.AppendLine($"Happiness: 100%");
+			allEmotionsStringBuilder.AppendLine($"Neutral: 0%");
+			allEmotionsStringBuilder.AppendLine($"Sadness: 0%");
+			allEmotionsStringBuilder.AppendLine($"Surprise: 0%");
 
-			_photo2Results = allEmotionsString;
+			_photo2Results = allEmotionsStringBuilder.ToString();
 			ScoreButton2Text = "Score: 100%";
 
 			SetEmotion(EmotionType.Happiness);
@@ -285,6 +286,7 @@ namespace FaceOff
 			OnRevealPhotoImage2WithAnimation();
 			OnRevealScoreButton2WithAnimation();
 		}
+		#endif
 
 		async Task ExecuteTakePhoto1ButtonPressed()
 		{
