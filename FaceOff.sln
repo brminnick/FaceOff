@@ -15,6 +15,11 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FaceOff.Shared", "Shared\FaceOff.Shared.shproj", "{CDEBC040-8ABC-4393-84D8-75E5C8A049BE}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\FaceOff.Shared.projitems*{0a4cfb91-046f-4236-bb46-982fdadda01d}*SharedItemsImports = 4
+		Shared\FaceOff.Shared.projitems*{7603ff43-e29b-4c5b-93ed-29aac1e300a9}*SharedItemsImports = 4
+		Shared\FaceOff.Shared.projitems*{cdebc040-8abc-4393-84d8-75e5c8a049be}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
