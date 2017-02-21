@@ -8,6 +8,8 @@ using Xamarin.Forms;
 
 using Plugin.Permissions;
 
+using EntryCustomReturn.Forms.Plugin.Android;
+
 namespace FaceOff.Droid
 {
 	[Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
@@ -21,6 +23,7 @@ namespace FaceOff.Droid
 			base.OnCreate(savedInstanceState);
 
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+			CustomReturnEntryRenderer.Init();
 
 			LoadApplication(new App());
 		}
