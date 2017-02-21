@@ -3,6 +3,8 @@ using Foundation;
 
 using Xamarin.Forms;
 
+using EntryCustomReturn.Forms.Plugin.iOS;
+
 namespace FaceOff.iOS
 {
 	[Register("AppDelegate")]
@@ -14,6 +16,7 @@ namespace FaceOff.iOS
 			Xamarin.Calabash.Start();
 #endif
 			global::Xamarin.Forms.Forms.Init();
+			CustomReturnEntryRenderer.Init();
 
 			LoadApplication(new App());
 

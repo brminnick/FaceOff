@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:local="clr-namespace:FaceOff;assembly=FaceOff"
+		xmlns:EntryPlugin="clr-namespace:EntryCustomReturn.Forms.Plugin.Abstractions;assembly=EntryCustomReturn.Forms.Plugin.Abstractions"
 		x:Class="FaceOff.WelcomePage"
 		Title="Face Off"
 		BackgroundColor="#91E2F4">
@@ -13,13 +14,13 @@
 				
 				<local:DarkBlueLabel
 					Text="Player 1"/>
-				<local:EntryWithCustomKeyboardReturnButton
+				<EntryPlugin:CustomReturnEntry
 					Text="{Binding Player1}"
 					x:Name = "Player1Entry"/>
 
 				<local:DarkBlueLabel 
 					Text="Player 2"/>
-				<local:EntryWithCustomKeyboardReturnButton 
+				<EntryPlugin:CustomReturnEntry 
 					Text="{Binding Player2}"
 					x:Name = "Player2Entry"/>
 
