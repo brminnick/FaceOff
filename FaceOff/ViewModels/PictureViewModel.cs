@@ -229,7 +229,6 @@ namespace FaceOff
 
 		#region Enums
 		enum ErrorMessageType { NoFaceDetected, MultipleFacesDetected, ConnectionToCognitiveServicesFailed, InvalidAPIKey, GenericError }
-
 		enum EmotionType { Anger, Contempt, Disgust, Fear, Happiness, Neutral, Sadness, Surprise };
 		#endregion
 
@@ -447,7 +446,7 @@ namespace FaceOff
 			if (disposeMediaFile)
 				mediaFile.Dispose();
 
-			return stream;
+ 			return stream;
 		}
 
 		async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
