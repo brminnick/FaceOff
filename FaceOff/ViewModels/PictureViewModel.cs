@@ -233,7 +233,7 @@ namespace FaceOff
 		#endregion
 
 		#region Methods
-		#if DEBUG
+#if DEBUG
 		public void SetPhotoImage1ToHappyForUITest(string photo1ImageString)
 		{
 			Photo1ImageSource = photo1ImageString;
@@ -285,7 +285,7 @@ namespace FaceOff
 			OnRevealPhotoImage2WithAnimation();
 			OnRevealScoreButton2WithAnimation();
 		}
-		#endif
+#endif
 
 		async Task ExecuteTakePhoto1ButtonPressed()
 		{
@@ -446,7 +446,7 @@ namespace FaceOff
 			if (disposeMediaFile)
 				mediaFile.Dispose();
 
- 			return stream;
+			return stream;
 		}
 
 		async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
@@ -882,53 +882,30 @@ namespace FaceOff
 			}
 		}
 
-		void OnDisplayAllEmotionResultsAlert(string emotionResults)
-		{
-			var handle = DisplayAllEmotionResultsAlert;
-			handle?.Invoke(null, new TextEventArgs(emotionResults));
-		}
+		void OnDisplayAllEmotionResultsAlert(string emotionResults) =>
+			DisplayAllEmotionResultsAlert?.Invoke(null, new TextEventArgs(emotionResults));
 
-		void OnDisplayNoCameraAvailableAlert()
-		{
-			var handle = DisplayNoCameraAvailableAlert;
-			handle?.Invoke(null, EventArgs.Empty);
-		}
+		void OnDisplayNoCameraAvailableAlert() =>
+			DisplayNoCameraAvailableAlert?.Invoke(null, EventArgs.Empty);
 
-		void OnDisplayEmotionBeforeCameraAlert(AlertMessageModel alertMessage)
-		{
-			var handle = DisplayEmotionBeforeCameraAlert;
-			handle?.Invoke(null, new AlertMessageEventArgs(alertMessage));
-		}
 
-		void OnRevealPhotoImage1WithAnimation()
-		{
-			var handle = RevealPhotoImage1WithAnimation;
-			handle?.Invoke(null, EventArgs.Empty);
-		}
+		void OnDisplayEmotionBeforeCameraAlert(AlertMessageModel alertMessage) =>
+			DisplayEmotionBeforeCameraAlert?.Invoke(null, new AlertMessageEventArgs(alertMessage));
 
-		void OnRevealScoreButton1WithAnimation()
-		{
-			var handle = RevealScoreButton1WithAnimation;
-			handle?.Invoke(null, EventArgs.Empty); ;
-		}
+		void OnRevealPhotoImage1WithAnimation() =>
+			RevealPhotoImage1WithAnimation?.Invoke(null, EventArgs.Empty);
 
-		void OnRevealPhotoImage2WithAnimation()
-		{
-			var handle = RevealPhotoImage2WithAnimation;
-			handle?.Invoke(null, EventArgs.Empty);
-		}
+		void OnRevealScoreButton1WithAnimation() =>
+			RevealScoreButton1WithAnimation?.Invoke(null, EventArgs.Empty);
 
-		void OnRevealScoreButton2WithAnimation()
-		{
-			var handle = RevealScoreButton2WithAnimation;
-			handle?.Invoke(null, EventArgs.Empty);
-		}
+		void OnRevealPhotoImage2WithAnimation() =>
+			RevealPhotoImage2WithAnimation?.Invoke(null, EventArgs.Empty);
 
-		void OnDisplayMultipleFacesError()
-		{
-			var handle = DisplayMultipleFacesDetectedAlert;
-			handle?.Invoke(null, EventArgs.Empty);
-		}
+		void OnRevealScoreButton2WithAnimation() =>
+			RevealScoreButton2WithAnimation?.Invoke(null, EventArgs.Empty);
+
+		void OnDisplayMultipleFacesError() =>
+			DisplayMultipleFacesDetectedAlert?.Invoke(null, EventArgs.Empty);
 		#endregion
 	}
 }
