@@ -69,6 +69,7 @@ namespace FaceOffUWP
                 };
 
                 Xamarin.Forms.Forms.Init(e);
+                EntryCustomReturn.Forms.Plugin.UWP.CustomReturnEntryRenderer.Init();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
