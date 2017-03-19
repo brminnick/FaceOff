@@ -45,13 +45,13 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>FaceOff uses the camera to capture your emotion!</string>
-	<key>CFBundleShortVersionString</key>
-	<string>2.3.1</string>
-	<key>CFBundleVersion</key>
-	<string>21</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>FaceOff uses your microphone to capture audio for your videos!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>FaceOff can save your pictures to your photos library! </string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.3.2</string>
+	<key>CFBundleVersion</key>
+	<string>22</string>
 </dict>
 </plist>
