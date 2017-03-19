@@ -154,11 +154,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.2.1.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0-pre1\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="EntryCustomReturn.Forms.Plugin.Android">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.2.1.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0-pre1\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
