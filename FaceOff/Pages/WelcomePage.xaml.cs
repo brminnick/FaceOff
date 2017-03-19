@@ -20,7 +20,7 @@ namespace FaceOff
 
 			PopulateAutomationIDs();
 			PopulatePlaceholderText();
-			SetEntryReturnTypes();
+			ConfigureCustomReturnEffect();
 
 			NavigationPage.SetBackButtonTitle(this, "");
 		}
@@ -32,8 +32,6 @@ namespace FaceOff
 			base.OnAppearing();
 
 			StartGameButton.Clicked += HandleStartGameButtonClicked;
-			Player1Entry.Completed += HandlePlayer1EntryCompleted;
-			Player2Entry.Completed += HandleStartGameButtonClicked;
 		}
 
 		protected override void OnDisappearing()
@@ -41,11 +39,9 @@ namespace FaceOff
 			base.OnDisappearing();
 
 			StartGameButton.Clicked -= HandleStartGameButtonClicked;
-			Player1Entry.Completed -= HandlePlayer1EntryCompleted;
-			Player2Entry.Completed -= HandleStartGameButtonClicked;
 		}
 
-		void HandlePlayer1EntryCompleted(object sender, EventArgs e)
+		void ExecutePlayer1EntryReturnCommand(object sender, EventArgs e)
 		{
 			Player2Entry.Focus();
 		}
@@ -90,10 +86,13 @@ namespace FaceOff
 			Player2Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
 		}
 
-		void SetEntryReturnTypes()
+		void ConfigureCustomReturnEffect()
 		{
-			Player1Entry.ReturnType = ReturnType.Next;
-			Player2Entry.ReturnType = ReturnType.Go;
+			CustomReturnEffect.SetReturnType(Player1Entry, ReturnType.Next);
+			CustomReturnEffect.SetReturnCommand(Player1Entry, new Command(() => Player2Entry.Focus()));
+
+			CustomReturnEffect.SetReturnType(Player2Entry, ReturnType.Go);
+			CustomReturnEffect.SetReturnCommand(Player2Entry, new Command(() => HandleStartGameButtonClicked(StartGameButton, EventArgs.Empty)));
 		}
 		#endregion
 	}
