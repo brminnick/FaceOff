@@ -57,6 +57,9 @@
     <Compile Include="Helpers\BackdoorHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0-pre2\lib\portable-win+net45+wp80+win81+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.12.3\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
       <Private>False</Private>
@@ -108,10 +111,6 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0-pre1\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
