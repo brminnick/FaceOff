@@ -10,12 +10,10 @@ namespace FaceOff
 	{
 		#region Field Constants
 		const int _frameImagePadding = 10;
-		#endregion
 
-		#region Fields
-		FrameImage _photoImage1, _photoImage2;
-		BounceButton _photo1ScoreButton, _photo2ScoreButton;
-		PictureViewModel _viewModel;
+		readonly FrameImage _photoImage1, _photoImage2;
+		readonly BounceButton _photo1ScoreButton, _photo2ScoreButton;
+		readonly PictureViewModel _viewModel;
 		#endregion
 
 		#region Constructors
