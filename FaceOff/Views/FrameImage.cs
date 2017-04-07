@@ -15,14 +15,8 @@ namespace FaceOff
 		}
 		public Image ContentImage
 		{
-			get
-			{
-				return _contentImage;
-			}
-			set
-			{
-				_contentImage = value;
-			}
+			get { return _contentImage; }
+			set { _contentImage = value; }
 		}
 	}
 }
