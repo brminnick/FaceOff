@@ -6,12 +6,12 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.1",
     "Microsoft.ProjectOxford.Emotion": "1.0.336",
     "modernhttpclient": "2.4.2",
-    "Newtonsoft.Json": "10.0.1",
+    "Newtonsoft.Json": "10.0.2",
     "Xam.Plugin.Connectivity": "2.3.0",
     "Xam.Plugin.Media": "2.6.2",
     "Xam.Plugins.Forms.CustomReturnEntry": "3.0.0-pre2",
     "Xam.Plugins.Settings": "2.5.4",
-    "Xamarin.Forms": "2.3.4.224",
+    "Xamarin.Forms": "2.3.4.231",
     "Xamarin.Insights": "1.12.3"
   },
   "frameworks": {
