@@ -2,12 +2,11 @@
 
 using Xamarin;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using FaceOff.Shared;
+
 using EntryCustomReturn.Forms.Plugin.Abstractions;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FaceOff
 {
 	public partial class WelcomePage : ContentPage

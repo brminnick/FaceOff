@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-using Xamarin.Forms;
-
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FaceOff
 {
 	public class App : Application
