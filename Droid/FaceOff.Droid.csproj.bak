@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FaceOff.Droid</RootNamespace>
     <AssemblyName>FaceOff.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -46,8 +46,6 @@
     <AndroidLinkSkip>Newtonsoft.Json</AndroidLinkSkip>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -56,7 +54,6 @@
       <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
->>>>>>> origin/master
     <Reference Include="System" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\monoandroid\System.Net.Http.Extensions.dll</HintPath>
@@ -166,12 +163,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Android">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
