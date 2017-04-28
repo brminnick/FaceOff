@@ -97,8 +97,6 @@
     <CodesignProvision>6b08daa0-0111-4153-af10-6359cc500a75</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -107,7 +105,6 @@
       <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
->>>>>>> origin/master
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
