@@ -289,15 +289,15 @@ namespace FaceOff
 
 		async Task ExecuteTakePhoto1ButtonPressed()
 		{
-			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
+			await ExecuteTakePhotoWorkflow(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
 		}
 
 		async Task ExecuteTakePhoto2ButtonPressed()
 		{
-			await ExecuteTakePhoto(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
+			await ExecuteTakePhotoWorkflow(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
 		}
 
-		async Task ExecuteTakePhoto(PlayerModel playerModel)
+		async Task ExecuteTakePhotoWorkflow(PlayerModel playerModel)
 		{
 			LogPhotoButtonTapped(playerModel.PlayerNumber);
 
