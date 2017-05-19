@@ -22,10 +22,11 @@ namespace FaceOff.UITests
 			PicturePage.WaitForPicturePageToLoad();
 		}
 
+
 		[Test]
 		public void TakePictureOne()
 		{
-			//Arrange
+            //Arrange
 
 			//Act
 			PicturePage.TapTakePhoto1Button();
