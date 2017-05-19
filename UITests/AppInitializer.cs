@@ -25,6 +25,7 @@ namespace FaceOff.UITests
 			{
 				return ConfigureApp
 					.Android
+                    .EnableLocalScreenshots()
 					.PreferIdeSettings()
 					.StartApp();
 			}

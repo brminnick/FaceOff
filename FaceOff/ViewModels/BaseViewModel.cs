@@ -21,10 +21,7 @@ namespace FaceOff
 			OnPropertyChanged(propertyname);
 		}
 
-		void OnPropertyChanged([CallerMemberName]string name = "")
-		{
-			var handle = PropertyChanged;
-			handle?.Invoke(this, new PropertyChangedEventArgs(name));
-		}
+		void OnPropertyChanged([CallerMemberName]string name = "") =>
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 	}
 }
