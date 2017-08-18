@@ -80,25 +80,20 @@ namespace FaceOff
         #endregion
 
         #region Properties
-        public ICommand TakePhoto1ButtonPressed =>
-        _takePhoto1ButtonPressed ??
-        (_takePhoto1ButtonPressed = new Command(async () => await ExecuteTakePhoto1ButtonPressed()));
+        public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
+            (_takePhoto1ButtonPressed = new Command(async () => await ExecuteTakePhoto1ButtonPressed()));
 
-        public ICommand TakePhoto2ButtonPressed =>
-        _takePhoto2ButtonPressed ??
-        (_takePhoto2ButtonPressed = new Command(async () => await ExecuteTakePhoto2ButtonPressed()));
+        public ICommand TakePhoto2ButtonPressed => _takePhoto2ButtonPressed ??
+            (_takePhoto2ButtonPressed = new Command(async () => await ExecuteTakePhoto2ButtonPressed()));
 
-        public ICommand ResetButtonPressed =>
-        _resetButtonPressed ??
-        (_resetButtonPressed = new Command(ExecuteResetButtonPressed));
+        public ICommand ResetButtonPressed => _resetButtonPressed ??
+            (_resetButtonPressed = new Command(ExecuteResetButtonPressed));
 
-        public ICommand Photo1ScoreButtonPressed =>
-        _photo1ScoreButtonPressed ??
-        (_photo1ScoreButtonPressed = new Command(ExecutePhoto1ScoreButtonPressed));
+        public ICommand Photo1ScoreButtonPressed => _photo1ScoreButtonPressed ??
+            (_photo1ScoreButtonPressed = new Command(ExecutePhoto1ScoreButtonPressed));
 
-        public ICommand Photo2ScoreButtonPressed =>
-         _photo2ScoreButtonPressed ??
-         (_photo2ScoreButtonPressed = new Command(ExecutePhoto2ScoreButtonPressed));
+        public ICommand Photo2ScoreButtonPressed => _photo2ScoreButtonPressed ??
+            (_photo2ScoreButtonPressed = new Command(ExecutePhoto2ScoreButtonPressed));
 
         public ImageSource Photo1ImageSource
         {
@@ -287,15 +282,11 @@ namespace FaceOff
         }
 #endif
 
-        async Task ExecuteTakePhoto1ButtonPressed()
-        {
+        async Task ExecuteTakePhoto1ButtonPressed() =>
             await ExecuteTakePhotoWorkflow(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
-        }
 
-        async Task ExecuteTakePhoto2ButtonPressed()
-        {
+        async Task ExecuteTakePhoto2ButtonPressed() =>
             await ExecuteTakePhotoWorkflow(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
-        }
 
         async Task ExecuteTakePhotoWorkflow(PlayerModel playerModel)
         {
@@ -354,7 +345,7 @@ namespace FaceOff
 
                 emotionArray = null;
 
-                if ((e is ClientException) && ((ClientException)e).HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if ((e is ClientException clientException) && (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized))
                     emotionScore = _errorMessageDictionary[ErrorMessageType.InvalidAPIKey];
                 else
                     emotionScore = _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
