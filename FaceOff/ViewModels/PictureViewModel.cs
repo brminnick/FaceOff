@@ -345,7 +345,7 @@ namespace FaceOff
 
                 emotionArray = null;
 
-                if ((e is ClientException) && ((ClientException)e).HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if ((e is ClientException clientException) && (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized))
                     emotionScore = _errorMessageDictionary[ErrorMessageType.InvalidAPIKey];
                 else
                     emotionScore = _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
