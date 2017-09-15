@@ -16,4 +16,4 @@ Brandon Minnick
 Xamarin Customer Success Engineer
 
 
-![FaceOff Demo](./Demos/FaceOff_GifDemo.gif)
+![FaceOff Demo](https://github.com/brminnick/Videos/blob/master/FaceOff/FaceOff_GifDemo.gif)
