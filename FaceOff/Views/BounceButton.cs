@@ -4,37 +4,44 @@ using Xamarin.Forms;
 
 namespace FaceOff
 {
-	public class BounceButton : Button
-	{
-		public BounceButton() : base()
-		{
-			Clicked += HandleButtonClick;
-			Style = StylesConstants.ButtonStyle;
-		}
+    public class BounceButton : Button
+    {
+        #region Fields
+        bool _isBounceButtonAnimationInProgress = false;
+        #endregion
 
-		public BounceButton(string automationId) : base()
-		{
-			Clicked += HandleButtonClick;
-			Style = StylesConstants.ButtonStyle;
-			AutomationId = automationId;
-		}
+        #region Constructors
+        public BounceButton()
+        {
+            Clicked += HandleButtonClick;
+            Style = StylesConstants.ButtonStyle;
+        }
 
-		void HandleButtonClick(object sender, EventArgs e)
-		{
-			if (App.IsBounceButtonAnimationInProgress)
-				return;
+        public BounceButton(string automationId) : this() => AutomationId = automationId;
+        #endregion
 
-			var bounceButton = (BounceButton)sender;
-			App.IsBounceButtonAnimationInProgress = true;
+        #region Finalizers
+        ~BounceButton() => Clicked -= HandleButtonClick;
+        #endregion
 
-			Device.BeginInvokeOnMainThread(async () =>
-			{
-				Unfocus();
-				await bounceButton?.ScaleTo(AnimationConstants.BounceButtonMaxSize, AnimationConstants.BounceButonAninmationTime);
-				await bounceButton?.ScaleTo(AnimationConstants.BounceButtonNormalSize, AnimationConstants.BounceButonAninmationTime);
-				App.IsBounceButtonAnimationInProgress = false;
-			});
-		}
-	}
+        #region Methods
+        void HandleButtonClick(object sender, EventArgs e)
+        {
+            if (_isBounceButtonAnimationInProgress)
+                return;
+
+            var bounceButton = (BounceButton)sender;
+            _isBounceButtonAnimationInProgress = true;
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                Unfocus();
+                await bounceButton?.ScaleTo(AnimationConstants.BounceButtonMaxSize, AnimationConstants.BounceButonAninmationTime);
+                await bounceButton?.ScaleTo(AnimationConstants.BounceButtonNormalSize, AnimationConstants.BounceButonAninmationTime);
+                _isBounceButtonAnimationInProgress = false;
+            });
+        }
+        #endregion
+    }
 }
 
