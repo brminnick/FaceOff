@@ -207,6 +207,12 @@
       <Version>1.12.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FaceOff\FaceOff.csproj">
+      <Project>{463970cd-bbfa-41f8-8ce9-6e5f9fccb148}</Project>
+      <Name>FaceOff</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
