@@ -19,7 +19,7 @@ using Xamarin.Forms;
 
 namespace FaceOff
 {
-    public class PictureViewModel : BaseViewModel
+    public class FaceOffViewModel : BaseViewModel
     {
         #region Constant Fields
         readonly string[] _emotionStringsForAlertMessage = { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
@@ -68,10 +68,11 @@ namespace FaceOff
         ICommand _takePhoto1ButtonPressed, _takePhoto2ButtonPressed;
         ICommand _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
         ICommand _resetButtonPressed;
+        Command<EmotionPopupResponseModel> _emotionPopUpAlertResponseCommand;
         #endregion
 
         #region Constructors
-        public PictureViewModel()
+        public FaceOffViewModel()
         {
             IsResetButtonEnabled = false;
 
@@ -80,11 +81,14 @@ namespace FaceOff
         #endregion
 
         #region Properties
+        public Command<EmotionPopupResponseModel> EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
+            (_emotionPopUpAlertResponseCommand = new Command<EmotionPopupResponseModel>(async response => await ExecuteEmotionPopUpAlertResponseCommand(response)));
+
         public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
-            (_takePhoto1ButtonPressed = new Command(async () => await ExecuteTakePhoto1ButtonPressed()));
+            (_takePhoto1ButtonPressed = new Command(ExecuteTakePhoto1ButtonPressed));
 
         public ICommand TakePhoto2ButtonPressed => _takePhoto2ButtonPressed ??
-            (_takePhoto2ButtonPressed = new Command(async () => await ExecuteTakePhoto2ButtonPressed()));
+            (_takePhoto2ButtonPressed = new Command(ExecuteTakePhoto2ButtonPressed));
 
         public ICommand ResetButtonPressed => _resetButtonPressed ??
             (_resetButtonPressed = new Command(ExecuteResetButtonPressed));
@@ -203,17 +207,14 @@ namespace FaceOff
             set => SetProperty(ref _isScore2ButtonVisable, value);
         }
 
-        public bool HasUserAcknowledgedPopUp { get; set; }
-        public bool UserResponseToAlert { get; set; }
-
         bool IsInternetConnectionAvailable =>
             CrossConnectivity.Current.IsConnected && Task.Run(async () => await CrossConnectivity.Current.IsRemoteReachable("google.com")).Result;
 
         #endregion
 
         #region Events
-        public event EventHandler<AlertMessageEventArgs> DisplayEmotionBeforeCameraAlert;
-        public event EventHandler<TextEventArgs> DisplayAllEmotionResultsAlert;
+        public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered;
+        public event EventHandler<string> DisplayAllEmotionResultsAlert;
         public event EventHandler DisplayMultipleFacesDetectedAlert;
         public event EventHandler DisplayNoCameraAvailableAlert;
         public event EventHandler RevealScoreButton1WithAnimation;
@@ -282,60 +283,94 @@ namespace FaceOff
         }
 #endif
 
-        async Task ExecuteTakePhoto1ButtonPressed() =>
-            await ExecuteTakePhotoWorkflow(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
+        void ExecuteTakePhoto1ButtonPressed() =>
+            ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
 
-        async Task ExecuteTakePhoto2ButtonPressed() =>
-            await ExecuteTakePhotoWorkflow(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
+        void ExecuteTakePhoto2ButtonPressed() =>
+            ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
 
-        async Task ExecuteTakePhotoWorkflow(PlayerModel playerModel)
+        void ExecutePopUpAlert(PlayerModel playerModel)
         {
             LogPhotoButtonTapped(playerModel.PlayerNumber);
 
             DisableButtons(playerModel.PlayerNumber);
 
-            if (!(await DisplayPopUpAlertAboutEmotion(playerModel.PlayerName)))
-            {
-                EnableButtons(playerModel.PlayerNumber);
-                return;
-            }
+            var title = _emotionDictionary[_currentEmotionType];
+            var message = playerModel.PlayerName + ", " + _makeAFaceAlertMessage + _emotionStringsForAlertMessage[(int)_currentEmotionType];
+            OnPopUpAlertAboutEmotionTriggered(title, message, playerModel);
+        }
 
-            playerModel.ImageMediaFile = await GetMediaFileFromCamera("FaceOff", playerModel.PlayerNumber);
+        async Task ExecuteEmotionPopUpAlertResponseCommand(EmotionPopupResponseModel response)
+        {
+            var player = response.Player;
 
-            if (playerModel.ImageMediaFile == null)
-            {
-                EnableButtons(playerModel.PlayerNumber);
-                return;
-            }
+            if (response.IsPopUpConfirmed)
+                await TakePhoto(player);
+            else
+                EnableButtons(player.PlayerNumber);
+        }
 
-            await WaitForRevealPhotoImageWithAnimationEventToBeSubscribed(playerModel.PlayerNumber);
+        async Task TakePhoto(PlayerModel player)
+        {
+            player.ImageMediaFile = await GetMediaFileFromCamera("FaceOff", player.PlayerNumber);
 
-            RevealPhoto(playerModel.PlayerNumber);
+            if (player.ImageMediaFile == null)
+                EnableButtons(player.PlayerNumber);
+            else
+                await GetPhotoResults(player);
+        }
 
+        async Task GetPhotoResults(PlayerModel player)
+        {
             Insights.Track(InsightsConstants.PhotoTaken);
 
-            SetIsEnabledForCurrentPhotoButton(false, playerModel.PlayerNumber);
-            SetIsVisibleForCurrentPhotoStack(false, playerModel.PlayerNumber);
+            await ConfigureUIForPendingPlayerResults(player);
 
-            SetScoreButtonText(_calculatingScoreMessage, playerModel.PlayerNumber);
+            var results = await GenerateEmotionResults(player);
 
-            SetPhotoImageSource(playerModel.ImageMediaFile, playerModel.PlayerNumber);
+            await ConfigureUIForFinalizedEmotionResults(player, results);
+        }
 
-            SetIsCalculatingPhotoScore(true, playerModel.PlayerNumber);
+        async Task ConfigureUIForPendingPlayerResults(PlayerModel player)
+        {
+            RevealPhoto(player.PlayerNumber);
+
+            SetIsEnabledForCurrentPhotoButton(false, player.PlayerNumber);
+            SetIsVisibleForCurrentPhotoStack(false, player.PlayerNumber);
+
+            SetScoreButtonText(_calculatingScoreMessage, player.PlayerNumber);
+
+            SetPhotoImageSource(player.ImageMediaFile, player.PlayerNumber);
+
+            SetIsCalculatingPhotoScore(true, player.PlayerNumber);
 
             SetResetButtonIsEnabled();
 
             await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5));
 
-            await WaitForRevealScoreButtonWithAnimationEventToBeSubscribed(playerModel.PlayerNumber);
+            RevealPhotoButton(player.PlayerNumber);
+        }
 
-            RevealPhotoButton(playerModel.PlayerNumber);
+        async Task ConfigureUIForFinalizedEmotionResults(PlayerModel player, string results)
+        {
+            SetPhotoResultsText(results, player.PlayerNumber);
 
+            SetIsCalculatingPhotoScore(false, player.PlayerNumber);
+
+            SetResetButtonIsEnabled();
+
+            player.ImageMediaFile.Dispose();
+
+            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
+        }
+
+        async Task<string> GenerateEmotionResults(PlayerModel player)
+        {
             Emotion[] emotionArray;
             string emotionScore;
             try
             {
-                emotionArray = await GetEmotionResultsFromMediaFile(playerModel.ImageMediaFile, false);
+                emotionArray = await GetEmotionResultsFromMediaFile(player.ImageMediaFile, false);
 
                 emotionScore = GetPhotoEmotionScore(emotionArray, 0);
             }
@@ -370,21 +405,12 @@ namespace FaceOff
                         break;
                 }
 
-                SetScoreButtonText(emotionScore, playerModel.PlayerNumber);
+                SetScoreButtonText(emotionScore, player.PlayerNumber);
             }
             else
-                SetScoreButtonText($"Score: {emotionScore}", playerModel.PlayerNumber);
+                SetScoreButtonText($"Score: {emotionScore}", player.PlayerNumber);
 
-            var results = GetStringOfAllPhotoEmotionScores(emotionArray, 0);
-            SetPhotoResultsText(results, playerModel.PlayerNumber);
-
-            SetIsCalculatingPhotoScore(false, playerModel.PlayerNumber);
-
-            SetResetButtonIsEnabled();
-
-            playerModel.ImageMediaFile.Dispose();
-
-            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
+            return GetStringOfAllPhotoEmotionScores(emotionArray, 0);
         }
 
         void ExecuteResetButtonPressed()
@@ -606,29 +632,6 @@ namespace FaceOff
             return allEmotionsString.ToString();
         }
 
-        string ConvertFloatToPercentage(float floatToConvert)
-        {
-            return floatToConvert.ToString("#0.##%");
-        }
-
-        async Task<bool> DisplayPopUpAlertAboutEmotion(string playerName)
-        {
-            var alertMessage = new AlertMessageModel
-            {
-                Title = _emotionDictionary[_currentEmotionType],
-                Message = playerName + ", " + _makeAFaceAlertMessage + _emotionStringsForAlertMessage[(int)_currentEmotionType]
-            };
-            OnDisplayEmotionBeforeCameraAlert(alertMessage);
-
-            while (!HasUserAcknowledgedPopUp)
-            {
-                await Task.Delay(500);
-            }
-            HasUserAcknowledgedPopUp = false;
-
-            return UserResponseToAlert;
-        }
-
         bool DoesStringContainErrorMessage(string stringToCheck)
         {
             foreach (KeyValuePair<ErrorMessageType, string> errorMessageDictionaryEntry in _errorMessageDictionary)
@@ -638,32 +641,6 @@ namespace FaceOff
             }
 
             return false;
-        }
-
-        async Task WaitForEventToBeSubscribed(EventHandler eventToWaitFor)
-        {
-            while (eventToWaitFor == null)
-                await Task.Delay(100);
-        }
-
-        async Task WaitForRevealPhotoImageWithAnimationEventToBeSubscribed(PlayerNumberType playerNumber)
-        {
-            switch (playerNumber)
-            {
-                case PlayerNumberType.Player1:
-                    await WaitForEventToBeSubscribed(RevealPhotoImage1WithAnimation);
-                    break;
-                case PlayerNumberType.Player2:
-                    await WaitForEventToBeSubscribed(RevealPhotoImage2WithAnimation);
-                    break;
-                default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
-            }
-        }
-
-        async Task WaitForAnimationsToFinish(int waitTimeInSeconds)
-        {
-            await Task.Delay(waitTimeInSeconds);
         }
 
         void RevealPhoto(PlayerNumberType playerNumber)
@@ -715,16 +692,6 @@ namespace FaceOff
         {
             SetIsEnabledForOppositePhotoButton(isEnabled, playerNumber);
             SetIsEnabledForCurrentPlayerScoreButton(isEnabled, playerNumber);
-        }
-
-        void EnableButtons(PlayerNumberType playerNumber)
-        {
-            SetIsEnabledForButtons(true, playerNumber);
-        }
-
-        void DisableButtons(PlayerNumberType playerNumber)
-        {
-            SetIsEnabledForButtons(false, playerNumber);
         }
 
         void SetIsEnabledForCurrentPhotoButton(bool isEnabled, PlayerNumberType playerNumber)
@@ -808,26 +775,6 @@ namespace FaceOff
             }
         }
 
-        void SetResetButtonIsEnabled()
-        {
-            IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-        }
-
-        async Task WaitForRevealScoreButtonWithAnimationEventToBeSubscribed(PlayerNumberType playerNumber)
-        {
-            switch (playerNumber)
-            {
-                case PlayerNumberType.Player1:
-                    await WaitForEventToBeSubscribed(RevealScoreButton1WithAnimation);
-                    break;
-                case PlayerNumberType.Player2:
-                    await WaitForEventToBeSubscribed(RevealScoreButton2WithAnimation);
-                    break;
-                default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
-            }
-        }
-
         void RevealPhotoButton(PlayerNumberType playerNumber)
         {
             switch (playerNumber)
@@ -873,30 +820,43 @@ namespace FaceOff
             }
         }
 
+        string ConvertFloatToPercentage(float floatToConvert) => floatToConvert.ToString("#0.##%");
+
+        async Task WaitForAnimationsToFinish(int waitTimeInSeconds) =>
+            await Task.Delay(waitTimeInSeconds);
+
+        void EnableButtons(PlayerNumberType playerNumber) =>
+            SetIsEnabledForButtons(true, playerNumber);
+
+        void DisableButtons(PlayerNumberType playerNumber) =>
+            SetIsEnabledForButtons(false, playerNumber);
+
+        void SetResetButtonIsEnabled() =>
+            IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+
         void OnDisplayAllEmotionResultsAlert(string emotionResults) =>
-            DisplayAllEmotionResultsAlert?.Invoke(null, new TextEventArgs(emotionResults));
+            DisplayAllEmotionResultsAlert?.Invoke(this, emotionResults);
 
         void OnDisplayNoCameraAvailableAlert() =>
-            DisplayNoCameraAvailableAlert?.Invoke(null, EventArgs.Empty);
-
-
-        void OnDisplayEmotionBeforeCameraAlert(AlertMessageModel alertMessage) =>
-            DisplayEmotionBeforeCameraAlert?.Invoke(null, new AlertMessageEventArgs(alertMessage));
+            DisplayNoCameraAvailableAlert?.Invoke(this, EventArgs.Empty);
 
         void OnRevealPhotoImage1WithAnimation() =>
-            RevealPhotoImage1WithAnimation?.Invoke(null, EventArgs.Empty);
+            RevealPhotoImage1WithAnimation?.Invoke(this, EventArgs.Empty);
 
         void OnRevealScoreButton1WithAnimation() =>
-            RevealScoreButton1WithAnimation?.Invoke(null, EventArgs.Empty);
+            RevealScoreButton1WithAnimation?.Invoke(this, EventArgs.Empty);
 
         void OnRevealPhotoImage2WithAnimation() =>
-            RevealPhotoImage2WithAnimation?.Invoke(null, EventArgs.Empty);
+            RevealPhotoImage2WithAnimation?.Invoke(this, EventArgs.Empty);
 
         void OnRevealScoreButton2WithAnimation() =>
-            RevealScoreButton2WithAnimation?.Invoke(null, EventArgs.Empty);
+            RevealScoreButton2WithAnimation?.Invoke(this, EventArgs.Empty);
 
         void OnDisplayMultipleFacesError() =>
-            DisplayMultipleFacesDetectedAlert?.Invoke(null, EventArgs.Empty);
+            DisplayMultipleFacesDetectedAlert?.Invoke(this, EventArgs.Empty);
+
+        void OnPopUpAlertAboutEmotionTriggered(string title, string message, PlayerModel player) =>
+            PopUpAlertAboutEmotionTriggered?.Invoke(this, new AlertMessageEventArgs(title, message, player));
         #endregion
     }
 }

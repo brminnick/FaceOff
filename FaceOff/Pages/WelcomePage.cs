@@ -103,7 +103,7 @@ namespace FaceOff
             else
             {
                 Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.GameStarted);
-                Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new PicturePage()));
+                Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new FaceOffPage()));
             }
         }
 
