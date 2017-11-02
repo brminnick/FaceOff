@@ -1,4 +1,5 @@
-[![Build Status](https://www.bitrise.io/app/b767e152b4b3280b.svg?token=VjXptasMwFk5W5LbqpgUoA)](https://www.bitrise.io/app/b767e152b4b3280b)
+[![Build Status](https://www.bitrise.io/app/3dca187dd687b3ab/status.svg?token=blpNUgDzrfaB73rNn5I0TA&branch=master)](https://www.bitrise.io/app/3dca187dd687b3ab)
+
 # FaceOff
 FaceOff pits two players against eachother to see who can reflect an emotion best! 
 
