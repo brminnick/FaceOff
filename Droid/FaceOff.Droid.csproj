@@ -48,23 +48,11 @@
     <AndroidLinkSkip>Newtonsoft.Json</AndroidLinkSkip>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.2\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.2\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Connectivity, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.3\lib\MonoAndroid10\Plugin.Connectivity.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Connectivity.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.3\lib\MonoAndroid10\Plugin.Connectivity.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions.Abstractions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -99,14 +87,6 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Plugin.Media.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Plugin.Media">
-      <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Plugin.Settings.Abstractions">
       <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
@@ -114,66 +94,49 @@
       <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Annotations">
-      <HintPath>..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Core.Common">
-      <HintPath>..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Core.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common">
-      <HintPath>..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime">
-      <HintPath>..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.Annotations.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Compat">
-      <HintPath>..\packages\Xamarin.Android.Support.Compat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Compat.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.Compat.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Compat.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.Core.UI">
-      <HintPath>..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Core.UI.dll</HintPath>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.2.0.1\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.2.0.1\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Core.Utils">
-      <HintPath>..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Core.Utils.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.Core.Utils.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Core.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.Fragment">
-      <HintPath>..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Fragment.dll</HintPath>
+    <Reference Include="Plugin.Media.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.Media.Compat">
-      <HintPath>..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Media.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Transition">
-      <HintPath>..\packages\Xamarin.Android.Support.Transition.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Transition.dll</HintPath>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v4.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.CardView">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.CardView.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.Palette">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.Palette.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.Palette.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Vector.Drawable">
-      <HintPath>..\packages\Xamarin.Android.Support.Vector.Drawable.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
-      <HintPath>..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Design">
-      <HintPath>..\packages\Xamarin.Android.Support.Design.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Design.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\Xamarin.Android.Support.Design.23.3.0\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\packages\Xamarin.Forms.2.4.0.38779\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
@@ -189,6 +152,12 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.4.0.38779\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.2\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.Android">
+      <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.2\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -230,24 +199,9 @@
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Transition.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Transition.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Transition.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Transition.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v7.CardView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.CardView.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.CardView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.CardView.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v7.Palette.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.Palette.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.Palette.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.Palette.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Vector.Drawable.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v7.AppCompat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.AppCompat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.AppCompat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.AppCompat.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Design.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Design.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Design.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Design.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v7.MediaRouter.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.MediaRouter.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.MediaRouter.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.MediaRouter.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Annotations.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Compat.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Compat.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Core.Utils.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.Utils.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Core.Utils.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.38779\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.38779\build\netstandard1.0\Xamarin.Forms.targets')" />
 </Project>
