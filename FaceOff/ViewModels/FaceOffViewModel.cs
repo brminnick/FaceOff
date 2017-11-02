@@ -82,7 +82,7 @@ namespace FaceOff
 
         #region Properties
         public Command<EmotionPopupResponseModel> EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
-            (_emotionPopUpAlertResponseCommand = new Command<EmotionPopupResponseModel>(async response => await ExecuteEmotionPopUpAlertResponseCommand(response)));
+            (_emotionPopUpAlertResponseCommand = new Command<EmotionPopupResponseModel>(async response => await ExecuteEmotionPopUpAlertResponseCommand(response).ConfigureAwait(false)));
 
         public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
             (_takePhoto1ButtonPressed = new Command(ExecuteTakePhoto1ButtonPressed));
@@ -206,10 +206,6 @@ namespace FaceOff
             get => _isScore2ButtonVisable;
             set => SetProperty(ref _isScore2ButtonVisable, value);
         }
-
-        bool IsInternetConnectionAvailable =>
-            CrossConnectivity.Current.IsConnected && Task.Run(async () => await CrossConnectivity.Current.IsRemoteReachable("google.com")).Result;
-
         #endregion
 
         #region Events
@@ -305,33 +301,33 @@ namespace FaceOff
             var player = response.Player;
 
             if (response.IsPopUpConfirmed)
-                await TakePhoto(player);
+                await ExecuteTakePhotoWorkflow(player).ConfigureAwait(false);
             else
                 EnableButtons(player.PlayerNumber);
         }
 
-        async Task TakePhoto(PlayerModel player)
+        async Task ExecuteTakePhotoWorkflow(PlayerModel player)
         {
-            player.ImageMediaFile = await GetMediaFileFromCamera("FaceOff", player.PlayerNumber);
+            player.ImageMediaFile = await GetMediaFileFromCamera("FaceOff", player.PlayerNumber).ConfigureAwait(false);
 
             if (player.ImageMediaFile == null)
                 EnableButtons(player.PlayerNumber);
             else
-                await GetPhotoResults(player);
+                await ExecuteGetPhotoResultsWorkflow(player).ConfigureAwait(false);
         }
 
-        async Task GetPhotoResults(PlayerModel player)
+        async Task ExecuteGetPhotoResultsWorkflow(PlayerModel player)
         {
             Insights.Track(InsightsConstants.PhotoTaken);
 
-            await ConfigureUIForPendingPlayerResults(player);
+            await ConfigureUIForPendingEmotionResults(player).ConfigureAwait(false);
 
-            var results = await GenerateEmotionResults(player);
+            var results = await GenerateEmotionResults(player).ConfigureAwait(false);
 
-            await ConfigureUIForFinalizedEmotionResults(player, results);
+            await ConfigureUIForFinalizedEmotionResults(player, results).ConfigureAwait(false);
         }
 
-        async Task ConfigureUIForPendingPlayerResults(PlayerModel player)
+        async Task ConfigureUIForPendingEmotionResults(PlayerModel player)
         {
             RevealPhoto(player.PlayerNumber);
 
@@ -346,7 +342,7 @@ namespace FaceOff
 
             SetResetButtonIsEnabled();
 
-            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5));
+            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5)).ConfigureAwait(false);
 
             RevealPhotoButton(player.PlayerNumber);
         }
@@ -361,7 +357,7 @@ namespace FaceOff
 
             player.ImageMediaFile.Dispose();
 
-            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
+            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5)).ConfigureAwait(false);
         }
 
         async Task<string> GenerateEmotionResults(PlayerModel player)
@@ -370,9 +366,9 @@ namespace FaceOff
             string emotionScore;
             try
             {
-                emotionArray = await GetEmotionResultsFromMediaFile(player.ImageMediaFile, false);
+                emotionArray = await GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
 
-                emotionScore = GetPhotoEmotionScore(emotionArray, 0);
+                emotionScore = await GetPhotoEmotionScore(emotionArray, 0).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -468,7 +464,7 @@ namespace FaceOff
 
         async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
         {
-            await CrossMedia.Current.Initialize();
+            await CrossMedia.Current.Initialize().ConfigureAwait(false);
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
@@ -483,7 +479,7 @@ namespace FaceOff
                 Name = playerNumber.ToString(),
                 DefaultCamera = CameraDevice.Front,
                 OverlayViewProvider = DependencyService.Get<ICameraService>()?.GetCameraOverlay()
-            });
+            }).ConfigureAwait(false);
 
             return file;
         }
@@ -497,7 +493,7 @@ namespace FaceOff
 
             using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
             {
-                return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile));
+                return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
             }
 
         }
@@ -554,11 +550,13 @@ namespace FaceOff
             SetPageTitle(_currentEmotionType);
         }
 
-        string GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
+        async Task<string> GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
         {
             float rawEmotionScore;
 
-            if (!IsInternetConnectionAvailable)
+            var isInternetConnectionAvilable = await IsInternetConnectionAvailable().ConfigureAwait(false);
+
+            if(!isInternetConnectionAvilable)
                 return _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
 
             if (emotionResults == null || emotionResults.Length < 1)
@@ -612,6 +610,10 @@ namespace FaceOff
                 return _errorMessageDictionary[ErrorMessageType.GenericError];
             }
         }
+
+        async Task<bool> IsInternetConnectionAvailable() =>
+            CrossConnectivity.Current.IsConnected &&
+            await CrossConnectivity.Current.IsRemoteReachable("google.com").ConfigureAwait(false);
 
         string GetStringOfAllPhotoEmotionScores(Emotion[] emotionResults, int emotionResultNumber)
         {
@@ -823,7 +825,7 @@ namespace FaceOff
         string ConvertFloatToPercentage(float floatToConvert) => floatToConvert.ToString("#0.##%");
 
         async Task WaitForAnimationsToFinish(int waitTimeInSeconds) =>
-            await Task.Delay(waitTimeInSeconds);
+            await Task.Delay(waitTimeInSeconds).ConfigureAwait(false);
 
         void EnableButtons(PlayerNumberType playerNumber) =>
             SetIsEnabledForButtons(true, playerNumber);
