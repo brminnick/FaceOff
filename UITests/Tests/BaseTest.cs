@@ -11,7 +11,7 @@ namespace FaceOff.UITests
 		protected IApp app;
 		protected Platform platform;
 
-		protected PicturePage PicturePage;
+		protected FaceOffPage FaceOffPage;
 		protected CameraPage CameraPage;
 		protected WelcomePage WelcomePage;
 
@@ -25,7 +25,7 @@ namespace FaceOff.UITests
 		{
 			app = AppInitializer.StartApp(platform);
 
-			PicturePage = new PicturePage(app, platform);
+			FaceOffPage = new FaceOffPage(app, platform);
 			CameraPage = new CameraPage(app, platform);
 			WelcomePage = new WelcomePage(app, platform);
 

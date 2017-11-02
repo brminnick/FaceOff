@@ -5,9 +5,9 @@ using Xamarin.UITest.iOS;
 
 namespace FaceOff.UITests
 {
-	public class PicturePageTests : BaseTest
+	public class FaceOffPageTests : BaseTest
 	{
-		public PicturePageTests(Platform platform) : base(platform)
+		public FaceOffPageTests(Platform platform) : base(platform)
 		{
 		}
 

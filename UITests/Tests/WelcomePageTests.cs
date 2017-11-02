@@ -73,8 +73,8 @@ namespace FaceOff.UITests
 			WelcomePage.EnterPlayer2Name(player2Name);
 			WelcomePage.TapStartGameButton();
 
-			//Assert
-			PicturePage.WaitForPicturePageToLoad();
+            //Assert
+            FaceOffPage.WaitForPicturePageToLoad();
 		}
 	}
 }
