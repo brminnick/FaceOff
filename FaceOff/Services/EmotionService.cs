@@ -14,15 +14,29 @@ namespace FaceOff
 {
     public static class EmotionService
     {
-        #region Fields
-        readonly static Lazy<EmotionServiceClient> _emotionClient = new Lazy<EmotionServiceClient>(() => new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey));
-        readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionary = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
+        #region Constant Fields
+        readonly static Lazy<EmotionServiceClient> _emotionClientHolder = new Lazy<EmotionServiceClient>(() => new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey));
+
+        readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
             new Dictionary<ErrorMessageType, string>{
                 { ErrorMessageType.ConnectionToCognitiveServicesFailed, "Connection Failed" },
                 { ErrorMessageType.InvalidAPIKey, "Invalid API Key"},
                 { ErrorMessageType.NoFaceDetected, "No Face Detected" },
                 { ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
                 { ErrorMessageType.GenericError, "Error" }
+            });
+
+        readonly static Lazy<Dictionary<EmotionType, string>> _emotionDictionaryHolder = new Lazy<Dictionary<EmotionType, string>>(()=>
+            new Dictionary<EmotionType, string>                                                                                                          
+            {
+                { EmotionType.Anger, "Anger" },
+                { EmotionType.Contempt, "Contempt" },
+                { EmotionType.Disgust, "Disgust"},
+                { EmotionType.Fear, "Fear" },
+                { EmotionType.Happiness, "Happiness" },
+                { EmotionType.Neutral, "Neutral" },
+                { EmotionType.Sadness, "Sadness" },
+                { EmotionType.Surprise, "Surprise" }
             });
         #endregion
 
@@ -31,11 +45,46 @@ namespace FaceOff
         #endregion
 
         #region Properties
-		public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionary.Value;
-        static EmotionServiceClient EmotionClient => _emotionClient.Value;
+		public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
+		public static Dictionary<EmotionType, string> EmotionDictionary => _emotionDictionaryHolder.Value;
+
+        static EmotionServiceClient EmotionClient => _emotionClientHolder.Value;
         #endregion
 
         #region Methods
+        public static EmotionType GetRandomEmotionType(EmotionType currentEmotionType)
+        {
+            var rnd = new Random();
+            int randomNumber;
+
+            do
+            {
+                randomNumber = rnd.Next(0, EmotionDictionary.Count);
+            } while (randomNumber == (int)currentEmotionType);
+
+            switch (randomNumber)
+            {
+                case 0:
+                    return EmotionType.Anger;
+                case 1:
+                    return EmotionType.Contempt;
+                case 2:
+                    return EmotionType.Disgust;
+                case 3:
+                    return EmotionType.Fear;
+                case 4:
+                    return EmotionType.Happiness;
+                case 5:
+                    return EmotionType.Neutral;
+                case 6:
+                    return EmotionType.Sadness;
+                case 7:
+                    return EmotionType.Surprise;
+                default:
+                    throw new NotSupportedException("Invalid Emotion Type");
+            }
+        }
+
         public static async Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
         {
             using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))

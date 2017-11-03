@@ -8,7 +8,7 @@ namespace FaceOff
 {
     public class FaceOffPage : BaseContentPage<FaceOffViewModel>
     {
-        #region Field Constants
+        #region Constant Fields
         const int _frameImagePadding = 10;
 
         readonly FrameImage _photoImage1, _photoImage2;
