@@ -27,7 +27,7 @@ namespace FaceOff
         #endregion
 
         #region Events
-        public static event EventHandler DisplayMultipleFacesDetectedAlert;
+        public static event EventHandler MultipleFacesDetectedAlertTriggered;
         #endregion
 
         #region Properties
@@ -56,7 +56,7 @@ namespace FaceOff
 
             if (emotionResults.Length > 1)
             {
-                OnDisplayMultipleFacesError();
+                OnMultipleFacesDetectedAlertTriggered();
                 return ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected];
             }
 
@@ -133,8 +133,8 @@ namespace FaceOff
             return false;
         }
 
-        static void OnDisplayMultipleFacesError() =>
-            DisplayMultipleFacesDetectedAlert?.Invoke(null, EventArgs.Empty);
+        static void OnMultipleFacesDetectedAlertTriggered() =>
+            MultipleFacesDetectedAlertTriggered?.Invoke(null, EventArgs.Empty);
         #endregion
     }
 }
