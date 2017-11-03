@@ -12,7 +12,7 @@ namespace FaceOff
     public static class MediaService
     {
         #region Events 
-        public static event EventHandler DisplayNoCameraAvailableAlert;
+        public static event EventHandler NoCameraDetected;
         #endregion
 
         #region Methods
@@ -32,7 +32,7 @@ namespace FaceOff
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                OnDisplayNoCameraAvailableAlert();
+                OnNoCameraDetected();
                 return null;
             }
 
@@ -48,8 +48,8 @@ namespace FaceOff
             return file;
         }
 
-        static void OnDisplayNoCameraAvailableAlert() =>
-            DisplayNoCameraAvailableAlert?.Invoke(null, EventArgs.Empty);
+        static void OnNoCameraDetected() =>
+            NoCameraDetected?.Invoke(null, EventArgs.Empty);
         #endregion
     }
 }

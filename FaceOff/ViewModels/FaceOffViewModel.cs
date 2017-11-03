@@ -198,11 +198,11 @@ namespace FaceOff
 
         #region Events
         public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered;
-        public event EventHandler<string> DisplayAllEmotionResultsAlert;
-        public event EventHandler RevealScoreButton1WithAnimation;
-        public event EventHandler RevealScoreButton2WithAnimation;
-        public event EventHandler RevealPhotoImage1WithAnimation;
-        public event EventHandler RevealPhotoImage2WithAnimation;
+        public event EventHandler<string> AllEmotionResultsAlertTriggered;
+        public event EventHandler ScoreButton1RevealTriggered;
+        public event EventHandler ScoreButton2RevealTriggered;
+        public event EventHandler PhotoImage1RevealTriggered;
+        public event EventHandler PhotoImage2RevealTriggered;
         #endregion
 
         #region Enums
@@ -234,8 +234,8 @@ namespace FaceOff
             IsTakeLeftPhotoButtonEnabled = false;
             IsTakeLeftPhotoButtonStackVisible = false;
 
-            OnRevealPhotoImage1WithAnimation();
-            OnRevealScoreButton1WithAnimation();
+            OnPhotoImage1RevealTriggered();
+            OnScoreButton1RevealTriggered();
         }
 
         public void SetPhotoImage2ToHappyForUITest(string photo2ImageString)
@@ -260,8 +260,8 @@ namespace FaceOff
             IsTakeRightPhotoButtonEnabled = false;
             IsTakeRightPhotoButtonStackVisible = false;
 
-            OnRevealPhotoImage2WithAnimation();
-            OnRevealScoreButton2WithAnimation();
+            OnPhotoImage2RevealTriggered();
+            OnScoreButton2RevealTriggered();
         }
 #endif
         #endregion
@@ -437,13 +437,13 @@ namespace FaceOff
         void ExecutePhoto1ScoreButtonPressed()
         {
             Insights.Track(InsightsConstants.ResultsButton1Tapped);
-            OnDisplayAllEmotionResultsAlert(_photo1Results);
+            OnAllEmotionResultsAlertTriggered(_photo1Results);
         }
 
         void ExecutePhoto2ScoreButtonPressed()
         {
             Insights.Track(InsightsConstants.ResultsButton2Tapped);
-            OnDisplayAllEmotionResultsAlert(_photo2Results);
+            OnAllEmotionResultsAlertTriggered(_photo2Results);
         }
 
         EmotionType GetRandomEmotionType()
@@ -503,10 +503,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    OnRevealPhotoImage1WithAnimation();
+                    OnPhotoImage1RevealTriggered();
                     break;
                 case PlayerNumberType.Player2:
-                    OnRevealPhotoImage2WithAnimation();
+                    OnPhotoImage2RevealTriggered();
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
@@ -635,10 +635,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    OnRevealScoreButton1WithAnimation();
+                    OnScoreButton1RevealTriggered();
                     break;
                 case PlayerNumberType.Player2:
-                    OnRevealScoreButton2WithAnimation();
+                    OnScoreButton2RevealTriggered();
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
@@ -685,22 +685,22 @@ namespace FaceOff
             SetIsEnabledForButtons(false, playerNumber);
 
         void SetResetButtonIsEnabled() =>
-            IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+        IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
-        void OnDisplayAllEmotionResultsAlert(string emotionResults) =>
-            DisplayAllEmotionResultsAlert?.Invoke(this, emotionResults);
+        void OnAllEmotionResultsAlertTriggered(string emotionResults) =>
+            AllEmotionResultsAlertTriggered?.Invoke(this, emotionResults);
 
-        void OnRevealPhotoImage1WithAnimation() =>
-            RevealPhotoImage1WithAnimation?.Invoke(this, EventArgs.Empty);
+        void OnPhotoImage1RevealTriggered() =>
+            PhotoImage1RevealTriggered?.Invoke(this, EventArgs.Empty);
 
-        void OnRevealScoreButton1WithAnimation() =>
-            RevealScoreButton1WithAnimation?.Invoke(this, EventArgs.Empty);
+        void OnScoreButton1RevealTriggered() =>
+            ScoreButton1RevealTriggered?.Invoke(this, EventArgs.Empty);
 
-        void OnRevealPhotoImage2WithAnimation() =>
-            RevealPhotoImage2WithAnimation?.Invoke(this, EventArgs.Empty);
+        void OnPhotoImage2RevealTriggered() =>
+            PhotoImage2RevealTriggered?.Invoke(this, EventArgs.Empty);
 
-        void OnRevealScoreButton2WithAnimation() =>
-            RevealScoreButton2WithAnimation?.Invoke(this, EventArgs.Empty);
+        void OnScoreButton2RevealTriggered() =>
+            ScoreButton2RevealTriggered?.Invoke(this, EventArgs.Empty);
 
         void OnPopUpAlertAboutEmotionTriggered(string title, string message, PlayerModel player) =>
             PopUpAlertAboutEmotionTriggered?.Invoke(this, new AlertMessageEventArgs(title, message, player));

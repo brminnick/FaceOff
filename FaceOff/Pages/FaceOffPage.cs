@@ -217,35 +217,35 @@ namespace FaceOff
         #region Methods
         protected override void SubscribeEventHandlers()
         {
-            ViewModel.RevealPhotoImage1WithAnimation += HandleRevealPhoto1WithAnimation;
-            ViewModel.RevealPhotoImage2WithAnimation += HandleRevealPhoto2WithAnimation;
-            ViewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
+            ViewModel.PhotoImage1RevealTriggered += HandlePhotoImage1RevealTriggered;
+            ViewModel.PhotoImage2RevealTriggered += HandlePhotoImage2RevealTriggered;
+            ViewModel.AllEmotionResultsAlertTriggered += HandleAllEmotionResultsAlertTriggered;
             ViewModel.PopUpAlertAboutEmotionTriggered += HandlePopUpAlertAboutEmotionTriggered;
-            ViewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
-            ViewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
-            EmotionService.DisplayMultipleFacesDetectedAlert += HandleDisplayMultipleFacesDetectedAlert;
-			MediaService.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
+            ViewModel.ScoreButton1RevealTriggered += HandleScoreButton1RevealTriggered;
+            ViewModel.ScoreButton2RevealTriggered += HandleScoreButton2RevealTriggered;
+            EmotionService.MultipleFacesDetectedAlertTriggered += HandleMultipleFacesDetectedAlertTriggered;
+			MediaService.NoCameraDetected += HandleNoCameraDetected;
         }
 
         protected override void UnsubscribeEventHandlers()
         {
-            ViewModel.RevealPhotoImage1WithAnimation -= HandleRevealPhoto1WithAnimation;
-            ViewModel.RevealPhotoImage2WithAnimation -= HandleRevealPhoto2WithAnimation;
-            ViewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
+            ViewModel.PhotoImage1RevealTriggered -= HandlePhotoImage1RevealTriggered;
+            ViewModel.PhotoImage2RevealTriggered -= HandlePhotoImage2RevealTriggered;
+            ViewModel.AllEmotionResultsAlertTriggered -= HandleAllEmotionResultsAlertTriggered;
             ViewModel.PopUpAlertAboutEmotionTriggered -= HandlePopUpAlertAboutEmotionTriggered;
-            ViewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
-            ViewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
-            EmotionService.DisplayMultipleFacesDetectedAlert -= HandleDisplayMultipleFacesDetectedAlert;
-			MediaService.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
+            ViewModel.ScoreButton1RevealTriggered -= HandleScoreButton1RevealTriggered;
+            ViewModel.ScoreButton2RevealTriggered -= HandleScoreButton2RevealTriggered;
+            EmotionService.MultipleFacesDetectedAlertTriggered -= HandleMultipleFacesDetectedAlertTriggered;
+            MediaService.NoCameraDetected -= HandleNoCameraDetected;
         }
 
-        void HandleDisplayAllEmotionResultsAlert(object sender, string message) =>
+        void HandleAllEmotionResultsAlertTriggered(object sender, string message) =>
             Device.BeginInvokeOnMainThread(() => DisplayAlert("Results", message, "OK"));
 
-        void HandleDisplayNoCameraAvailableAlert(object sender, EventArgs e) =>
+        void HandleNoCameraDetected(object sender, EventArgs e) =>
             Device.BeginInvokeOnMainThread(() => DisplayAlert("Error", "No Camera Available", "OK"));
 
-        void HandleDisplayMultipleFacesDetectedAlert(object sender, EventArgs e) =>
+        void HandleMultipleFacesDetectedAlertTriggered(object sender, EventArgs e) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error: Multiple Faces Detected", "Ensure only one face is captured in the photo", "Ok"));
 
 
@@ -258,7 +258,7 @@ namespace FaceOff
             });
         }
 
-        void HandleRevealScoreButton1WithAnimation(object sender, EventArgs e)
+        void HandleScoreButton1RevealTriggered(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -273,7 +273,7 @@ namespace FaceOff
             });
         }
 
-        void HandleRevealScoreButton2WithAnimation(object sender, EventArgs e)
+        void HandleScoreButton2RevealTriggered(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -288,7 +288,7 @@ namespace FaceOff
             });
         }
 
-        void HandleRevealPhoto1WithAnimation(object sender, EventArgs e)
+        void HandlePhotoImage1RevealTriggered(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -300,7 +300,7 @@ namespace FaceOff
             });
         }
 
-        void HandleRevealPhoto2WithAnimation(object sender, EventArgs e)
+        void HandlePhotoImage2RevealTriggered(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
