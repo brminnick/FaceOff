@@ -9,7 +9,7 @@ using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Querie
 
 namespace FaceOff.UITests
 {
-	public class PicturePage : BasePage
+	public class FaceOffPage : BasePage
 	{
 		#region Constant Fields
 		readonly Query EmotionLabel;
@@ -30,7 +30,7 @@ namespace FaceOff.UITests
 		#endregion
 
 		#region Constructors
-		public PicturePage(IApp app, Platform platform) : base(app, platform)
+		public FaceOffPage(IApp app, Platform platform) : base(app, platform)
 		{
 			EmotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
 

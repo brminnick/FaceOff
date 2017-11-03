@@ -1,13 +1,15 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+
+using NUnit.Framework;
 
 using Xamarin.UITest;
 using Xamarin.UITest.iOS;
 
 namespace FaceOff.UITests
 {
-	public class PicturePageTests : BaseTest
+	public class FaceOffPageTests : BaseTest
 	{
-		public PicturePageTests(Platform platform) : base(platform)
+		public FaceOffPageTests(Platform platform) : base(platform)
 		{
 		}
 
@@ -19,7 +21,7 @@ namespace FaceOff.UITests
 			WelcomePage.EnterPlayer2Name("Second Player");
 			WelcomePage.TapStartGameButton();
 			
-			PicturePage.WaitForPicturePageToLoad();
+			FaceOffPage.WaitForPicturePageToLoad();
 		}
 
 
@@ -29,8 +31,8 @@ namespace FaceOff.UITests
             //Arrange
 
 			//Act
-			PicturePage.TapTakePhoto1Button();
-			PicturePage.TapOK();
+			FaceOffPage.TapTakePhoto1Button();
+			FaceOffPage.TapOK();
 
 			if (platform == Platform.Android)
 				return;
@@ -39,7 +41,7 @@ namespace FaceOff.UITests
 			CameraPage.TapUsePhotoButton();
 
 			//Assert
-			Assert.IsTrue(PicturePage.IsScoreButton1Visible);
+            Assert.IsTrue(FaceOffPage.IsScoreButton1Visible);
 		}
 
 		[Test]
@@ -48,8 +50,8 @@ namespace FaceOff.UITests
 			//Arrange
 
 			//Act
-			PicturePage.TapTakePhoto2Button();
-			PicturePage.TapOK();
+			FaceOffPage.TapTakePhoto2Button();
+			FaceOffPage.TapOK();
 
 			if (platform == Platform.Android)
 				return;
@@ -58,31 +60,31 @@ namespace FaceOff.UITests
 			CameraPage.TapUsePhotoButton();
 
 			//Assert
-			Assert.IsTrue(PicturePage.IsScoreButton2Visible);
+            Assert.IsTrue(FaceOffPage.IsScoreButton2Visible);
 		}
 
 		[Test]
 		public void VerifyResetButton()
 		{
 			//Arrange
-			string firstEmotion = PicturePage.Emotion;
+            string firstEmotion = FaceOffPage.Emotion;
 			string secondEmotion;
 
 			//Act
 			if (platform == Platform.Android)
 				return;
 
-			PicturePage.TapTakePhoto1Button();
-			PicturePage.TapOK();
+            FaceOffPage.TapTakePhoto1Button();
+            FaceOffPage.TapOK();
 
 			CameraPage.TapPhotoCaptureButton();
 			CameraPage.TapUsePhotoButton();
 
-			PicturePage.WaitForPhotoImage1();
-			PicturePage.TapResetButton();
+            FaceOffPage.WaitForPhotoImage1();
+            FaceOffPage.TapResetButton();
 
 			//Assert
-			secondEmotion = PicturePage.Emotion;
+            secondEmotion = FaceOffPage.Emotion;
 			Assert.AreNotEqual(firstEmotion, secondEmotion);
 		}
 
@@ -97,10 +99,10 @@ namespace FaceOff.UITests
 
 			//Act
 			app.Screenshot("Test Image Loaded");
-			PicturePage.TapScoreButton1();
+            FaceOffPage.TapScoreButton1();
 
 			//Assert
-			Assert.IsTrue(app.Query("Results").Length > 0);
+			Assert.IsTrue(app.Query("Results").Any());
 		}
 
 		[Test]
@@ -114,10 +116,10 @@ namespace FaceOff.UITests
 
 			//Act
 			app.Screenshot("Test Image Loaded");
-			PicturePage.TapScoreButton2();
+            FaceOffPage.TapScoreButton2();
 
 			//Assert
-			Assert.IsTrue(app.Query("Results").Length > 0);
+			Assert.IsTrue(app.Query("Results").Any());
 		}
 	}
 }
