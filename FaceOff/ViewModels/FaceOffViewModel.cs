@@ -19,24 +19,13 @@ namespace FaceOff
     public class FaceOffViewModel : BaseViewModel
     {
         #region Constant Fields
-        readonly string[] _emotionStringsForAlertMessage = { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
+        readonly Lazy<string[]> _emotionStringsForAlertMessageHolder = new Lazy<string[]>(()=>
+            new string[]{ "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" });
 
-        const string _makeAFaceAlertMessage = "take a selfie looking ";
+        const string _makeAFaceAlertMessage = "take a selfie looking";
         const string _calculatingScoreMessage = "Analyzing";
 
         const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
-
-        readonly Dictionary<EmotionType, string> _emotionDictionary = new Dictionary<EmotionType, string>
-        {
-            { EmotionType.Anger, "Anger" },
-            { EmotionType.Contempt, "Contempt" },
-            { EmotionType.Disgust, "Disgust"},
-            { EmotionType.Fear, "Fear" },
-            { EmotionType.Happiness, "Happiness" },
-            { EmotionType.Neutral, "Neutral" },
-            { EmotionType.Sadness, "Sadness" },
-            { EmotionType.Surprise, "Surprise" }
-        };
         #endregion
 
         #region Fields
@@ -194,6 +183,8 @@ namespace FaceOff
             get => _isScore2ButtonVisable;
             set => SetProperty(ref _isScore2ButtonVisable, value);
         }
+
+        string[] EmotionStringsForAlertMessage => _emotionStringsForAlertMessageHolder.Value;
         #endregion
 
         #region Events
@@ -277,8 +268,8 @@ namespace FaceOff
             LogPhotoButtonTapped(playerModel.PlayerNumber);
             DisableButtons(playerModel.PlayerNumber);
 
-            var title = _emotionDictionary[_currentEmotionType];
-            var message = playerModel.PlayerName + ", " + _makeAFaceAlertMessage + _emotionStringsForAlertMessage[(int)_currentEmotionType];
+            var title = EmotionService.EmotionDictionary[_currentEmotionType];
+            var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {EmotionStringsForAlertMessage[(int)_currentEmotionType]}";
             OnPopUpAlertAboutEmotionTriggered(title, message, playerModel);
         }
 
@@ -446,47 +437,9 @@ namespace FaceOff
             OnAllEmotionResultsAlertTriggered(_photo2Results);
         }
 
-        EmotionType GetRandomEmotionType()
-        {
-            var rnd = new Random();
-            int randomNumber;
-
-            do
-            {
-                randomNumber = rnd.Next(0, _emotionDictionary.Count);
-            } while (randomNumber == (int)_currentEmotionType);
-
-            switch (randomNumber)
-            {
-                case 0:
-                    return EmotionType.Anger;
-                case 1:
-                    return EmotionType.Contempt;
-                case 2:
-                    return EmotionType.Disgust;
-                case 3:
-                    return EmotionType.Fear;
-                case 4:
-                    return EmotionType.Happiness;
-                case 5:
-                    return EmotionType.Neutral;
-                case 6:
-                    return EmotionType.Sadness;
-                case 7:
-                    return EmotionType.Surprise;
-                default:
-                    throw new NotSupportedException("Invalid Emotion Type");
-            }
-        }
-
-        void SetPageTitle(EmotionType emotionType)
-        {
-            PageTitle = _emotionDictionary[emotionType];
-        }
-
         void SetRandomEmotion()
         {
-            _currentEmotionType = GetRandomEmotionType();
+            _currentEmotionType = EmotionService.GetRandomEmotionType(_currentEmotionType);
 
             SetPageTitle(_currentEmotionType);
         }
@@ -675,6 +628,9 @@ namespace FaceOff
             }
         }
 
+        void SetPageTitle(EmotionType emotionType) =>
+            PageTitle = EmotionService.EmotionDictionary[emotionType];
+
         async Task WaitForAnimationsToFinish(int waitTimeInSeconds) =>
             await Task.Delay(waitTimeInSeconds).ConfigureAwait(false);
 
@@ -685,7 +641,7 @@ namespace FaceOff
             SetIsEnabledForButtons(false, playerNumber);
 
         void SetResetButtonIsEnabled() =>
-        IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+            IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
         void OnAllEmotionResultsAlertTriggered(string emotionResults) =>
             AllEmotionResultsAlertTriggered?.Invoke(this, emotionResults);
