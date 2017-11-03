@@ -9,7 +9,7 @@ using EntryCustomReturn.Forms.Plugin.Abstractions;
 
 namespace FaceOff
 {
-    public class WelcomePage : ContentPage
+    public class WelcomePage : BaseContentPage<WelcomeViewModel>
     {
         #region Constant Fields
         readonly Entry _player1Entry, _player2Entry;
@@ -19,17 +19,14 @@ namespace FaceOff
         #region Constructors
         public WelcomePage()
         {
-            var welcomeViewModel = new WelcomeViewModel();
-            BindingContext = welcomeViewModel;
-
             var player1Label = new DarkBlueLabel { Text = "Player 1" };
             var player2Label = new DarkBlueLabel { Text = "Player 2" };
 
             _player1Entry = new Entry();
-            _player1Entry.SetBinding(Entry.TextProperty, nameof(welcomeViewModel.Player1));
+            _player1Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player1));
 
             _player2Entry = new Entry();
-            _player2Entry.SetBinding(Entry.TextProperty, nameof(welcomeViewModel.Player2));
+            _player2Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player2));
 
             _startGameButton = new BounceButton
             {
@@ -64,19 +61,8 @@ namespace FaceOff
         #endregion
 
         #region Methods
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            _startGameButton.Clicked += HandleStartGameButtonClicked;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            _startGameButton.Clicked -= HandleStartGameButtonClicked;
-        }
+        protected override void SubscribeEventHandlers() => _startGameButton.Clicked += HandleStartGameButtonClicked;
+        protected override void UnsubscribeEventHandlers() => _startGameButton.Clicked -= HandleStartGameButtonClicked;
 
         void ExecutePlayer1EntryReturnCommand(object sender, EventArgs e) =>
             Device.BeginInvokeOnMainThread(() => _player2Entry.Focus());

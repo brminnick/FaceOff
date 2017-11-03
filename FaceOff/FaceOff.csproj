@@ -28,4 +28,7 @@
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Base\" />
+  </ItemGroup>
 </Project>

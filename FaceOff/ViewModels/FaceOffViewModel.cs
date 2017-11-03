@@ -486,14 +486,20 @@ namespace FaceOff
 
         async Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
         {
-            if (mediaFile == null)
-                return null;
-
             var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
+
+			IsInternetConnectionActive = true;
 
             using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
             {
-                return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
+                try
+                {
+                    return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
+                }
+                finally
+                {
+                    IsInternetConnectionActive = false;
+                }
             }
 
         }

@@ -5,23 +5,39 @@ using System.Runtime.CompilerServices;
 
 namespace FaceOff
 {
-	public class BaseViewModel : INotifyPropertyChanged
-	{
-		public event PropertyChangedEventHandler PropertyChanged;
+    public class BaseViewModel : INotifyPropertyChanged
+    {
+        #region Fields
+        bool _isInternetConnectionActive;
+        #endregion
 
-		protected void SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyname = "", Action onChanged = null)
-		{
-			if (EqualityComparer<T>.Default.Equals(backingStore, value))
-				return;
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
-			backingStore = value;
+        #region Properties
+        public bool IsInternetConnectionActive
+        {
+            get => _isInternetConnectionActive;
+            set => SetProperty(ref _isInternetConnectionActive, value);
+        }
+        #endregion
 
-			onChanged?.Invoke();
+        #region Methods
+        protected void SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyname = "", Action onChanged = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return;
 
-			OnPropertyChanged(propertyname);
-		}
+            backingStore = value;
 
-		void OnPropertyChanged([CallerMemberName]string name = "") =>
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-	}
+            onChanged?.Invoke();
+
+            OnPropertyChanged(propertyname);
+        }
+
+        void OnPropertyChanged([CallerMemberName]string name = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        #endregion
+    }
 }
