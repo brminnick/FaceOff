@@ -4,35 +4,32 @@ using Xamarin.UITest;
 
 namespace FaceOff.UITests
 {
-	[TestFixture(Platform.Android)]
-	[TestFixture(Platform.iOS)]
-	public abstract class BaseTest
-	{
-		protected IApp app;
-		protected Platform platform;
+    [TestFixture(Platform.Android)]
+    [TestFixture(Platform.iOS)]
+    public abstract class BaseTest
+    {
+        protected BaseTest(Platform platform) => Platform = platform;
 
-		protected FaceOffPage FaceOffPage;
-		protected CameraPage CameraPage;
-		protected WelcomePage WelcomePage;
+        protected IApp App { get; private set; }
+        protected Platform Platform { get; private set; }
 
-		protected BaseTest(Platform platform)
-		{
-			this.platform = platform;
-		}
+        protected FaceOffPage FaceOffPage { get; private set; }
+        protected CameraPage CameraPage { get; private set; }
+        protected WelcomePage WelcomePage { get; private set; }
 
-		[SetUp]
-		public virtual void TestSetup()
-		{
-			app = AppInitializer.StartApp(platform);
+        [SetUp]
+        public virtual void TestSetup()
+        {
+            App = AppInitializer.StartApp(Platform);
 
-			FaceOffPage = new FaceOffPage(app, platform);
-			CameraPage = new CameraPage(app, platform);
-			WelcomePage = new WelcomePage(app, platform);
+            FaceOffPage = new FaceOffPage(App, Platform);
+            CameraPage = new CameraPage(App, Platform);
+            WelcomePage = new WelcomePage(App, Platform);
 
-			WelcomePage.WaitForPageToLoad();
+            WelcomePage.WaitForPageToLoad();
 
-			app.Screenshot("App Launched");
-		}
-	}
+            App.Screenshot("App Launched");
+        }
+    }
 }
 

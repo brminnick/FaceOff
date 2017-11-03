@@ -34,7 +34,7 @@ namespace FaceOff.UITests
 			FaceOffPage.TapTakePhoto1Button();
 			FaceOffPage.TapOK();
 
-			if (platform == Platform.Android)
+			if (Platform == Platform.Android)
 				return;
 
 			CameraPage.TapPhotoCaptureButton();
@@ -53,7 +53,7 @@ namespace FaceOff.UITests
 			FaceOffPage.TapTakePhoto2Button();
 			FaceOffPage.TapOK();
 
-			if (platform == Platform.Android)
+			if (Platform == Platform.Android)
 				return;
 
 			CameraPage.TapPhotoCaptureButton();
@@ -71,7 +71,7 @@ namespace FaceOff.UITests
 			string secondEmotion;
 
 			//Act
-			if (platform == Platform.Android)
+			if (Platform == Platform.Android)
 				return;
 
             FaceOffPage.TapTakePhoto1Button();
@@ -92,34 +92,34 @@ namespace FaceOff.UITests
 		public void VerifyPhoto1Results()
 		{
 			//Arrange
-			if(app is iOSApp)
-				app.Invoke("useDefaultImageForPhoto1:", "");
+			if(App is iOSApp)
+				App.Invoke("useDefaultImageForPhoto1:", "");
 			else
-				app.Invoke("UseDefaultImageForPhoto1");
+				App.Invoke("UseDefaultImageForPhoto1");
 
 			//Act
-			app.Screenshot("Test Image Loaded");
+			App.Screenshot("Test Image Loaded");
             FaceOffPage.TapScoreButton1();
 
 			//Assert
-			Assert.IsTrue(app.Query("Results").Any());
+			Assert.IsTrue(App.Query("Results").Any());
 		}
 
 		[Test]
 		public void VerifyPhoto2Results()
 		{
 			//Arrange
-			if (app is iOSApp)
-				app.Invoke("useDefaultImageForPhoto2:", "");
+			if (App is iOSApp)
+				App.Invoke("useDefaultImageForPhoto2:", "");
 			else
-				app.Invoke("UseDefaultImageForPhoto2");
+				App.Invoke("UseDefaultImageForPhoto2");
 
 			//Act
-			app.Screenshot("Test Image Loaded");
+			App.Screenshot("Test Image Loaded");
             FaceOffPage.TapScoreButton2();
 
 			//Assert
-			Assert.IsTrue(app.Query("Results").Any());
+			Assert.IsTrue(App.Query("Results").Any());
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 
 using Xamarin.UITest;
+
 using FaceOff.Shared;
 
 namespace FaceOff.UITests

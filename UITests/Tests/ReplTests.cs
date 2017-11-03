@@ -15,7 +15,7 @@ namespace FaceOff.UITests
         [Test, Ignore]
         public void Repl()
         {
-            app.Repl();
+            App.Repl();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿#if DEBUG
 using System.Linq;
+
 using Xamarin.Forms;
+
 namespace FaceOff
 {
 	public static class BackdoorHelpers
