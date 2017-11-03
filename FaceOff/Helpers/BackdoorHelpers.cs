@@ -7,30 +7,30 @@ namespace FaceOff
 	{
 		public static void UseDefaultImageForPhoto1()
 		{
-			PicturePage currentPage;
+			FaceOffPage currentPage;
 			var currentNavigationPage = GetCurrentPage();
 
-			if (currentNavigationPage is PicturePage)
-				currentPage = currentNavigationPage as PicturePage;
+			if (currentNavigationPage is FaceOffPage)
+				currentPage = currentNavigationPage as FaceOffPage;
 			else
 				return;
 
-			var pictureViewModel = currentPage.BindingContext as PictureViewModel;
+			var pictureViewModel = currentPage.BindingContext as FaceOffViewModel;
 
 			pictureViewModel.SetPhotoImage1ToHappyForUITest("Happy");
 		}
 
 		public static void UseDefaultImageForPhoto2()
 		{
-			PicturePage currentPage;
+			FaceOffPage currentPage;
 			var currentNavigationPage = GetCurrentPage();
 
-			if (currentNavigationPage is PicturePage)
-				currentPage = currentNavigationPage as PicturePage;
+			if (currentNavigationPage is FaceOffPage)
+				currentPage = currentNavigationPage as FaceOffPage;
 			else
 				return;
 
-			var pictureViewModel = currentPage.BindingContext as PictureViewModel;
+			var pictureViewModel = currentPage.BindingContext as FaceOffViewModel;
 
 			pictureViewModel.SetPhotoImage2ToHappyForUITest("Happy");
 		}

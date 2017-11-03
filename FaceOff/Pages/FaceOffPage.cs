@@ -6,20 +6,20 @@ using FaceOff.Shared;
 
 namespace FaceOff
 {
-	public class PicturePage : ContentPage
+	public class FaceOffPage : ContentPage
 	{
 		#region Field Constants
 		const int _frameImagePadding = 10;
 
 		readonly FrameImage _photoImage1, _photoImage2;
 		readonly BounceButton _photo1ScoreButton, _photo2ScoreButton;
-		readonly PictureViewModel _viewModel;
+		readonly FaceOffViewModel _viewModel;
 		#endregion
 
 		#region Constructors
-		public PicturePage()
+		public FaceOffPage()
 		{
-			_viewModel = new PictureViewModel();
+			_viewModel = new FaceOffViewModel();
 			BindingContext = _viewModel;
 
 			this.SetBinding(TitleProperty, nameof(_viewModel.PageTitle));
@@ -233,7 +233,7 @@ namespace FaceOff
 			_viewModel.RevealPhotoImage2WithAnimation += HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
-			_viewModel.DisplayEmotionBeforeCameraAlert += HandleDisplayEmotionBeforeCameraAlert;
+            _viewModel.PopUpAlertAboutEmotionTriggered += HandlePopUpAlertAboutEmotionTriggered;
 			_viewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
 			_viewModel.DisplayMultipleFacesDetectedAlert += HandleDisplayMultipleFacesDetectedAlert;
@@ -249,37 +249,27 @@ namespace FaceOff
 			_viewModel.RevealPhotoImage2WithAnimation -= HandleRevealPhoto2WithAnimation;
 			_viewModel.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
 			_viewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
-			_viewModel.DisplayEmotionBeforeCameraAlert -= HandleDisplayEmotionBeforeCameraAlert;
+            _viewModel.PopUpAlertAboutEmotionTriggered -= HandlePopUpAlertAboutEmotionTriggered;
 			_viewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
 			_viewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
 			_viewModel.DisplayMultipleFacesDetectedAlert -= HandleDisplayMultipleFacesDetectedAlert;
 			#endregion
 		}
 
-		void HandleDisplayEmotionBeforeCameraAlert(object sender, AlertMessageEventArgs e)
+		void HandlePopUpAlertAboutEmotionTriggered(object sender, AlertMessageEventArgs e)
 		{
-			var alertMessage = e.Message;
-			bool userResponseToAlert = false;
-
 			Device.BeginInvokeOnMainThread(async () =>
 			{
-				userResponseToAlert = await DisplayAlert(alertMessage.Title, alertMessage.Message, "OK", "Cancel");
-
-				_viewModel.UserResponseToAlert = userResponseToAlert;
-				_viewModel.HasUserAcknowledgedPopUp = true;
+				var userResponseToAlert = await DisplayAlert(e.Title, e.Message, "OK", "Cancel");
+                _viewModel.EmotionPopUpAlertResponseCommand?.Execute(new EmotionPopupResponseModel(userResponseToAlert, e.Player));
 			});
 		}
 
-		void HandleDisplayAllEmotionResultsAlert(object sender, TextEventArgs e)
-		{
-			var allEmotionResults = e.Text;
-			Device.BeginInvokeOnMainThread(() => DisplayAlert("Results", allEmotionResults, "OK"));
-		}
+        void HandleDisplayAllEmotionResultsAlert(object sender, string message) =>
+            Device.BeginInvokeOnMainThread(() => DisplayAlert("Results", message, "OK"));
 
-		void HandleDisplayNoCameraAvailableAlert(object sender, EventArgs e)
-		{
+		void HandleDisplayNoCameraAvailableAlert(object sender, EventArgs e) =>
 			Device.BeginInvokeOnMainThread(() => DisplayAlert("Error", "No Camera Available", "OK"));
-		}
 
 		void HandleRevealScoreButton1WithAnimation(object sender, EventArgs e)
 		{
