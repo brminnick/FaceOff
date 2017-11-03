@@ -198,10 +198,10 @@
       <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
-      <Version>3.0.1</Version>
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.4.0.282</Version>
+      <Version>2.4.0.38779</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Insights">
       <Version>1.12.3</Version>
