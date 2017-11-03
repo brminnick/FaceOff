@@ -1,17 +1,14 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using Plugin.Media;
 using Plugin.Connectivity;
 using Plugin.Media.Abstractions;
 
 using Microsoft.ProjectOxford.Common;
-using Microsoft.ProjectOxford.Emotion;
 using Microsoft.ProjectOxford.Emotion.Contract;
 
 using Xamarin;
@@ -28,15 +25,6 @@ namespace FaceOff
         const string _calculatingScoreMessage = "Analyzing";
 
         const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
-
-        readonly Dictionary<ErrorMessageType, string> _errorMessageDictionary = new Dictionary<ErrorMessageType, string>
-        {
-            { ErrorMessageType.ConnectionToCognitiveServicesFailed, "Connection Failed" },
-            { ErrorMessageType.InvalidAPIKey, "Invalid API Key"},
-            { ErrorMessageType.NoFaceDetected, "No Face Detected" },
-            { ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
-            { ErrorMessageType.GenericError, "Error" }
-        };
 
         readonly Dictionary<EmotionType, string> _emotionDictionary = new Dictionary<EmotionType, string>
         {
@@ -211,8 +199,6 @@ namespace FaceOff
         #region Events
         public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered;
         public event EventHandler<string> DisplayAllEmotionResultsAlert;
-        public event EventHandler DisplayMultipleFacesDetectedAlert;
-        public event EventHandler DisplayNoCameraAvailableAlert;
         public event EventHandler RevealScoreButton1WithAnimation;
         public event EventHandler RevealScoreButton2WithAnimation;
         public event EventHandler RevealPhotoImage1WithAnimation;
@@ -220,11 +206,11 @@ namespace FaceOff
         #endregion
 
         #region Enums
-        enum ErrorMessageType { NoFaceDetected, MultipleFacesDetected, ConnectionToCognitiveServicesFailed, InvalidAPIKey, GenericError }
-        enum EmotionType { Anger, Contempt, Disgust, Fear, Happiness, Neutral, Sadness, Surprise };
+
         #endregion
 
         #region Methods
+        #region UITest Backdoor Methods
 #if DEBUG
         public void SetPhotoImage1ToHappyForUITest(string photo1ImageString)
         {
@@ -278,6 +264,7 @@ namespace FaceOff
             OnRevealScoreButton2WithAnimation();
         }
 #endif
+        #endregion
 
         void ExecuteTakePhoto1ButtonPressed() =>
             ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
@@ -288,7 +275,6 @@ namespace FaceOff
         void ExecutePopUpAlert(PlayerModel playerModel)
         {
             LogPhotoButtonTapped(playerModel.PlayerNumber);
-
             DisableButtons(playerModel.PlayerNumber);
 
             var title = _emotionDictionary[_currentEmotionType];
@@ -308,7 +294,7 @@ namespace FaceOff
 
         async Task ExecuteTakePhotoWorkflow(PlayerModel player)
         {
-            player.ImageMediaFile = await GetMediaFileFromCamera("FaceOff", player.PlayerNumber).ConfigureAwait(false);
+            player.ImageMediaFile = await MediaService.GetMediaFileFromCamera("FaceOff", player.PlayerNumber).ConfigureAwait(false);
 
             if (player.ImageMediaFile == null)
                 EnableButtons(player.PlayerNumber);
@@ -364,40 +350,48 @@ namespace FaceOff
         {
             Emotion[] emotionArray;
             string emotionScore;
+
+            IsInternetConnectionActive = true;
             try
             {
-                emotionArray = await GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
+                emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
+                emotionScore = await EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType).ConfigureAwait(false);
+            }
+            catch (ClientException clientException) when (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized))
+            {
+                Insights.Report(clientException);
 
-                emotionScore = await GetPhotoEmotionScore(emotionArray, 0).ConfigureAwait(false);
+                emotionArray = null;
+                emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
             }
             catch (Exception e)
             {
                 Insights.Report(e);
 
                 emotionArray = null;
-
-                if ((e is ClientException clientException) && (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized)))
-                    emotionScore = _errorMessageDictionary[ErrorMessageType.InvalidAPIKey];
-                else
-                    emotionScore = _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
+                emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
+            }
+            finally
+            {
+                IsInternetConnectionActive = false;
             }
 
-            var doesEmotionScoreContainErrorMessage = DoesStringContainErrorMessage(emotionScore);
+            var doesEmotionScoreContainErrorMessage = EmotionService.DoesStringContainErrorMessage(emotionScore);
 
             if (doesEmotionScoreContainErrorMessage)
             {
-                var errorMessageKey = _errorMessageDictionary.FirstOrDefault(x => x.Value.Contains(emotionScore)).Key;
+                var errorMessageKey = EmotionService.ErrorMessageDictionary.FirstOrDefault(x => x.Value.Contains(emotionScore)).Key;
 
                 switch (errorMessageKey)
                 {
                     case ErrorMessageType.NoFaceDetected:
-                        Insights.Track(_errorMessageDictionary[ErrorMessageType.NoFaceDetected]);
+                        Insights.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.NoFaceDetected]);
                         break;
                     case ErrorMessageType.MultipleFacesDetected:
-                        Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+                        Insights.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
                         break;
                     case ErrorMessageType.GenericError:
-                        Insights.Track(_errorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+                        Insights.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
                         break;
                 }
 
@@ -406,7 +400,7 @@ namespace FaceOff
             else
                 SetScoreButtonText($"Score: {emotionScore}", player.PlayerNumber);
 
-            return GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+            return EmotionService.GetStringOfAllPhotoEmotionScores(emotionArray, 0);
         }
 
         void ExecuteResetButtonPressed()
@@ -452,58 +446,6 @@ namespace FaceOff
             OnDisplayAllEmotionResultsAlert(_photo2Results);
         }
 
-        Stream GetPhotoStream(MediaFile mediaFile, bool disposeMediaFile)
-        {
-            var stream = mediaFile.GetStream();
-
-            if (disposeMediaFile)
-                mediaFile.Dispose();
-
-            return stream;
-        }
-
-        async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
-        {
-            await CrossMedia.Current.Initialize().ConfigureAwait(false);
-
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                OnDisplayNoCameraAvailableAlert();
-                return null;
-            }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-            {
-                PhotoSize = PhotoSize.Small,
-                Directory = directory,
-                Name = playerNumber.ToString(),
-                DefaultCamera = CameraDevice.Front,
-                OverlayViewProvider = DependencyService.Get<ICameraService>()?.GetCameraOverlay()
-            }).ConfigureAwait(false);
-
-            return file;
-        }
-
-        async Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
-        {
-            var emotionClient = new EmotionServiceClient(CognitiveServicesConstants.EmotionApiKey);
-
-			IsInternetConnectionActive = true;
-
-            using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
-            {
-                try
-                {
-                    return await emotionClient.RecognizeAsync(GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
-                }
-                finally
-                {
-                    IsInternetConnectionActive = false;
-                }
-            }
-
-        }
-
         EmotionType GetRandomEmotionType()
         {
             var rnd = new Random();
@@ -533,7 +475,7 @@ namespace FaceOff
                 case 7:
                     return EmotionType.Surprise;
                 default:
-                    throw new Exception("Invalid Emotion Type");
+                    throw new NotSupportedException("Invalid Emotion Type");
             }
         }
 
@@ -556,101 +498,6 @@ namespace FaceOff
             SetPageTitle(_currentEmotionType);
         }
 
-        async Task<string> GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber)
-        {
-            float rawEmotionScore;
-
-            var isInternetConnectionAvilable = await IsInternetConnectionAvailable().ConfigureAwait(false);
-
-            if(!isInternetConnectionAvilable)
-                return _errorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
-
-            if (emotionResults == null || emotionResults.Length < 1)
-                return _errorMessageDictionary[ErrorMessageType.NoFaceDetected];
-
-            if (emotionResults.Length > 1)
-            {
-                OnDisplayMultipleFacesError();
-                return _errorMessageDictionary[ErrorMessageType.MultipleFacesDetected];
-            }
-
-            try
-            {
-                switch (_currentEmotionType)
-                {
-                    case EmotionType.Anger:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Anger;
-                        break;
-                    case EmotionType.Contempt:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Contempt;
-                        break;
-                    case EmotionType.Disgust:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Disgust;
-                        break;
-                    case EmotionType.Fear:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Fear;
-                        break;
-                    case EmotionType.Happiness:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Happiness;
-                        break;
-                    case EmotionType.Neutral:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Neutral;
-                        break;
-                    case EmotionType.Sadness:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Sadness;
-                        break;
-                    case EmotionType.Surprise:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Scores.Surprise;
-                        break;
-                    default:
-                        return _errorMessageDictionary[ErrorMessageType.GenericError];
-                }
-
-                var emotionScoreAsPercentage = ConvertFloatToPercentage(rawEmotionScore);
-
-                return emotionScoreAsPercentage;
-            }
-            catch (Exception e)
-            {
-                Insights.Report(e);
-                return _errorMessageDictionary[ErrorMessageType.GenericError];
-            }
-        }
-
-        async Task<bool> IsInternetConnectionAvailable() =>
-            CrossConnectivity.Current.IsConnected &&
-            await CrossConnectivity.Current.IsRemoteReachable("google.com").ConfigureAwait(false);
-
-        string GetStringOfAllPhotoEmotionScores(Emotion[] emotionResults, int emotionResultNumber)
-        {
-            if (emotionResults == null || emotionResults.Length < 1)
-                return _errorMessageDictionary[ErrorMessageType.GenericError];
-
-            var allEmotionsString = new StringBuilder();
-
-            allEmotionsString.AppendLine($"Anger: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Anger)}");
-            allEmotionsString.AppendLine($"Contempt: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Contempt)}");
-            allEmotionsString.AppendLine($"Disgust: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Disgust)}");
-            allEmotionsString.AppendLine($"Fear: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Fear)}");
-            allEmotionsString.AppendLine($"Happiness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Happiness)}");
-            allEmotionsString.AppendLine($"Neutral: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Neutral)}");
-            allEmotionsString.AppendLine($"Sadness: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Sadness)}");
-            allEmotionsString.Append($"Surprise: {ConvertFloatToPercentage(emotionResults[emotionResultNumber].Scores.Surprise)}");
-
-            return allEmotionsString.ToString();
-        }
-
-        bool DoesStringContainErrorMessage(string stringToCheck)
-        {
-            foreach (KeyValuePair<ErrorMessageType, string> errorMessageDictionaryEntry in _errorMessageDictionary)
-            {
-                if (stringToCheck.Contains(errorMessageDictionaryEntry.Value))
-                    return true;
-            }
-
-            return false;
-        }
-
         void RevealPhoto(PlayerNumberType playerNumber)
         {
             switch (playerNumber)
@@ -662,7 +509,7 @@ namespace FaceOff
                     OnRevealPhotoImage2WithAnimation();
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -677,7 +524,7 @@ namespace FaceOff
                     IsTakeLeftPhotoButtonEnabled = isEnabled;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -692,7 +539,7 @@ namespace FaceOff
                     IsScore2ButtonEnabled = isEnabled;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -713,7 +560,7 @@ namespace FaceOff
                     IsTakeRightPhotoButtonEnabled = isEnabled;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -728,7 +575,7 @@ namespace FaceOff
                     ScoreButton2Text = scoreButtonText;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -743,7 +590,7 @@ namespace FaceOff
                     IsTakeRightPhotoButtonStackVisible = isVisible;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -754,17 +601,17 @@ namespace FaceOff
                 case PlayerNumberType.Player1:
                     Photo1ImageSource = ImageSource.FromStream(() =>
                     {
-                        return GetPhotoStream(imageMediaFile, false);
+                        return MediaService.GetPhotoStream(imageMediaFile, false);
                     });
                     break;
                 case PlayerNumberType.Player2:
                     Photo2ImageSource = ImageSource.FromStream(() =>
                     {
-                        return GetPhotoStream(imageMediaFile, false);
+                        return MediaService.GetPhotoStream(imageMediaFile, false);
                     });
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -779,7 +626,7 @@ namespace FaceOff
                     IsCalculatingPhoto2Score = isCalculatingScore;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -794,7 +641,7 @@ namespace FaceOff
                     OnRevealScoreButton2WithAnimation();
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -809,7 +656,7 @@ namespace FaceOff
                     _photo2Results = results;
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
 
@@ -824,11 +671,9 @@ namespace FaceOff
                     Insights.Track(InsightsConstants.PhotoButton2Tapped);
                     break;
                 default:
-                    throw new Exception(_playerNumberNotImplentedExceptionText);
+                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
             }
         }
-
-        string ConvertFloatToPercentage(float floatToConvert) => floatToConvert.ToString("#0.##%");
 
         async Task WaitForAnimationsToFinish(int waitTimeInSeconds) =>
             await Task.Delay(waitTimeInSeconds).ConfigureAwait(false);
@@ -845,9 +690,6 @@ namespace FaceOff
         void OnDisplayAllEmotionResultsAlert(string emotionResults) =>
             DisplayAllEmotionResultsAlert?.Invoke(this, emotionResults);
 
-        void OnDisplayNoCameraAvailableAlert() =>
-            DisplayNoCameraAvailableAlert?.Invoke(this, EventArgs.Empty);
-
         void OnRevealPhotoImage1WithAnimation() =>
             RevealPhotoImage1WithAnimation?.Invoke(this, EventArgs.Empty);
 
@@ -859,9 +701,6 @@ namespace FaceOff
 
         void OnRevealScoreButton2WithAnimation() =>
             RevealScoreButton2WithAnimation?.Invoke(this, EventArgs.Empty);
-
-        void OnDisplayMultipleFacesError() =>
-            DisplayMultipleFacesDetectedAlert?.Invoke(this, EventArgs.Empty);
 
         void OnPopUpAlertAboutEmotionTriggered(string title, string message, PlayerModel player) =>
             PopUpAlertAboutEmotionTriggered?.Invoke(this, new AlertMessageEventArgs(title, message, player));

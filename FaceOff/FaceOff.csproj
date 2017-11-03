@@ -30,5 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Base\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>
