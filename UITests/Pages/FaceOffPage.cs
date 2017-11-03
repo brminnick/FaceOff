@@ -9,151 +9,129 @@ using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Querie
 
 namespace FaceOff.UITests
 {
-	public class FaceOffPage : BasePage
-	{
-		#region Constant Fields
-		readonly Query EmotionLabel;
+    public class FaceOffPage : BasePage
+    {
+        #region Constant Fields
+        readonly Query _emotionLabel, _photo1ActivityIndicator, _photo2ActivityIndicator,
+            _photoImage1, _photoImage2, _resetButton, _scoreButton1, _scoreButton2,
+            _takePhoto1Button, _takePhoto2Button;
+        #endregion
 
-		readonly Query Photo1ActivityIndicator;
-		readonly Query Photo2ActivityIndicator;
+        #region Constructors
+        public FaceOffPage(IApp app, Platform platform) : base(app, platform)
+        {
+            _emotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
 
-		readonly Query PhotoImage1;
-		readonly Query PhotoImage2;
+            _photo1ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo1ActivityIndicator);
+            _photo2ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo2ActivityIndicator);
 
-		readonly Query ResetButton;
+            _photoImage1 = x => x.Marked(AutomationIdConstants.PhotoImage1);
+            _photoImage2 = x => x.Marked(AutomationIdConstants.PhotoImage2);
 
-		readonly Query ScoreButton1;
-		readonly Query ScoreButton2;
+            _resetButton = x => x.Marked(AutomationIdConstants.ResetButton);
 
-		readonly Query TakePhoto1Button;
-		readonly Query TakePhoto2Button;
-		#endregion
+            _scoreButton1 = x => x.Marked(AutomationIdConstants.ScoreButton1);
+            _scoreButton2 = x => x.Marked(AutomationIdConstants.ScoreButton2);
 
-		#region Constructors
-		public FaceOffPage(IApp app, Platform platform) : base(app, platform)
-		{
-			EmotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
+            _takePhoto1Button = x => x.Marked(AutomationIdConstants.TakePhoto1Button);
+            _takePhoto2Button = x => x.Marked(AutomationIdConstants.TakePhoto2Button);
+        }
+        #endregion
 
-			Photo1ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo1ActivityIndicator);
-			Photo2ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo2ActivityIndicator);
+        #region Properties
+        public string Emotion =>
+            GetEmotionUsingBackdoors();
 
-			PhotoImage1 = x => x.Marked(AutomationIdConstants.PhotoImage1);
-			PhotoImage2 = x => x.Marked(AutomationIdConstants.PhotoImage2);
+        public bool IsScoreButton1Visible =>
+            ScoreButton1Query().Length > 0;
 
-			ResetButton = x => x.Marked(AutomationIdConstants.ResetButton);
+        public bool IsScoreButton2Visible =>
+            ScoreButton2Query().Length > 0;
+        #endregion
 
-			ScoreButton1 = x => x.Marked(AutomationIdConstants.ScoreButton1);
-			ScoreButton2 = x => x.Marked(AutomationIdConstants.ScoreButton2);
+        #region Methods
+        public void WaitForNoPhoto1ActivityIndicator() =>
+            App.WaitForNoElement(_photo1ActivityIndicator);
 
-			TakePhoto1Button = x => x.Marked(AutomationIdConstants.TakePhoto1Button);
-			TakePhoto2Button = x => x.Marked(AutomationIdConstants.TakePhoto2Button);
-		}
-		#endregion
+        public void WaitForNoPhoto2ActivityIndicator() =>
+            App.WaitForNoElement(_photo2ActivityIndicator);
 
-		#region Properties
-		public string Emotion =>
-			GetEmotionUsingBackdoors();
+        public void WaitForPhotoImage1() =>
+            App.WaitForElement(_photoImage1);
 
-		public bool IsScoreButton1Visible =>
-			ScoreButton1Query().Length > 0;
+        public void WaitForPhotoImage2() =>
+            App.WaitForElement(_photoImage2);
 
-		public bool IsScoreButton2Visible =>
-			ScoreButton2Query().Length > 0;
-		#endregion
+        public void WaitForPicturePageToLoad() =>
+            App.WaitForElement(_takePhoto1Button);
 
-		#region Methods
-		public void TapResetButton()
-		{
-			app.ScrollDownTo(ResetButton);
-			app.Tap(ResetButton);
-			app.Screenshot("Tapped Reset Button");
-		}
+        public void TapResetButton()
+        {
+            App.ScrollDownTo(_resetButton);
+            App.Tap(_resetButton);
+            App.Screenshot("Tapped Reset Button");
+        }
 
-		public void TapScoreButton1()
-		{
-			app.ScrollDownTo(ScoreButton1);
-			app.Tap(ScoreButton1);
-			app.Screenshot("Tapped Score Button 1");
-		}
+        public void TapScoreButton1()
+        {
+            App.ScrollDownTo(_scoreButton1);
+            App.Tap(_scoreButton1);
+            App.Screenshot("Tapped Score Button 1");
+        }
 
-		public void TapScoreButton2()
-		{
-			app.ScrollDownTo(ScoreButton2);
-			app.Tap(ScoreButton2);
-			app.Screenshot("Tapped Score Button 2");
-		}
+        public void TapScoreButton2()
+        {
+            App.ScrollDownTo(_scoreButton2);
+            App.Tap(_scoreButton2);
+            App.Screenshot("Tapped Score Button 2");
+        }
 
-		public void TapTakePhoto1Button()
-		{
-			app.ScrollDownTo(TakePhoto1Button);
-			app.Tap(TakePhoto1Button);
-			app.Screenshot("Tapped Take Photo 1 Button");
-		}
+        public void TapTakePhoto1Button()
+        {
+            App.ScrollDownTo(_takePhoto1Button);
+            App.Tap(_takePhoto1Button);
+            App.Screenshot("Tapped Take Photo 1 Button");
+        }
 
-		public void TapTakePhoto2Button()
-		{
-			app.ScrollDownTo(TakePhoto2Button);
-			app.Tap(TakePhoto2Button);
-			app.Screenshot("Tapped Take Photo 2 Button");
-		}
+        public void TapTakePhoto2Button()
+        {
+            App.ScrollDownTo(_takePhoto2Button);
+            App.Tap(_takePhoto2Button);
+            App.Screenshot("Tapped Take Photo 2 Button");
+        }
 
-		public void WaitForNoPhoto1ActivityIndicator()
-		{
-			app.WaitForNoElement(Photo1ActivityIndicator);
-		}
+        public void TapOK()
+        {
+            App.Tap("OK");
+            App.Screenshot("Tapped OK");
+        }
 
-		public void WaitForNoPhoto2ActivityIndicator()
-		{
-			app.WaitForNoElement(Photo2ActivityIndicator);
-		}
+        public void TapCancel()
+        {
+            App.Tap("Cancel");
+            App.Screenshot("Tapped Cancel");
+        }
 
-		public void WaitForPhotoImage1()
-		{
-			app.WaitForElement(PhotoImage1);
-		}
+        string GetEmotionUsingBackdoors()
+        {
+            if (IsiOS)
+                return App.Invoke("getPicturePageTitle:", "").ToString();
 
-		public void WaitForPhotoImage2()
-		{
-			app.WaitForElement(PhotoImage2);
-		}
+            return App.Invoke("GetPicturePageTitle").ToString();
+        }
 
-		public void WaitForPicturePageToLoad()
-		{
-			app.WaitForElement(TakePhoto1Button);
-		}
+        AppResult[] ScoreButton1Query()
+        {
+            App.WaitForElement(_scoreButton1, "Score Button 1 Did Not Appear", new TimeSpan(0, 0, 5));
+            return App.Query(_scoreButton1);
+        }
 
-		public void TapOK()
-		{
-			app.Tap("OK");
-			app.Screenshot("Tapped OK");
-		}
-
-		public void TapCancel()
-		{
-			app.Tap("Cancel");
-			app.Screenshot("Tapped Cancel");
-		}
-
-		string GetEmotionUsingBackdoors()
-		{
-			if (IsiOS)
-				return app.Invoke("getPicturePageTitle:", "").ToString();
-
-			return app.Invoke("GetPicturePageTitle").ToString();
-		}
-
-		AppResult[] ScoreButton1Query()
-		{
-			app.WaitForElement(ScoreButton1, "Score Button 1 Did Not Appear", new TimeSpan(0, 0, 5));
-			return app.Query(ScoreButton1);
-		}
-
-		AppResult[] ScoreButton2Query()
-		{
-			app.WaitForElement(ScoreButton2, "Score Button 2 Did Not Appear", new TimeSpan(0, 0, 5));
-			return app.Query(ScoreButton2);
-		}
-		#endregion
-	}
+        AppResult[] ScoreButton2Query()
+        {
+            App.WaitForElement(_scoreButton2, "Score Button 2 Did Not Appear", new TimeSpan(0, 0, 5));
+            return App.Query(_scoreButton2);
+        }
+        #endregion
+    }
 }
 

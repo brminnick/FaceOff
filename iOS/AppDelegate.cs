@@ -27,10 +27,8 @@ namespace FaceOff.iOS
 
 #if ENABLE_TEST_CLOUD
 		[Export("getPicturePageTitle:")]
-		public NSString GetPicturePageTitle(NSString noValue)
-		{
-			return new NSString(((NavigationPage)Xamarin.Forms.Application.Current.MainPage).CurrentPage.Title);
-		}
+		public NSString GetPicturePageTitle(NSString noValue) =>
+			new NSString(((NavigationPage)Xamarin.Forms.Application.Current.MainPage).CurrentPage.Title);
 
 		[Export("useDefaultImageForPhoto1:")]
 		public NSString UseDefaultImageForPhoto1(NSString noValue)
