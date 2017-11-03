@@ -219,24 +219,24 @@ namespace FaceOff
         {
             ViewModel.RevealPhotoImage1WithAnimation += HandleRevealPhoto1WithAnimation;
             ViewModel.RevealPhotoImage2WithAnimation += HandleRevealPhoto2WithAnimation;
-            ViewModel.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
             ViewModel.DisplayAllEmotionResultsAlert += HandleDisplayAllEmotionResultsAlert;
             ViewModel.PopUpAlertAboutEmotionTriggered += HandlePopUpAlertAboutEmotionTriggered;
             ViewModel.RevealScoreButton1WithAnimation += HandleRevealScoreButton1WithAnimation;
             ViewModel.RevealScoreButton2WithAnimation += HandleRevealScoreButton2WithAnimation;
-            ViewModel.DisplayMultipleFacesDetectedAlert += HandleDisplayMultipleFacesDetectedAlert;
+            EmotionService.DisplayMultipleFacesDetectedAlert += HandleDisplayMultipleFacesDetectedAlert;
+			MediaService.DisplayNoCameraAvailableAlert += HandleDisplayNoCameraAvailableAlert;
         }
 
         protected override void UnsubscribeEventHandlers()
         {
             ViewModel.RevealPhotoImage1WithAnimation -= HandleRevealPhoto1WithAnimation;
             ViewModel.RevealPhotoImage2WithAnimation -= HandleRevealPhoto2WithAnimation;
-            ViewModel.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
             ViewModel.DisplayAllEmotionResultsAlert -= HandleDisplayAllEmotionResultsAlert;
             ViewModel.PopUpAlertAboutEmotionTriggered -= HandlePopUpAlertAboutEmotionTriggered;
             ViewModel.RevealScoreButton1WithAnimation -= HandleRevealScoreButton1WithAnimation;
             ViewModel.RevealScoreButton2WithAnimation -= HandleRevealScoreButton2WithAnimation;
-            ViewModel.DisplayMultipleFacesDetectedAlert -= HandleDisplayMultipleFacesDetectedAlert;
+            EmotionService.DisplayMultipleFacesDetectedAlert -= HandleDisplayMultipleFacesDetectedAlert;
+			MediaService.DisplayNoCameraAvailableAlert -= HandleDisplayNoCameraAvailableAlert;
         }
 
         void HandleDisplayAllEmotionResultsAlert(object sender, string message) =>
