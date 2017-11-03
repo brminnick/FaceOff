@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+
+using NUnit.Framework;
 
 using Xamarin.UITest;
 using Xamarin.UITest.iOS;
@@ -100,7 +102,7 @@ namespace FaceOff.UITests
             FaceOffPage.TapScoreButton1();
 
 			//Assert
-			Assert.IsTrue(app.Query("Results").Length > 0);
+			Assert.IsTrue(app.Query("Results").Any());
 		}
 
 		[Test]
@@ -117,7 +119,7 @@ namespace FaceOff.UITests
             FaceOffPage.TapScoreButton2();
 
 			//Assert
-			Assert.IsTrue(app.Query("Results").Length > 0);
+			Assert.IsTrue(app.Query("Results").Any());
 		}
 	}
 }
