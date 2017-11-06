@@ -10,7 +10,7 @@ namespace FaceOff.iOS
 	[Register("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 	{
-		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 		{
 #if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
@@ -20,7 +20,7 @@ namespace FaceOff.iOS
 
 			LoadApplication(new App());
 
-			return base.FinishedLaunching(app, options);
+			return base.FinishedLaunching(uiApplication, launchOptions);
 		}
 
 		#region Xamarin Test Cloud Back Door Methods

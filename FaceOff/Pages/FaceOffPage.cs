@@ -204,12 +204,7 @@ namespace FaceOff
             #endregion
 
             #region Set Page Content
-
-
-            Content = new ScrollView
-            {
-                Content = buttonImageRelativeLayout
-            };
+            Content = buttonImageRelativeLayout;
             #endregion
         }
         #endregion
