@@ -40,21 +40,18 @@ namespace FaceOff
 
             NavigationPage.SetBackButtonTitle(this, "");
 
-            Title = "Face Off";
+            Title = "FaceOff";
             BackgroundColor = Color.FromHex("#91E2F4");
 
-            Content = new ScrollView
+            Content = new StackLayout
             {
-                Content = new StackLayout
-                {
-                    Padding = 20,
-                    Children = {
-                        player1Label,
-                        _player1Entry,
-                        player2Label,
-                        _player2Entry,
-                        _startGameButton
-                    }
+                Padding = 20,
+                Children = {
+                    player1Label,
+                    _player1Entry,
+                    player2Label,
+                    _player2Entry,
+                    _startGameButton
                 }
             };
         }

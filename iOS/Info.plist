@@ -11,7 +11,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>10.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -39,8 +39,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImage.launchimage</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
@@ -50,8 +48,10 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>FaceOff can save your pictures to your photos library! </string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6.0</string>
+	<string>3.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>25</string>
+	<string>26</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
