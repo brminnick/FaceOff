@@ -19,8 +19,8 @@ namespace FaceOff
     public class FaceOffViewModel : BaseViewModel
     {
         #region Constant Fields
-        readonly Lazy<string[]> _emotionStringsForAlertMessageHolder = new Lazy<string[]>(()=>
-            new string[]{ "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" });
+        readonly Lazy<string[]> _emotionStringsForAlertMessageHolder = new Lazy<string[]>(() =>
+            new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" });
 
         const string _makeAFaceAlertMessage = "take a selfie looking";
         const string _calculatingScoreMessage = "Analyzing";
@@ -256,7 +256,6 @@ namespace FaceOff
         }
 #endif
         #endregion
-
         void ExecuteTakePhoto1ButtonPressed() =>
             ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
 
@@ -354,6 +353,13 @@ namespace FaceOff
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
+            }
+            catch (Exception e) when (e.Message.Contains("offline"))
+            {
+                Insights.Report(e);
+
+                emotionArray = null;
+                emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
             }
             catch (Exception e)
             {
