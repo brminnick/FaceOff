@@ -3,6 +3,7 @@
     NoFaceDetected,
     MultipleFacesDetected,
     ConnectionToCognitiveServicesFailed,
+    DeviceOffline,
     InvalidAPIKey,
     GenericError
 }

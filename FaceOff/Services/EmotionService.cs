@@ -23,11 +23,12 @@ namespace FaceOff
                 { ErrorMessageType.InvalidAPIKey, "Invalid API Key"},
                 { ErrorMessageType.NoFaceDetected, "No Face Detected" },
                 { ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
-                { ErrorMessageType.GenericError, "Error" }
+                { ErrorMessageType.GenericError, "Error" },
+                { ErrorMessageType.DeviceOffline, "Device is Offline"}
             });
 
-        readonly static Lazy<Dictionary<EmotionType, string>> _emotionDictionaryHolder = new Lazy<Dictionary<EmotionType, string>>(()=>
-            new Dictionary<EmotionType, string>                                                                                                          
+        readonly static Lazy<Dictionary<EmotionType, string>> _emotionDictionaryHolder = new Lazy<Dictionary<EmotionType, string>>(() =>
+            new Dictionary<EmotionType, string>
             {
                 { EmotionType.Anger, "Anger" },
                 { EmotionType.Contempt, "Contempt" },
@@ -45,8 +46,8 @@ namespace FaceOff
         #endregion
 
         #region Properties
-		public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
-		public static Dictionary<EmotionType, string> EmotionDictionary => _emotionDictionaryHolder.Value;
+        public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
+        public static Dictionary<EmotionType, string> EmotionDictionary => _emotionDictionaryHolder.Value;
 
         static EmotionServiceClient EmotionClient => _emotionClientHolder.Value;
         #endregion
