@@ -64,7 +64,7 @@ namespace FaceOffUWP
                 {
                     if (isStartupCrash)
                     {
-                        Insights.PurgePendingCrashReports().Wait();
+                        Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
                     }
                 };
 
