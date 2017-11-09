@@ -10,12 +10,12 @@ using Xamarin;
 
 namespace FaceOff.Droid
 {
-	//You can specify additional application information in this attribute
+    //You can specify additional application information in this attribute
     [Application]
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transer)
-          :base(handle, transer)
+          : base(handle, transer)
         {
         }
 
@@ -24,15 +24,15 @@ namespace FaceOff.Droid
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
 
-			Insights.Initialize(InsightsConstants.InsightsApiKey, this);
+            Insights.Initialize(InsightsConstants.InsightsApiKey, this);
 
-			Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
-			{
-				if (isStartupCrash)
-				{
-					Insights.PurgePendingCrashReports().Wait();
-				}
-			};
+            Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
+            {
+                if (isStartupCrash)
+                {
+                    Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
+                }
+            };
         }
 
         public override void OnTerminate()
