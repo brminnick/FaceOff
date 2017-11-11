@@ -86,10 +86,10 @@ namespace FaceOff
             }
         }
 
-        public static Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
+        public static async Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
         {
             using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
-                return EmotionClient.RecognizeAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile));
+                return await EmotionClient.RecognizeAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile));
         }
 
         public static async Task<string> GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber, EmotionType currentEmotionType)

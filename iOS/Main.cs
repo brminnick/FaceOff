@@ -14,9 +14,7 @@ namespace FaceOff.iOS
             Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
             {
                 if (isStartupCrash)
-                {
                     Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
-                }
             };
 
             UIApplication.Main(args, null, "AppDelegate");

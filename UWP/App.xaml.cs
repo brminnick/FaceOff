@@ -63,9 +63,7 @@ namespace FaceOffUWP
                 Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
                 {
                     if (isStartupCrash)
-                    {
                         Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
-                    }
                 };
 
                 Xamarin.Forms.Forms.Init(e);

@@ -323,7 +323,7 @@ namespace FaceOff
             RevealPhotoButton(player.PlayerNumber);
         }
 
-        async Task ConfigureUIForFinalizedEmotionResults(PlayerModel player, string results)
+        Task ConfigureUIForFinalizedEmotionResults(PlayerModel player, string results)
         {
             SetPhotoResultsText(results, player.PlayerNumber);
 
@@ -333,7 +333,7 @@ namespace FaceOff
 
             player.ImageMediaFile.Dispose();
 
-            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5)).ConfigureAwait(false);
+            return WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
         }
 
         async Task<string> GenerateEmotionResults(PlayerModel player)
@@ -637,8 +637,7 @@ namespace FaceOff
         void SetPageTitle(EmotionType emotionType) =>
             PageTitle = EmotionService.EmotionDictionary[emotionType];
 
-        async Task WaitForAnimationsToFinish(int waitTimeInSeconds) =>
-            await Task.Delay(waitTimeInSeconds).ConfigureAwait(false);
+        Task WaitForAnimationsToFinish(int waitTimeInSeconds) => Task.Delay(waitTimeInSeconds);
 
         void EnableButtons(PlayerNumberType playerNumber) =>
             SetIsEnabledForButtons(true, playerNumber);

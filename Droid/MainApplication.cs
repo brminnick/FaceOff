@@ -29,9 +29,7 @@ namespace FaceOff.Droid
             Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
             {
                 if (isStartupCrash)
-                {
                     Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
-                }
             };
         }
 
