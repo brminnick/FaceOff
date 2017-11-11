@@ -243,7 +243,6 @@ namespace FaceOff
         void HandleMultipleFacesDetectedAlertTriggered(object sender, EventArgs e) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error: Multiple Faces Detected", "Ensure only one face is captured in the photo", "Ok"));
 
-
         void HandlePopUpAlertAboutEmotionTriggered(object sender, AlertMessageEventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>

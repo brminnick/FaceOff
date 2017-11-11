@@ -48,8 +48,7 @@ namespace FaceOff
             return file;
         }
 
-        static void OnNoCameraDetected() =>
-            NoCameraDetected?.Invoke(null, EventArgs.Empty);
+        static void OnNoCameraDetected() => NoCameraDetected?.Invoke(null, EventArgs.Empty);
         #endregion
     }
 }
