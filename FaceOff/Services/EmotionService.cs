@@ -9,6 +9,7 @@ using Microsoft.ProjectOxford.Emotion.Contract;
 using Plugin.Media.Abstractions;
 
 using Xamarin;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -88,8 +89,17 @@ namespace FaceOff
 
         public static async Task<Emotion[]> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
         {
-            using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
-                return await EmotionClient.RecognizeAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile));
+            Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = true);
+
+            try
+            {
+                using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
+                    return await EmotionClient.RecognizeAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile));
+            }
+            finally
+            {
+                Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = false);
+            }
         }
 
         public static async Task<string> GetPhotoEmotionScore(Emotion[] emotionResults, int emotionResultNumber, EmotionType currentEmotionType)

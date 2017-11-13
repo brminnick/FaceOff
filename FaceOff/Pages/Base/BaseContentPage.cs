@@ -13,7 +13,6 @@ namespace FaceOff
         {
             BindingContext = ViewModel;
             BackgroundColor = Color.FromHex("#91E2F4");
-            this.SetBinding(IsBusyProperty, nameof(ViewModel.IsInternetConnectionActive));
         }
         #endregion
 
