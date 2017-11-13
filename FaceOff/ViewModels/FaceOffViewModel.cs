@@ -341,7 +341,6 @@ namespace FaceOff
             Emotion[] emotionArray;
             string emotionScore;
 
-            IsInternetConnectionActive = true;
             try
             {
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
@@ -367,10 +366,6 @@ namespace FaceOff
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
-            }
-            finally
-            {
-                IsInternetConnectionActive = false;
             }
 
             var doesEmotionScoreContainErrorMessage = EmotionService.DoesStringContainErrorMessage(emotionScore);
