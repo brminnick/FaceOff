@@ -358,7 +358,7 @@ namespace FaceOff
                 Insights.Report(e);
 
                 emotionArray = null;
-                emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
+                emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.DeviceOffline];
             }
             catch (Exception e)
             {

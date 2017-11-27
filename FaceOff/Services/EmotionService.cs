@@ -184,7 +184,7 @@ namespace FaceOff
 
         public static bool DoesStringContainErrorMessage(string stringToCheck)
         {
-            foreach (KeyValuePair<ErrorMessageType, string> errorMessageDictionaryEntry in EmotionService.ErrorMessageDictionary)
+            foreach (KeyValuePair<ErrorMessageType, string> errorMessageDictionaryEntry in ErrorMessageDictionary)
             {
                 if (stringToCheck.Contains(errorMessageDictionaryEntry.Value))
                     return true;
