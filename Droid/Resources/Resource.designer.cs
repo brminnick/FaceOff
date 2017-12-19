@@ -42,6 +42,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animation.design_fab_out = global::FaceOff.Droid.Resource.Animation.design_fab_out;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animation.design_snackbar_in = global::FaceOff.Droid.Resource.Animation.design_snackbar_in;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animation.design_snackbar_out = global::FaceOff.Droid.Resource.Animation.design_snackbar_out;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animator.design_appbar_state_list_animator = global::FaceOff.Droid.Resource.Animator.design_appbar_state_list_animator;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.actionBarDivider = global::FaceOff.Droid.Resource.Attribute.actionBarDivider;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.actionBarItemBackground = global::FaceOff.Droid.Resource.Attribute.actionBarItemBackground;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.actionBarPopupTheme = global::FaceOff.Droid.Resource.Attribute.actionBarPopupTheme;
@@ -81,6 +82,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.alertDialogStyle = global::FaceOff.Droid.Resource.Attribute.alertDialogStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.alertDialogTheme = global::FaceOff.Droid.Resource.Attribute.alertDialogTheme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.allowStacking = global::FaceOff.Droid.Resource.Attribute.allowStacking;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.alpha = global::FaceOff.Droid.Resource.Attribute.alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.arrowHeadLength = global::FaceOff.Droid.Resource.Attribute.arrowHeadLength;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.arrowShaftLength = global::FaceOff.Droid.Resource.Attribute.arrowShaftLength;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.autoCompleteTextViewStyle = global::FaceOff.Droid.Resource.Attribute.autoCompleteTextViewStyle;
@@ -90,9 +92,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.backgroundTint = global::FaceOff.Droid.Resource.Attribute.backgroundTint;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.backgroundTintMode = global::FaceOff.Droid.Resource.Attribute.backgroundTintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.barLength = global::FaceOff.Droid.Resource.Attribute.barLength;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.behavior_autoHide = global::FaceOff.Droid.Resource.Attribute.behavior_autoHide;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.behavior_hideable = global::FaceOff.Droid.Resource.Attribute.behavior_hideable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.behavior_overlapTop = global::FaceOff.Droid.Resource.Attribute.behavior_overlapTop;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.behavior_peekHeight = global::FaceOff.Droid.Resource.Attribute.behavior_peekHeight;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.behavior_skipCollapsed = global::FaceOff.Droid.Resource.Attribute.behavior_skipCollapsed;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.borderWidth = global::FaceOff.Droid.Resource.Attribute.borderWidth;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.borderlessButtonStyle = global::FaceOff.Droid.Resource.Attribute.borderlessButtonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.bottomSheetDialogTheme = global::FaceOff.Droid.Resource.Attribute.bottomSheetDialogTheme;
@@ -102,6 +106,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonBarNeutralButtonStyle = global::FaceOff.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonBarPositiveButtonStyle = global::FaceOff.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonBarStyle = global::FaceOff.Droid.Resource.Attribute.buttonBarStyle;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonGravity = global::FaceOff.Droid.Resource.Attribute.buttonGravity;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonPanelSideLayout = global::FaceOff.Droid.Resource.Attribute.buttonPanelSideLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonStyle = global::FaceOff.Droid.Resource.Attribute.buttonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.buttonStyleSmall = global::FaceOff.Droid.Resource.Attribute.buttonStyleSmall;
@@ -123,6 +128,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.collapsedTitleTextAppearance = global::FaceOff.Droid.Resource.Attribute.collapsedTitleTextAppearance;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.color = global::FaceOff.Droid.Resource.Attribute.color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.colorAccent = global::FaceOff.Droid.Resource.Attribute.colorAccent;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.colorBackgroundFloating = global::FaceOff.Droid.Resource.Attribute.colorBackgroundFloating;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.colorButtonNormal = global::FaceOff.Droid.Resource.Attribute.colorButtonNormal;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.colorControlActivated = global::FaceOff.Droid.Resource.Attribute.colorControlActivated;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.colorControlHighlight = global::FaceOff.Droid.Resource.Attribute.colorControlHighlight;
@@ -132,9 +138,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.colorSwitchThumbNormal = global::FaceOff.Droid.Resource.Attribute.colorSwitchThumbNormal;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.commitIcon = global::FaceOff.Droid.Resource.Attribute.commitIcon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentInsetEnd = global::FaceOff.Droid.Resource.Attribute.contentInsetEnd;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentInsetEndWithActions = global::FaceOff.Droid.Resource.Attribute.contentInsetEndWithActions;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentInsetLeft = global::FaceOff.Droid.Resource.Attribute.contentInsetLeft;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentInsetRight = global::FaceOff.Droid.Resource.Attribute.contentInsetRight;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentInsetStart = global::FaceOff.Droid.Resource.Attribute.contentInsetStart;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentInsetStartWithNavigation = global::FaceOff.Droid.Resource.Attribute.contentInsetStartWithNavigation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentPadding = global::FaceOff.Droid.Resource.Attribute.contentPadding;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentPaddingBottom = global::FaceOff.Droid.Resource.Attribute.contentPaddingBottom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.contentPaddingLeft = global::FaceOff.Droid.Resource.Attribute.contentPaddingLeft;
@@ -207,6 +215,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_behavior = global::FaceOff.Droid.Resource.Attribute.layout_behavior;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_collapseMode = global::FaceOff.Droid.Resource.Attribute.layout_collapseMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_collapseParallaxMultiplier = global::FaceOff.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_dodgeInsetEdges = global::FaceOff.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_insetEdge = global::FaceOff.Droid.Resource.Attribute.layout_insetEdge;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_keyline = global::FaceOff.Droid.Resource.Attribute.layout_keyline;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_scrollFlags = global::FaceOff.Droid.Resource.Attribute.layout_scrollFlags;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.layout_scrollInterpolator = global::FaceOff.Droid.Resource.Attribute.layout_scrollInterpolator;
@@ -214,6 +224,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listDividerAlertDialog = global::FaceOff.Droid.Resource.Attribute.listDividerAlertDialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listItemLayout = global::FaceOff.Droid.Resource.Attribute.listItemLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listLayout = global::FaceOff.Droid.Resource.Attribute.listLayout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listMenuViewStyle = global::FaceOff.Droid.Resource.Attribute.listMenuViewStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listPopupWindowStyle = global::FaceOff.Droid.Resource.Attribute.listPopupWindowStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listPreferredItemHeight = global::FaceOff.Droid.Resource.Attribute.listPreferredItemHeight;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.listPreferredItemHeightLarge = global::FaceOff.Droid.Resource.Attribute.listPreferredItemHeightLarge;
@@ -228,11 +239,14 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteAudioTrackDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteButtonStyle = global::FaceOff.Droid.Resource.Attribute.mediaRouteButtonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteCloseDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::FaceOff.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteDefaultIconDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRoutePauseDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRoutePauseDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRoutePlayDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRoutePlayDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteStopDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteStopDrawable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteTheme = global::FaceOff.Droid.Resource.Attribute.mediaRouteTheme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.mediaRouteTvIconDrawable = global::FaceOff.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.menu = global::FaceOff.Droid.Resource.Attribute.menu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.multiChoiceItemLayout = global::FaceOff.Droid.Resource.Attribute.multiChoiceItemLayout;
@@ -240,11 +254,18 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.navigationIcon = global::FaceOff.Droid.Resource.Attribute.navigationIcon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.navigationMode = global::FaceOff.Droid.Resource.Attribute.navigationMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.overlapAnchor = global::FaceOff.Droid.Resource.Attribute.overlapAnchor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.paddingBottomNoButtons = global::FaceOff.Droid.Resource.Attribute.paddingBottomNoButtons;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.paddingEnd = global::FaceOff.Droid.Resource.Attribute.paddingEnd;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.paddingStart = global::FaceOff.Droid.Resource.Attribute.paddingStart;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.paddingTopNoTitle = global::FaceOff.Droid.Resource.Attribute.paddingTopNoTitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.panelBackground = global::FaceOff.Droid.Resource.Attribute.panelBackground;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.panelMenuListTheme = global::FaceOff.Droid.Resource.Attribute.panelMenuListTheme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.panelMenuListWidth = global::FaceOff.Droid.Resource.Attribute.panelMenuListWidth;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.passwordToggleContentDescription = global::FaceOff.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.passwordToggleDrawable = global::FaceOff.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.passwordToggleEnabled = global::FaceOff.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.passwordToggleTint = global::FaceOff.Droid.Resource.Attribute.passwordToggleTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.passwordToggleTintMode = global::FaceOff.Droid.Resource.Attribute.passwordToggleTintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.popupMenuStyle = global::FaceOff.Droid.Resource.Attribute.popupMenuStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.popupTheme = global::FaceOff.Droid.Resource.Attribute.popupTheme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.popupWindowStyle = global::FaceOff.Droid.Resource.Attribute.popupWindowStyle;
@@ -260,6 +281,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.ratingBarStyleSmall = global::FaceOff.Droid.Resource.Attribute.ratingBarStyleSmall;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.reverseLayout = global::FaceOff.Droid.Resource.Attribute.reverseLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.rippleColor = global::FaceOff.Droid.Resource.Attribute.rippleColor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.scrimAnimationDuration = global::FaceOff.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.scrimVisibleHeightTrigger = global::FaceOff.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.searchHintIcon = global::FaceOff.Droid.Resource.Attribute.searchHintIcon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.searchIcon = global::FaceOff.Droid.Resource.Attribute.searchIcon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.searchViewStyle = global::FaceOff.Droid.Resource.Attribute.searchViewStyle;
@@ -269,6 +292,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.showAsAction = global::FaceOff.Droid.Resource.Attribute.showAsAction;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.showDividers = global::FaceOff.Droid.Resource.Attribute.showDividers;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.showText = global::FaceOff.Droid.Resource.Attribute.showText;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.showTitle = global::FaceOff.Droid.Resource.Attribute.showTitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.singleChoiceItemLayout = global::FaceOff.Droid.Resource.Attribute.singleChoiceItemLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.spanCount = global::FaceOff.Droid.Resource.Attribute.spanCount;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.spinBars = global::FaceOff.Droid.Resource.Attribute.spinBars;
@@ -278,8 +302,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.srcCompat = global::FaceOff.Droid.Resource.Attribute.srcCompat;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.stackFromEnd = global::FaceOff.Droid.Resource.Attribute.stackFromEnd;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.state_above_anchor = global::FaceOff.Droid.Resource.Attribute.state_above_anchor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.state_collapsed = global::FaceOff.Droid.Resource.Attribute.state_collapsed;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.state_collapsible = global::FaceOff.Droid.Resource.Attribute.state_collapsible;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.statusBarBackground = global::FaceOff.Droid.Resource.Attribute.statusBarBackground;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.statusBarScrim = global::FaceOff.Droid.Resource.Attribute.statusBarScrim;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.subMenuArrow = global::FaceOff.Droid.Resource.Attribute.subMenuArrow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.submitBackground = global::FaceOff.Droid.Resource.Attribute.submitBackground;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.subtitle = global::FaceOff.Droid.Resource.Attribute.subtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.subtitleTextAppearance = global::FaceOff.Droid.Resource.Attribute.subtitleTextAppearance;
@@ -309,7 +336,9 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAllCaps = global::FaceOff.Droid.Resource.Attribute.textAllCaps;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceLargePopupMenu = global::FaceOff.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceListItem = global::FaceOff.Droid.Resource.Attribute.textAppearanceListItem;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceListItemSecondary = global::FaceOff.Droid.Resource.Attribute.textAppearanceListItemSecondary;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceListItemSmall = global::FaceOff.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearancePopupMenuHeader = global::FaceOff.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceSearchResultSubtitle = global::FaceOff.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceSearchResultTitle = global::FaceOff.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.textAppearanceSmallPopupMenu = global::FaceOff.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
@@ -319,8 +348,16 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.theme = global::FaceOff.Droid.Resource.Attribute.theme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.thickness = global::FaceOff.Droid.Resource.Attribute.thickness;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.thumbTextPadding = global::FaceOff.Droid.Resource.Attribute.thumbTextPadding;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.thumbTint = global::FaceOff.Droid.Resource.Attribute.thumbTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.thumbTintMode = global::FaceOff.Droid.Resource.Attribute.thumbTintMode;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.tickMark = global::FaceOff.Droid.Resource.Attribute.tickMark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.tickMarkTint = global::FaceOff.Droid.Resource.Attribute.tickMarkTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.tickMarkTintMode = global::FaceOff.Droid.Resource.Attribute.tickMarkTintMode;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.tint = global::FaceOff.Droid.Resource.Attribute.tint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.tintMode = global::FaceOff.Droid.Resource.Attribute.tintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.title = global::FaceOff.Droid.Resource.Attribute.title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.titleEnabled = global::FaceOff.Droid.Resource.Attribute.titleEnabled;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.titleMargin = global::FaceOff.Droid.Resource.Attribute.titleMargin;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.titleMarginBottom = global::FaceOff.Droid.Resource.Attribute.titleMarginBottom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.titleMarginEnd = global::FaceOff.Droid.Resource.Attribute.titleMarginEnd;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.titleMarginStart = global::FaceOff.Droid.Resource.Attribute.titleMarginStart;
@@ -333,6 +370,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.toolbarNavigationButtonStyle = global::FaceOff.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.toolbarStyle = global::FaceOff.Droid.Resource.Attribute.toolbarStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.track = global::FaceOff.Droid.Resource.Attribute.track;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.trackTint = global::FaceOff.Droid.Resource.Attribute.trackTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.trackTintMode = global::FaceOff.Droid.Resource.Attribute.trackTintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.useCompatPadding = global::FaceOff.Droid.Resource.Attribute.useCompatPadding;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.voiceIcon = global::FaceOff.Droid.Resource.Attribute.voiceIcon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Attribute.windowActionBar = global::FaceOff.Droid.Resource.Attribute.windowActionBar;
@@ -352,7 +391,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::FaceOff.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_background_cache_hint_selector_material_dark = global::FaceOff.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_background_cache_hint_selector_material_light = global::FaceOff.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_btn_colored_borderless_text_material = global::FaceOff.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_btn_colored_text_material = global::FaceOff.Droid.Resource.Color.abc_btn_colored_text_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_color_highlight_material = global::FaceOff.Droid.Resource.Color.abc_color_highlight_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_hint_foreground_material_dark = global::FaceOff.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_hint_foreground_material_light = global::FaceOff.Droid.Resource.Color.abc_hint_foreground_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_input_method_navigation_guard = global::FaceOff.Droid.Resource.Color.abc_input_method_navigation_guard;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_primary_text_disable_only_material_dark = global::FaceOff.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_primary_text_disable_only_material_light = global::FaceOff.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
@@ -364,6 +407,13 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_search_url_text_selected = global::FaceOff.Droid.Resource.Color.abc_search_url_text_selected;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_secondary_text_material_dark = global::FaceOff.Droid.Resource.Color.abc_secondary_text_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_secondary_text_material_light = global::FaceOff.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_btn_checkable = global::FaceOff.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_default = global::FaceOff.Droid.Resource.Color.abc_tint_default;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_edittext = global::FaceOff.Droid.Resource.Color.abc_tint_edittext;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_seek_thumb = global::FaceOff.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_spinner = global::FaceOff.Droid.Resource.Color.abc_tint_spinner;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_switch_thumb = global::FaceOff.Droid.Resource.Color.abc_tint_switch_thumb;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.abc_tint_switch_track = global::FaceOff.Droid.Resource.Color.abc_tint_switch_track;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.accent_material_dark = global::FaceOff.Droid.Resource.Color.accent_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.accent_material_light = global::FaceOff.Droid.Resource.Color.accent_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.background_floating_material_dark = global::FaceOff.Droid.Resource.Color.background_floating_material_dark;
@@ -382,6 +432,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.cardview_light_background = global::FaceOff.Droid.Resource.Color.cardview_light_background;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.cardview_shadow_end_color = global::FaceOff.Droid.Resource.Color.cardview_shadow_end_color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.cardview_shadow_start_color = global::FaceOff.Droid.Resource.Color.cardview_shadow_start_color;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_bottom_navigation_shadow_color = global::FaceOff.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_error = global::FaceOff.Droid.Resource.Color.design_error;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_fab_shadow_end_color = global::FaceOff.Droid.Resource.Color.design_fab_shadow_end_color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_fab_shadow_mid_color = global::FaceOff.Droid.Resource.Color.design_fab_shadow_mid_color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_fab_shadow_start_color = global::FaceOff.Droid.Resource.Color.design_fab_shadow_start_color;
@@ -392,6 +444,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_snackbar_background_color = global::FaceOff.Droid.Resource.Color.design_snackbar_background_color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_textinput_error_color_dark = global::FaceOff.Droid.Resource.Color.design_textinput_error_color_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_textinput_error_color_light = global::FaceOff.Droid.Resource.Color.design_textinput_error_color_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.design_tint_password_toggle = global::FaceOff.Droid.Resource.Color.design_tint_password_toggle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.dim_foreground_disabled_material_dark = global::FaceOff.Droid.Resource.Color.dim_foreground_disabled_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.dim_foreground_disabled_material_light = global::FaceOff.Droid.Resource.Color.dim_foreground_disabled_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.dim_foreground_material_dark = global::FaceOff.Droid.Resource.Color.dim_foreground_material_dark;
@@ -412,6 +465,9 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.material_grey_800 = global::FaceOff.Droid.Resource.Color.material_grey_800;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.material_grey_850 = global::FaceOff.Droid.Resource.Color.material_grey_850;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.material_grey_900 = global::FaceOff.Droid.Resource.Color.material_grey_900;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.notification_action_color_filter = global::FaceOff.Droid.Resource.Color.notification_action_color_filter;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.notification_icon_bg_color = global::FaceOff.Droid.Resource.Color.notification_icon_bg_color;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.notification_material_background_media_default_color = global::FaceOff.Droid.Resource.Color.notification_material_background_media_default_color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.primary_dark_material_dark = global::FaceOff.Droid.Resource.Color.primary_dark_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.primary_dark_material_light = global::FaceOff.Droid.Resource.Color.primary_dark_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.primary_material_dark = global::FaceOff.Droid.Resource.Color.primary_material_dark;
@@ -433,9 +489,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.switch_thumb_normal_material_dark = global::FaceOff.Droid.Resource.Color.switch_thumb_normal_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Color.switch_thumb_normal_material_light = global::FaceOff.Droid.Resource.Color.switch_thumb_normal_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_content_inset_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_default_height_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_default_height_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_default_padding_end_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_default_padding_start_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_elevation_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_elevation_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::FaceOff.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
@@ -452,6 +510,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_button_inset_vertical_material = global::FaceOff.Droid.Resource.Dimension.abc_button_inset_vertical_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_button_padding_horizontal_material = global::FaceOff.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_button_padding_vertical_material = global::FaceOff.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::FaceOff.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_config_prefDialogWidth = global::FaceOff.Droid.Resource.Dimension.abc_config_prefDialogWidth;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_control_corner_material = global::FaceOff.Droid.Resource.Dimension.abc_control_corner_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_control_inset_material = global::FaceOff.Droid.Resource.Dimension.abc_control_inset_material;
@@ -460,10 +519,13 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_fixed_height_minor = global::FaceOff.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_fixed_width_major = global::FaceOff.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_fixed_width_minor = global::FaceOff.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::FaceOff.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::FaceOff.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_min_width_major = global::FaceOff.Droid.Resource.Dimension.abc_dialog_min_width_major;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_min_width_minor = global::FaceOff.Droid.Resource.Dimension.abc_dialog_min_width_minor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_padding_material = global::FaceOff.Droid.Resource.Dimension.abc_dialog_padding_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_padding_top_material = global::FaceOff.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dialog_title_divider_material = global::FaceOff.Droid.Resource.Dimension.abc_dialog_title_divider_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_disabled_alpha_material_dark = global::FaceOff.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_disabled_alpha_material_light = global::FaceOff.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_dropdownitem_icon_width = global::FaceOff.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
@@ -475,6 +537,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_floating_window_z = global::FaceOff.Droid.Resource.Dimension.abc_floating_window_z;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_list_item_padding_horizontal_material = global::FaceOff.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_panel_menu_list_width = global::FaceOff.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_progress_bar_height_material = global::FaceOff.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_search_view_preferred_height = global::FaceOff.Droid.Resource.Dimension.abc_search_view_preferred_height;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_search_view_preferred_width = global::FaceOff.Droid.Resource.Dimension.abc_search_view_preferred_width;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_seekbar_track_background_height_material = global::FaceOff.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_seekbar_track_progress_height_material = global::FaceOff.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
@@ -491,6 +555,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_headline_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_headline_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_large_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_large_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_medium_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_menu_header_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_menu_header_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_menu_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_menu_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_small_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_small_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.abc_text_size_subhead_material = global::FaceOff.Droid.Resource.Dimension.abc_text_size_subhead_material;
@@ -501,7 +566,17 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.cardview_default_elevation = global::FaceOff.Droid.Resource.Dimension.cardview_default_elevation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.cardview_default_radius = global::FaceOff.Droid.Resource.Dimension.cardview_default_radius;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_appbar_elevation = global::FaceOff.Droid.Resource.Dimension.design_appbar_elevation;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_active_text_size = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_elevation = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_height = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_item_max_width = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_item_min_width = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_margin = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_shadow_height = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_navigation_text_size = global::FaceOff.Droid.Resource.Dimension.design_bottom_navigation_text_size;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_sheet_modal_elevation = global::FaceOff.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_bottom_sheet_peek_height_min = global::FaceOff.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_fab_border_width = global::FaceOff.Droid.Resource.Dimension.design_fab_border_width;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_fab_elevation = global::FaceOff.Droid.Resource.Dimension.design_fab_elevation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.design_fab_image_size = global::FaceOff.Droid.Resource.Dimension.design_fab_image_size;
@@ -533,6 +608,10 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.highlight_alpha_material_colored = global::FaceOff.Droid.Resource.Dimension.highlight_alpha_material_colored;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.highlight_alpha_material_dark = global::FaceOff.Droid.Resource.Dimension.highlight_alpha_material_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.highlight_alpha_material_light = global::FaceOff.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.hint_alpha_material_dark = global::FaceOff.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.hint_alpha_material_light = global::FaceOff.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.hint_pressed_alpha_material_dark = global::FaceOff.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.hint_pressed_alpha_material_light = global::FaceOff.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::FaceOff.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::FaceOff.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::FaceOff.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
@@ -542,9 +621,21 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::FaceOff.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.mr_dialog_fixed_width_major = global::FaceOff.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.mr_dialog_fixed_width_minor = global::FaceOff.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_action_icon_size = global::FaceOff.Droid.Resource.Dimension.notification_action_icon_size;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_action_text_size = global::FaceOff.Droid.Resource.Dimension.notification_action_text_size;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_big_circle_margin = global::FaceOff.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_content_margin_start = global::FaceOff.Droid.Resource.Dimension.notification_content_margin_start;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_large_icon_height = global::FaceOff.Droid.Resource.Dimension.notification_large_icon_height;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_large_icon_width = global::FaceOff.Droid.Resource.Dimension.notification_large_icon_width;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_main_column_padding_top = global::FaceOff.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_media_narrow_margin = global::FaceOff.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_right_icon_size = global::FaceOff.Droid.Resource.Dimension.notification_right_icon_size;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_right_side_padding_top = global::FaceOff.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_small_icon_background_padding = global::FaceOff.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_small_icon_size_as_large = global::FaceOff.Droid.Resource.Dimension.notification_small_icon_size_as_large;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_subtext_size = global::FaceOff.Droid.Resource.Dimension.notification_subtext_size;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_top_pad = global::FaceOff.Droid.Resource.Dimension.notification_top_pad;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Dimension.notification_top_pad_large_text = global::FaceOff.Droid.Resource.Dimension.notification_top_pad_large_text;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_action_bar_item_background_material = global::FaceOff.Droid.Resource.Drawable.abc_action_bar_item_background_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_btn_borderless_material = global::FaceOff.Droid.Resource.Drawable.abc_btn_borderless_material;
@@ -562,17 +653,27 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_cab_background_top_material = global::FaceOff.Droid.Resource.Drawable.abc_cab_background_top_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_control_background_material = global::FaceOff.Droid.Resource.Drawable.abc_control_background_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_dialog_material_background = global::FaceOff.Droid.Resource.Drawable.abc_dialog_material_background;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_edit_text_material = global::FaceOff.Droid.Resource.Drawable.abc_edit_text_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_ab_back_material = global::FaceOff.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_clear_material = global::FaceOff.Droid.Resource.Drawable.abc_ic_clear_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_go_search_api_material = global::FaceOff.Droid.Resource.Drawable.abc_ic_go_search_api_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_menu_overflow_material = global::FaceOff.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_search_api_material = global::FaceOff.Droid.Resource.Drawable.abc_ic_search_api_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_star_black_16dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_star_black_16dp;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_star_black_36dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_star_black_48dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_star_black_48dp;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_star_half_black_16dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_star_half_black_36dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_star_half_black_48dp = global::FaceOff.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ic_voice_search_api_material = global::FaceOff.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_item_background_holo_dark = global::FaceOff.Droid.Resource.Drawable.abc_item_background_holo_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_item_background_holo_light = global::FaceOff.Droid.Resource.Drawable.abc_item_background_holo_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_list_divider_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
@@ -589,6 +690,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::FaceOff.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_popup_background_mtrl_mult = global::FaceOff.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ratingbar_indicator_material = global::FaceOff.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ratingbar_material = global::FaceOff.Droid.Resource.Drawable.abc_ratingbar_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_ratingbar_small_material = global::FaceOff.Droid.Resource.Drawable.abc_ratingbar_small_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::FaceOff.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
@@ -596,6 +698,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_seekbar_thumb_material = global::FaceOff.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_seekbar_tick_mark_material = global::FaceOff.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_seekbar_track_material = global::FaceOff.Droid.Resource.Drawable.abc_seekbar_track_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::FaceOff.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_spinner_textfield_background_material = global::FaceOff.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
@@ -604,17 +707,210 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_tab_indicator_material = global::FaceOff.Droid.Resource.Drawable.abc_tab_indicator_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_cursor_material = global::FaceOff.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::FaceOff.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::FaceOff.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::FaceOff.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::FaceOff.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::FaceOff.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::FaceOff.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::FaceOff.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_textfield_search_material = global::FaceOff.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.abc_vector_test = global::FaceOff.Droid.Resource.Drawable.abc_vector_test;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_hide_password = global::FaceOff.Droid.Resource.Drawable.avd_hide_password;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_hide_password_1 = global::FaceOff.Droid.Resource.Drawable.avd_hide_password_1;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_hide_password_2 = global::FaceOff.Droid.Resource.Drawable.avd_hide_password_2;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_hide_password_3 = global::FaceOff.Droid.Resource.Drawable.avd_hide_password_3;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_show_password = global::FaceOff.Droid.Resource.Drawable.avd_show_password;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_show_password_1 = global::FaceOff.Droid.Resource.Drawable.avd_show_password_1;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_show_password_2 = global::FaceOff.Droid.Resource.Drawable.avd_show_password_2;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.avd_show_password_3 = global::FaceOff.Droid.Resource.Drawable.avd_show_password_3;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.design_bottom_navigation_item_background = global::FaceOff.Droid.Resource.Drawable.design_bottom_navigation_item_background;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.design_fab_background = global::FaceOff.Droid.Resource.Drawable.design_fab_background;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.design_ic_visibility = global::FaceOff.Droid.Resource.Drawable.design_ic_visibility;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.design_ic_visibility_off = global::FaceOff.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.design_password_eye = global::FaceOff.Droid.Resource.Drawable.design_password_eye;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.design_snackbar_background = global::FaceOff.Droid.Resource.Drawable.design_snackbar_background;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_audiotrack_dark = global::FaceOff.Droid.Resource.Drawable.ic_audiotrack_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_audiotrack_light = global::FaceOff.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_dialog_close_dark = global::FaceOff.Droid.Resource.Drawable.ic_dialog_close_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_dialog_close_light = global::FaceOff.Droid.Resource.Drawable.ic_dialog_close_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_00 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_00;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_01 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_01;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_02 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_02;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_03 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_03;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_04 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_04;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_05 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_05;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_06 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_06;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_07 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_07;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_08 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_08;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_09 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_09;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_10 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_10;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_11 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_11;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_12 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_12;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_13 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_13;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_14 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_14;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_collapse_15 = global::FaceOff.Droid.Resource.Drawable.ic_group_collapse_15;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_00 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_00;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_01 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_01;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_02 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_02;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_03 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_03;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_04 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_04;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_05 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_05;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_06 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_06;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_07 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_07;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_08 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_08;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_09 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_09;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_10 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_10;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_11 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_11;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_12 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_12;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_13 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_13;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_14 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_14;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_group_expand_15 = global::FaceOff.Droid.Resource.Drawable.ic_group_expand_15;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_media_pause_dark = global::FaceOff.Droid.Resource.Drawable.ic_media_pause_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_media_pause_light = global::FaceOff.Droid.Resource.Drawable.ic_media_pause_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_media_play_dark = global::FaceOff.Droid.Resource.Drawable.ic_media_play_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_media_play_light = global::FaceOff.Droid.Resource.Drawable.ic_media_play_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_media_stop_dark = global::FaceOff.Droid.Resource.Drawable.ic_media_stop_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_media_stop_light = global::FaceOff.Droid.Resource.Drawable.ic_media_stop_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_00_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_00_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_01_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_01_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_02_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_02_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_03_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_03_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_04_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_04_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_05_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_05_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_06_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_06_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_07_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_07_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_08_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_08_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_09_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_09_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_10_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_10_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_11_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_11_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_12_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_12_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_13_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_13_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_14_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_14_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_15_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_15_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_16_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_16_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_17_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_17_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_18_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_18_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_19_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_19_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_20_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_20_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_21_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_21_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_22_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connected_22_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_00_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_00_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_01_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_01_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_02_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_02_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_03_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_03_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_04_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_04_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_05_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_05_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_06_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_06_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_07_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_07_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_08_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_08_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_09_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_09_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_10_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_10_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_11_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_11_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_12_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_12_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_13_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_13_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_14_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_14_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_15_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_15_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_16_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_16_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_17_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_17_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_18_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_18_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_19_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_19_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_20_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_20_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_21_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_21_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_22_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_connecting_22_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_disabled_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_disabled_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_disabled_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_disconnected_dark = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_disconnected_light = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_mr_button_grey = global::FaceOff.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_vol_type_speaker_dark = global::FaceOff.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_vol_type_speaker_group_dark = global::FaceOff.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_vol_type_speaker_group_light = global::FaceOff.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_vol_type_speaker_light = global::FaceOff.Droid.Resource.Drawable.ic_vol_type_speaker_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_vol_type_tv_dark = global::FaceOff.Droid.Resource.Drawable.ic_vol_type_tv_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.ic_vol_type_tv_light = global::FaceOff.Droid.Resource.Drawable.ic_vol_type_tv_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_button_connected_dark = global::FaceOff.Droid.Resource.Drawable.mr_button_connected_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_button_connected_light = global::FaceOff.Droid.Resource.Drawable.mr_button_connected_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_button_connecting_dark = global::FaceOff.Droid.Resource.Drawable.mr_button_connecting_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_button_connecting_light = global::FaceOff.Droid.Resource.Drawable.mr_button_connecting_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_button_dark = global::FaceOff.Droid.Resource.Drawable.mr_button_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_button_light = global::FaceOff.Droid.Resource.Drawable.mr_button_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_dialog_close_dark = global::FaceOff.Droid.Resource.Drawable.mr_dialog_close_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_dialog_close_light = global::FaceOff.Droid.Resource.Drawable.mr_dialog_close_light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_dialog_material_background_dark = global::FaceOff.Droid.Resource.Drawable.mr_dialog_material_background_dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_dialog_material_background_light = global::FaceOff.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_group_collapse = global::FaceOff.Droid.Resource.Drawable.mr_group_collapse;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_group_expand = global::FaceOff.Droid.Resource.Drawable.mr_group_expand;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_media_pause_dark = global::FaceOff.Droid.Resource.Drawable.mr_media_pause_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_media_pause_light = global::FaceOff.Droid.Resource.Drawable.mr_media_pause_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_media_play_dark = global::FaceOff.Droid.Resource.Drawable.mr_media_play_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_media_play_light = global::FaceOff.Droid.Resource.Drawable.mr_media_play_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_media_stop_dark = global::FaceOff.Droid.Resource.Drawable.mr_media_stop_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_media_stop_light = global::FaceOff.Droid.Resource.Drawable.mr_media_stop_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_vol_type_audiotrack_dark = global::FaceOff.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.mr_vol_type_audiotrack_light = global::FaceOff.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.navigation_empty_icon = global::FaceOff.Droid.Resource.Drawable.navigation_empty_icon;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_action_background = global::FaceOff.Droid.Resource.Drawable.notification_action_background;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_bg = global::FaceOff.Droid.Resource.Drawable.notification_bg;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_bg_low = global::FaceOff.Droid.Resource.Drawable.notification_bg_low;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_bg_low_normal = global::FaceOff.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_bg_low_pressed = global::FaceOff.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_bg_normal = global::FaceOff.Droid.Resource.Drawable.notification_bg_normal;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_bg_normal_pressed = global::FaceOff.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_icon_background = global::FaceOff.Droid.Resource.Drawable.notification_icon_background;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_template_icon_bg = global::FaceOff.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_template_icon_low_bg = global::FaceOff.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notification_tile_bg = global::FaceOff.Droid.Resource.Drawable.notification_tile_bg;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Drawable.notify_panel_notification_icon_bg = global::FaceOff.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action0 = global::FaceOff.Droid.Resource.Id.action0;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_bar = global::FaceOff.Droid.Resource.Id.action_bar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_bar_activity_content = global::FaceOff.Droid.Resource.Id.action_bar_activity_content;
@@ -623,16 +919,23 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_bar_spinner = global::FaceOff.Droid.Resource.Id.action_bar_spinner;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_bar_subtitle = global::FaceOff.Droid.Resource.Id.action_bar_subtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_bar_title = global::FaceOff.Droid.Resource.Id.action_bar_title;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_container = global::FaceOff.Droid.Resource.Id.action_container;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_context_bar = global::FaceOff.Droid.Resource.Id.action_context_bar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_divider = global::FaceOff.Droid.Resource.Id.action_divider;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_image = global::FaceOff.Droid.Resource.Id.action_image;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_menu_divider = global::FaceOff.Droid.Resource.Id.action_menu_divider;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_menu_presenter = global::FaceOff.Droid.Resource.Id.action_menu_presenter;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_mode_bar = global::FaceOff.Droid.Resource.Id.action_mode_bar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_mode_bar_stub = global::FaceOff.Droid.Resource.Id.action_mode_bar_stub;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_mode_close_button = global::FaceOff.Droid.Resource.Id.action_mode_close_button;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.action_text = global::FaceOff.Droid.Resource.Id.action_text;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.actions = global::FaceOff.Droid.Resource.Id.actions;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.activity_chooser_view_content = global::FaceOff.Droid.Resource.Id.activity_chooser_view_content;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.add = global::FaceOff.Droid.Resource.Id.add;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.alertTitle = global::FaceOff.Droid.Resource.Id.alertTitle;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.all = global::FaceOff.Droid.Resource.Id.all;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.always = global::FaceOff.Droid.Resource.Id.always;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.auto = global::FaceOff.Droid.Resource.Id.auto;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.beginning = global::FaceOff.Droid.Resource.Id.beginning;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.bottom = global::FaceOff.Droid.Resource.Id.bottom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.buttonPanel = global::FaceOff.Droid.Resource.Id.buttonPanel;
@@ -645,7 +948,9 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.clip_horizontal = global::FaceOff.Droid.Resource.Id.clip_horizontal;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.clip_vertical = global::FaceOff.Droid.Resource.Id.clip_vertical;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.collapseActionView = global::FaceOff.Droid.Resource.Id.collapseActionView;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.container = global::FaceOff.Droid.Resource.Id.container;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.contentPanel = global::FaceOff.Droid.Resource.Id.contentPanel;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.coordinator = global::FaceOff.Droid.Resource.Id.coordinator;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.custom = global::FaceOff.Droid.Resource.Id.custom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.customPanel = global::FaceOff.Droid.Resource.Id.customPanel;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.decor_content_parent = global::FaceOff.Droid.Resource.Id.decor_content_parent;
@@ -671,15 +976,18 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.home = global::FaceOff.Droid.Resource.Id.home;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.homeAsUp = global::FaceOff.Droid.Resource.Id.homeAsUp;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.icon = global::FaceOff.Droid.Resource.Id.icon;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.icon_group = global::FaceOff.Droid.Resource.Id.icon_group;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.ifRoom = global::FaceOff.Droid.Resource.Id.ifRoom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.image = global::FaceOff.Droid.Resource.Id.image;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.info = global::FaceOff.Droid.Resource.Id.info;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.item_touch_helper_previous_elevation = global::FaceOff.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.largeLabel = global::FaceOff.Droid.Resource.Id.largeLabel;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.left = global::FaceOff.Droid.Resource.Id.left;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.line1 = global::FaceOff.Droid.Resource.Id.line1;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.line3 = global::FaceOff.Droid.Resource.Id.line3;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.listMode = global::FaceOff.Droid.Resource.Id.listMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.list_item = global::FaceOff.Droid.Resource.Id.list_item;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.masked = global::FaceOff.Droid.Resource.Id.masked;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.media_actions = global::FaceOff.Droid.Resource.Id.media_actions;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.middle = global::FaceOff.Droid.Resource.Id.middle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mini = global::FaceOff.Droid.Resource.Id.mini;
@@ -688,8 +996,10 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_chooser_route_desc = global::FaceOff.Droid.Resource.Id.mr_chooser_route_desc;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_chooser_route_icon = global::FaceOff.Droid.Resource.Id.mr_chooser_route_icon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_chooser_route_name = global::FaceOff.Droid.Resource.Id.mr_chooser_route_name;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_chooser_title = global::FaceOff.Droid.Resource.Id.mr_chooser_title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_close = global::FaceOff.Droid.Resource.Id.mr_close;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_control_divider = global::FaceOff.Droid.Resource.Id.mr_control_divider;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_control_playback_ctrl = global::FaceOff.Droid.Resource.Id.mr_control_playback_ctrl;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_control_subtitle = global::FaceOff.Droid.Resource.Id.mr_control_subtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_control_title = global::FaceOff.Droid.Resource.Id.mr_control_title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.mr_control_title_container = global::FaceOff.Droid.Resource.Id.mr_control_title_container;
@@ -711,6 +1021,9 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.never = global::FaceOff.Droid.Resource.Id.never;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.none = global::FaceOff.Droid.Resource.Id.none;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.normal = global::FaceOff.Droid.Resource.Id.normal;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.notification_background = global::FaceOff.Droid.Resource.Id.notification_background;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.notification_main_column = global::FaceOff.Droid.Resource.Id.notification_main_column;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.notification_main_column_container = global::FaceOff.Droid.Resource.Id.notification_main_column_container;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.parallax = global::FaceOff.Droid.Resource.Id.parallax;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.parentPanel = global::FaceOff.Droid.Resource.Id.parentPanel;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.pin = global::FaceOff.Droid.Resource.Id.pin;
@@ -718,6 +1031,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.progress_horizontal = global::FaceOff.Droid.Resource.Id.progress_horizontal;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.radio = global::FaceOff.Droid.Resource.Id.radio;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.right = global::FaceOff.Droid.Resource.Id.right;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.right_icon = global::FaceOff.Droid.Resource.Id.right_icon;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.right_side = global::FaceOff.Droid.Resource.Id.right_side;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.screen = global::FaceOff.Droid.Resource.Id.screen;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.scroll = global::FaceOff.Droid.Resource.Id.scroll;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.scrollIndicatorDown = global::FaceOff.Droid.Resource.Id.scrollIndicatorDown;
@@ -739,6 +1054,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.showCustom = global::FaceOff.Droid.Resource.Id.showCustom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.showHome = global::FaceOff.Droid.Resource.Id.showHome;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.showTitle = global::FaceOff.Droid.Resource.Id.showTitle;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.smallLabel = global::FaceOff.Droid.Resource.Id.smallLabel;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.snackbar_action = global::FaceOff.Droid.Resource.Id.snackbar_action;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.snackbar_text = global::FaceOff.Droid.Resource.Id.snackbar_text;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.snap = global::FaceOff.Droid.Resource.Id.snap;
@@ -749,31 +1065,43 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.src_over = global::FaceOff.Droid.Resource.Id.src_over;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.start = global::FaceOff.Droid.Resource.Id.start;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.status_bar_latest_event_content = global::FaceOff.Droid.Resource.Id.status_bar_latest_event_content;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.submenuarrow = global::FaceOff.Droid.Resource.Id.submenuarrow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.submit_area = global::FaceOff.Droid.Resource.Id.submit_area;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.tabMode = global::FaceOff.Droid.Resource.Id.tabMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.text = global::FaceOff.Droid.Resource.Id.text;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.text2 = global::FaceOff.Droid.Resource.Id.text2;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.textSpacerNoButtons = global::FaceOff.Droid.Resource.Id.textSpacerNoButtons;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.textSpacerNoTitle = global::FaceOff.Droid.Resource.Id.textSpacerNoTitle;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.text_input_password_toggle = global::FaceOff.Droid.Resource.Id.text_input_password_toggle;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.textinput_counter = global::FaceOff.Droid.Resource.Id.textinput_counter;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.textinput_error = global::FaceOff.Droid.Resource.Id.textinput_error;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.time = global::FaceOff.Droid.Resource.Id.time;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.title = global::FaceOff.Droid.Resource.Id.title;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.titleDividerNoCustom = global::FaceOff.Droid.Resource.Id.titleDividerNoCustom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.title_template = global::FaceOff.Droid.Resource.Id.title_template;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.top = global::FaceOff.Droid.Resource.Id.top;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.topPanel = global::FaceOff.Droid.Resource.Id.topPanel;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.touch_outside = global::FaceOff.Droid.Resource.Id.touch_outside;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.transition_current_scene = global::FaceOff.Droid.Resource.Id.transition_current_scene;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.transition_scene_layoutid_cache = global::FaceOff.Droid.Resource.Id.transition_scene_layoutid_cache;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.up = global::FaceOff.Droid.Resource.Id.up;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.useLogo = global::FaceOff.Droid.Resource.Id.useLogo;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.view_offset_helper = global::FaceOff.Droid.Resource.Id.view_offset_helper;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.visible = global::FaceOff.Droid.Resource.Id.visible;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.volume_item_container = global::FaceOff.Droid.Resource.Id.volume_item_container;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.withText = global::FaceOff.Droid.Resource.Id.withText;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Id.wrap_content = global::FaceOff.Droid.Resource.Id.wrap_content;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.abc_config_activityDefaultDur = global::FaceOff.Droid.Resource.Integer.abc_config_activityDefaultDur;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.abc_config_activityShortDur = global::FaceOff.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.app_bar_elevation_anim_duration = global::FaceOff.Droid.Resource.Integer.app_bar_elevation_anim_duration;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.bottom_sheet_slide_duration = global::FaceOff.Droid.Resource.Integer.bottom_sheet_slide_duration;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.cancel_button_image_alpha = global::FaceOff.Droid.Resource.Integer.cancel_button_image_alpha;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.design_snackbar_text_max_lines = global::FaceOff.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.hide_password_duration = global::FaceOff.Droid.Resource.Integer.hide_password_duration;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::FaceOff.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::FaceOff.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::FaceOff.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.show_password_duration = global::FaceOff.Droid.Resource.Integer.show_password_duration;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Integer.status_bar_notification_info_maxnum = global::FaceOff.Droid.Resource.Integer.status_bar_notification_info_maxnum;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Interpolator.mr_fast_out_slow_in = global::FaceOff.Droid.Resource.Interpolator.mr_fast_out_slow_in;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Interpolator.mr_linear_out_slow_in = global::FaceOff.Droid.Resource.Interpolator.mr_linear_out_slow_in;
@@ -788,12 +1116,14 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_activity_chooser_view_list_item = global::FaceOff.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_alert_dialog_button_bar_material = global::FaceOff.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_alert_dialog_material = global::FaceOff.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_alert_dialog_title_material = global::FaceOff.Droid.Resource.Layout.abc_alert_dialog_title_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_dialog_title_material = global::FaceOff.Droid.Resource.Layout.abc_dialog_title_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_expanded_menu_layout = global::FaceOff.Droid.Resource.Layout.abc_expanded_menu_layout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_list_menu_item_checkbox = global::FaceOff.Droid.Resource.Layout.abc_list_menu_item_checkbox;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_list_menu_item_icon = global::FaceOff.Droid.Resource.Layout.abc_list_menu_item_icon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_list_menu_item_layout = global::FaceOff.Droid.Resource.Layout.abc_list_menu_item_layout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_list_menu_item_radio = global::FaceOff.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_popup_menu_header_item_layout = global::FaceOff.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_popup_menu_item_layout = global::FaceOff.Droid.Resource.Layout.abc_popup_menu_item_layout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_screen_content_include = global::FaceOff.Droid.Resource.Layout.abc_screen_content_include;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_screen_simple = global::FaceOff.Droid.Resource.Layout.abc_screen_simple;
@@ -802,6 +1132,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_search_dropdown_item_icons_2line = global::FaceOff.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_search_view = global::FaceOff.Droid.Resource.Layout.abc_search_view;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.abc_select_dialog_material = global::FaceOff.Droid.Resource.Layout.abc_select_dialog_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_bottom_navigation_item = global::FaceOff.Droid.Resource.Layout.design_bottom_navigation_item;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_bottom_sheet_dialog = global::FaceOff.Droid.Resource.Layout.design_bottom_sheet_dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_layout_snackbar = global::FaceOff.Droid.Resource.Layout.design_layout_snackbar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_layout_snackbar_include = global::FaceOff.Droid.Resource.Layout.design_layout_snackbar_include;
@@ -814,17 +1145,26 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_navigation_item_subheader = global::FaceOff.Droid.Resource.Layout.design_navigation_item_subheader;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_navigation_menu = global::FaceOff.Droid.Resource.Layout.design_navigation_menu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_navigation_menu_item = global::FaceOff.Droid.Resource.Layout.design_navigation_menu_item;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.design_text_input_password_icon = global::FaceOff.Droid.Resource.Layout.design_text_input_password_icon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.mr_chooser_dialog = global::FaceOff.Droid.Resource.Layout.mr_chooser_dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.mr_chooser_list_item = global::FaceOff.Droid.Resource.Layout.mr_chooser_list_item;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.mr_controller_material_dialog_b = global::FaceOff.Droid.Resource.Layout.mr_controller_material_dialog_b;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.mr_controller_volume_item = global::FaceOff.Droid.Resource.Layout.mr_controller_volume_item;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.mr_playback_control = global::FaceOff.Droid.Resource.Layout.mr_playback_control;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.mr_volume_control = global::FaceOff.Droid.Resource.Layout.mr_volume_control;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_action = global::FaceOff.Droid.Resource.Layout.notification_action;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_action_tombstone = global::FaceOff.Droid.Resource.Layout.notification_action_tombstone;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_media_action = global::FaceOff.Droid.Resource.Layout.notification_media_action;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_media_cancel_action = global::FaceOff.Droid.Resource.Layout.notification_media_cancel_action;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_big_media = global::FaceOff.Droid.Resource.Layout.notification_template_big_media;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_big_media_custom = global::FaceOff.Droid.Resource.Layout.notification_template_big_media_custom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_big_media_narrow = global::FaceOff.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_big_media_narrow_custom = global::FaceOff.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_custom_big = global::FaceOff.Droid.Resource.Layout.notification_template_custom_big;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_icon_group = global::FaceOff.Droid.Resource.Layout.notification_template_icon_group;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_lines_media = global::FaceOff.Droid.Resource.Layout.notification_template_lines_media;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_media = global::FaceOff.Droid.Resource.Layout.notification_template_media;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_media_custom = global::FaceOff.Droid.Resource.Layout.notification_template_media_custom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_part_chronometer = global::FaceOff.Droid.Resource.Layout.notification_template_part_chronometer;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.notification_template_part_time = global::FaceOff.Droid.Resource.Layout.notification_template_part_time;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Layout.select_dialog_item_material = global::FaceOff.Droid.Resource.Layout.select_dialog_item_material;
@@ -843,6 +1183,18 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_activitychooserview_choose_application = global::FaceOff.Droid.Resource.String.abc_activitychooserview_choose_application;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_capital_off = global::FaceOff.Droid.Resource.String.abc_capital_off;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_capital_on = global::FaceOff.Droid.Resource.String.abc_capital_on;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_body_1_material = global::FaceOff.Droid.Resource.String.abc_font_family_body_1_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_body_2_material = global::FaceOff.Droid.Resource.String.abc_font_family_body_2_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_button_material = global::FaceOff.Droid.Resource.String.abc_font_family_button_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_caption_material = global::FaceOff.Droid.Resource.String.abc_font_family_caption_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_display_1_material = global::FaceOff.Droid.Resource.String.abc_font_family_display_1_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_display_2_material = global::FaceOff.Droid.Resource.String.abc_font_family_display_2_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_display_3_material = global::FaceOff.Droid.Resource.String.abc_font_family_display_3_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_display_4_material = global::FaceOff.Droid.Resource.String.abc_font_family_display_4_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_headline_material = global::FaceOff.Droid.Resource.String.abc_font_family_headline_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_menu_material = global::FaceOff.Droid.Resource.String.abc_font_family_menu_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_subhead_material = global::FaceOff.Droid.Resource.String.abc_font_family_subhead_material;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_font_family_title_material = global::FaceOff.Droid.Resource.String.abc_font_family_title_material;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_search_hint = global::FaceOff.Droid.Resource.String.abc_search_hint;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_searchview_description_clear = global::FaceOff.Droid.Resource.String.abc_searchview_description_clear;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.abc_searchview_description_query = global::FaceOff.Droid.Resource.String.abc_searchview_description_query;
@@ -856,8 +1208,12 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.bottom_sheet_behavior = global::FaceOff.Droid.Resource.String.bottom_sheet_behavior;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.character_counter_pattern = global::FaceOff.Droid.Resource.String.character_counter_pattern;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_button_content_description = global::FaceOff.Droid.Resource.String.mr_button_content_description;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_cast_button_connected = global::FaceOff.Droid.Resource.String.mr_cast_button_connected;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_cast_button_connecting = global::FaceOff.Droid.Resource.String.mr_cast_button_connecting;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_cast_button_disconnected = global::FaceOff.Droid.Resource.String.mr_cast_button_disconnected;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_chooser_searching = global::FaceOff.Droid.Resource.String.mr_chooser_searching;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_chooser_title = global::FaceOff.Droid.Resource.String.mr_chooser_title;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_album_art = global::FaceOff.Droid.Resource.String.mr_controller_album_art;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_casting_screen = global::FaceOff.Droid.Resource.String.mr_controller_casting_screen;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_close_description = global::FaceOff.Droid.Resource.String.mr_controller_close_description;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_collapse_group = global::FaceOff.Droid.Resource.String.mr_controller_collapse_group;
@@ -868,8 +1224,16 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_pause = global::FaceOff.Droid.Resource.String.mr_controller_pause;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_play = global::FaceOff.Droid.Resource.String.mr_controller_play;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_stop = global::FaceOff.Droid.Resource.String.mr_controller_stop;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_stop_casting = global::FaceOff.Droid.Resource.String.mr_controller_stop_casting;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_controller_volume_slider = global::FaceOff.Droid.Resource.String.mr_controller_volume_slider;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_system_route_name = global::FaceOff.Droid.Resource.String.mr_system_route_name;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.mr_user_route_category_name = global::FaceOff.Droid.Resource.String.mr_user_route_category_name;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.password_toggle_content_description = global::FaceOff.Droid.Resource.String.password_toggle_content_description;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.path_password_eye = global::FaceOff.Droid.Resource.String.path_password_eye;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.path_password_eye_mask_strike_through = global::FaceOff.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.path_password_eye_mask_visible = global::FaceOff.Droid.Resource.String.path_password_eye_mask_visible;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.path_password_strike_through = global::FaceOff.Droid.Resource.String.path_password_strike_through;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.search_menu_title = global::FaceOff.Droid.Resource.String.search_menu_title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.String.status_bar_notification_info_overflow = global::FaceOff.Droid.Resource.String.status_bar_notification_info_overflow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.AlertDialog_AppCompat = global::FaceOff.Droid.Resource.Style.AlertDialog_AppCompat;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.AlertDialog_AppCompat_Light = global::FaceOff.Droid.Resource.Style.AlertDialog_AppCompat_Light;
@@ -918,8 +1282,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::FaceOff.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
@@ -945,15 +1312,19 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::FaceOff.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::FaceOff.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::FaceOff.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::FaceOff.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::FaceOff.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::FaceOff.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::FaceOff.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V21_Theme_AppCompat = global::FaceOff.Droid.Resource.Style.Base_V21_Theme_AppCompat;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V21_Theme_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::FaceOff.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V22_Theme_AppCompat = global::FaceOff.Droid.Resource.Style.Base_V22_Theme_AppCompat;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V22_Theme_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V23_Theme_AppCompat = global::FaceOff.Droid.Resource.Style.Base_V23_Theme_AppCompat;
@@ -962,6 +1333,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V7_Theme_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::FaceOff.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::FaceOff.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::FaceOff.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_ActionBar = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
@@ -999,6 +1371,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_ListView = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
@@ -1014,11 +1387,13 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_SearchView = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_SeekBar = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Spinner = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Toolbar = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::FaceOff.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_Design_AppBarLayout = global::FaceOff.Droid.Resource.Style.Base_Widget_Design_AppBarLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Base_Widget_Design_TabLayout = global::FaceOff.Droid.Resource.Style.Base_Widget_Design_TabLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.CardView = global::FaceOff.Droid.Resource.Style.CardView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.CardView_Dark = global::FaceOff.Droid.Resource.Style.CardView_Dark;
@@ -1032,6 +1407,10 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V11_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Platform_V11_AppCompat_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V14_AppCompat = global::FaceOff.Droid.Resource.Style.Platform_V14_AppCompat;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V14_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Platform_V14_AppCompat_Light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V21_AppCompat = global::FaceOff.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V21_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V25_AppCompat = global::FaceOff.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_V25_AppCompat_Light = global::FaceOff.Droid.Resource.Style.Platform_V25_AppCompat_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Platform_Widget_AppCompat_Spinner = global::FaceOff.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::FaceOff.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::FaceOff.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
@@ -1067,6 +1446,16 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Medium = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Menu = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Info = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Line2 = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Media = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Media;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Time = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Title = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Small = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Small;
@@ -1085,8 +1474,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::FaceOff.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
@@ -1098,6 +1490,9 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_Design_Hint = global::FaceOff.Droid.Resource.Style.TextAppearance_Design_Hint;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_Design_Snackbar_Message = global::FaceOff.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_Design_Tab = global::FaceOff.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::FaceOff.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::FaceOff.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_MediaRouter_Title = global::FaceOff.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_StatusBar_EventContent = global::FaceOff.Droid.Resource.Style.TextAppearance_StatusBar_EventContent;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::FaceOff.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::FaceOff.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
@@ -1141,7 +1536,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::FaceOff.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_AppCompat_Dark = global::FaceOff.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::FaceOff.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::FaceOff.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::FaceOff.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_AppCompat_Light = global::FaceOff.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::FaceOff.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.ThemeOverlay_MediaRouter_Light = global::FaceOff.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ActionBar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ActionBar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
@@ -1190,10 +1589,13 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Light_SearchView = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ListMenuView = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ListPopupWindow = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ListView = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ListView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ListView_DropDown = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_ListView_Menu = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_NotificationActionContainer = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_NotificationActionContainer;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_NotificationActionText = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_NotificationActionText;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_PopupMenu = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_PopupWindow = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
@@ -1205,6 +1607,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_SearchView = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_SearchView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_SeekBar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Spinner = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Spinner;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
@@ -1213,6 +1616,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Toolbar = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Toolbar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::FaceOff.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_Design_AppBarLayout = global::FaceOff.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_Design_BottomNavigationView = global::FaceOff.Droid.Resource.Style.Widget_Design_BottomNavigationView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_Design_BottomSheet_Modal = global::FaceOff.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_Design_CollapsingToolbar = global::FaceOff.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Style.Widget_Design_CoordinatorLayout = global::FaceOff.Droid.Resource.Style.Widget_Design_CoordinatorLayout;
@@ -1229,9 +1633,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_backgroundSplit = global::FaceOff.Droid.Resource.Styleable.ActionBar_backgroundSplit;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_backgroundStacked = global::FaceOff.Droid.Resource.Styleable.ActionBar_backgroundStacked;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_contentInsetEnd = global::FaceOff.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::FaceOff.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_contentInsetLeft = global::FaceOff.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_contentInsetRight = global::FaceOff.Droid.Resource.Styleable.ActionBar_contentInsetRight;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_contentInsetStart = global::FaceOff.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::FaceOff.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_customNavigationLayout = global::FaceOff.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_displayOptions = global::FaceOff.Droid.Resource.Styleable.ActionBar_displayOptions;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ActionBar_divider = global::FaceOff.Droid.Resource.Styleable.ActionBar_divider;
@@ -1273,14 +1679,36 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AlertDialog_listItemLayout = global::FaceOff.Droid.Resource.Styleable.AlertDialog_listItemLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AlertDialog_listLayout = global::FaceOff.Droid.Resource.Styleable.AlertDialog_listLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::FaceOff.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AlertDialog_showTitle = global::FaceOff.Droid.Resource.Styleable.AlertDialog_showTitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::FaceOff.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout = global::FaceOff.Droid.Resource.Styleable.AppBarLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout_android_background = global::FaceOff.Droid.Resource.Styleable.AppBarLayout_android_background;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout_elevation = global::FaceOff.Droid.Resource.Styleable.AppBarLayout_elevation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout_expanded = global::FaceOff.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayoutStates = global::FaceOff.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::FaceOff.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::FaceOff.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout_Layout = global::FaceOff.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::FaceOff.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::FaceOff.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatImageView = global::FaceOff.Droid.Resource.Styleable.AppCompatImageView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatImageView_android_src = global::FaceOff.Droid.Resource.Styleable.AppCompatImageView_android_src;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatImageView_srcCompat = global::FaceOff.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatImageView_tint = global::FaceOff.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatImageView_tintMode = global::FaceOff.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatSeekBar = global::FaceOff.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatSeekBar_android_thumb = global::FaceOff.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatSeekBar_tickMark = global::FaceOff.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::FaceOff.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::FaceOff.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::FaceOff.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextView = global::FaceOff.Droid.Resource.Styleable.AppCompatTextView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextView_android_textAppearance = global::FaceOff.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTextView_textAllCaps = global::FaceOff.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
@@ -1334,6 +1762,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_checkboxStyle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_colorAccent = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_colorControlActivated = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
@@ -1355,6 +1784,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
@@ -1379,7 +1809,9 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_switchStyle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
@@ -1397,6 +1829,16 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.AppCompatTheme_windowNoTitle = global::FaceOff.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomNavigationView = global::FaceOff.Droid.Resource.Styleable.BottomNavigationView;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomNavigationView_elevation = global::FaceOff.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomNavigationView_itemBackground = global::FaceOff.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomNavigationView_itemIconTint = global::FaceOff.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomNavigationView_itemTextColor = global::FaceOff.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomNavigationView_menu = global::FaceOff.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomSheetBehavior_Layout = global::FaceOff.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::FaceOff.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::FaceOff.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::FaceOff.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ButtonBarLayout = global::FaceOff.Droid.Resource.Styleable.ButtonBarLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ButtonBarLayout_allowStacking = global::FaceOff.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CardView = global::FaceOff.Droid.Resource.Styleable.CardView;
@@ -1424,10 +1866,19 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_title = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_Layout = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::FaceOff.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ColorStateListItem = global::FaceOff.Droid.Resource.Styleable.ColorStateListItem;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ColorStateListItem_alpha = global::FaceOff.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ColorStateListItem_android_alpha = global::FaceOff.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ColorStateListItem_android_color = global::FaceOff.Droid.Resource.Styleable.ColorStateListItem_android_color;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CompoundButton = global::FaceOff.Droid.Resource.Styleable.CompoundButton;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CompoundButton_android_button = global::FaceOff.Droid.Resource.Styleable.CompoundButton_android_button;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CompoundButton_buttonTint = global::FaceOff.Droid.Resource.Styleable.CompoundButton_buttonTint;
@@ -1435,6 +1886,14 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_keylines = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_keylines;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::FaceOff.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.DesignTheme = global::FaceOff.Droid.Resource.Styleable.DesignTheme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::FaceOff.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.DesignTheme_bottomSheetStyle = global::FaceOff.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
@@ -1457,6 +1916,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::FaceOff.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.FloatingActionButton_rippleColor = global::FaceOff.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.FloatingActionButton_useCompatPadding = global::FaceOff.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::FaceOff.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::FaceOff.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ForegroundLinearLayout = global::FaceOff.Droid.Resource.Styleable.ForegroundLinearLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::FaceOff.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::FaceOff.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
@@ -1482,6 +1943,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MediaRouteButton = global::FaceOff.Droid.Resource.Styleable.MediaRouteButton;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MediaRouteButton_android_minHeight = global::FaceOff.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MediaRouteButton_android_minWidth = global::FaceOff.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MediaRouteButton_buttonTint = global::FaceOff.Droid.Resource.Styleable.MediaRouteButton_buttonTint;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::FaceOff.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MenuGroup = global::FaceOff.Droid.Resource.Styleable.MenuGroup;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MenuGroup_android_checkableBehavior = global::FaceOff.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
@@ -1517,6 +1979,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MenuView_android_verticalDivider = global::FaceOff.Droid.Resource.Styleable.MenuView_android_verticalDivider;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MenuView_android_windowAnimationStyle = global::FaceOff.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MenuView_preserveIconSpacing = global::FaceOff.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.MenuView_subMenuArrow = global::FaceOff.Droid.Resource.Styleable.MenuView_subMenuArrow;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.NavigationView = global::FaceOff.Droid.Resource.Styleable.NavigationView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.NavigationView_android_background = global::FaceOff.Droid.Resource.Styleable.NavigationView_android_background;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::FaceOff.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
@@ -1529,11 +1992,16 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.NavigationView_itemTextColor = global::FaceOff.Droid.Resource.Styleable.NavigationView_itemTextColor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.NavigationView_menu = global::FaceOff.Droid.Resource.Styleable.NavigationView_menu;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.PopupWindow = global::FaceOff.Droid.Resource.Styleable.PopupWindow;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::FaceOff.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.PopupWindow_android_popupBackground = global::FaceOff.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.PopupWindow_overlapAnchor = global::FaceOff.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.PopupWindowBackgroundState = global::FaceOff.Droid.Resource.Styleable.PopupWindowBackgroundState;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::FaceOff.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecycleListView = global::FaceOff.Droid.Resource.Styleable.RecycleListView;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::FaceOff.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::FaceOff.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecyclerView = global::FaceOff.Droid.Resource.Styleable.RecyclerView;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecyclerView_android_descendantFocusability = global::FaceOff.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecyclerView_android_orientation = global::FaceOff.Droid.Resource.Styleable.RecyclerView_android_orientation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecyclerView_layoutManager = global::FaceOff.Droid.Resource.Styleable.RecyclerView_layoutManager;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecyclerView_reverseLayout = global::FaceOff.Droid.Resource.Styleable.RecyclerView_reverseLayout;
@@ -1541,6 +2009,8 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.RecyclerView_stackFromEnd = global::FaceOff.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ScrimInsetsFrameLayout = global::FaceOff.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::FaceOff.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ScrollingViewBehavior_Layout = global::FaceOff.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::FaceOff.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SearchView = global::FaceOff.Droid.Resource.Styleable.SearchView;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SearchView_android_focusable = global::FaceOff.Droid.Resource.Styleable.SearchView_android_focusable;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SearchView_android_imeOptions = global::FaceOff.Droid.Resource.Styleable.SearchView_android_imeOptions;
@@ -1579,7 +2049,11 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_switchPadding = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_switchPadding;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_switchTextAppearance = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_thumbTextPadding = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_thumbTint = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_thumbTintMode = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_track = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_track;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_trackTint = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.SwitchCompat_trackTintMode = global::FaceOff.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TabItem = global::FaceOff.Droid.Resource.Styleable.TabItem;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TabItem_android_icon = global::FaceOff.Droid.Resource.Styleable.TabItem_android_icon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TabItem_android_layout = global::FaceOff.Droid.Resource.Styleable.TabItem_android_layout;
@@ -1607,6 +2081,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_shadowDy = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_shadowRadius = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_textColor = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_textColorHint = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_textSize = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_textSize;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_textStyle = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_textStyle;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextAppearance_android_typeface = global::FaceOff.Droid.Resource.Styleable.TextAppearance_android_typeface;
@@ -1623,15 +2098,23 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_hintEnabled = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_hintTextAppearance = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_passwordToggleTint = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::FaceOff.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar = global::FaceOff.Droid.Resource.Styleable.Toolbar;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_android_gravity = global::FaceOff.Droid.Resource.Styleable.Toolbar_android_gravity;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_android_minHeight = global::FaceOff.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_buttonGravity = global::FaceOff.Droid.Resource.Styleable.Toolbar_buttonGravity;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_collapseContentDescription = global::FaceOff.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_collapseIcon = global::FaceOff.Droid.Resource.Styleable.Toolbar_collapseIcon;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_contentInsetEnd = global::FaceOff.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::FaceOff.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_contentInsetLeft = global::FaceOff.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_contentInsetRight = global::FaceOff.Droid.Resource.Styleable.Toolbar_contentInsetRight;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_contentInsetStart = global::FaceOff.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::FaceOff.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_logo = global::FaceOff.Droid.Resource.Styleable.Toolbar_logo;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_logoDescription = global::FaceOff.Droid.Resource.Styleable.Toolbar_logoDescription;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_maxButtonHeight = global::FaceOff.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
@@ -1642,6 +2125,7 @@ namespace FaceOff.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_subtitleTextAppearance = global::FaceOff.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_subtitleTextColor = global::FaceOff.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_title = global::FaceOff.Droid.Resource.Styleable.Toolbar_title;
+			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_titleMargin = global::FaceOff.Droid.Resource.Styleable.Toolbar_titleMargin;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_titleMarginBottom = global::FaceOff.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_titleMarginEnd = global::FaceOff.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.Toolbar_titleMarginStart = global::FaceOff.Droid.Resource.Styleable.Toolbar_titleMarginStart;
@@ -1746,134 +2230,134 @@ namespace FaceOff.Droid
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f01005d
-			public const int actionBarDivider = 2130772061;
-			
-			// aapt resource value: 0x7f01005e
-			public const int actionBarItemBackground = 2130772062;
-			
-			// aapt resource value: 0x7f010057
-			public const int actionBarPopupTheme = 2130772055;
-			
-			// aapt resource value: 0x7f01005c
-			public const int actionBarSize = 2130772060;
-			
-			// aapt resource value: 0x7f010059
-			public const int actionBarSplitStyle = 2130772057;
-			
-			// aapt resource value: 0x7f010058
-			public const int actionBarStyle = 2130772056;
-			
-			// aapt resource value: 0x7f010053
-			public const int actionBarTabBarStyle = 2130772051;
-			
-			// aapt resource value: 0x7f010052
-			public const int actionBarTabStyle = 2130772050;
-			
-			// aapt resource value: 0x7f010054
-			public const int actionBarTabTextStyle = 2130772052;
-			
-			// aapt resource value: 0x7f01005a
-			public const int actionBarTheme = 2130772058;
-			
-			// aapt resource value: 0x7f01005b
-			public const int actionBarWidgetTheme = 2130772059;
-			
-			// aapt resource value: 0x7f010078
-			public const int actionButtonStyle = 2130772088;
-			
-			// aapt resource value: 0x7f010074
-			public const int actionDropDownStyle = 2130772084;
-			
-			// aapt resource value: 0x7f0100c9
-			public const int actionLayout = 2130772169;
-			
 			// aapt resource value: 0x7f01005f
-			public const int actionMenuTextAppearance = 2130772063;
+			public const int actionBarDivider = 2130772063;
 			
 			// aapt resource value: 0x7f010060
-			public const int actionMenuTextColor = 2130772064;
+			public const int actionBarItemBackground = 2130772064;
 			
-			// aapt resource value: 0x7f010063
-			public const int actionModeBackground = 2130772067;
+			// aapt resource value: 0x7f010059
+			public const int actionBarPopupTheme = 2130772057;
 			
-			// aapt resource value: 0x7f010062
-			public const int actionModeCloseButtonStyle = 2130772066;
+			// aapt resource value: 0x7f01005e
+			public const int actionBarSize = 2130772062;
 			
-			// aapt resource value: 0x7f010065
-			public const int actionModeCloseDrawable = 2130772069;
+			// aapt resource value: 0x7f01005b
+			public const int actionBarSplitStyle = 2130772059;
 			
-			// aapt resource value: 0x7f010067
-			public const int actionModeCopyDrawable = 2130772071;
-			
-			// aapt resource value: 0x7f010066
-			public const int actionModeCutDrawable = 2130772070;
-			
-			// aapt resource value: 0x7f01006b
-			public const int actionModeFindDrawable = 2130772075;
-			
-			// aapt resource value: 0x7f010068
-			public const int actionModePasteDrawable = 2130772072;
-			
-			// aapt resource value: 0x7f01006d
-			public const int actionModePopupWindowStyle = 2130772077;
-			
-			// aapt resource value: 0x7f010069
-			public const int actionModeSelectAllDrawable = 2130772073;
-			
-			// aapt resource value: 0x7f01006a
-			public const int actionModeShareDrawable = 2130772074;
-			
-			// aapt resource value: 0x7f010064
-			public const int actionModeSplitBackground = 2130772068;
-			
-			// aapt resource value: 0x7f010061
-			public const int actionModeStyle = 2130772065;
-			
-			// aapt resource value: 0x7f01006c
-			public const int actionModeWebSearchDrawable = 2130772076;
+			// aapt resource value: 0x7f01005a
+			public const int actionBarStyle = 2130772058;
 			
 			// aapt resource value: 0x7f010055
-			public const int actionOverflowButtonStyle = 2130772053;
+			public const int actionBarTabBarStyle = 2130772053;
+			
+			// aapt resource value: 0x7f010054
+			public const int actionBarTabStyle = 2130772052;
 			
 			// aapt resource value: 0x7f010056
-			public const int actionOverflowMenuStyle = 2130772054;
+			public const int actionBarTabTextStyle = 2130772054;
 			
-			// aapt resource value: 0x7f0100cb
-			public const int actionProviderClass = 2130772171;
+			// aapt resource value: 0x7f01005c
+			public const int actionBarTheme = 2130772060;
 			
-			// aapt resource value: 0x7f0100ca
-			public const int actionViewClass = 2130772170;
+			// aapt resource value: 0x7f01005d
+			public const int actionBarWidgetTheme = 2130772061;
 			
-			// aapt resource value: 0x7f010080
-			public const int activityChooserViewStyle = 2130772096;
+			// aapt resource value: 0x7f01007a
+			public const int actionButtonStyle = 2130772090;
 			
-			// aapt resource value: 0x7f0100a4
-			public const int alertDialogButtonGroupStyle = 2130772132;
+			// aapt resource value: 0x7f010076
+			public const int actionDropDownStyle = 2130772086;
 			
-			// aapt resource value: 0x7f0100a5
-			public const int alertDialogCenterButtons = 2130772133;
+			// aapt resource value: 0x7f0100cc
+			public const int actionLayout = 2130772172;
 			
-			// aapt resource value: 0x7f0100a3
-			public const int alertDialogStyle = 2130772131;
+			// aapt resource value: 0x7f010061
+			public const int actionMenuTextAppearance = 2130772065;
+			
+			// aapt resource value: 0x7f010062
+			public const int actionMenuTextColor = 2130772066;
+			
+			// aapt resource value: 0x7f010065
+			public const int actionModeBackground = 2130772069;
+			
+			// aapt resource value: 0x7f010064
+			public const int actionModeCloseButtonStyle = 2130772068;
+			
+			// aapt resource value: 0x7f010067
+			public const int actionModeCloseDrawable = 2130772071;
+			
+			// aapt resource value: 0x7f010069
+			public const int actionModeCopyDrawable = 2130772073;
+			
+			// aapt resource value: 0x7f010068
+			public const int actionModeCutDrawable = 2130772072;
+			
+			// aapt resource value: 0x7f01006d
+			public const int actionModeFindDrawable = 2130772077;
+			
+			// aapt resource value: 0x7f01006a
+			public const int actionModePasteDrawable = 2130772074;
+			
+			// aapt resource value: 0x7f01006f
+			public const int actionModePopupWindowStyle = 2130772079;
+			
+			// aapt resource value: 0x7f01006b
+			public const int actionModeSelectAllDrawable = 2130772075;
+			
+			// aapt resource value: 0x7f01006c
+			public const int actionModeShareDrawable = 2130772076;
+			
+			// aapt resource value: 0x7f010066
+			public const int actionModeSplitBackground = 2130772070;
+			
+			// aapt resource value: 0x7f010063
+			public const int actionModeStyle = 2130772067;
+			
+			// aapt resource value: 0x7f01006e
+			public const int actionModeWebSearchDrawable = 2130772078;
+			
+			// aapt resource value: 0x7f010057
+			public const int actionOverflowButtonStyle = 2130772055;
+			
+			// aapt resource value: 0x7f010058
+			public const int actionOverflowMenuStyle = 2130772056;
+			
+			// aapt resource value: 0x7f0100ce
+			public const int actionProviderClass = 2130772174;
+			
+			// aapt resource value: 0x7f0100cd
+			public const int actionViewClass = 2130772173;
+			
+			// aapt resource value: 0x7f010082
+			public const int activityChooserViewStyle = 2130772098;
+			
+			// aapt resource value: 0x7f0100a7
+			public const int alertDialogButtonGroupStyle = 2130772135;
+			
+			// aapt resource value: 0x7f0100a8
+			public const int alertDialogCenterButtons = 2130772136;
 			
 			// aapt resource value: 0x7f0100a6
-			public const int alertDialogTheme = 2130772134;
+			public const int alertDialogStyle = 2130772134;
 			
-			// aapt resource value: 0x7f0100b9
-			public const int allowStacking = 2130772153;
+			// aapt resource value: 0x7f0100a9
+			public const int alertDialogTheme = 2130772137;
 			
-			// aapt resource value: 0x7f0100ba
-			public const int alpha = 2130772154;
+			// aapt resource value: 0x7f0100bc
+			public const int allowStacking = 2130772156;
 			
-			// aapt resource value: 0x7f0100c1
-			public const int arrowHeadLength = 2130772161;
+			// aapt resource value: 0x7f0100bd
+			public const int alpha = 2130772157;
 			
-			// aapt resource value: 0x7f0100c2
-			public const int arrowShaftLength = 2130772162;
+			// aapt resource value: 0x7f0100c4
+			public const int arrowHeadLength = 2130772164;
 			
-			// aapt resource value: 0x7f0100ab
-			public const int autoCompleteTextViewStyle = 2130772139;
+			// aapt resource value: 0x7f0100c5
+			public const int arrowShaftLength = 2130772165;
+			
+			// aapt resource value: 0x7f0100ae
+			public const int autoCompleteTextViewStyle = 2130772142;
 			
 			// aapt resource value: 0x7f010028
 			public const int background = 2130772008;
@@ -1884,74 +2368,74 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010029
 			public const int backgroundStacked = 2130772009;
 			
-			// aapt resource value: 0x7f0100fe
-			public const int backgroundTint = 2130772222;
+			// aapt resource value: 0x7f010101
+			public const int backgroundTint = 2130772225;
 			
-			// aapt resource value: 0x7f0100ff
-			public const int backgroundTintMode = 2130772223;
+			// aapt resource value: 0x7f010102
+			public const int backgroundTintMode = 2130772226;
 			
-			// aapt resource value: 0x7f0100c3
-			public const int barLength = 2130772163;
+			// aapt resource value: 0x7f0100c6
+			public const int barLength = 2130772166;
 			
-			// aapt resource value: 0x7f010129
-			public const int behavior_autoHide = 2130772265;
+			// aapt resource value: 0x7f01012c
+			public const int behavior_autoHide = 2130772268;
 			
-			// aapt resource value: 0x7f010106
-			public const int behavior_hideable = 2130772230;
+			// aapt resource value: 0x7f010109
+			public const int behavior_hideable = 2130772233;
 			
-			// aapt resource value: 0x7f010132
-			public const int behavior_overlapTop = 2130772274;
+			// aapt resource value: 0x7f010135
+			public const int behavior_overlapTop = 2130772277;
 			
-			// aapt resource value: 0x7f010105
-			public const int behavior_peekHeight = 2130772229;
+			// aapt resource value: 0x7f010108
+			public const int behavior_peekHeight = 2130772232;
 			
-			// aapt resource value: 0x7f010107
-			public const int behavior_skipCollapsed = 2130772231;
+			// aapt resource value: 0x7f01010a
+			public const int behavior_skipCollapsed = 2130772234;
 			
-			// aapt resource value: 0x7f010127
-			public const int borderWidth = 2130772263;
+			// aapt resource value: 0x7f01012a
+			public const int borderWidth = 2130772266;
 			
-			// aapt resource value: 0x7f01007d
-			public const int borderlessButtonStyle = 2130772093;
+			// aapt resource value: 0x7f01007f
+			public const int borderlessButtonStyle = 2130772095;
 			
-			// aapt resource value: 0x7f010121
-			public const int bottomSheetDialogTheme = 2130772257;
+			// aapt resource value: 0x7f010124
+			public const int bottomSheetDialogTheme = 2130772260;
 			
-			// aapt resource value: 0x7f010122
-			public const int bottomSheetStyle = 2130772258;
+			// aapt resource value: 0x7f010125
+			public const int bottomSheetStyle = 2130772261;
 			
-			// aapt resource value: 0x7f01007a
-			public const int buttonBarButtonStyle = 2130772090;
+			// aapt resource value: 0x7f01007c
+			public const int buttonBarButtonStyle = 2130772092;
 			
-			// aapt resource value: 0x7f0100a9
-			public const int buttonBarNegativeButtonStyle = 2130772137;
+			// aapt resource value: 0x7f0100ac
+			public const int buttonBarNegativeButtonStyle = 2130772140;
 			
-			// aapt resource value: 0x7f0100aa
-			public const int buttonBarNeutralButtonStyle = 2130772138;
+			// aapt resource value: 0x7f0100ad
+			public const int buttonBarNeutralButtonStyle = 2130772141;
 			
-			// aapt resource value: 0x7f0100a8
-			public const int buttonBarPositiveButtonStyle = 2130772136;
+			// aapt resource value: 0x7f0100ab
+			public const int buttonBarPositiveButtonStyle = 2130772139;
 			
-			// aapt resource value: 0x7f010079
-			public const int buttonBarStyle = 2130772089;
+			// aapt resource value: 0x7f01007b
+			public const int buttonBarStyle = 2130772091;
 			
-			// aapt resource value: 0x7f0100f3
-			public const int buttonGravity = 2130772211;
+			// aapt resource value: 0x7f0100f6
+			public const int buttonGravity = 2130772214;
 			
 			// aapt resource value: 0x7f01003d
 			public const int buttonPanelSideLayout = 2130772029;
 			
-			// aapt resource value: 0x7f0100ac
-			public const int buttonStyle = 2130772140;
+			// aapt resource value: 0x7f0100af
+			public const int buttonStyle = 2130772143;
 			
-			// aapt resource value: 0x7f0100ad
-			public const int buttonStyleSmall = 2130772141;
+			// aapt resource value: 0x7f0100b0
+			public const int buttonStyleSmall = 2130772144;
 			
-			// aapt resource value: 0x7f0100bb
-			public const int buttonTint = 2130772155;
+			// aapt resource value: 0x7f0100be
+			public const int buttonTint = 2130772158;
 			
-			// aapt resource value: 0x7f0100bc
-			public const int buttonTintMode = 2130772156;
+			// aapt resource value: 0x7f0100bf
+			public const int buttonTintMode = 2130772159;
 			
 			// aapt resource value: 0x7f010011
 			public const int cardBackgroundColor = 2130771985;
@@ -1971,62 +2455,62 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010015
 			public const int cardUseCompatPadding = 2130771989;
 			
-			// aapt resource value: 0x7f0100ae
-			public const int checkboxStyle = 2130772142;
+			// aapt resource value: 0x7f0100b1
+			public const int checkboxStyle = 2130772145;
 			
-			// aapt resource value: 0x7f0100af
-			public const int checkedTextViewStyle = 2130772143;
+			// aapt resource value: 0x7f0100b2
+			public const int checkedTextViewStyle = 2130772146;
 			
-			// aapt resource value: 0x7f0100d6
-			public const int closeIcon = 2130772182;
+			// aapt resource value: 0x7f0100d9
+			public const int closeIcon = 2130772185;
 			
 			// aapt resource value: 0x7f01003a
 			public const int closeItemLayout = 2130772026;
 			
-			// aapt resource value: 0x7f0100f5
-			public const int collapseContentDescription = 2130772213;
+			// aapt resource value: 0x7f0100f8
+			public const int collapseContentDescription = 2130772216;
 			
-			// aapt resource value: 0x7f0100f4
-			public const int collapseIcon = 2130772212;
+			// aapt resource value: 0x7f0100f7
+			public const int collapseIcon = 2130772215;
 			
-			// aapt resource value: 0x7f010114
-			public const int collapsedTitleGravity = 2130772244;
+			// aapt resource value: 0x7f010117
+			public const int collapsedTitleGravity = 2130772247;
 			
-			// aapt resource value: 0x7f01010e
-			public const int collapsedTitleTextAppearance = 2130772238;
+			// aapt resource value: 0x7f010111
+			public const int collapsedTitleTextAppearance = 2130772241;
 			
-			// aapt resource value: 0x7f0100bd
-			public const int color = 2130772157;
-			
-			// aapt resource value: 0x7f01009b
-			public const int colorAccent = 2130772123;
-			
-			// aapt resource value: 0x7f0100a2
-			public const int colorBackgroundFloating = 2130772130;
-			
-			// aapt resource value: 0x7f01009f
-			public const int colorButtonNormal = 2130772127;
-			
-			// aapt resource value: 0x7f01009d
-			public const int colorControlActivated = 2130772125;
+			// aapt resource value: 0x7f0100c0
+			public const int color = 2130772160;
 			
 			// aapt resource value: 0x7f01009e
-			public const int colorControlHighlight = 2130772126;
+			public const int colorAccent = 2130772126;
 			
-			// aapt resource value: 0x7f01009c
-			public const int colorControlNormal = 2130772124;
+			// aapt resource value: 0x7f0100a5
+			public const int colorBackgroundFloating = 2130772133;
 			
-			// aapt resource value: 0x7f010099
-			public const int colorPrimary = 2130772121;
-			
-			// aapt resource value: 0x7f01009a
-			public const int colorPrimaryDark = 2130772122;
+			// aapt resource value: 0x7f0100a2
+			public const int colorButtonNormal = 2130772130;
 			
 			// aapt resource value: 0x7f0100a0
-			public const int colorSwitchThumbNormal = 2130772128;
+			public const int colorControlActivated = 2130772128;
 			
-			// aapt resource value: 0x7f0100db
-			public const int commitIcon = 2130772187;
+			// aapt resource value: 0x7f0100a1
+			public const int colorControlHighlight = 2130772129;
+			
+			// aapt resource value: 0x7f01009f
+			public const int colorControlNormal = 2130772127;
+			
+			// aapt resource value: 0x7f01009c
+			public const int colorPrimary = 2130772124;
+			
+			// aapt resource value: 0x7f01009d
+			public const int colorPrimaryDark = 2130772125;
+			
+			// aapt resource value: 0x7f0100a3
+			public const int colorSwitchThumbNormal = 2130772131;
+			
+			// aapt resource value: 0x7f0100de
+			public const int commitIcon = 2130772190;
 			
 			// aapt resource value: 0x7f010033
 			public const int contentInsetEnd = 2130772019;
@@ -2061,35 +2545,35 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f01001a
 			public const int contentPaddingTop = 2130771994;
 			
-			// aapt resource value: 0x7f01010f
-			public const int contentScrim = 2130772239;
+			// aapt resource value: 0x7f010112
+			public const int contentScrim = 2130772242;
 			
-			// aapt resource value: 0x7f0100a1
-			public const int controlBackground = 2130772129;
-			
-			// aapt resource value: 0x7f010148
-			public const int counterEnabled = 2130772296;
-			
-			// aapt resource value: 0x7f010149
-			public const int counterMaxLength = 2130772297;
+			// aapt resource value: 0x7f0100a4
+			public const int controlBackground = 2130772132;
 			
 			// aapt resource value: 0x7f01014b
-			public const int counterOverflowTextAppearance = 2130772299;
+			public const int counterEnabled = 2130772299;
 			
-			// aapt resource value: 0x7f01014a
-			public const int counterTextAppearance = 2130772298;
+			// aapt resource value: 0x7f01014c
+			public const int counterMaxLength = 2130772300;
+			
+			// aapt resource value: 0x7f01014e
+			public const int counterOverflowTextAppearance = 2130772302;
+			
+			// aapt resource value: 0x7f01014d
+			public const int counterTextAppearance = 2130772301;
 			
 			// aapt resource value: 0x7f01002b
 			public const int customNavigationLayout = 2130772011;
 			
-			// aapt resource value: 0x7f0100d5
-			public const int defaultQueryHint = 2130772181;
+			// aapt resource value: 0x7f0100d8
+			public const int defaultQueryHint = 2130772184;
 			
-			// aapt resource value: 0x7f010072
-			public const int dialogPreferredPadding = 2130772082;
+			// aapt resource value: 0x7f010074
+			public const int dialogPreferredPadding = 2130772084;
 			
-			// aapt resource value: 0x7f010071
-			public const int dialogTheme = 2130772081;
+			// aapt resource value: 0x7f010073
+			public const int dialogTheme = 2130772083;
 			
 			// aapt resource value: 0x7f010021
 			public const int displayOptions = 2130772001;
@@ -2097,89 +2581,89 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010027
 			public const int divider = 2130772007;
 			
-			// aapt resource value: 0x7f01007f
-			public const int dividerHorizontal = 2130772095;
+			// aapt resource value: 0x7f010081
+			public const int dividerHorizontal = 2130772097;
 			
-			// aapt resource value: 0x7f0100c7
-			public const int dividerPadding = 2130772167;
+			// aapt resource value: 0x7f0100ca
+			public const int dividerPadding = 2130772170;
 			
-			// aapt resource value: 0x7f01007e
-			public const int dividerVertical = 2130772094;
+			// aapt resource value: 0x7f010080
+			public const int dividerVertical = 2130772096;
 			
-			// aapt resource value: 0x7f0100bf
-			public const int drawableSize = 2130772159;
+			// aapt resource value: 0x7f0100c2
+			public const int drawableSize = 2130772162;
 			
 			// aapt resource value: 0x7f01001c
 			public const int drawerArrowStyle = 2130771996;
 			
-			// aapt resource value: 0x7f010091
-			public const int dropDownListViewStyle = 2130772113;
+			// aapt resource value: 0x7f010093
+			public const int dropDownListViewStyle = 2130772115;
 			
-			// aapt resource value: 0x7f010075
-			public const int dropdownListPreferredItemHeight = 2130772085;
+			// aapt resource value: 0x7f010077
+			public const int dropdownListPreferredItemHeight = 2130772087;
 			
-			// aapt resource value: 0x7f010086
-			public const int editTextBackground = 2130772102;
+			// aapt resource value: 0x7f010088
+			public const int editTextBackground = 2130772104;
 			
-			// aapt resource value: 0x7f010085
-			public const int editTextColor = 2130772101;
+			// aapt resource value: 0x7f010087
+			public const int editTextColor = 2130772103;
 			
-			// aapt resource value: 0x7f0100b0
-			public const int editTextStyle = 2130772144;
+			// aapt resource value: 0x7f0100b3
+			public const int editTextStyle = 2130772147;
 			
 			// aapt resource value: 0x7f010038
 			public const int elevation = 2130772024;
 			
-			// aapt resource value: 0x7f010146
-			public const int errorEnabled = 2130772294;
+			// aapt resource value: 0x7f010149
+			public const int errorEnabled = 2130772297;
 			
-			// aapt resource value: 0x7f010147
-			public const int errorTextAppearance = 2130772295;
+			// aapt resource value: 0x7f01014a
+			public const int errorTextAppearance = 2130772298;
 			
 			// aapt resource value: 0x7f01003c
 			public const int expandActivityOverflowButtonDrawable = 2130772028;
 			
-			// aapt resource value: 0x7f010100
-			public const int expanded = 2130772224;
+			// aapt resource value: 0x7f010103
+			public const int expanded = 2130772227;
 			
-			// aapt resource value: 0x7f010115
-			public const int expandedTitleGravity = 2130772245;
-			
-			// aapt resource value: 0x7f010108
-			public const int expandedTitleMargin = 2130772232;
-			
-			// aapt resource value: 0x7f01010c
-			public const int expandedTitleMarginBottom = 2130772236;
+			// aapt resource value: 0x7f010118
+			public const int expandedTitleGravity = 2130772248;
 			
 			// aapt resource value: 0x7f01010b
-			public const int expandedTitleMarginEnd = 2130772235;
+			public const int expandedTitleMargin = 2130772235;
 			
-			// aapt resource value: 0x7f010109
-			public const int expandedTitleMarginStart = 2130772233;
+			// aapt resource value: 0x7f01010f
+			public const int expandedTitleMarginBottom = 2130772239;
 			
-			// aapt resource value: 0x7f01010a
-			public const int expandedTitleMarginTop = 2130772234;
+			// aapt resource value: 0x7f01010e
+			public const int expandedTitleMarginEnd = 2130772238;
+			
+			// aapt resource value: 0x7f01010c
+			public const int expandedTitleMarginStart = 2130772236;
 			
 			// aapt resource value: 0x7f01010d
-			public const int expandedTitleTextAppearance = 2130772237;
+			public const int expandedTitleMarginTop = 2130772237;
+			
+			// aapt resource value: 0x7f010110
+			public const int expandedTitleTextAppearance = 2130772240;
 			
 			// aapt resource value: 0x7f010010
 			public const int externalRouteEnabledDrawable = 2130771984;
 			
-			// aapt resource value: 0x7f010125
-			public const int fabSize = 2130772261;
+			// aapt resource value: 0x7f010128
+			public const int fabSize = 2130772264;
 			
-			// aapt resource value: 0x7f01012a
-			public const int foregroundInsidePadding = 2130772266;
+			// aapt resource value: 0x7f01012d
+			public const int foregroundInsidePadding = 2130772269;
 			
-			// aapt resource value: 0x7f0100c0
-			public const int gapBetweenBars = 2130772160;
+			// aapt resource value: 0x7f0100c3
+			public const int gapBetweenBars = 2130772163;
 			
-			// aapt resource value: 0x7f0100d7
-			public const int goIcon = 2130772183;
+			// aapt resource value: 0x7f0100da
+			public const int goIcon = 2130772186;
 			
-			// aapt resource value: 0x7f010130
-			public const int headerLayout = 2130772272;
+			// aapt resource value: 0x7f010133
+			public const int headerLayout = 2130772275;
 			
 			// aapt resource value: 0x7f01001d
 			public const int height = 2130771997;
@@ -2187,17 +2671,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010031
 			public const int hideOnContentScroll = 2130772017;
 			
-			// aapt resource value: 0x7f01014c
-			public const int hintAnimationEnabled = 2130772300;
+			// aapt resource value: 0x7f01014f
+			public const int hintAnimationEnabled = 2130772303;
 			
-			// aapt resource value: 0x7f010145
-			public const int hintEnabled = 2130772293;
+			// aapt resource value: 0x7f010148
+			public const int hintEnabled = 2130772296;
 			
-			// aapt resource value: 0x7f010144
-			public const int hintTextAppearance = 2130772292;
+			// aapt resource value: 0x7f010147
+			public const int hintTextAppearance = 2130772295;
 			
-			// aapt resource value: 0x7f010077
-			public const int homeAsUpIndicator = 2130772087;
+			// aapt resource value: 0x7f010079
+			public const int homeAsUpIndicator = 2130772089;
 			
 			// aapt resource value: 0x7f01002c
 			public const int homeLayout = 2130772012;
@@ -2205,11 +2689,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010025
 			public const int icon = 2130772005;
 			
-			// aapt resource value: 0x7f0100d3
-			public const int iconifiedByDefault = 2130772179;
+			// aapt resource value: 0x7f0100d6
+			public const int iconifiedByDefault = 2130772182;
 			
-			// aapt resource value: 0x7f010087
-			public const int imageButtonStyle = 2130772103;
+			// aapt resource value: 0x7f010089
+			public const int imageButtonStyle = 2130772105;
 			
 			// aapt resource value: 0x7f01002e
 			public const int indeterminateProgressStyle = 2130772014;
@@ -2217,71 +2701,71 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f01003b
 			public const int initialActivityCount = 2130772027;
 			
-			// aapt resource value: 0x7f010131
-			public const int insetForeground = 2130772273;
+			// aapt resource value: 0x7f010134
+			public const int insetForeground = 2130772276;
 			
 			// aapt resource value: 0x7f01001e
 			public const int isLightTheme = 2130771998;
 			
-			// aapt resource value: 0x7f01012e
-			public const int itemBackground = 2130772270;
+			// aapt resource value: 0x7f010131
+			public const int itemBackground = 2130772273;
 			
-			// aapt resource value: 0x7f01012c
-			public const int itemIconTint = 2130772268;
+			// aapt resource value: 0x7f01012f
+			public const int itemIconTint = 2130772271;
 			
 			// aapt resource value: 0x7f010030
 			public const int itemPadding = 2130772016;
 			
-			// aapt resource value: 0x7f01012f
-			public const int itemTextAppearance = 2130772271;
+			// aapt resource value: 0x7f010132
+			public const int itemTextAppearance = 2130772274;
 			
-			// aapt resource value: 0x7f01012d
-			public const int itemTextColor = 2130772269;
+			// aapt resource value: 0x7f010130
+			public const int itemTextColor = 2130772272;
 			
-			// aapt resource value: 0x7f010119
-			public const int keylines = 2130772249;
+			// aapt resource value: 0x7f01011c
+			public const int keylines = 2130772252;
 			
-			// aapt resource value: 0x7f0100d2
-			public const int layout = 2130772178;
+			// aapt resource value: 0x7f0100d5
+			public const int layout = 2130772181;
 			
 			// aapt resource value: 0x7f010000
 			public const int layoutManager = 2130771968;
 			
-			// aapt resource value: 0x7f01011c
-			public const int layout_anchor = 2130772252;
+			// aapt resource value: 0x7f01011f
+			public const int layout_anchor = 2130772255;
+			
+			// aapt resource value: 0x7f010121
+			public const int layout_anchorGravity = 2130772257;
 			
 			// aapt resource value: 0x7f01011e
-			public const int layout_anchorGravity = 2130772254;
+			public const int layout_behavior = 2130772254;
+			
+			// aapt resource value: 0x7f01011a
+			public const int layout_collapseMode = 2130772250;
 			
 			// aapt resource value: 0x7f01011b
-			public const int layout_behavior = 2130772251;
+			public const int layout_collapseParallaxMultiplier = 2130772251;
 			
-			// aapt resource value: 0x7f010117
-			public const int layout_collapseMode = 2130772247;
+			// aapt resource value: 0x7f010123
+			public const int layout_dodgeInsetEdges = 2130772259;
 			
-			// aapt resource value: 0x7f010118
-			public const int layout_collapseParallaxMultiplier = 2130772248;
+			// aapt resource value: 0x7f010122
+			public const int layout_insetEdge = 2130772258;
 			
 			// aapt resource value: 0x7f010120
-			public const int layout_dodgeInsetEdges = 2130772256;
+			public const int layout_keyline = 2130772256;
 			
-			// aapt resource value: 0x7f01011f
-			public const int layout_insetEdge = 2130772255;
+			// aapt resource value: 0x7f010106
+			public const int layout_scrollFlags = 2130772230;
 			
-			// aapt resource value: 0x7f01011d
-			public const int layout_keyline = 2130772253;
+			// aapt resource value: 0x7f010107
+			public const int layout_scrollInterpolator = 2130772231;
 			
-			// aapt resource value: 0x7f010103
-			public const int layout_scrollFlags = 2130772227;
+			// aapt resource value: 0x7f01009b
+			public const int listChoiceBackgroundIndicator = 2130772123;
 			
-			// aapt resource value: 0x7f010104
-			public const int layout_scrollInterpolator = 2130772228;
-			
-			// aapt resource value: 0x7f010098
-			public const int listChoiceBackgroundIndicator = 2130772120;
-			
-			// aapt resource value: 0x7f010073
-			public const int listDividerAlertDialog = 2130772083;
+			// aapt resource value: 0x7f010075
+			public const int listDividerAlertDialog = 2130772085;
 			
 			// aapt resource value: 0x7f010041
 			public const int listItemLayout = 2130772033;
@@ -2289,41 +2773,41 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f01003e
 			public const int listLayout = 2130772030;
 			
-			// aapt resource value: 0x7f0100b8
-			public const int listMenuViewStyle = 2130772152;
+			// aapt resource value: 0x7f0100bb
+			public const int listMenuViewStyle = 2130772155;
 			
-			// aapt resource value: 0x7f010092
-			public const int listPopupWindowStyle = 2130772114;
-			
-			// aapt resource value: 0x7f01008c
-			public const int listPreferredItemHeight = 2130772108;
+			// aapt resource value: 0x7f010094
+			public const int listPopupWindowStyle = 2130772116;
 			
 			// aapt resource value: 0x7f01008e
-			public const int listPreferredItemHeightLarge = 2130772110;
-			
-			// aapt resource value: 0x7f01008d
-			public const int listPreferredItemHeightSmall = 2130772109;
-			
-			// aapt resource value: 0x7f01008f
-			public const int listPreferredItemPaddingLeft = 2130772111;
+			public const int listPreferredItemHeight = 2130772110;
 			
 			// aapt resource value: 0x7f010090
-			public const int listPreferredItemPaddingRight = 2130772112;
+			public const int listPreferredItemHeightLarge = 2130772112;
+			
+			// aapt resource value: 0x7f01008f
+			public const int listPreferredItemHeightSmall = 2130772111;
+			
+			// aapt resource value: 0x7f010091
+			public const int listPreferredItemPaddingLeft = 2130772113;
+			
+			// aapt resource value: 0x7f010092
+			public const int listPreferredItemPaddingRight = 2130772114;
 			
 			// aapt resource value: 0x7f010026
 			public const int logo = 2130772006;
 			
-			// aapt resource value: 0x7f0100f8
-			public const int logoDescription = 2130772216;
+			// aapt resource value: 0x7f0100fb
+			public const int logoDescription = 2130772219;
 			
-			// aapt resource value: 0x7f010133
-			public const int maxActionInlineWidth = 2130772275;
+			// aapt resource value: 0x7f010136
+			public const int maxActionInlineWidth = 2130772278;
 			
-			// aapt resource value: 0x7f0100f2
-			public const int maxButtonHeight = 2130772210;
+			// aapt resource value: 0x7f0100f5
+			public const int maxButtonHeight = 2130772213;
 			
-			// aapt resource value: 0x7f0100c5
-			public const int measureWithLargestChild = 2130772165;
+			// aapt resource value: 0x7f0100c8
+			public const int measureWithLargestChild = 2130772168;
 			
 			// aapt resource value: 0x7f010004
 			public const int mediaRouteAudioTrackDrawable = 2130771972;
@@ -2361,74 +2845,74 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f01000f
 			public const int mediaRouteTvIconDrawable = 2130771983;
 			
-			// aapt resource value: 0x7f01012b
-			public const int menu = 2130772267;
+			// aapt resource value: 0x7f01012e
+			public const int menu = 2130772270;
 			
 			// aapt resource value: 0x7f01003f
 			public const int multiChoiceItemLayout = 2130772031;
 			
-			// aapt resource value: 0x7f0100f7
-			public const int navigationContentDescription = 2130772215;
+			// aapt resource value: 0x7f0100fa
+			public const int navigationContentDescription = 2130772218;
 			
-			// aapt resource value: 0x7f0100f6
-			public const int navigationIcon = 2130772214;
+			// aapt resource value: 0x7f0100f9
+			public const int navigationIcon = 2130772217;
 			
 			// aapt resource value: 0x7f010020
 			public const int navigationMode = 2130772000;
 			
-			// aapt resource value: 0x7f0100ce
-			public const int overlapAnchor = 2130772174;
-			
-			// aapt resource value: 0x7f0100d0
-			public const int paddingBottomNoButtons = 2130772176;
-			
-			// aapt resource value: 0x7f0100fc
-			public const int paddingEnd = 2130772220;
-			
-			// aapt resource value: 0x7f0100fb
-			public const int paddingStart = 2130772219;
-			
 			// aapt resource value: 0x7f0100d1
-			public const int paddingTopNoTitle = 2130772177;
+			public const int overlapAnchor = 2130772177;
 			
-			// aapt resource value: 0x7f010095
-			public const int panelBackground = 2130772117;
+			// aapt resource value: 0x7f0100d3
+			public const int paddingBottomNoButtons = 2130772179;
 			
-			// aapt resource value: 0x7f010097
-			public const int panelMenuListTheme = 2130772119;
+			// aapt resource value: 0x7f0100ff
+			public const int paddingEnd = 2130772223;
 			
-			// aapt resource value: 0x7f010096
-			public const int panelMenuListWidth = 2130772118;
+			// aapt resource value: 0x7f0100fe
+			public const int paddingStart = 2130772222;
 			
-			// aapt resource value: 0x7f01014f
-			public const int passwordToggleContentDescription = 2130772303;
+			// aapt resource value: 0x7f0100d4
+			public const int paddingTopNoTitle = 2130772180;
 			
-			// aapt resource value: 0x7f01014e
-			public const int passwordToggleDrawable = 2130772302;
+			// aapt resource value: 0x7f010098
+			public const int panelBackground = 2130772120;
 			
-			// aapt resource value: 0x7f01014d
-			public const int passwordToggleEnabled = 2130772301;
+			// aapt resource value: 0x7f01009a
+			public const int panelMenuListTheme = 2130772122;
 			
-			// aapt resource value: 0x7f010150
-			public const int passwordToggleTint = 2130772304;
+			// aapt resource value: 0x7f010099
+			public const int panelMenuListWidth = 2130772121;
+			
+			// aapt resource value: 0x7f010152
+			public const int passwordToggleContentDescription = 2130772306;
 			
 			// aapt resource value: 0x7f010151
-			public const int passwordToggleTintMode = 2130772305;
+			public const int passwordToggleDrawable = 2130772305;
 			
-			// aapt resource value: 0x7f010083
-			public const int popupMenuStyle = 2130772099;
+			// aapt resource value: 0x7f010150
+			public const int passwordToggleEnabled = 2130772304;
+			
+			// aapt resource value: 0x7f010153
+			public const int passwordToggleTint = 2130772307;
+			
+			// aapt resource value: 0x7f010154
+			public const int passwordToggleTintMode = 2130772308;
+			
+			// aapt resource value: 0x7f010085
+			public const int popupMenuStyle = 2130772101;
 			
 			// aapt resource value: 0x7f010039
 			public const int popupTheme = 2130772025;
 			
-			// aapt resource value: 0x7f010084
-			public const int popupWindowStyle = 2130772100;
+			// aapt resource value: 0x7f010086
+			public const int popupWindowStyle = 2130772102;
 			
-			// aapt resource value: 0x7f0100cc
-			public const int preserveIconSpacing = 2130772172;
+			// aapt resource value: 0x7f0100cf
+			public const int preserveIconSpacing = 2130772175;
 			
-			// aapt resource value: 0x7f010126
-			public const int pressedTranslationZ = 2130772262;
+			// aapt resource value: 0x7f010129
+			public const int pressedTranslationZ = 2130772265;
 			
 			// aapt resource value: 0x7f01002f
 			public const int progressBarPadding = 2130772015;
@@ -2436,62 +2920,62 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f01002d
 			public const int progressBarStyle = 2130772013;
 			
-			// aapt resource value: 0x7f0100dd
-			public const int queryBackground = 2130772189;
+			// aapt resource value: 0x7f0100e0
+			public const int queryBackground = 2130772192;
 			
-			// aapt resource value: 0x7f0100d4
-			public const int queryHint = 2130772180;
-			
-			// aapt resource value: 0x7f0100b1
-			public const int radioButtonStyle = 2130772145;
-			
-			// aapt resource value: 0x7f0100b2
-			public const int ratingBarStyle = 2130772146;
-			
-			// aapt resource value: 0x7f0100b3
-			public const int ratingBarStyleIndicator = 2130772147;
+			// aapt resource value: 0x7f0100d7
+			public const int queryHint = 2130772183;
 			
 			// aapt resource value: 0x7f0100b4
-			public const int ratingBarStyleSmall = 2130772148;
+			public const int radioButtonStyle = 2130772148;
+			
+			// aapt resource value: 0x7f0100b5
+			public const int ratingBarStyle = 2130772149;
+			
+			// aapt resource value: 0x7f0100b6
+			public const int ratingBarStyleIndicator = 2130772150;
+			
+			// aapt resource value: 0x7f0100b7
+			public const int ratingBarStyleSmall = 2130772151;
 			
 			// aapt resource value: 0x7f010002
 			public const int reverseLayout = 2130771970;
 			
-			// aapt resource value: 0x7f010124
-			public const int rippleColor = 2130772260;
+			// aapt resource value: 0x7f010127
+			public const int rippleColor = 2130772263;
 			
-			// aapt resource value: 0x7f010113
-			public const int scrimAnimationDuration = 2130772243;
+			// aapt resource value: 0x7f010116
+			public const int scrimAnimationDuration = 2130772246;
 			
-			// aapt resource value: 0x7f010112
-			public const int scrimVisibleHeightTrigger = 2130772242;
+			// aapt resource value: 0x7f010115
+			public const int scrimVisibleHeightTrigger = 2130772245;
 			
-			// aapt resource value: 0x7f0100d9
-			public const int searchHintIcon = 2130772185;
+			// aapt resource value: 0x7f0100dc
+			public const int searchHintIcon = 2130772188;
 			
-			// aapt resource value: 0x7f0100d8
-			public const int searchIcon = 2130772184;
+			// aapt resource value: 0x7f0100db
+			public const int searchIcon = 2130772187;
 			
-			// aapt resource value: 0x7f01008b
-			public const int searchViewStyle = 2130772107;
+			// aapt resource value: 0x7f01008d
+			public const int searchViewStyle = 2130772109;
 			
-			// aapt resource value: 0x7f0100b5
-			public const int seekBarStyle = 2130772149;
+			// aapt resource value: 0x7f0100b8
+			public const int seekBarStyle = 2130772152;
 			
-			// aapt resource value: 0x7f01007b
-			public const int selectableItemBackground = 2130772091;
+			// aapt resource value: 0x7f01007d
+			public const int selectableItemBackground = 2130772093;
 			
-			// aapt resource value: 0x7f01007c
-			public const int selectableItemBackgroundBorderless = 2130772092;
+			// aapt resource value: 0x7f01007e
+			public const int selectableItemBackgroundBorderless = 2130772094;
 			
-			// aapt resource value: 0x7f0100c8
-			public const int showAsAction = 2130772168;
+			// aapt resource value: 0x7f0100cb
+			public const int showAsAction = 2130772171;
 			
-			// aapt resource value: 0x7f0100c6
-			public const int showDividers = 2130772166;
+			// aapt resource value: 0x7f0100c9
+			public const int showDividers = 2130772169;
 			
-			// aapt resource value: 0x7f0100e9
-			public const int showText = 2130772201;
+			// aapt resource value: 0x7f0100ec
+			public const int showText = 2130772204;
 			
 			// aapt resource value: 0x7f010042
 			public const int showTitle = 2130772034;
@@ -2502,17 +2986,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010001
 			public const int spanCount = 2130771969;
 			
-			// aapt resource value: 0x7f0100be
-			public const int spinBars = 2130772158;
+			// aapt resource value: 0x7f0100c1
+			public const int spinBars = 2130772161;
 			
-			// aapt resource value: 0x7f010076
-			public const int spinnerDropDownItemStyle = 2130772086;
+			// aapt resource value: 0x7f010078
+			public const int spinnerDropDownItemStyle = 2130772088;
 			
-			// aapt resource value: 0x7f0100b6
-			public const int spinnerStyle = 2130772150;
+			// aapt resource value: 0x7f0100b9
+			public const int spinnerStyle = 2130772153;
 			
-			// aapt resource value: 0x7f0100e8
-			public const int splitTrack = 2130772200;
+			// aapt resource value: 0x7f0100eb
+			public const int splitTrack = 2130772203;
 			
 			// aapt resource value: 0x7f010043
 			public const int srcCompat = 2130772035;
@@ -2520,245 +3004,254 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f010003
 			public const int stackFromEnd = 2130771971;
 			
-			// aapt resource value: 0x7f0100cf
-			public const int state_above_anchor = 2130772175;
+			// aapt resource value: 0x7f0100d2
+			public const int state_above_anchor = 2130772178;
 			
-			// aapt resource value: 0x7f010101
-			public const int state_collapsed = 2130772225;
+			// aapt resource value: 0x7f010104
+			public const int state_collapsed = 2130772228;
 			
-			// aapt resource value: 0x7f010102
-			public const int state_collapsible = 2130772226;
+			// aapt resource value: 0x7f010105
+			public const int state_collapsible = 2130772229;
 			
-			// aapt resource value: 0x7f01011a
-			public const int statusBarBackground = 2130772250;
+			// aapt resource value: 0x7f01011d
+			public const int statusBarBackground = 2130772253;
 			
-			// aapt resource value: 0x7f010110
-			public const int statusBarScrim = 2130772240;
+			// aapt resource value: 0x7f010113
+			public const int statusBarScrim = 2130772243;
 			
-			// aapt resource value: 0x7f0100cd
-			public const int subMenuArrow = 2130772173;
+			// aapt resource value: 0x7f0100d0
+			public const int subMenuArrow = 2130772176;
 			
-			// aapt resource value: 0x7f0100de
-			public const int submitBackground = 2130772190;
+			// aapt resource value: 0x7f0100e1
+			public const int submitBackground = 2130772193;
 			
 			// aapt resource value: 0x7f010022
 			public const int subtitle = 2130772002;
 			
-			// aapt resource value: 0x7f0100eb
-			public const int subtitleTextAppearance = 2130772203;
+			// aapt resource value: 0x7f0100ee
+			public const int subtitleTextAppearance = 2130772206;
 			
-			// aapt resource value: 0x7f0100fa
-			public const int subtitleTextColor = 2130772218;
+			// aapt resource value: 0x7f0100fd
+			public const int subtitleTextColor = 2130772221;
 			
 			// aapt resource value: 0x7f010024
 			public const int subtitleTextStyle = 2130772004;
 			
-			// aapt resource value: 0x7f0100dc
-			public const int suggestionRowLayout = 2130772188;
+			// aapt resource value: 0x7f0100df
+			public const int suggestionRowLayout = 2130772191;
 			
-			// aapt resource value: 0x7f0100e6
-			public const int switchMinWidth = 2130772198;
+			// aapt resource value: 0x7f0100e9
+			public const int switchMinWidth = 2130772201;
 			
-			// aapt resource value: 0x7f0100e7
-			public const int switchPadding = 2130772199;
+			// aapt resource value: 0x7f0100ea
+			public const int switchPadding = 2130772202;
 			
-			// aapt resource value: 0x7f0100b7
-			public const int switchStyle = 2130772151;
+			// aapt resource value: 0x7f0100ba
+			public const int switchStyle = 2130772154;
 			
-			// aapt resource value: 0x7f0100e5
-			public const int switchTextAppearance = 2130772197;
-			
-			// aapt resource value: 0x7f010137
-			public const int tabBackground = 2130772279;
-			
-			// aapt resource value: 0x7f010136
-			public const int tabContentStart = 2130772278;
-			
-			// aapt resource value: 0x7f010139
-			public const int tabGravity = 2130772281;
-			
-			// aapt resource value: 0x7f010134
-			public const int tabIndicatorColor = 2130772276;
-			
-			// aapt resource value: 0x7f010135
-			public const int tabIndicatorHeight = 2130772277;
-			
-			// aapt resource value: 0x7f01013b
-			public const int tabMaxWidth = 2130772283;
+			// aapt resource value: 0x7f0100e8
+			public const int switchTextAppearance = 2130772200;
 			
 			// aapt resource value: 0x7f01013a
-			public const int tabMinWidth = 2130772282;
+			public const int tabBackground = 2130772282;
 			
-			// aapt resource value: 0x7f010138
-			public const int tabMode = 2130772280;
-			
-			// aapt resource value: 0x7f010143
-			public const int tabPadding = 2130772291;
-			
-			// aapt resource value: 0x7f010142
-			public const int tabPaddingBottom = 2130772290;
-			
-			// aapt resource value: 0x7f010141
-			public const int tabPaddingEnd = 2130772289;
-			
-			// aapt resource value: 0x7f01013f
-			public const int tabPaddingStart = 2130772287;
-			
-			// aapt resource value: 0x7f010140
-			public const int tabPaddingTop = 2130772288;
-			
-			// aapt resource value: 0x7f01013e
-			public const int tabSelectedTextColor = 2130772286;
+			// aapt resource value: 0x7f010139
+			public const int tabContentStart = 2130772281;
 			
 			// aapt resource value: 0x7f01013c
-			public const int tabTextAppearance = 2130772284;
+			public const int tabGravity = 2130772284;
+			
+			// aapt resource value: 0x7f010137
+			public const int tabIndicatorColor = 2130772279;
+			
+			// aapt resource value: 0x7f010138
+			public const int tabIndicatorHeight = 2130772280;
+			
+			// aapt resource value: 0x7f01013e
+			public const int tabMaxWidth = 2130772286;
 			
 			// aapt resource value: 0x7f01013d
-			public const int tabTextColor = 2130772285;
+			public const int tabMinWidth = 2130772285;
 			
-			// aapt resource value: 0x7f010047
-			public const int textAllCaps = 2130772039;
+			// aapt resource value: 0x7f01013b
+			public const int tabMode = 2130772283;
 			
-			// aapt resource value: 0x7f01006e
-			public const int textAppearanceLargePopupMenu = 2130772078;
+			// aapt resource value: 0x7f010146
+			public const int tabPadding = 2130772294;
 			
-			// aapt resource value: 0x7f010093
-			public const int textAppearanceListItem = 2130772115;
+			// aapt resource value: 0x7f010145
+			public const int tabPaddingBottom = 2130772293;
 			
-			// aapt resource value: 0x7f010094
-			public const int textAppearanceListItemSmall = 2130772116;
+			// aapt resource value: 0x7f010144
+			public const int tabPaddingEnd = 2130772292;
+			
+			// aapt resource value: 0x7f010142
+			public const int tabPaddingStart = 2130772290;
+			
+			// aapt resource value: 0x7f010143
+			public const int tabPaddingTop = 2130772291;
+			
+			// aapt resource value: 0x7f010141
+			public const int tabSelectedTextColor = 2130772289;
+			
+			// aapt resource value: 0x7f01013f
+			public const int tabTextAppearance = 2130772287;
+			
+			// aapt resource value: 0x7f010140
+			public const int tabTextColor = 2130772288;
+			
+			// aapt resource value: 0x7f010049
+			public const int textAllCaps = 2130772041;
 			
 			// aapt resource value: 0x7f010070
-			public const int textAppearancePopupMenuHeader = 2130772080;
+			public const int textAppearanceLargePopupMenu = 2130772080;
 			
-			// aapt resource value: 0x7f010089
-			public const int textAppearanceSearchResultSubtitle = 2130772105;
+			// aapt resource value: 0x7f010095
+			public const int textAppearanceListItem = 2130772117;
 			
-			// aapt resource value: 0x7f010088
-			public const int textAppearanceSearchResultTitle = 2130772104;
+			// aapt resource value: 0x7f010096
+			public const int textAppearanceListItemSecondary = 2130772118;
 			
-			// aapt resource value: 0x7f01006f
-			public const int textAppearanceSmallPopupMenu = 2130772079;
+			// aapt resource value: 0x7f010097
+			public const int textAppearanceListItemSmall = 2130772119;
 			
-			// aapt resource value: 0x7f0100a7
-			public const int textColorAlertDialogListItem = 2130772135;
+			// aapt resource value: 0x7f010072
+			public const int textAppearancePopupMenuHeader = 2130772082;
 			
-			// aapt resource value: 0x7f010123
-			public const int textColorError = 2130772259;
+			// aapt resource value: 0x7f01008b
+			public const int textAppearanceSearchResultSubtitle = 2130772107;
 			
 			// aapt resource value: 0x7f01008a
-			public const int textColorSearchUrl = 2130772106;
+			public const int textAppearanceSearchResultTitle = 2130772106;
 			
-			// aapt resource value: 0x7f0100fd
-			public const int theme = 2130772221;
+			// aapt resource value: 0x7f010071
+			public const int textAppearanceSmallPopupMenu = 2130772081;
 			
-			// aapt resource value: 0x7f0100c4
-			public const int thickness = 2130772164;
+			// aapt resource value: 0x7f0100aa
+			public const int textColorAlertDialogListItem = 2130772138;
 			
-			// aapt resource value: 0x7f0100e4
-			public const int thumbTextPadding = 2130772196;
+			// aapt resource value: 0x7f010126
+			public const int textColorError = 2130772262;
 			
-			// aapt resource value: 0x7f0100df
-			public const int thumbTint = 2130772191;
+			// aapt resource value: 0x7f01008c
+			public const int textColorSearchUrl = 2130772108;
 			
-			// aapt resource value: 0x7f0100e0
-			public const int thumbTintMode = 2130772192;
+			// aapt resource value: 0x7f010100
+			public const int theme = 2130772224;
 			
-			// aapt resource value: 0x7f010044
-			public const int tickMark = 2130772036;
+			// aapt resource value: 0x7f0100c7
+			public const int thickness = 2130772167;
 			
-			// aapt resource value: 0x7f010045
-			public const int tickMarkTint = 2130772037;
+			// aapt resource value: 0x7f0100e7
+			public const int thumbTextPadding = 2130772199;
+			
+			// aapt resource value: 0x7f0100e2
+			public const int thumbTint = 2130772194;
+			
+			// aapt resource value: 0x7f0100e3
+			public const int thumbTintMode = 2130772195;
 			
 			// aapt resource value: 0x7f010046
-			public const int tickMarkTintMode = 2130772038;
+			public const int tickMark = 2130772038;
+			
+			// aapt resource value: 0x7f010047
+			public const int tickMarkTint = 2130772039;
+			
+			// aapt resource value: 0x7f010048
+			public const int tickMarkTintMode = 2130772040;
+			
+			// aapt resource value: 0x7f010044
+			public const int tint = 2130772036;
+			
+			// aapt resource value: 0x7f010045
+			public const int tintMode = 2130772037;
 			
 			// aapt resource value: 0x7f01001f
 			public const int title = 2130771999;
 			
-			// aapt resource value: 0x7f010116
-			public const int titleEnabled = 2130772246;
-			
-			// aapt resource value: 0x7f0100ec
-			public const int titleMargin = 2130772204;
-			
-			// aapt resource value: 0x7f0100f0
-			public const int titleMarginBottom = 2130772208;
-			
-			// aapt resource value: 0x7f0100ee
-			public const int titleMarginEnd = 2130772206;
-			
-			// aapt resource value: 0x7f0100ed
-			public const int titleMarginStart = 2130772205;
+			// aapt resource value: 0x7f010119
+			public const int titleEnabled = 2130772249;
 			
 			// aapt resource value: 0x7f0100ef
-			public const int titleMarginTop = 2130772207;
+			public const int titleMargin = 2130772207;
+			
+			// aapt resource value: 0x7f0100f3
+			public const int titleMarginBottom = 2130772211;
 			
 			// aapt resource value: 0x7f0100f1
-			public const int titleMargins = 2130772209;
+			public const int titleMarginEnd = 2130772209;
 			
-			// aapt resource value: 0x7f0100ea
-			public const int titleTextAppearance = 2130772202;
+			// aapt resource value: 0x7f0100f0
+			public const int titleMarginStart = 2130772208;
 			
-			// aapt resource value: 0x7f0100f9
-			public const int titleTextColor = 2130772217;
+			// aapt resource value: 0x7f0100f2
+			public const int titleMarginTop = 2130772210;
+			
+			// aapt resource value: 0x7f0100f4
+			public const int titleMargins = 2130772212;
+			
+			// aapt resource value: 0x7f0100ed
+			public const int titleTextAppearance = 2130772205;
+			
+			// aapt resource value: 0x7f0100fc
+			public const int titleTextColor = 2130772220;
 			
 			// aapt resource value: 0x7f010023
 			public const int titleTextStyle = 2130772003;
 			
-			// aapt resource value: 0x7f010111
-			public const int toolbarId = 2130772241;
+			// aapt resource value: 0x7f010114
+			public const int toolbarId = 2130772244;
 			
-			// aapt resource value: 0x7f010082
-			public const int toolbarNavigationButtonStyle = 2130772098;
+			// aapt resource value: 0x7f010084
+			public const int toolbarNavigationButtonStyle = 2130772100;
 			
-			// aapt resource value: 0x7f010081
-			public const int toolbarStyle = 2130772097;
+			// aapt resource value: 0x7f010083
+			public const int toolbarStyle = 2130772099;
 			
-			// aapt resource value: 0x7f0100e1
-			public const int track = 2130772193;
+			// aapt resource value: 0x7f0100e4
+			public const int track = 2130772196;
 			
-			// aapt resource value: 0x7f0100e2
-			public const int trackTint = 2130772194;
+			// aapt resource value: 0x7f0100e5
+			public const int trackTint = 2130772197;
 			
-			// aapt resource value: 0x7f0100e3
-			public const int trackTintMode = 2130772195;
+			// aapt resource value: 0x7f0100e6
+			public const int trackTintMode = 2130772198;
 			
-			// aapt resource value: 0x7f010128
-			public const int useCompatPadding = 2130772264;
+			// aapt resource value: 0x7f01012b
+			public const int useCompatPadding = 2130772267;
 			
-			// aapt resource value: 0x7f0100da
-			public const int voiceIcon = 2130772186;
-			
-			// aapt resource value: 0x7f010048
-			public const int windowActionBar = 2130772040;
+			// aapt resource value: 0x7f0100dd
+			public const int voiceIcon = 2130772189;
 			
 			// aapt resource value: 0x7f01004a
-			public const int windowActionBarOverlay = 2130772042;
-			
-			// aapt resource value: 0x7f01004b
-			public const int windowActionModeOverlay = 2130772043;
-			
-			// aapt resource value: 0x7f01004f
-			public const int windowFixedHeightMajor = 2130772047;
-			
-			// aapt resource value: 0x7f01004d
-			public const int windowFixedHeightMinor = 2130772045;
+			public const int windowActionBar = 2130772042;
 			
 			// aapt resource value: 0x7f01004c
-			public const int windowFixedWidthMajor = 2130772044;
+			public const int windowActionBarOverlay = 2130772044;
 			
-			// aapt resource value: 0x7f01004e
-			public const int windowFixedWidthMinor = 2130772046;
-			
-			// aapt resource value: 0x7f010050
-			public const int windowMinWidthMajor = 2130772048;
+			// aapt resource value: 0x7f01004d
+			public const int windowActionModeOverlay = 2130772045;
 			
 			// aapt resource value: 0x7f010051
-			public const int windowMinWidthMinor = 2130772049;
+			public const int windowFixedHeightMajor = 2130772049;
 			
-			// aapt resource value: 0x7f010049
-			public const int windowNoTitle = 2130772041;
+			// aapt resource value: 0x7f01004f
+			public const int windowFixedHeightMinor = 2130772047;
+			
+			// aapt resource value: 0x7f01004e
+			public const int windowFixedWidthMajor = 2130772046;
+			
+			// aapt resource value: 0x7f010050
+			public const int windowFixedWidthMinor = 2130772048;
+			
+			// aapt resource value: 0x7f010052
+			public const int windowMinWidthMajor = 2130772050;
+			
+			// aapt resource value: 0x7f010053
+			public const int windowMinWidthMinor = 2130772051;
+			
+			// aapt resource value: 0x7f01004b
+			public const int windowNoTitle = 2130772043;
 			
 			static Attribute()
 			{
@@ -4415,8 +4908,8 @@ namespace FaceOff.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f09009c
-			public const int action0 = 2131296412;
+			// aapt resource value: 0x7f09009e
+			public const int action0 = 2131296414;
 			
 			// aapt resource value: 0x7f090064
 			public const int action_bar = 2131296356;
@@ -4439,17 +4932,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090041
 			public const int action_bar_title = 2131296321;
 			
-			// aapt resource value: 0x7f090099
-			public const int action_container = 2131296409;
+			// aapt resource value: 0x7f09009b
+			public const int action_container = 2131296411;
 			
 			// aapt resource value: 0x7f090065
 			public const int action_context_bar = 2131296357;
 			
-			// aapt resource value: 0x7f0900a0
-			public const int action_divider = 2131296416;
+			// aapt resource value: 0x7f0900a2
+			public const int action_divider = 2131296418;
 			
-			// aapt resource value: 0x7f09009a
-			public const int action_image = 2131296410;
+			// aapt resource value: 0x7f09009c
+			public const int action_image = 2131296412;
 			
 			// aapt resource value: 0x7f090003
 			public const int action_menu_divider = 2131296259;
@@ -4466,17 +4959,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090043
 			public const int action_mode_close_button = 2131296323;
 			
-			// aapt resource value: 0x7f09009b
-			public const int action_text = 2131296411;
+			// aapt resource value: 0x7f09009d
+			public const int action_text = 2131296413;
 			
-			// aapt resource value: 0x7f0900a9
-			public const int actions = 2131296425;
+			// aapt resource value: 0x7f0900ab
+			public const int actions = 2131296427;
 			
 			// aapt resource value: 0x7f090044
 			public const int activity_chooser_view_content = 2131296324;
 			
-			// aapt resource value: 0x7f090019
-			public const int add = 2131296281;
+			// aapt resource value: 0x7f09001e
+			public const int add = 2131296286;
 			
 			// aapt resource value: 0x7f090058
 			public const int alertTitle = 2131296344;
@@ -4499,8 +4992,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f09004b
 			public const int buttonPanel = 2131296331;
 			
-			// aapt resource value: 0x7f09009d
-			public const int cancel_action = 2131296413;
+			// aapt resource value: 0x7f09009f
+			public const int cancel_action = 2131296415;
 			
 			// aapt resource value: 0x7f090030
 			public const int center = 2131296304;
@@ -4514,8 +5007,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f09005b
 			public const int checkbox = 2131296347;
 			
-			// aapt resource value: 0x7f0900a5
-			public const int chronometer = 2131296421;
+			// aapt resource value: 0x7f0900a7
+			public const int chronometer = 2131296423;
 			
 			// aapt resource value: 0x7f090039
 			public const int clip_horizontal = 2131296313;
@@ -4526,8 +5019,14 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090024
 			public const int collapseActionView = 2131296292;
 			
+			// aapt resource value: 0x7f090075
+			public const int container = 2131296373;
+			
 			// aapt resource value: 0x7f09004e
 			public const int contentPanel = 2131296334;
+			
+			// aapt resource value: 0x7f090076
+			public const int coordinator = 2131296374;
 			
 			// aapt resource value: 0x7f090055
 			public const int custom = 2131296341;
@@ -4541,20 +5040,20 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090047
 			public const int default_activity_button = 2131296327;
 			
-			// aapt resource value: 0x7f090076
-			public const int design_bottom_sheet = 2131296374;
+			// aapt resource value: 0x7f090078
+			public const int design_bottom_sheet = 2131296376;
+			
+			// aapt resource value: 0x7f09007f
+			public const int design_menu_item_action_area = 2131296383;
+			
+			// aapt resource value: 0x7f09007e
+			public const int design_menu_item_action_area_stub = 2131296382;
 			
 			// aapt resource value: 0x7f09007d
-			public const int design_menu_item_action_area = 2131296381;
+			public const int design_menu_item_text = 2131296381;
 			
 			// aapt resource value: 0x7f09007c
-			public const int design_menu_item_action_area_stub = 2131296380;
-			
-			// aapt resource value: 0x7f09007b
-			public const int design_menu_item_text = 2131296379;
-			
-			// aapt resource value: 0x7f09007a
-			public const int design_navigation_view = 2131296378;
+			public const int design_navigation_view = 2131296380;
 			
 			// aapt resource value: 0x7f090012
 			public const int disableHome = 2131296274;
@@ -4565,8 +5064,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090021
 			public const int end = 2131296289;
 			
-			// aapt resource value: 0x7f0900af
-			public const int end_padder = 2131296431;
+			// aapt resource value: 0x7f0900b1
+			public const int end_padder = 2131296433;
 			
 			// aapt resource value: 0x7f09002a
 			public const int enterAlways = 2131296298;
@@ -4604,8 +5103,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090049
 			public const int icon = 2131296329;
 			
-			// aapt resource value: 0x7f0900aa
-			public const int icon_group = 2131296426;
+			// aapt resource value: 0x7f0900ac
+			public const int icon_group = 2131296428;
 			
 			// aapt resource value: 0x7f090025
 			public const int ifRoom = 2131296293;
@@ -4613,8 +5112,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090046
 			public const int image = 2131296326;
 			
-			// aapt resource value: 0x7f0900a6
-			public const int info = 2131296422;
+			// aapt resource value: 0x7f0900a8
+			public const int info = 2131296424;
 			
 			// aapt resource value: 0x7f090000
 			public const int item_touch_helper_previous_elevation = 2131296256;
@@ -4625,11 +5124,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090034
 			public const int left = 2131296308;
 			
-			// aapt resource value: 0x7f0900ab
-			public const int line1 = 2131296427;
-			
 			// aapt resource value: 0x7f0900ad
-			public const int line3 = 2131296429;
+			public const int line1 = 2131296429;
+			
+			// aapt resource value: 0x7f0900af
+			public const int line3 = 2131296431;
 			
 			// aapt resource value: 0x7f09000f
 			public const int listMode = 2131296271;
@@ -4637,11 +5136,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090048
 			public const int list_item = 2131296328;
 			
-			// aapt resource value: 0x7f0900b3
-			public const int masked = 2131296435;
+			// aapt resource value: 0x7f0900b5
+			public const int masked = 2131296437;
 			
-			// aapt resource value: 0x7f09009f
-			public const int media_actions = 2131296415;
+			// aapt resource value: 0x7f0900a1
+			public const int media_actions = 2131296417;
 			
 			// aapt resource value: 0x7f090022
 			public const int middle = 2131296290;
@@ -4649,86 +5148,86 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f09003e
 			public const int mini = 2131296318;
 			
-			// aapt resource value: 0x7f09008b
-			public const int mr_art = 2131296395;
-			
-			// aapt resource value: 0x7f090080
-			public const int mr_chooser_list = 2131296384;
-			
-			// aapt resource value: 0x7f090083
-			public const int mr_chooser_route_desc = 2131296387;
-			
-			// aapt resource value: 0x7f090081
-			public const int mr_chooser_route_icon = 2131296385;
+			// aapt resource value: 0x7f09008d
+			public const int mr_art = 2131296397;
 			
 			// aapt resource value: 0x7f090082
-			public const int mr_chooser_route_name = 2131296386;
-			
-			// aapt resource value: 0x7f09007f
-			public const int mr_chooser_title = 2131296383;
-			
-			// aapt resource value: 0x7f090088
-			public const int mr_close = 2131296392;
-			
-			// aapt resource value: 0x7f09008e
-			public const int mr_control_divider = 2131296398;
-			
-			// aapt resource value: 0x7f090094
-			public const int mr_control_playback_ctrl = 2131296404;
-			
-			// aapt resource value: 0x7f090097
-			public const int mr_control_subtitle = 2131296407;
-			
-			// aapt resource value: 0x7f090096
-			public const int mr_control_title = 2131296406;
-			
-			// aapt resource value: 0x7f090095
-			public const int mr_control_title_container = 2131296405;
-			
-			// aapt resource value: 0x7f090089
-			public const int mr_custom_control = 2131296393;
-			
-			// aapt resource value: 0x7f09008a
-			public const int mr_default_control = 2131296394;
+			public const int mr_chooser_list = 2131296386;
 			
 			// aapt resource value: 0x7f090085
-			public const int mr_dialog_area = 2131296389;
+			public const int mr_chooser_route_desc = 2131296389;
+			
+			// aapt resource value: 0x7f090083
+			public const int mr_chooser_route_icon = 2131296387;
 			
 			// aapt resource value: 0x7f090084
-			public const int mr_expandable_area = 2131296388;
+			public const int mr_chooser_route_name = 2131296388;
 			
-			// aapt resource value: 0x7f090098
-			public const int mr_group_expand_collapse = 2131296408;
+			// aapt resource value: 0x7f090081
+			public const int mr_chooser_title = 2131296385;
 			
-			// aapt resource value: 0x7f09008c
-			public const int mr_media_main_control = 2131296396;
-			
-			// aapt resource value: 0x7f090087
-			public const int mr_name = 2131296391;
-			
-			// aapt resource value: 0x7f09008d
-			public const int mr_playback_control = 2131296397;
-			
-			// aapt resource value: 0x7f090086
-			public const int mr_title_bar = 2131296390;
-			
-			// aapt resource value: 0x7f09008f
-			public const int mr_volume_control = 2131296399;
+			// aapt resource value: 0x7f09008a
+			public const int mr_close = 2131296394;
 			
 			// aapt resource value: 0x7f090090
-			public const int mr_volume_group_list = 2131296400;
+			public const int mr_control_divider = 2131296400;
+			
+			// aapt resource value: 0x7f090096
+			public const int mr_control_playback_ctrl = 2131296406;
+			
+			// aapt resource value: 0x7f090099
+			public const int mr_control_subtitle = 2131296409;
+			
+			// aapt resource value: 0x7f090098
+			public const int mr_control_title = 2131296408;
+			
+			// aapt resource value: 0x7f090097
+			public const int mr_control_title_container = 2131296407;
+			
+			// aapt resource value: 0x7f09008b
+			public const int mr_custom_control = 2131296395;
+			
+			// aapt resource value: 0x7f09008c
+			public const int mr_default_control = 2131296396;
+			
+			// aapt resource value: 0x7f090087
+			public const int mr_dialog_area = 2131296391;
+			
+			// aapt resource value: 0x7f090086
+			public const int mr_expandable_area = 2131296390;
+			
+			// aapt resource value: 0x7f09009a
+			public const int mr_group_expand_collapse = 2131296410;
+			
+			// aapt resource value: 0x7f09008e
+			public const int mr_media_main_control = 2131296398;
+			
+			// aapt resource value: 0x7f090089
+			public const int mr_name = 2131296393;
+			
+			// aapt resource value: 0x7f09008f
+			public const int mr_playback_control = 2131296399;
+			
+			// aapt resource value: 0x7f090088
+			public const int mr_title_bar = 2131296392;
+			
+			// aapt resource value: 0x7f090091
+			public const int mr_volume_control = 2131296401;
 			
 			// aapt resource value: 0x7f090092
-			public const int mr_volume_item_icon = 2131296402;
+			public const int mr_volume_group_list = 2131296402;
 			
-			// aapt resource value: 0x7f090093
-			public const int mr_volume_slider = 2131296403;
+			// aapt resource value: 0x7f090094
+			public const int mr_volume_item_icon = 2131296404;
 			
-			// aapt resource value: 0x7f09001a
-			public const int multiply = 2131296282;
+			// aapt resource value: 0x7f090095
+			public const int mr_volume_slider = 2131296405;
 			
-			// aapt resource value: 0x7f090079
-			public const int navigation_header_container = 2131296377;
+			// aapt resource value: 0x7f090019
+			public const int multiply = 2131296281;
+			
+			// aapt resource value: 0x7f09007b
+			public const int navigation_header_container = 2131296379;
 			
 			// aapt resource value: 0x7f090026
 			public const int never = 2131296294;
@@ -4739,14 +5238,14 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090010
 			public const int normal = 2131296272;
 			
-			// aapt resource value: 0x7f0900a8
-			public const int notification_background = 2131296424;
+			// aapt resource value: 0x7f0900aa
+			public const int notification_background = 2131296426;
 			
-			// aapt resource value: 0x7f0900a2
-			public const int notification_main_column = 2131296418;
+			// aapt resource value: 0x7f0900a4
+			public const int notification_main_column = 2131296420;
 			
-			// aapt resource value: 0x7f0900a1
-			public const int notification_main_column_container = 2131296417;
+			// aapt resource value: 0x7f0900a3
+			public const int notification_main_column_container = 2131296419;
 			
 			// aapt resource value: 0x7f090037
 			public const int parallax = 2131296311;
@@ -4769,14 +5268,14 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090035
 			public const int right = 2131296309;
 			
-			// aapt resource value: 0x7f0900a7
-			public const int right_icon = 2131296423;
+			// aapt resource value: 0x7f0900a9
+			public const int right_icon = 2131296425;
 			
-			// aapt resource value: 0x7f0900a3
-			public const int right_side = 2131296419;
+			// aapt resource value: 0x7f0900a5
+			public const int right_side = 2131296421;
 			
-			// aapt resource value: 0x7f09001b
-			public const int screen = 2131296283;
+			// aapt resource value: 0x7f09001a
+			public const int screen = 2131296282;
 			
 			// aapt resource value: 0x7f09002d
 			public const int scroll = 2131296301;
@@ -4838,17 +5337,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090017
 			public const int showTitle = 2131296279;
 			
-			// aapt resource value: 0x7f0900b0
-			public const int sliding_tabs = 2131296432;
+			// aapt resource value: 0x7f0900b2
+			public const int sliding_tabs = 2131296434;
 			
 			// aapt resource value: 0x7f090073
 			public const int smallLabel = 2131296371;
 			
-			// aapt resource value: 0x7f090078
-			public const int snackbar_action = 2131296376;
+			// aapt resource value: 0x7f09007a
+			public const int snackbar_action = 2131296378;
 			
-			// aapt resource value: 0x7f090077
-			public const int snackbar_text = 2131296375;
+			// aapt resource value: 0x7f090079
+			public const int snackbar_text = 2131296377;
 			
 			// aapt resource value: 0x7f09002e
 			public const int snap = 2131296302;
@@ -4859,20 +5358,20 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090008
 			public const int split_action_bar = 2131296264;
 			
+			// aapt resource value: 0x7f09001b
+			public const int src_atop = 2131296283;
+			
 			// aapt resource value: 0x7f09001c
-			public const int src_atop = 2131296284;
+			public const int src_in = 2131296284;
 			
 			// aapt resource value: 0x7f09001d
-			public const int src_in = 2131296285;
-			
-			// aapt resource value: 0x7f09001e
-			public const int src_over = 2131296286;
+			public const int src_over = 2131296285;
 			
 			// aapt resource value: 0x7f090036
 			public const int start = 2131296310;
 			
-			// aapt resource value: 0x7f09009e
-			public const int status_bar_latest_event_content = 2131296414;
+			// aapt resource value: 0x7f0900a0
+			public const int status_bar_latest_event_content = 2131296416;
 			
 			// aapt resource value: 0x7f09005e
 			public const int submenuarrow = 2131296350;
@@ -4883,11 +5382,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090011
 			public const int tabMode = 2131296273;
 			
-			// aapt resource value: 0x7f0900ae
-			public const int text = 2131296430;
+			// aapt resource value: 0x7f0900b0
+			public const int text = 2131296432;
 			
-			// aapt resource value: 0x7f0900ac
-			public const int text2 = 2131296428;
+			// aapt resource value: 0x7f0900ae
+			public const int text2 = 2131296430;
 			
 			// aapt resource value: 0x7f090052
 			public const int textSpacerNoButtons = 2131296338;
@@ -4895,8 +5394,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090051
 			public const int textSpacerNoTitle = 2131296337;
 			
-			// aapt resource value: 0x7f09007e
-			public const int text_input_password_toggle = 2131296382;
+			// aapt resource value: 0x7f090080
+			public const int text_input_password_toggle = 2131296384;
 			
 			// aapt resource value: 0x7f09000c
 			public const int textinput_counter = 2131296268;
@@ -4904,8 +5403,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f09000d
 			public const int textinput_error = 2131296269;
 			
-			// aapt resource value: 0x7f0900a4
-			public const int time = 2131296420;
+			// aapt resource value: 0x7f0900a6
+			public const int time = 2131296422;
 			
 			// aapt resource value: 0x7f09004a
 			public const int title = 2131296330;
@@ -4916,8 +5415,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090057
 			public const int title_template = 2131296343;
 			
-			// aapt resource value: 0x7f0900b1
-			public const int toolbar = 2131296433;
+			// aapt resource value: 0x7f0900b3
+			public const int toolbar = 2131296435;
 			
 			// aapt resource value: 0x7f090029
 			public const int top = 2131296297;
@@ -4925,8 +5424,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f090056
 			public const int topPanel = 2131296342;
 			
-			// aapt resource value: 0x7f090075
-			public const int touch_outside = 2131296373;
+			// aapt resource value: 0x7f090077
+			public const int touch_outside = 2131296375;
 			
 			// aapt resource value: 0x7f09000a
 			public const int transition_current_scene = 2131296266;
@@ -4943,11 +5442,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 0x7f09000e
 			public const int view_offset_helper = 2131296270;
 			
-			// aapt resource value: 0x7f0900b2
-			public const int visible = 2131296434;
+			// aapt resource value: 0x7f0900b4
+			public const int visible = 2131296436;
 			
-			// aapt resource value: 0x7f090091
-			public const int volume_item_container = 2131296401;
+			// aapt resource value: 0x7f090093
+			public const int volume_item_container = 2131296403;
 			
 			// aapt resource value: 0x7f090027
 			public const int withText = 2131296295;
@@ -6707,7 +7206,7 @@ namespace FaceOff.Droid
 					2130772023,
 					2130772024,
 					2130772025,
-					2130772087};
+					2130772089};
 			
 			// aapt resource value: 10
 			public const int ActionBar_background = 10;
@@ -6879,7 +7378,7 @@ namespace FaceOff.Droid
 			public static int[] AppBarLayout = new int[] {
 					16842964,
 					2130772024,
-					2130772224};
+					2130772227};
 			
 			// aapt resource value: 0
 			public const int AppBarLayout_android_background = 0;
@@ -6891,8 +7390,8 @@ namespace FaceOff.Droid
 			public const int AppBarLayout_expanded = 2;
 			
 			public static int[] AppBarLayoutStates = new int[] {
-					2130772225,
-					2130772226};
+					2130772228,
+					2130772229};
 			
 			// aapt resource value: 0
 			public const int AppBarLayoutStates_state_collapsed = 0;
@@ -6901,8 +7400,8 @@ namespace FaceOff.Droid
 			public const int AppBarLayoutStates_state_collapsible = 1;
 			
 			public static int[] AppBarLayout_Layout = new int[] {
-					2130772227,
-					2130772228};
+					2130772230,
+					2130772231};
 			
 			// aapt resource value: 0
 			public const int AppBarLayout_Layout_layout_scrollFlags = 0;
@@ -6912,7 +7411,9 @@ namespace FaceOff.Droid
 			
 			public static int[] AppCompatImageView = new int[] {
 					16843033,
-					2130772035};
+					2130772035,
+					2130772036,
+					2130772037};
 			
 			// aapt resource value: 0
 			public const int AppCompatImageView_android_src = 0;
@@ -6920,11 +7421,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 1
 			public const int AppCompatImageView_srcCompat = 1;
 			
+			// aapt resource value: 2
+			public const int AppCompatImageView_tint = 2;
+			
+			// aapt resource value: 3
+			public const int AppCompatImageView_tintMode = 3;
+			
 			public static int[] AppCompatSeekBar = new int[] {
 					16843074,
-					2130772036,
-					2130772037,
-					2130772038};
+					2130772038,
+					2130772039,
+					2130772040};
 			
 			// aapt resource value: 0
 			public const int AppCompatSeekBar_android_thumb = 0;
@@ -6970,7 +7477,7 @@ namespace FaceOff.Droid
 			
 			public static int[] AppCompatTextView = new int[] {
 					16842804,
-					2130772039};
+					2130772041};
 			
 			// aapt resource value: 0
 			public const int AppCompatTextView_android_textAppearance = 0;
@@ -6981,8 +7488,6 @@ namespace FaceOff.Droid
 			public static int[] AppCompatTheme = new int[] {
 					16842839,
 					16842926,
-					2130772040,
-					2130772041,
 					2130772042,
 					2130772043,
 					2130772044,
@@ -7093,7 +7598,10 @@ namespace FaceOff.Droid
 					2130772149,
 					2130772150,
 					2130772151,
-					2130772152};
+					2130772152,
+					2130772153,
+					2130772154,
+					2130772155};
 			
 			// aapt resource value: 23
 			public const int AppCompatTheme_actionBarDivider = 23;
@@ -7188,17 +7696,17 @@ namespace FaceOff.Droid
 			// aapt resource value: 58
 			public const int AppCompatTheme_activityChooserViewStyle = 58;
 			
-			// aapt resource value: 94
-			public const int AppCompatTheme_alertDialogButtonGroupStyle = 94;
-			
 			// aapt resource value: 95
-			public const int AppCompatTheme_alertDialogCenterButtons = 95;
-			
-			// aapt resource value: 93
-			public const int AppCompatTheme_alertDialogStyle = 93;
+			public const int AppCompatTheme_alertDialogButtonGroupStyle = 95;
 			
 			// aapt resource value: 96
-			public const int AppCompatTheme_alertDialogTheme = 96;
+			public const int AppCompatTheme_alertDialogCenterButtons = 96;
+			
+			// aapt resource value: 94
+			public const int AppCompatTheme_alertDialogStyle = 94;
+			
+			// aapt resource value: 97
+			public const int AppCompatTheme_alertDialogTheme = 97;
 			
 			// aapt resource value: 1
 			public const int AppCompatTheme_android_windowAnimationStyle = 1;
@@ -7206,8 +7714,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 0
 			public const int AppCompatTheme_android_windowIsFloating = 0;
 			
-			// aapt resource value: 101
-			public const int AppCompatTheme_autoCompleteTextViewStyle = 101;
+			// aapt resource value: 102
+			public const int AppCompatTheme_autoCompleteTextViewStyle = 102;
 			
 			// aapt resource value: 55
 			public const int AppCompatTheme_borderlessButtonStyle = 55;
@@ -7215,59 +7723,59 @@ namespace FaceOff.Droid
 			// aapt resource value: 52
 			public const int AppCompatTheme_buttonBarButtonStyle = 52;
 			
-			// aapt resource value: 99
-			public const int AppCompatTheme_buttonBarNegativeButtonStyle = 99;
-			
 			// aapt resource value: 100
-			public const int AppCompatTheme_buttonBarNeutralButtonStyle = 100;
+			public const int AppCompatTheme_buttonBarNegativeButtonStyle = 100;
 			
-			// aapt resource value: 98
-			public const int AppCompatTheme_buttonBarPositiveButtonStyle = 98;
+			// aapt resource value: 101
+			public const int AppCompatTheme_buttonBarNeutralButtonStyle = 101;
+			
+			// aapt resource value: 99
+			public const int AppCompatTheme_buttonBarPositiveButtonStyle = 99;
 			
 			// aapt resource value: 51
 			public const int AppCompatTheme_buttonBarStyle = 51;
 			
-			// aapt resource value: 102
-			public const int AppCompatTheme_buttonStyle = 102;
-			
 			// aapt resource value: 103
-			public const int AppCompatTheme_buttonStyleSmall = 103;
+			public const int AppCompatTheme_buttonStyle = 103;
 			
 			// aapt resource value: 104
-			public const int AppCompatTheme_checkboxStyle = 104;
+			public const int AppCompatTheme_buttonStyleSmall = 104;
 			
 			// aapt resource value: 105
-			public const int AppCompatTheme_checkedTextViewStyle = 105;
+			public const int AppCompatTheme_checkboxStyle = 105;
 			
-			// aapt resource value: 85
-			public const int AppCompatTheme_colorAccent = 85;
-			
-			// aapt resource value: 92
-			public const int AppCompatTheme_colorBackgroundFloating = 92;
-			
-			// aapt resource value: 89
-			public const int AppCompatTheme_colorButtonNormal = 89;
-			
-			// aapt resource value: 87
-			public const int AppCompatTheme_colorControlActivated = 87;
-			
-			// aapt resource value: 88
-			public const int AppCompatTheme_colorControlHighlight = 88;
+			// aapt resource value: 106
+			public const int AppCompatTheme_checkedTextViewStyle = 106;
 			
 			// aapt resource value: 86
-			public const int AppCompatTheme_colorControlNormal = 86;
+			public const int AppCompatTheme_colorAccent = 86;
 			
-			// aapt resource value: 83
-			public const int AppCompatTheme_colorPrimary = 83;
-			
-			// aapt resource value: 84
-			public const int AppCompatTheme_colorPrimaryDark = 84;
+			// aapt resource value: 93
+			public const int AppCompatTheme_colorBackgroundFloating = 93;
 			
 			// aapt resource value: 90
-			public const int AppCompatTheme_colorSwitchThumbNormal = 90;
+			public const int AppCompatTheme_colorButtonNormal = 90;
+			
+			// aapt resource value: 88
+			public const int AppCompatTheme_colorControlActivated = 88;
+			
+			// aapt resource value: 89
+			public const int AppCompatTheme_colorControlHighlight = 89;
+			
+			// aapt resource value: 87
+			public const int AppCompatTheme_colorControlNormal = 87;
+			
+			// aapt resource value: 84
+			public const int AppCompatTheme_colorPrimary = 84;
+			
+			// aapt resource value: 85
+			public const int AppCompatTheme_colorPrimaryDark = 85;
 			
 			// aapt resource value: 91
-			public const int AppCompatTheme_controlBackground = 91;
+			public const int AppCompatTheme_colorSwitchThumbNormal = 91;
+			
+			// aapt resource value: 92
+			public const int AppCompatTheme_controlBackground = 92;
 			
 			// aapt resource value: 44
 			public const int AppCompatTheme_dialogPreferredPadding = 44;
@@ -7293,8 +7801,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 63
 			public const int AppCompatTheme_editTextColor = 63;
 			
-			// aapt resource value: 106
-			public const int AppCompatTheme_editTextStyle = 106;
+			// aapt resource value: 107
+			public const int AppCompatTheme_editTextStyle = 107;
 			
 			// aapt resource value: 49
 			public const int AppCompatTheme_homeAsUpIndicator = 49;
@@ -7302,14 +7810,14 @@ namespace FaceOff.Droid
 			// aapt resource value: 65
 			public const int AppCompatTheme_imageButtonStyle = 65;
 			
-			// aapt resource value: 82
-			public const int AppCompatTheme_listChoiceBackgroundIndicator = 82;
+			// aapt resource value: 83
+			public const int AppCompatTheme_listChoiceBackgroundIndicator = 83;
 			
 			// aapt resource value: 45
 			public const int AppCompatTheme_listDividerAlertDialog = 45;
 			
-			// aapt resource value: 114
-			public const int AppCompatTheme_listMenuViewStyle = 114;
+			// aapt resource value: 115
+			public const int AppCompatTheme_listMenuViewStyle = 115;
 			
 			// aapt resource value: 76
 			public const int AppCompatTheme_listPopupWindowStyle = 76;
@@ -7329,14 +7837,14 @@ namespace FaceOff.Droid
 			// aapt resource value: 74
 			public const int AppCompatTheme_listPreferredItemPaddingRight = 74;
 			
-			// aapt resource value: 79
-			public const int AppCompatTheme_panelBackground = 79;
+			// aapt resource value: 80
+			public const int AppCompatTheme_panelBackground = 80;
+			
+			// aapt resource value: 82
+			public const int AppCompatTheme_panelMenuListTheme = 82;
 			
 			// aapt resource value: 81
-			public const int AppCompatTheme_panelMenuListTheme = 81;
-			
-			// aapt resource value: 80
-			public const int AppCompatTheme_panelMenuListWidth = 80;
+			public const int AppCompatTheme_panelMenuListWidth = 81;
 			
 			// aapt resource value: 61
 			public const int AppCompatTheme_popupMenuStyle = 61;
@@ -7344,23 +7852,23 @@ namespace FaceOff.Droid
 			// aapt resource value: 62
 			public const int AppCompatTheme_popupWindowStyle = 62;
 			
-			// aapt resource value: 107
-			public const int AppCompatTheme_radioButtonStyle = 107;
-			
 			// aapt resource value: 108
-			public const int AppCompatTheme_ratingBarStyle = 108;
+			public const int AppCompatTheme_radioButtonStyle = 108;
 			
 			// aapt resource value: 109
-			public const int AppCompatTheme_ratingBarStyleIndicator = 109;
+			public const int AppCompatTheme_ratingBarStyle = 109;
 			
 			// aapt resource value: 110
-			public const int AppCompatTheme_ratingBarStyleSmall = 110;
+			public const int AppCompatTheme_ratingBarStyleIndicator = 110;
+			
+			// aapt resource value: 111
+			public const int AppCompatTheme_ratingBarStyleSmall = 111;
 			
 			// aapt resource value: 69
 			public const int AppCompatTheme_searchViewStyle = 69;
 			
-			// aapt resource value: 111
-			public const int AppCompatTheme_seekBarStyle = 111;
+			// aapt resource value: 112
+			public const int AppCompatTheme_seekBarStyle = 112;
 			
 			// aapt resource value: 53
 			public const int AppCompatTheme_selectableItemBackground = 53;
@@ -7371,11 +7879,11 @@ namespace FaceOff.Droid
 			// aapt resource value: 48
 			public const int AppCompatTheme_spinnerDropDownItemStyle = 48;
 			
-			// aapt resource value: 112
-			public const int AppCompatTheme_spinnerStyle = 112;
-			
 			// aapt resource value: 113
-			public const int AppCompatTheme_switchStyle = 113;
+			public const int AppCompatTheme_spinnerStyle = 113;
+			
+			// aapt resource value: 114
+			public const int AppCompatTheme_switchStyle = 114;
 			
 			// aapt resource value: 40
 			public const int AppCompatTheme_textAppearanceLargePopupMenu = 40;
@@ -7384,7 +7892,10 @@ namespace FaceOff.Droid
 			public const int AppCompatTheme_textAppearanceListItem = 77;
 			
 			// aapt resource value: 78
-			public const int AppCompatTheme_textAppearanceListItemSmall = 78;
+			public const int AppCompatTheme_textAppearanceListItemSecondary = 78;
+			
+			// aapt resource value: 79
+			public const int AppCompatTheme_textAppearanceListItemSmall = 79;
 			
 			// aapt resource value: 42
 			public const int AppCompatTheme_textAppearancePopupMenuHeader = 42;
@@ -7398,8 +7909,8 @@ namespace FaceOff.Droid
 			// aapt resource value: 41
 			public const int AppCompatTheme_textAppearanceSmallPopupMenu = 41;
 			
-			// aapt resource value: 97
-			public const int AppCompatTheme_textColorAlertDialogListItem = 97;
+			// aapt resource value: 98
+			public const int AppCompatTheme_textColorAlertDialogListItem = 98;
 			
 			// aapt resource value: 68
 			public const int AppCompatTheme_textColorSearchUrl = 68;
@@ -7442,10 +7953,10 @@ namespace FaceOff.Droid
 			
 			public static int[] BottomNavigationView = new int[] {
 					2130772024,
-					2130772267,
-					2130772268,
-					2130772269,
-					2130772270};
+					2130772270,
+					2130772271,
+					2130772272,
+					2130772273};
 			
 			// aapt resource value: 0
 			public const int BottomNavigationView_elevation = 0;
@@ -7463,9 +7974,9 @@ namespace FaceOff.Droid
 			public const int BottomNavigationView_menu = 1;
 			
 			public static int[] BottomSheetBehavior_Layout = new int[] {
-					2130772229,
-					2130772230,
-					2130772231};
+					2130772232,
+					2130772233,
+					2130772234};
 			
 			// aapt resource value: 1
 			public const int BottomSheetBehavior_Layout_behavior_hideable = 1;
@@ -7477,7 +7988,7 @@ namespace FaceOff.Droid
 			public const int BottomSheetBehavior_Layout_behavior_skipCollapsed = 2;
 			
 			public static int[] ButtonBarLayout = new int[] {
-					2130772153};
+					2130772156};
 			
 			// aapt resource value: 0
 			public const int ButtonBarLayout_allowStacking = 0;
@@ -7538,9 +8049,6 @@ namespace FaceOff.Droid
 			
 			public static int[] CollapsingToolbarLayout = new int[] {
 					2130771999,
-					2130772232,
-					2130772233,
-					2130772234,
 					2130772235,
 					2130772236,
 					2130772237,
@@ -7552,7 +8060,10 @@ namespace FaceOff.Droid
 					2130772243,
 					2130772244,
 					2130772245,
-					2130772246};
+					2130772246,
+					2130772247,
+					2130772248,
+					2130772249};
 			
 			// aapt resource value: 13
 			public const int CollapsingToolbarLayout_collapsedTitleGravity = 13;
@@ -7603,8 +8114,8 @@ namespace FaceOff.Droid
 			public const int CollapsingToolbarLayout_toolbarId = 10;
 			
 			public static int[] CollapsingToolbarLayout_Layout = new int[] {
-					2130772247,
-					2130772248};
+					2130772250,
+					2130772251};
 			
 			// aapt resource value: 0
 			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 0;
@@ -7615,7 +8126,7 @@ namespace FaceOff.Droid
 			public static int[] ColorStateListItem = new int[] {
 					16843173,
 					16843551,
-					2130772154};
+					2130772157};
 			
 			// aapt resource value: 2
 			public const int ColorStateListItem_alpha = 2;
@@ -7628,8 +8139,8 @@ namespace FaceOff.Droid
 			
 			public static int[] CompoundButton = new int[] {
 					16843015,
-					2130772155,
-					2130772156};
+					2130772158,
+					2130772159};
 			
 			// aapt resource value: 0
 			public const int CompoundButton_android_button = 0;
@@ -7641,8 +8152,8 @@ namespace FaceOff.Droid
 			public const int CompoundButton_buttonTintMode = 2;
 			
 			public static int[] CoordinatorLayout = new int[] {
-					2130772249,
-					2130772250};
+					2130772252,
+					2130772253};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_keylines = 0;
@@ -7652,12 +8163,12 @@ namespace FaceOff.Droid
 			
 			public static int[] CoordinatorLayout_Layout = new int[] {
 					16842931,
-					2130772251,
-					2130772252,
-					2130772253,
 					2130772254,
 					2130772255,
-					2130772256};
+					2130772256,
+					2130772257,
+					2130772258,
+					2130772259};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_Layout_android_layout_gravity = 0;
@@ -7681,9 +8192,9 @@ namespace FaceOff.Droid
 			public const int CoordinatorLayout_Layout_layout_keyline = 3;
 			
 			public static int[] DesignTheme = new int[] {
-					2130772257,
-					2130772258,
-					2130772259};
+					2130772260,
+					2130772261,
+					2130772262};
 			
 			// aapt resource value: 0
 			public const int DesignTheme_bottomSheetDialogTheme = 0;
@@ -7695,14 +8206,14 @@ namespace FaceOff.Droid
 			public const int DesignTheme_textColorError = 2;
 			
 			public static int[] DrawerArrowToggle = new int[] {
-					2130772157,
-					2130772158,
-					2130772159,
 					2130772160,
 					2130772161,
 					2130772162,
 					2130772163,
-					2130772164};
+					2130772164,
+					2130772165,
+					2130772166,
+					2130772167};
 			
 			// aapt resource value: 4
 			public const int DrawerArrowToggle_arrowHeadLength = 4;
@@ -7730,13 +8241,13 @@ namespace FaceOff.Droid
 			
 			public static int[] FloatingActionButton = new int[] {
 					2130772024,
-					2130772222,
-					2130772223,
-					2130772260,
-					2130772261,
-					2130772262,
+					2130772225,
+					2130772226,
 					2130772263,
-					2130772264};
+					2130772264,
+					2130772265,
+					2130772266,
+					2130772267};
 			
 			// aapt resource value: 1
 			public const int FloatingActionButton_backgroundTint = 1;
@@ -7763,7 +8274,7 @@ namespace FaceOff.Droid
 			public const int FloatingActionButton_useCompatPadding = 7;
 			
 			public static int[] FloatingActionButton_Behavior_Layout = new int[] {
-					2130772265};
+					2130772268};
 			
 			// aapt resource value: 0
 			public const int FloatingActionButton_Behavior_Layout_behavior_autoHide = 0;
@@ -7771,7 +8282,7 @@ namespace FaceOff.Droid
 			public static int[] ForegroundLinearLayout = new int[] {
 					16843017,
 					16843264,
-					2130772266};
+					2130772269};
 			
 			// aapt resource value: 0
 			public const int ForegroundLinearLayout_android_foreground = 0;
@@ -7789,9 +8300,9 @@ namespace FaceOff.Droid
 					16843047,
 					16843048,
 					2130772007,
-					2130772165,
-					2130772166,
-					2130772167};
+					2130772168,
+					2130772169,
+					2130772170};
 			
 			// aapt resource value: 2
 			public const int LinearLayoutCompat_android_baselineAligned = 2;
@@ -7852,7 +8363,7 @@ namespace FaceOff.Droid
 					16843071,
 					16843072,
 					2130771984,
-					2130772155};
+					2130772158};
 			
 			// aapt resource value: 1
 			public const int MediaRouteButton_android_minHeight = 1;
@@ -7906,10 +8417,10 @@ namespace FaceOff.Droid
 					16843236,
 					16843237,
 					16843375,
-					2130772168,
-					2130772169,
-					2130772170,
-					2130772171};
+					2130772171,
+					2130772172,
+					2130772173,
+					2130772174};
 			
 			// aapt resource value: 14
 			public const int MenuItem_actionLayout = 14;
@@ -7970,8 +8481,8 @@ namespace FaceOff.Droid
 					16843055,
 					16843056,
 					16843057,
-					2130772172,
-					2130772173};
+					2130772175,
+					2130772176};
 			
 			// aapt resource value: 4
 			public const int MenuView_android_headerBackground = 4;
@@ -8005,12 +8516,12 @@ namespace FaceOff.Droid
 					16842973,
 					16843039,
 					2130772024,
-					2130772267,
-					2130772268,
-					2130772269,
 					2130772270,
 					2130772271,
-					2130772272};
+					2130772272,
+					2130772273,
+					2130772274,
+					2130772275};
 			
 			// aapt resource value: 0
 			public const int NavigationView_android_background = 0;
@@ -8045,7 +8556,7 @@ namespace FaceOff.Droid
 			public static int[] PopupWindow = new int[] {
 					16843126,
 					16843465,
-					2130772174};
+					2130772177};
 			
 			// aapt resource value: 1
 			public const int PopupWindow_android_popupAnimationStyle = 1;
@@ -8057,14 +8568,14 @@ namespace FaceOff.Droid
 			public const int PopupWindow_overlapAnchor = 2;
 			
 			public static int[] PopupWindowBackgroundState = new int[] {
-					2130772175};
+					2130772178};
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
 			public static int[] RecycleListView = new int[] {
-					2130772176,
-					2130772177};
+					2130772179,
+					2130772180};
 			
 			// aapt resource value: 0
 			public const int RecycleListView_paddingBottomNoButtons = 0;
@@ -8099,13 +8610,13 @@ namespace FaceOff.Droid
 			public const int RecyclerView_stackFromEnd = 5;
 			
 			public static int[] ScrimInsetsFrameLayout = new int[] {
-					2130772273};
+					2130772276};
 			
 			// aapt resource value: 0
 			public const int ScrimInsetsFrameLayout_insetForeground = 0;
 			
 			public static int[] ScrollingViewBehavior_Layout = new int[] {
-					2130772274};
+					2130772277};
 			
 			// aapt resource value: 0
 			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
@@ -8115,9 +8626,6 @@ namespace FaceOff.Droid
 					16843039,
 					16843296,
 					16843364,
-					2130772178,
-					2130772179,
-					2130772180,
 					2130772181,
 					2130772182,
 					2130772183,
@@ -8127,7 +8635,10 @@ namespace FaceOff.Droid
 					2130772187,
 					2130772188,
 					2130772189,
-					2130772190};
+					2130772190,
+					2130772191,
+					2130772192,
+					2130772193};
 			
 			// aapt resource value: 0
 			public const int SearchView_android_focusable = 0;
@@ -8183,7 +8694,7 @@ namespace FaceOff.Droid
 			public static int[] SnackbarLayout = new int[] {
 					16843039,
 					2130772024,
-					2130772275};
+					2130772278};
 			
 			// aapt resource value: 0
 			public const int SnackbarLayout_android_maxWidth = 0;
@@ -8220,9 +8731,6 @@ namespace FaceOff.Droid
 					16843044,
 					16843045,
 					16843074,
-					2130772191,
-					2130772192,
-					2130772193,
 					2130772194,
 					2130772195,
 					2130772196,
@@ -8230,7 +8738,10 @@ namespace FaceOff.Droid
 					2130772198,
 					2130772199,
 					2130772200,
-					2130772201};
+					2130772201,
+					2130772202,
+					2130772203,
+					2130772204};
 			
 			// aapt resource value: 1
 			public const int SwitchCompat_android_textOff = 1;
@@ -8289,9 +8800,6 @@ namespace FaceOff.Droid
 			public const int TabItem_android_text = 2;
 			
 			public static int[] TabLayout = new int[] {
-					2130772276,
-					2130772277,
-					2130772278,
 					2130772279,
 					2130772280,
 					2130772281,
@@ -8304,7 +8812,10 @@ namespace FaceOff.Droid
 					2130772288,
 					2130772289,
 					2130772290,
-					2130772291};
+					2130772291,
+					2130772292,
+					2130772293,
+					2130772294};
 			
 			// aapt resource value: 3
 			public const int TabLayout_tabBackground = 3;
@@ -8364,7 +8875,7 @@ namespace FaceOff.Droid
 					16843106,
 					16843107,
 					16843108,
-					2130772039};
+					2130772041};
 			
 			// aapt resource value: 5
 			public const int TextAppearance_android_shadowColor = 5;
@@ -8399,9 +8910,6 @@ namespace FaceOff.Droid
 			public static int[] TextInputLayout = new int[] {
 					16842906,
 					16843088,
-					2130772292,
-					2130772293,
-					2130772294,
 					2130772295,
 					2130772296,
 					2130772297,
@@ -8412,7 +8920,10 @@ namespace FaceOff.Droid
 					2130772302,
 					2130772303,
 					2130772304,
-					2130772305};
+					2130772305,
+					2130772306,
+					2130772307,
+					2130772308};
 			
 			// aapt resource value: 1
 			public const int TextInputLayout_android_hint = 1;
@@ -8475,9 +8986,6 @@ namespace FaceOff.Droid
 					2130772022,
 					2130772023,
 					2130772025,
-					2130772202,
-					2130772203,
-					2130772204,
 					2130772205,
 					2130772206,
 					2130772207,
@@ -8491,7 +8999,10 @@ namespace FaceOff.Droid
 					2130772215,
 					2130772216,
 					2130772217,
-					2130772218};
+					2130772218,
+					2130772219,
+					2130772220,
+					2130772221};
 			
 			// aapt resource value: 0
 			public const int Toolbar_android_gravity = 0;
@@ -8583,9 +9094,9 @@ namespace FaceOff.Droid
 			public static int[] View = new int[] {
 					16842752,
 					16842970,
-					2130772219,
-					2130772220,
-					2130772221};
+					2130772222,
+					2130772223,
+					2130772224};
 			
 			// aapt resource value: 1
 			public const int View_android_focusable = 1;
@@ -8604,8 +9115,8 @@ namespace FaceOff.Droid
 			
 			public static int[] ViewBackgroundHelper = new int[] {
 					16842964,
-					2130772222,
-					2130772223};
+					2130772225,
+					2130772226};
 			
 			// aapt resource value: 0
 			public const int ViewBackgroundHelper_android_background = 0;
