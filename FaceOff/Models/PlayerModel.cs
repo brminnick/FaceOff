@@ -1,6 +1,7 @@
 ﻿using Plugin.Media.Abstractions;
 
-using Microsoft.ProjectOxford.Emotion.Contract;
+using Microsoft.ProjectOxford.Common.Contract;
+
 namespace FaceOff
 {
 	public class PlayerModel
