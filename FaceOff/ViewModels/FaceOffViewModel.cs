@@ -3,13 +3,11 @@ using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
-using Plugin.Connectivity;
 using Plugin.Media.Abstractions;
 
 using Microsoft.ProjectOxford.Common;
-using Microsoft.ProjectOxford.Emotion.Contract;
+using Microsoft.ProjectOxford.Common.Contract;
 
 using Xamarin;
 using Xamarin.Forms;
@@ -194,10 +192,6 @@ namespace FaceOff
         public event EventHandler ScoreButton2RevealTriggered;
         public event EventHandler PhotoImage1RevealTriggered;
         public event EventHandler PhotoImage2RevealTriggered;
-        #endregion
-
-        #region Enums
-
         #endregion
 
         #region Methods

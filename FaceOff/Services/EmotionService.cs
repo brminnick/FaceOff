@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Microsoft.ProjectOxford.Emotion;
-using Microsoft.ProjectOxford.Emotion.Contract;
+using Microsoft.ProjectOxford.Common.Contract;
 
 using Plugin.Media.Abstractions;
 
