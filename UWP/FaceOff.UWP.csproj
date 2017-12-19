@@ -180,7 +180,7 @@
       <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.ProjectOxford.Emotion">
-      <Version>1.0.336</Version>
+      <Version>2.0.40</Version>
     </PackageReference>
     <PackageReference Include="modernhttpclient">
       <Version>2.4.2</Version>
@@ -192,16 +192,16 @@
       <Version>3.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
-      <Version>3.0.1</Version>
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry">
-      <Version>3.1.2</Version>
+      <Version>3.2.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.4.0.38779</Version>
+      <Version>2.5.0.121934</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Insights">
       <Version>1.12.3</Version>
