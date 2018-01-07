@@ -56,7 +56,7 @@ namespace FaceOff
         #region Methods
         public static EmotionType GetRandomEmotionType(EmotionType currentEmotionType)
         {
-            var rnd = new Random();
+            var rnd = new Random((int)DateTime.UtcNow.Ticks);
             int randomNumber;
 
             do
