@@ -89,23 +89,11 @@
     <Reference Include="Plugin.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Permissions.Abstractions">
-      <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions">
-      <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ProjectOxford.Common">
       <HintPath>..\packages\Microsoft.ProjectOxford.Common.2.0.25\lib\netstandard1.1\Microsoft.ProjectOxford.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ProjectOxford.Emotion">
       <HintPath>..\packages\Microsoft.ProjectOxford.Emotion.2.0.40\lib\netstandard1.1\Microsoft.ProjectOxford.Emotion.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Media.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.3.1.1\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Media">
-      <HintPath>..\packages\Xam.Plugin.Media.3.1.1\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Annotations">
       <HintPath>..\packages\Xamarin.Android.Support.Annotations.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.Annotations.dll</HintPath>
@@ -175,6 +163,18 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.2.2.1\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.2.2.1\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.3.1.2\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\packages\Xam.Plugin.Media.3.1.2\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
