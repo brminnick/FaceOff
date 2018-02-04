@@ -2,15 +2,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27009.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.Droid", "Droid\FaceOff.Droid.csproj", "{598E6A0B-D1F0-4F64-A297-3FB652C379E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.Droid", "FaceOff.Droid\FaceOff.Droid.csproj", "{598E6A0B-D1F0-4F64-A297-3FB652C379E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UWP", "UWP\FaceOff.UWP.csproj", "{7E3407D5-2430-4086-8852-4C20F5B6F78F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UWP", "FaceOff.UWP\FaceOff.UWP.csproj", "{7E3407D5-2430-4086-8852-4C20F5B6F78F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UITests", "UITests\FaceOff.UITests.csproj", "{0A4CFB91-046F-4236-BB46-982FDADDA01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UITests", "FaceOff.UITests\FaceOff.UITests.csproj", "{0A4CFB91-046F-4236-BB46-982FDADDA01D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.iOS", "iOS\FaceOff.iOS.csproj", "{D9466562-859D-4760-BF8A-DB4983B5F6BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.iOS", "FaceOff.iOS\FaceOff.iOS.csproj", "{D9466562-859D-4760-BF8A-DB4983B5F6BA}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FaceOff.Shared", "Shared\FaceOff.Shared.shproj", "{CDEBC040-8ABC-4393-84D8-75E5C8A049BE}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FaceOff.Shared", "FaceOff.Shared\FaceOff.Shared.shproj", "{CDEBC040-8ABC-4393-84D8-75E5C8A049BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff", "FaceOff\FaceOff.csproj", "{463970CD-BBFA-41F8-8CE9-6E5F9FCCB148}"
 EndProject

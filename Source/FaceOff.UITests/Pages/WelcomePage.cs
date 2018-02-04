@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 
 using Xamarin.UITest;
+using Xamarin.UITest.Android;
 using Xamarin.UITest.Queries;
 
 using FaceOff.Shared;
@@ -13,10 +14,10 @@ namespace FaceOff.UITests
     {
         #region Constant Fields
         readonly Query _player1Entry, _player2Entry, _startGameButton;
-		#endregion
+        #endregion
 
-		#region Constructors
-		public WelcomePage(IApp app, Platform platform) : base(app, platform)
+        #region Constructors
+        public WelcomePage(IApp app) : base(app)
         {
             _player1Entry = x => x.Marked(AutomationIdConstants.Player1Entry);
             _player2Entry = x => x.Marked(AutomationIdConstants.Player2Entry);
@@ -25,19 +26,15 @@ namespace FaceOff.UITests
         #endregion
 
         #region Properties
-        public string Player1EntryPlaceholderText =>
-            GetPlaceholderText(AutomationIdConstants.Player1Entry);
+        public string Player1EntryPlaceholderText => GetPlaceholderText(AutomationIdConstants.Player1Entry);
 
-        public string Player2EntryPlaceholderText =>
-            GetPlaceholderText(AutomationIdConstants.Player2Entry);
+        public string Player2EntryPlaceholderText => GetPlaceholderText(AutomationIdConstants.Player2Entry);
 
-        public bool IsErrorMessageDisplayed =>
-            GetErrorMessageQuery().Any();
+        public bool IsErrorMessageDisplayed => GetErrorMessageQuery().Any();
         #endregion
 
         #region Methods
-        public void WaitForPageToLoad() =>
-            App.WaitForElement("Face Off");
+        public void WaitForPageToLoad() => App.WaitForElement("FaceOff");
 
         public void EnterPlayer1Name(string name)
         {
@@ -69,7 +66,7 @@ namespace FaceOff.UITests
 
         string GetPlaceholderText(string entryAutomationId)
         {
-            if (IsAndroid)
+            if (App is AndroidApp)
                 return App.Query(x => x.Marked(entryAutomationId)?.Invoke("getHint"))?.FirstOrDefault()?.ToString();
 
             return App.Query(x => x.Marked(entryAutomationId)?.Invoke("placeholder"))?.FirstOrDefault()?.ToString();

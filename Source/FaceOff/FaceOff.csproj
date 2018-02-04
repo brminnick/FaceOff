@@ -4,19 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <Import Project="..\Shared\FaceOff.Shared.projitems" Label="Shared" />
-
   <ItemGroup>
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.3">
-    </PackageReference>
     <PackageReference Include="Xamarin.Insights" Version="1.12.3">
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Microsoft.ProjectOxford.Emotion" Version="2.0.40" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Xam.Plugin.Media" Version="3.1.2" />
-    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.3.0" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
+    <PackageReference Include="Xam.Plugin.Media" Version="3.1.3" />
+    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="4.0.0-pre4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,4 +28,5 @@
     <Folder Include="Pages\Base\" />
     <Folder Include="Enums\" />
   </ItemGroup>
+  <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 
 using Xamarin.UITest;
+using Xamarin.UITest.iOS;
 using Xamarin.UITest.Queries;
 
 using FaceOff.Shared;
@@ -18,7 +20,7 @@ namespace FaceOff.UITests
         #endregion
 
         #region Constructors
-        public FaceOffPage(IApp app, Platform platform) : base(app, platform)
+        public FaceOffPage(IApp app) : base(app)
         {
             _emotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
 
@@ -39,31 +41,23 @@ namespace FaceOff.UITests
         #endregion
 
         #region Properties
-        public string Emotion =>
-            GetEmotionUsingBackdoors();
+        public string Emotion => GetEmotionUsingBackdoors();
 
-        public bool IsScoreButton1Visible =>
-            ScoreButton1Query().Length > 0;
+        public bool IsScoreButton1Visible => ScoreButton1Query().Any();
 
-        public bool IsScoreButton2Visible =>
-            ScoreButton2Query().Length > 0;
+        public bool IsScoreButton2Visible => ScoreButton2Query().Any();
         #endregion
 
         #region Methods
-        public void WaitForNoPhoto1ActivityIndicator() =>
-            App.WaitForNoElement(_photo1ActivityIndicator);
+        public void WaitForNoPhoto1ActivityIndicator() => App.WaitForNoElement(_photo1ActivityIndicator);
 
-        public void WaitForNoPhoto2ActivityIndicator() =>
-            App.WaitForNoElement(_photo2ActivityIndicator);
+        public void WaitForNoPhoto2ActivityIndicator() => App.WaitForNoElement(_photo2ActivityIndicator);
 
-        public void WaitForPhotoImage1() =>
-            App.WaitForElement(_photoImage1);
+        public void WaitForPhotoImage1() => App.WaitForElement(_photoImage1);
 
-        public void WaitForPhotoImage2() =>
-            App.WaitForElement(_photoImage2);
+        public void WaitForPhotoImage2() => App.WaitForElement(_photoImage2);
 
-        public void WaitForPicturePageToLoad() =>
-            App.WaitForElement(_takePhoto1Button);
+        public void WaitForPicturePageToLoad() => App.WaitForElement(_takePhoto1Button);
 
         public void TapResetButton()
         {
@@ -114,7 +108,7 @@ namespace FaceOff.UITests
 
         string GetEmotionUsingBackdoors()
         {
-            if (IsiOS)
+            if (App is iOSApp)
                 return App.Invoke("getPicturePageTitle:", "").ToString();
 
             return App.Invoke("GetPicturePageTitle").ToString();
