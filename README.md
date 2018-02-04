@@ -6,7 +6,7 @@ FaceOff pits two players against eachother to see who can reflect an emotion bes
 The app will provide a random emotion that both players will portray. It then uses the facial recognition technology to determine who exhibited the emotion best!
 
 ## About
-This is an Android, iOS and UWP app created using [Xamarin.Forms](https://www.xamarin.com/forms). The facial recognition uses [Microsoft's Coginitive Services Emotion API](https://www.microsoft.com/cognitive-services/). 
+This is an Android, iOS and UWP app created using [Xamarin.Forms](https://www.xamarin.com/forms). The facial recognition uses [Microsoft's Coginitive Services Emotion API](https://aka.ms/Myvcp0). 
 
 ## ToDo
 To access Microsoft's Coginitive Services Emotion API from this app, sign up for a [free API Key](https://www.microsoft.com/cognitive-services/en-us/emotion-api) and insert it to the code [here](./FaceOff/Constants/CognitiveServicesConstants.cs#L7). After adding your API Key, remove the diagnostic directive [located here](./FaceOff/Constants/CognitiveServicesConstants.cs#L5).
