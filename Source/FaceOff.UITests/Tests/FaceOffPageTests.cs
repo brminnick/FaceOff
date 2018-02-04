@@ -4,123 +4,124 @@ using NUnit.Framework;
 
 using Xamarin.UITest;
 using Xamarin.UITest.iOS;
+using Xamarin.UITest.Android;
 
 namespace FaceOff.UITests
 {
-	public class FaceOffPageTests : BaseTest
-	{
-		public FaceOffPageTests(Platform platform) : base(platform)
-		{
-		}
+    public class FaceOffPageTests : BaseTest
+    {
+        public FaceOffPageTests(Platform platform) : base(platform)
+        {
+        }
 
-		public override void TestSetup()
-		{
-			base.TestSetup();
+        public override void TestSetup()
+        {
+            base.TestSetup();
 
-			WelcomePage.EnterPlayer1Name("First Player");
-			WelcomePage.EnterPlayer2Name("Second Player");
-			WelcomePage.TapStartGameButton();
-			
-			FaceOffPage.WaitForPicturePageToLoad();
-		}
+            WelcomePage.EnterPlayer1Name("First Player");
+            WelcomePage.EnterPlayer2Name("Second Player");
+            WelcomePage.TapStartGameButton();
+
+            FaceOffPage.WaitForPicturePageToLoad();
+        }
 
 
-		[Test]
-		public void TakePictureOne()
-		{
+        [Test]
+        public void TakePictureOne()
+        {
             //Arrange
 
-			//Act
-			FaceOffPage.TapTakePhoto1Button();
-			FaceOffPage.TapOK();
+            //Act
+            FaceOffPage.TapTakePhoto1Button();
+            FaceOffPage.TapOK();
 
-			if (Platform == Platform.Android)
-				return;
+            if (App is AndroidApp)
+                return;
 
-			CameraPage.TapPhotoCaptureButton();
-			CameraPage.TapUsePhotoButton();
+            CameraPage.TapPhotoCaptureButton();
+            CameraPage.TapUsePhotoButton();
 
-			//Assert
+            //Assert
             Assert.IsTrue(FaceOffPage.IsScoreButton1Visible);
-		}
+        }
 
-		[Test]
-		public void TakePictureTwo()
-		{
-			//Arrange
+        [Test]
+        public void TakePictureTwo()
+        {
+            //Arrange
 
-			//Act
-			FaceOffPage.TapTakePhoto2Button();
-			FaceOffPage.TapOK();
+            //Act
+            FaceOffPage.TapTakePhoto2Button();
+            FaceOffPage.TapOK();
 
-			if (Platform == Platform.Android)
-				return;
+            if (App is AndroidApp)
+                return;
 
-			CameraPage.TapPhotoCaptureButton();
-			CameraPage.TapUsePhotoButton();
+            CameraPage.TapPhotoCaptureButton();
+            CameraPage.TapUsePhotoButton();
 
-			//Assert
+            //Assert
             Assert.IsTrue(FaceOffPage.IsScoreButton2Visible);
-		}
+        }
 
-		[Test]
-		public void VerifyResetButton()
-		{
-			//Arrange
+        [Test]
+        public void VerifyResetButton()
+        {
+            //Arrange
             string firstEmotion = FaceOffPage.Emotion;
-			string secondEmotion;
+            string secondEmotion;
 
-			//Act
-			if (Platform == Platform.Android)
-				return;
+            //Act
+            if (App is AndroidApp)
+                return;
 
             FaceOffPage.TapTakePhoto1Button();
             FaceOffPage.TapOK();
 
-			CameraPage.TapPhotoCaptureButton();
-			CameraPage.TapUsePhotoButton();
+            CameraPage.TapPhotoCaptureButton();
+            CameraPage.TapUsePhotoButton();
 
             FaceOffPage.WaitForPhotoImage1();
             FaceOffPage.TapResetButton();
 
-			//Assert
+            //Assert
             secondEmotion = FaceOffPage.Emotion;
-			Assert.AreNotEqual(firstEmotion, secondEmotion);
-		}
+            Assert.AreNotEqual(firstEmotion, secondEmotion);
+        }
 
-		[Test]
-		public void VerifyPhoto1Results()
-		{
-			//Arrange
-			if(App is iOSApp)
-				App.Invoke("useDefaultImageForPhoto1:", "");
-			else
-				App.Invoke("UseDefaultImageForPhoto1");
+        [Test]
+        public void VerifyPhoto1Results()
+        {
+            //Arrange
+            if (App is iOSApp)
+                App.Invoke("useDefaultImageForPhoto1:", "");
+            else
+                App.Invoke("UseDefaultImageForPhoto1");
 
-			//Act
-			App.Screenshot("Test Image Loaded");
+            //Act
+            App.Screenshot("Test Image Loaded");
             FaceOffPage.TapScoreButton1();
 
-			//Assert
-			Assert.IsTrue(App.Query("Results").Any());
-		}
+            //Assert
+            Assert.IsTrue(App.Query("Results").Any());
+        }
 
-		[Test]
-		public void VerifyPhoto2Results()
-		{
-			//Arrange
-			if (App is iOSApp)
-				App.Invoke("useDefaultImageForPhoto2:", "");
-			else
-				App.Invoke("UseDefaultImageForPhoto2");
+        [Test]
+        public void VerifyPhoto2Results()
+        {
+            //Arrange
+            if (App is iOSApp)
+                App.Invoke("useDefaultImageForPhoto2:", "");
+            else
+                App.Invoke("UseDefaultImageForPhoto2");
 
-			//Act
-			App.Screenshot("Test Image Loaded");
+            //Act
+            App.Screenshot("Test Image Loaded");
             FaceOffPage.TapScoreButton2();
 
-			//Assert
-			Assert.IsTrue(App.Query("Results").Any());
-		}
-	}
+            //Assert
+            Assert.IsTrue(App.Query("Results").Any());
+        }
+    }
 }
 
