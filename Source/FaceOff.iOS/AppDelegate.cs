@@ -1,4 +1,6 @@
-﻿using UIKit;
+﻿using System.Diagnostics;
+
+using UIKit;
 using Foundation;
 
 using Xamarin.Forms;
@@ -12,16 +14,17 @@ namespace FaceOff.iOS
 	{
 		public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 		{
-#if ENABLE_TEST_CLOUD
-			Xamarin.Calabash.Start();
-#endif
 			global::Xamarin.Forms.Forms.Init();
 			CustomReturnEntryRenderer.Init();
+            EnableAutomationAPIs();
 
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(uiApplication, launchOptions);
 		}
+
+        [Conditional("DEBUG")]
+        void EnableAutomationAPIs() => Xamarin.Calabash.Start();
 
 		#region Xamarin Test Cloud Back Door Methods
 
