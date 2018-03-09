@@ -10,12 +10,10 @@ using Xamarin;
 
 namespace FaceOff.Droid
 {
-    //You can specify additional application information in this attribute
     [Application]
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transer)
-          : base(handle, transer)
+        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
         {
         }
 

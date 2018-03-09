@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 
 using FaceOff.Shared;
+using Plugin.Permissions;
 
 namespace FaceOff
 {
@@ -220,6 +221,7 @@ namespace FaceOff
             ViewModel.ScoreButton2RevealTriggered += HandleScoreButton2RevealTriggered;
             EmotionService.MultipleFacesDetectedAlertTriggered += HandleMultipleFacesDetectedAlertTriggered;
 			MediaService.NoCameraDetected += HandleNoCameraDetected;
+            MediaService.PermissionsDenied += HandlePermissionsDenied;
         }
 
         protected override void UnsubscribeEventHandlers()
@@ -232,6 +234,7 @@ namespace FaceOff
             ViewModel.ScoreButton2RevealTriggered -= HandleScoreButton2RevealTriggered;
             EmotionService.MultipleFacesDetectedAlertTriggered -= HandleMultipleFacesDetectedAlertTriggered;
             MediaService.NoCameraDetected -= HandleNoCameraDetected;
+            MediaService.PermissionsDenied -= HandlePermissionsDenied;
         }
 
         void HandleAllEmotionResultsAlertTriggered(object sender, string message) =>
@@ -242,6 +245,16 @@ namespace FaceOff
 
         void HandleMultipleFacesDetectedAlertTriggered(object sender, EventArgs e) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error: Multiple Faces Detected", "Ensure only one face is captured in the photo", "Ok"));
+
+        void HandlePermissionsDenied(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var isAlertAccepted = await DisplayAlert("Open Settings?", "Storage and Camera Permission Need To Be Enabled", "Ok", "Cancel");
+                if (isAlertAccepted)
+                    CrossPermissions.Current.OpenAppSettings();
+            });
+        }
 
         void HandlePopUpAlertAboutEmotionTriggered(object sender, AlertMessageEventArgs e)
         {
