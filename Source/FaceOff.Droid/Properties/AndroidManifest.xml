@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="3.1.0" package="com.minnick.faceoffapp" android:versionCode="27" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="15" />
 	<uses-permission android:name="android.permission.CAMERA" />
-	<application android:label="FaceOff"></application>
-	<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.minnick.faceoffapp.fileprovider" android:exported="false" android:grantUriPermissions="true">
-		<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
-	</provider>
+	<application android:label="FaceOff">
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths">
+			</meta-data>
+		</provider>
+	</application>
 </manifest>
