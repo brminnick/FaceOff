@@ -16,6 +16,14 @@ namespace FaceOff
 
 			MainPage = welcomePage;
 		}
+
+		protected override void OnStart()
+		{
+			base.OnStart();
+
+			AnalyticsHelpers.Start();
+		}
 	}
+
 }
 

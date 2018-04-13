@@ -6,66 +6,49 @@ using Android.Runtime;
 
 using Plugin.CurrentActivity;
 
-using Xamarin;
-
 namespace FaceOff.Droid
 {
-    [Application]
-    public class MainApplication : Application, Application.IActivityLifecycleCallbacks
-    {
-        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
-        {
-        }
+	[Application]
+	public class MainApplication : Application, Application.IActivityLifecycleCallbacks
+	{
+		public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
+		{
+		}
 
-        public override void OnCreate()
-        {
-            base.OnCreate();
-            RegisterActivityLifecycleCallbacks(this);
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			RegisterActivityLifecycleCallbacks(this);
+		}
 
-            Insights.Initialize(InsightsConstants.InsightsApiKey, this);
+		public override void OnTerminate()
+		{
+			base.OnTerminate();
+			UnregisterActivityLifecycleCallbacks(this);
+		}
 
-            Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
-            {
-                if (isStartupCrash)
-                    Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
-            };
-        }
+		public void OnActivityCreated(Activity activity, Bundle savedInstanceState) => CrossCurrentActivity.Current.Activity = activity;
 
-        public override void OnTerminate()
-        {
-            base.OnTerminate();
-            UnregisterActivityLifecycleCallbacks(this);
-        }
+		public void OnActivityResumed(Activity activity) => CrossCurrentActivity.Current.Activity = activity;
 
-        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
-        {
-            CrossCurrentActivity.Current.Activity = activity;
-        }
+		public void OnActivityStarted(Activity activity) => CrossCurrentActivity.Current.Activity = activity;
 
-        public void OnActivityDestroyed(Activity activity)
-        {
-        }
+		public void OnActivityDestroyed(Activity activity)
+		{
+		}
 
-        public void OnActivityPaused(Activity activity)
-        {
-        }
+		public void OnActivityPaused(Activity activity)
+		{
+		}
 
-        public void OnActivityResumed(Activity activity)
-        {
-            CrossCurrentActivity.Current.Activity = activity;
-        }
 
-        public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
-        {
-        }
+		public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
+		{
+		}
 
-        public void OnActivityStarted(Activity activity)
-        {
-            CrossCurrentActivity.Current.Activity = activity;
-        }
 
-        public void OnActivityStopped(Activity activity)
-        {
-        }
-    }
+		public void OnActivityStopped(Activity activity)
+		{
+		}
+	}
 }

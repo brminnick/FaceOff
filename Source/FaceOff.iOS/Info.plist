@@ -48,10 +48,19 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>FaceOff can save your pictures to your photos library! </string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.0</string>
+	<string>3.1.1</string>
 	<key>CFBundleVersion</key>
-	<string>27</string>
+	<string>28</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>appcenter-11275693-c46c-43b8-bae7-9a60432f7c3c</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

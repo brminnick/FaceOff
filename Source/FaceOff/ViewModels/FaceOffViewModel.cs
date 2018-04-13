@@ -288,7 +288,7 @@ namespace FaceOff
 
         async Task ExecuteGetPhotoResultsWorkflow(PlayerModel player)
         {
-            Insights.Track(InsightsConstants.PhotoTaken);
+            AnalyticsHelpers.Track(AnalyticsConstants.PhotoTaken);
 
             await ConfigureUIForPendingEmotionResults(player).ConfigureAwait(false);
 
@@ -342,21 +342,21 @@ namespace FaceOff
             }
             catch (ClientException clientException) when (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized))
             {
-                Insights.Report(clientException);
+                AnalyticsHelpers.Report(clientException);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
             }
             catch (Exception e) when (e.Message.Contains("offline"))
             {
-                Insights.Report(e);
+                AnalyticsHelpers.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.DeviceOffline];
             }
             catch (Exception e)
             {
-                Insights.Report(e);
+                AnalyticsHelpers.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
@@ -371,13 +371,13 @@ namespace FaceOff
                 switch (errorMessageKey)
                 {
                     case ErrorMessageType.NoFaceDetected:
-                        Insights.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.NoFaceDetected]);
+                        AnalyticsHelpers.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.NoFaceDetected]);
                         break;
                     case ErrorMessageType.MultipleFacesDetected:
-                        Insights.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+                        AnalyticsHelpers.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
                         break;
                     case ErrorMessageType.GenericError:
-                        Insights.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+                        AnalyticsHelpers.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
                         break;
                 }
 
@@ -391,7 +391,7 @@ namespace FaceOff
 
         void ExecuteResetButtonPressed()
         {
-            Insights.Track(InsightsConstants.ResetButtonTapped);
+            AnalyticsHelpers.Track(AnalyticsConstants.ResetButtonTapped);
 
             SetRandomEmotion();
 
@@ -422,13 +422,13 @@ namespace FaceOff
 
         void ExecutePhoto1ScoreButtonPressed()
         {
-            Insights.Track(InsightsConstants.ResultsButton1Tapped);
+            AnalyticsHelpers.Track(AnalyticsConstants.ResultsButton1Tapped);
             OnAllEmotionResultsAlertTriggered(_photo1Results);
         }
 
         void ExecutePhoto2ScoreButtonPressed()
         {
-            Insights.Track(InsightsConstants.ResultsButton2Tapped);
+            AnalyticsHelpers.Track(AnalyticsConstants.ResultsButton2Tapped);
             OnAllEmotionResultsAlertTriggered(_photo2Results);
         }
 
@@ -613,10 +613,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    Insights.Track(InsightsConstants.PhotoButton1Tapped);
+                    AnalyticsHelpers.Track(AnalyticsConstants.PhotoButton1Tapped);
                     break;
                 case PlayerNumberType.Player2:
-                    Insights.Track(InsightsConstants.PhotoButton2Tapped);
+                    AnalyticsHelpers.Track(AnalyticsConstants.PhotoButton2Tapped);
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
