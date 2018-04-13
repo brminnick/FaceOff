@@ -1,5 +1,8 @@
-[![Build Status](https://www.bitrise.io/app/3dca187dd687b3ab/status.svg?token=blpNUgDzrfaB73rNn5I0TA&branch=master)](https://www.bitrise.io/app/3dca187dd687b3ab)
-
+|CI Tool                    |Build Status|
+|---------------------------|---|
+| App Center, iOS           |  [![Build status](https://build.appcenter.ms/v0.1/apps/07eb9bfd-c818-4869-8870-90a6db8672d4/branches/master/badge)](https://appcenter.ms) |
+| App Center, Android       |   |
+| App Center, UWP           |   |
 # FaceOff
 FaceOff pits two players against eachother to see who can reflect an emotion best! 
 
