@@ -1,7 +1,7 @@
 |CI Tool                    |Build Status|
 |---------------------------|---|
 | App Center, iOS           |  [![Build status](https://build.appcenter.ms/v0.1/apps/07eb9bfd-c818-4869-8870-90a6db8672d4/branches/master/badge)](https://appcenter.ms) |
-| App Center, Android       |   |
+| App Center, Android       | [![Build status](https://build.appcenter.ms/v0.1/apps/95153c3a-8cd3-4d08-9b61-1bc9ad6a1bb4/branches/master/badge)](https://appcenter.ms)  |
 | App Center, UWP           |   |
 # FaceOff
 FaceOff pits two players against eachother to see who can reflect an emotion best! 
