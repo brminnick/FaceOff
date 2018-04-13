@@ -58,14 +58,6 @@ namespace FaceOffUWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Insights.Initialize(InsightsConstants.InsightsApiKey);
-
-                Insights.HasPendingCrashReport += (sender, isStartupCrash) =>
-                {
-                    if (isStartupCrash)
-                        Insights.PurgePendingCrashReports().GetAwaiter().GetResult();
-                };
-
                 Xamarin.Forms.Forms.Init(e);
                 EntryCustomReturn.Forms.Plugin.UWP.CustomReturnEntryRenderer.Init();
 

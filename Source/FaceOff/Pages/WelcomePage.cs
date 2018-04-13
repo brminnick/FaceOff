@@ -75,17 +75,17 @@ namespace FaceOff
 
             if (isPlayer1EntryTextEmpty)
             {
-                Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.Player1NameEmpty);
+                AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player1NameEmpty);
                 DisplayEmptyPlayerNameAlert(1);
             }
             else if (isPlayer2EntryTextEmpty)
             {
-                Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.Player2NameEmpty);
+                AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player2NameEmpty);
                 DisplayEmptyPlayerNameAlert(2);
             }
             else
             {
-                Insights.Track(InsightsConstants.StartGameButtonTapped, InsightsConstants.StartGameButtonTappedStatus, InsightsConstants.GameStarted);
+                AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
                 Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new FaceOffPage()));
             }
         }
