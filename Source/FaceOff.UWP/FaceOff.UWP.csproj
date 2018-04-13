@@ -182,11 +182,8 @@
     <PackageReference Include="Microsoft.ProjectOxford.Emotion">
       <Version>2.0.40</Version>
     </PackageReference>
-    <PackageReference Include="modernhttpclient">
-      <Version>2.4.2</Version>
-    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>11.0.1</Version>
+      <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.1.1</Version>
@@ -201,7 +198,7 @@
       <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.5.0.280555</Version>
+      <Version>2.5.1.444934</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Insights">
       <Version>1.12.3</Version>
