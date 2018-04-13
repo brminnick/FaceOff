@@ -93,7 +93,7 @@ namespace FaceOff
 
             try
             {
-                using (var handle = Insights.TrackTime(InsightsConstants.AnalyzeEmotion))
+				using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
                     return await EmotionClient.RecognizeAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile));
             }
             finally
@@ -158,7 +158,7 @@ namespace FaceOff
             }
             catch (Exception e)
             {
-                Insights.Report(e);
+				AnalyticsHelpers.Report(e);
                 return ErrorMessageDictionary[ErrorMessageType.GenericError];
             }
         }

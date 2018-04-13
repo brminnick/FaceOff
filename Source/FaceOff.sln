@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.iOS", "FaceOff.iOS\
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FaceOff.Shared", "FaceOff.Shared\FaceOff.Shared.shproj", "{CDEBC040-8ABC-4393-84D8-75E5C8A049BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceOff", "FaceOff\FaceOff.csproj", "{463970CD-BBFA-41F8-8CE9-6E5F9FCCB148}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff", "FaceOff\FaceOff.csproj", "{463970CD-BBFA-41F8-8CE9-6E5F9FCCB148}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

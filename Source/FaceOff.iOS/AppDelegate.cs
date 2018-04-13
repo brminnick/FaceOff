@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-using UIKit;
+﻿using UIKit;
 using Foundation;
 
 using Xamarin.Forms;
@@ -9,26 +7,27 @@ using EntryCustomReturn.Forms.Plugin.iOS;
 
 namespace FaceOff.iOS
 {
-	[Register("AppDelegate")]
+	[Register(nameof(AppDelegate))]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 	{
 		public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 		{
 			global::Xamarin.Forms.Forms.Init();
 			CustomReturnEntryRenderer.Init();
-            EnableAutomationAPIs();
+			Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
+
+#if DEBUG
+			Xamarin.Calabash.Start();
+#endif
 
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(uiApplication, launchOptions);
 		}
 
-        [Conditional("DEBUG")]
-        void EnableAutomationAPIs() => Xamarin.Calabash.Start();
-
 		#region Xamarin Test Cloud Back Door Methods
 
-#if ENABLE_TEST_CLOUD
+#if DEBUG
 		[Export("getPicturePageTitle:")]
 		public NSString GetPicturePageTitle(NSString noValue) =>
 			new NSString(((NavigationPage)Xamarin.Forms.Application.Current.MainPage).CurrentPage.Title);

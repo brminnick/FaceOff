@@ -200,9 +200,9 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>2.5.1.444934</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Insights">
-      <Version>1.12.3</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.5.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FaceOff\FaceOff.csproj">
