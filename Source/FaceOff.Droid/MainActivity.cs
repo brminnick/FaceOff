@@ -17,6 +17,8 @@ namespace FaceOff.Droid
     {
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
+			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
@@ -35,15 +37,15 @@ namespace FaceOff.Droid
 
         #region Xamarin Test Cloud Back Door Methods
 #if DEBUG
-        [Export("GetPicturePageTitle")]
+		[Export(nameof(GetPicturePageTitle))]
         public string GetPicturePageTitle() =>
             ((NavigationPage)Xamarin.Forms.Application.Current.MainPage).CurrentPage.Title;
 
-        [Export("UseDefaultImageForPhoto1")]
+		[Export(nameof(UseDefaultImageForPhoto1))]
         public void UseDefaultImageForPhoto1() =>
             BackdoorHelpers.UseDefaultImageForPhoto1();
-
-        [Export("UseDefaultImageForPhoto2")]
+        
+		[Export(nameof(UseDefaultImageForPhoto2))]
         public void UseDefaultImageForPhoto2() =>
             BackdoorHelpers.UseDefaultImageForPhoto2();
 #endif
