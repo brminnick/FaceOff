@@ -1,9 +1,11 @@
 ﻿namespace FaceOff
 {
-	public static class InsightsConstants
+	public static class AnalyticsConstants
 	{
 		#region API Key
-		public const string InsightsApiKey = "5dd7a435d9f55fc8243ac966a235ceff60af5e85";
+		public const string AppCenterApiKey_iOS = "11275693-c46c-43b8-bae7-9a60432f7c3c";
+		public const string AppCenterApiKey_Android = "d879da67-619a-4928-94fc-f9ae217223ff";
+		public const string AppCenterApiKey_UWP = "4e34b8ba-f0dd-474f-9909-ab538c376dbd";
 		#endregion
 
 		#region Track Events
