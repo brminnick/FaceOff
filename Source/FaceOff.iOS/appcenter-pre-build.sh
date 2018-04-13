@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-APIScriptPath=`find . -name injectCognitiveServicesAPI.sh | head -1`
+APIScriptPath=`find "$APPCENTER_SOURCE_DIRECTORY" -name injectCognitiveServicesAPI.sh | head -1`
 
-CognitiveServicesConstantsFile=`find . -name CognitiveServicesConstants.cs | head -1`
+CognitiveServicesConstantsFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name CognitiveServicesConstants.cs | head -1`
 
 echo APIScriptPath = $APIScriptPath
 echo CognitiveServicesConstantsFile = $CognitiveServicesConstantsFile
