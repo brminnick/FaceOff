@@ -1,13 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Plugin.Media.Abstractions;
-
-using Xamarin.Forms;
-using System.IO;
 
 namespace FaceOff
 {
@@ -83,20 +81,10 @@ namespace FaceOff
 
 		public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
 		{
-
-			Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = true);
-
-			try
+			using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
 			{
-				using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
-				{
-					var faceAttributes = await PostObjectToAPI<List<FaceAttributes>, Stream>($"{CognitiveServicesConstants.FaceApiUrl}/detect", MediaService.GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
-					return faceAttributes.Select(x => x.Emotion).ToList();
-				}
-			}
-			finally
-			{
-				Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = false);
+				var faceApiResponseList = await PostObjectToAPI<List<FaceApiModel>, Stream>($"{CognitiveServicesConstants.FaceApiUrl}/detect?returnFaceAttributes=emotion", MediaService.GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
+				return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
 			}
 		}
 
