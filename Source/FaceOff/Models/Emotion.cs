@@ -8,7 +8,7 @@ namespace FaceOff
         public double Anger { get; set; }
 
         [JsonProperty("contempt")]
-        public long Contempt { get; set; }
+		public double Contempt { get; set; }
 
         [JsonProperty("disgust")]
         public double Disgust { get; set; }
@@ -23,7 +23,7 @@ namespace FaceOff
         public double Neutral { get; set; }
 
         [JsonProperty("sadness")]
-        public long Sadness { get; set; }
+		public double Sadness { get; set; }
 
         [JsonProperty("surprise")]
         public double Surprise { get; set; }
