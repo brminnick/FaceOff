@@ -3,14 +3,13 @@ using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Plugin.Media.Abstractions;
 
-using Microsoft.ProjectOxford.Common;
-using Microsoft.ProjectOxford.Common.Contract;
-
 using Xamarin;
 using Xamarin.Forms;
+using System.Net.Http;
 
 namespace FaceOff
 {
@@ -332,7 +331,7 @@ namespace FaceOff
 
         async Task<string> GenerateEmotionResults(PlayerModel player)
         {
-            Emotion[] emotionArray;
+            List<Emotion> emotionArray;
             string emotionScore;
 
             try
@@ -340,9 +339,9 @@ namespace FaceOff
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
                 emotionScore = await EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType).ConfigureAwait(false);
             }
-            catch (ClientException clientException) when (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized))
+			catch (Exception e) when (e.Message.Contains("Unauthorized"))
             {
-                AnalyticsHelpers.Report(clientException);
+                AnalyticsHelpers.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
