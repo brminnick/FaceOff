@@ -11,7 +11,7 @@ The app provides a random emotion that both players will portray. It then uses t
 This is an Android, iOS and UWP app created using [Xamarin.Forms](https://www.xamarin.com/forms). The facial recognition uses [Microsoft's Coginitive Services Face API](https://aka.ms/CognitiveServices/FaceAPI). 
 
 ## ToDo
-To use Microsoft's Coginitive Services Face API from this app, sign up for a [free API Key](https://azure.microsoft.com/pricing/details/cognitive-services/face-api/?WT.mc_id=none-github-bramin) and insert it to the code [here](./FaceOff/Constants/CognitiveServicesConstants.cs#L7). After adding your API Key, remove the diagnostic directive [located here](./FaceOff/Constants/CognitiveServicesConstants.cs#L5).
+To use Microsoft's Coginitive Services Face API from this app, sign up for a [free API Key](https://azure.microsoft.com/pricing/details/cognitive-services/face-api/?WT.mc_id=none-github-bramin) and insert it to the code [here](./Source/FaceOff/Constants/CognitiveServicesConstants.cs#L7). After adding your API Key, remove the diagnostic directive [located here](./Source/FaceOff/Constants/CognitiveServicesConstants.cs#L5).
 
 ### Author
 Brandon Minnick
