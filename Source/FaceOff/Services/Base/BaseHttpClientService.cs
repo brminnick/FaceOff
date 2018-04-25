@@ -57,7 +57,7 @@ namespace FaceOff
 
 		protected static async Task<TResponse> PostObjectToAPI<TResponse, TRequest>(string apiUrl, TRequest requestData)
 		{
-			using (var responseMessage = await PostObjectToAPI(apiUrl, requestData).ConfigureAwait(false))            
+			using (var responseMessage = await PostObjectToAPI(apiUrl, requestData).ConfigureAwait(false))
 				return await DeserializeResponse<TResponse>(responseMessage).ConfigureAwait(false);
 		}
 
@@ -122,7 +122,7 @@ namespace FaceOff
 				catch (Exception e)
 				{
 					Report(e);
-					return null;
+					throw;
 				}
 				finally
 				{
@@ -170,6 +170,8 @@ namespace FaceOff
 
 		static async Task<T> DeserializeResponse<T>(HttpResponseMessage httpResponseMessage)
 		{
+			httpResponseMessage.EnsureSuccessStatusCode();
+
 			try
 			{
 				using (var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false))
@@ -185,7 +187,7 @@ namespace FaceOff
 			catch (Exception e)
 			{
 				Report(e);
-				return default;
+				throw;
 			}
 		}
 

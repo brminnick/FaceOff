@@ -339,7 +339,7 @@ namespace FaceOff
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
                 emotionScore = await EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType).ConfigureAwait(false);
             }
-			catch (Exception e) when (e.Message.Contains("Unauthorized"))
+			catch (HttpRequestException e) when (e.Message.Contains("401"))
             {
                 AnalyticsHelpers.Report(e);
 
