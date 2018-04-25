@@ -1,33 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Microsoft.ProjectOxford.Emotion" Version="2.0.40" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
-    <PackageReference Include="Xam.Plugin.Media" Version="3.1.3" />
-    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="4.1.0-pre1" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.5.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.5.0" />
-    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Base\" />
-    <Folder Include="Enums\" />
-  </ItemGroup>
-  <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+        <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
+        <PackageReference Include="Xam.Plugin.Media" Version="3.1.3" />
+        <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="4.1.0-pre1" />
+        <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+        <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.0" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.0" />
+        <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.6.0" />
+        <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.4.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.xaml.cs">
+            <DependentUpon>*.xaml</DependentUpon>
+        </Compile>
+        <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.cs">
+            <DependentUpon>*.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Pages\Base\" />
+        <Folder Include="Enums\" />
+        <Folder Include="Services\Base\" />
+    </ItemGroup>
+    <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>

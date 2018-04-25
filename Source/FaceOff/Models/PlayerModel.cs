@@ -1,6 +1,6 @@
-﻿using Plugin.Media.Abstractions;
+﻿using System.Collections.Generic;
 
-using Microsoft.ProjectOxford.Common.Contract;
+using Plugin.Media.Abstractions;
 
 namespace FaceOff
 {
@@ -18,7 +18,7 @@ namespace FaceOff
 		public PlayerNumberType PlayerNumber { get { return _playerNumber; } }
 		public string PlayerName { get { return _playerName; } }
 		public MediaFile ImageMediaFile { get; set; }
-		public Emotion[] EmotionResults { get; set; }
+		public List<Emotion>EmotionResults { get; set; }
 	}
 
 	public enum PlayerNumberType
