@@ -47,7 +47,7 @@ namespace FaceOff
 			catch (Exception e)
 			{
 				Report(e);
-				return null;
+				throw;
 			}
 			finally
 			{
