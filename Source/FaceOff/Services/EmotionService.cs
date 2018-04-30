@@ -62,27 +62,7 @@ namespace FaceOff
 				randomNumber = rnd.Next(0, EmotionDictionary.Count);
 			} while (randomNumber == (int)currentEmotionType);
 
-			switch (randomNumber)
-			{
-				case 0:
-					return EmotionType.Anger;
-				case 1:
-					return EmotionType.Contempt;
-				case 2:
-					return EmotionType.Disgust;
-				case 3:
-					return EmotionType.Fear;
-				case 4:
-					return EmotionType.Happiness;
-				case 5:
-					return EmotionType.Neutral;
-				case 6:
-					return EmotionType.Sadness;
-				case 7:
-					return EmotionType.Surprise;
-				default:
-					throw new NotSupportedException("Invalid Emotion Type");
-			}
+			return (EmotionType)randomNumber;
 		}
 
 		public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
