@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+
 using Plugin.Media.Abstractions;
 
 namespace FaceOff

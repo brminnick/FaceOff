@@ -15,6 +15,11 @@
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.0" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.6.0" />
         <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.4.0" />
+        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="1.0.2-preview" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="Models\Emotion.cs" />
+      <Compile Remove="Services\Base\BaseHttpClientService.cs" />
     </ItemGroup>
     <ItemGroup>
         <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.xaml.cs">
@@ -27,7 +32,6 @@
     <ItemGroup>
         <Folder Include="Pages\Base\" />
         <Folder Include="Enums\" />
-        <Folder Include="Services\Base\" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>
