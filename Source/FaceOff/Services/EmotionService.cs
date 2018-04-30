@@ -1,17 +1,22 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+using Microsoft.Azure.CognitiveServices.Vision.Face;
+using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+
 using Plugin.Media.Abstractions;
 
 namespace FaceOff
 {
-	abstract class EmotionService : BaseHttpClientService
+	static class EmotionService
 	{
 		#region Constant Fields
+		readonly static Lazy<FaceAPI> _faceApiClientHolder =
+			new Lazy<FaceAPI>(() => new FaceAPI(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { AzureRegion = AzureRegions.Westus });
+
 		readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
 			new Dictionary<ErrorMessageType, string>{
 				{ ErrorMessageType.ConnectionToCognitiveServicesFailed, "Connection Failed" },
@@ -43,6 +48,7 @@ namespace FaceOff
 		#region Properties
 		public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
 		public static Dictionary<EmotionType, string> EmotionDictionary => _emotionDictionaryHolder.Value;
+		static FaceAPI FaceApiClient => _faceApiClientHolder.Value;
 		#endregion
 
 		#region Methods
@@ -56,34 +62,17 @@ namespace FaceOff
 				randomNumber = rnd.Next(0, EmotionDictionary.Count);
 			} while (randomNumber == (int)currentEmotionType);
 
-			switch (randomNumber)
-			{
-				case 0:
-					return EmotionType.Anger;
-				case 1:
-					return EmotionType.Contempt;
-				case 2:
-					return EmotionType.Disgust;
-				case 3:
-					return EmotionType.Fear;
-				case 4:
-					return EmotionType.Happiness;
-				case 5:
-					return EmotionType.Neutral;
-				case 6:
-					return EmotionType.Sadness;
-				case 7:
-					return EmotionType.Surprise;
-				default:
-					throw new NotSupportedException("Invalid Emotion Type");
-			}
+			return (EmotionType)randomNumber;
 		}
 
 		public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
 		{
+			var faceOperations = new FaceOperations(FaceApiClient);
+
 			using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
 			{
-				var faceApiResponseList = await PostObjectToAPI<List<FaceApiModel>, Stream>($"{CognitiveServicesConstants.FaceApiUrl}/detect?returnFaceAttributes=emotion", MediaService.GetPhotoStream(mediaFile, disposeMediaFile)).ConfigureAwait(false);
+				var faceApiResponseList = await faceOperations.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
+																					 returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
 				return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
 			}
 		}
