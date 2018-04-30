@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Text;
 using System.Linq;
+using System.Net.Http;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+
+using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
 
 using Xamarin;
 using Xamarin.Forms;
-using System.Net.Http;
 
 namespace FaceOff
 {
