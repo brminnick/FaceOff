@@ -67,11 +67,9 @@ namespace FaceOff
 
 		public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
 		{
-			var faceOperations = new FaceOperations(FaceApiClient);
-
 			using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
 			{
-				var faceApiResponseList = await faceOperations.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
+				var faceApiResponseList = await FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
 																					 returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
 				return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
 			}
