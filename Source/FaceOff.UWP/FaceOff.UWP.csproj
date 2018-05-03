@@ -167,6 +167,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
+      <Version>1.0.2-preview</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Bcl">
       <Version>1.1.10</Version>
     </PackageReference>
@@ -177,10 +180,7 @@
       <Version>2.2.29</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.8</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ProjectOxford.Emotion">
-      <Version>2.0.40</Version>
+      <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
@@ -200,9 +200,9 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>2.5.1.444934</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.5.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.5.0" />
-    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.0" />
+    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FaceOff\FaceOff.csproj">
