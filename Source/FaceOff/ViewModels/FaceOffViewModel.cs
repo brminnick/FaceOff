@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Text;
 using System.Linq;
+using System.Net.Http;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
+using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
-
-using Microsoft.ProjectOxford.Common;
-using Microsoft.ProjectOxford.Common.Contract;
 
 using Xamarin;
 using Xamarin.Forms;
@@ -332,7 +333,7 @@ namespace FaceOff
 
         async Task<string> GenerateEmotionResults(PlayerModel player)
         {
-            Emotion[] emotionArray;
+            List<Emotion> emotionArray;
             string emotionScore;
 
             try
@@ -340,9 +341,9 @@ namespace FaceOff
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
                 emotionScore = await EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType).ConfigureAwait(false);
             }
-            catch (ClientException clientException) when (clientException.HttpStatus.Equals(System.Net.HttpStatusCode.Unauthorized))
+			catch (HttpRequestException e) when (e.Message.Contains("401"))
             {
-                AnalyticsHelpers.Report(clientException);
+                AnalyticsHelpers.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];

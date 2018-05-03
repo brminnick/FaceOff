@@ -61,35 +61,30 @@ namespace FaceOff.UITests
 
         public void TapResetButton()
         {
-            App.ScrollDownTo(_resetButton);
             App.Tap(_resetButton);
             App.Screenshot("Tapped Reset Button");
         }
 
         public void TapScoreButton1()
         {
-            App.ScrollDownTo(_scoreButton1);
             App.Tap(_scoreButton1);
             App.Screenshot("Tapped Score Button 1");
         }
 
         public void TapScoreButton2()
         {
-            App.ScrollDownTo(_scoreButton2);
             App.Tap(_scoreButton2);
             App.Screenshot("Tapped Score Button 2");
         }
 
         public void TapTakePhoto1Button()
         {
-            App.ScrollDownTo(_takePhoto1Button);
             App.Tap(_takePhoto1Button);
             App.Screenshot("Tapped Take Photo 1 Button");
         }
 
         public void TapTakePhoto2Button()
         {
-            App.ScrollDownTo(_takePhoto2Button);
             App.Tap(_takePhoto2Button);
             App.Screenshot("Tapped Take Photo 2 Button");
         }
