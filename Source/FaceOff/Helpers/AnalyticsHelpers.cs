@@ -24,7 +24,7 @@ namespace FaceOff
 		enum PathType { Windows, Linux };
 		#endregion
 
-		#region Properties      
+		#region Properties
 		static Dictionary<PathType, string> PathTypeSeparatorDictionary => _pathTypeSeparatorDictionary.Value;
 		#endregion
 
@@ -102,7 +102,7 @@ namespace FaceOff
 			return fileName;
 		}
 
-		static void Start(string appCenterAPIKey) => AppCenter.Start(appCenterAPIKey, typeof(Crashes), typeof(Analytics), typeof(Distribute));
+		static void Start(string appCenterAPIKey) => AppCenter.Start(appCenterAPIKey, typeof(Crashes), typeof(Analytics));
 		#endregion
 	}
 
