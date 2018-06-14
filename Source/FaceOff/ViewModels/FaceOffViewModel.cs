@@ -10,7 +10,6 @@ using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
 
-using Xamarin;
 using Xamarin.Forms;
 
 namespace FaceOff
