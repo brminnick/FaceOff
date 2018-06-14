@@ -7,8 +7,7 @@ using Java.Interop;
 using Xamarin.Forms;
 
 using Plugin.Permissions;
-
-using EntryCustomReturn.Forms.Plugin.Android;
+using Plugin.CurrentActivity;
 
 namespace FaceOff.Droid
 {
@@ -29,8 +28,9 @@ namespace FaceOff.Droid
 
             base.OnCreate(savedInstanceState);
 
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            CustomReturnEntryRenderer.Init();
 
             LoadApplication(new App());
         }

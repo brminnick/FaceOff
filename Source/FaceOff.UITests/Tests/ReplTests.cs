@@ -1,6 +1,4 @@
-﻿using System;
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 using Xamarin.UITest;
 
@@ -13,10 +11,7 @@ namespace FaceOff.UITests
         }
 
         [Test, Ignore]
-        public void Repl()
-        {
-            App.Repl();
-        }
+        public void Repl() => App.Repl();
     }
 }
 

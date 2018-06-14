@@ -3,8 +3,6 @@ using Foundation;
 
 using Xamarin.Forms;
 
-using EntryCustomReturn.Forms.Plugin.iOS;
-
 namespace FaceOff.iOS
 {
 	[Register(nameof(AppDelegate))]
@@ -13,7 +11,6 @@ namespace FaceOff.iOS
 		public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 		{
 			global::Xamarin.Forms.Forms.Init();
-			CustomReturnEntryRenderer.Init();
 			Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
 
 #if DEBUG

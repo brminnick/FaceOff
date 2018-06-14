@@ -252,10 +252,10 @@ namespace FaceOff
 #endif
         #endregion
         void ExecuteTakePhoto1ButtonPressed() =>
-            ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player1, Settings.Player1Name));
+            ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player1, PreferencesService.Player1Name));
 
         void ExecuteTakePhoto2ButtonPressed() =>
-            ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player2, Settings.Player2Name));
+            ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player2, PreferencesService.Player2Name));
 
         void ExecutePopUpAlert(PlayerModel playerModel)
         {

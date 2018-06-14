@@ -1,11 +1,8 @@
 ﻿using System;
 
-using Xamarin;
 using Xamarin.Forms;
 
 using FaceOff.Shared;
-
-using EntryCustomReturn.Forms.Plugin.Abstractions;
 
 namespace FaceOff
 {
@@ -22,21 +19,30 @@ namespace FaceOff
             var player1Label = new DarkBlueLabel { Text = "Player 1" };
             var player2Label = new DarkBlueLabel { Text = "Player 2" };
 
-            _player1Entry = new Entry();
+            _player1Entry = new Entry
+            {
+                AutomationId = AutomationIdConstants.Player1Entry,
+                Placeholder = PlaceholderConstants.WelcomePagePlaceholderText,
+                ReturnType = ReturnType.Next,
+                ReturnCommand = new Command(() => _player2Entry.Focus())
+            };
             _player1Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player1));
 
-            _player2Entry = new Entry();
+            _player2Entry = new Entry
+            {
+                AutomationId = AutomationIdConstants.Player2Entry,
+                Placeholder = PlaceholderConstants.WelcomePagePlaceholderText,
+                ReturnType = ReturnType.Go,
+                ReturnCommand = new Command(() => StartGame())
+            };
             _player2Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player2));
 
             _startGameButton = new BounceButton
             {
+                AutomationId = AutomationIdConstants.StartGameButton,
                 Margin = new Thickness(0, 20, 0, 0),
                 Text = "Start"
             };
-
-            PopulateAutomationIDs();
-            PopulatePlaceholderText();
-            ConfigureCustomReturnEffect();
 
             NavigationPage.SetBackButtonTitle(this, "");
 
@@ -61,14 +67,12 @@ namespace FaceOff
         protected override void SubscribeEventHandlers() => _startGameButton.Clicked += HandleStartGameButtonClicked;
         protected override void UnsubscribeEventHandlers() => _startGameButton.Clicked -= HandleStartGameButtonClicked;
 
-        void ExecutePlayer1EntryReturnCommand(object sender, EventArgs e) =>
-            Device.BeginInvokeOnMainThread(() => _player2Entry.Focus());
-
         void DisplayEmptyPlayerNameAlert(int playerNumber) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
 
+        void HandleStartGameButtonClicked(object sender, EventArgs e) => StartGame();
 
-        void HandleStartGameButtonClicked(object sender, EventArgs e)
+        void StartGame()
         {
             var isPlayer1EntryTextEmpty = string.IsNullOrWhiteSpace(_player1Entry.Text);
             var isPlayer2EntryTextEmpty = string.IsNullOrWhiteSpace(_player2Entry.Text);
@@ -88,28 +92,6 @@ namespace FaceOff
                 AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
                 Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new FaceOffPage()));
             }
-        }
-
-        void PopulateAutomationIDs()
-        {
-            _player1Entry.AutomationId = AutomationIdConstants.Player1Entry;
-            _player2Entry.AutomationId = AutomationIdConstants.Player2Entry;
-            _startGameButton.AutomationId = AutomationIdConstants.StartGameButton;
-        }
-
-        void PopulatePlaceholderText()
-        {
-            _player1Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
-            _player2Entry.Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
-        }
-
-        void ConfigureCustomReturnEffect()
-        {
-            CustomReturnEffect.SetReturnType(_player1Entry, ReturnType.Next);
-            CustomReturnEffect.SetReturnCommand(_player1Entry, new Command(() => _player2Entry.Focus()));
-
-            CustomReturnEffect.SetReturnType(_player2Entry, ReturnType.Go);
-            CustomReturnEffect.SetReturnCommand(_player2Entry, new Command(() => HandleStartGameButtonClicked(_startGameButton, EventArgs.Empty)));
         }
         #endregion
     }

@@ -73,7 +73,7 @@ namespace FaceOff
 
             var player1NameLabel = new DarkBlueLabel
             {
-                Text = Settings.Player1Name,
+                Text = PreferencesService.Player1Name,
                 HorizontalOptions = LayoutOptions.Center
             };
 
@@ -99,7 +99,7 @@ namespace FaceOff
 
             var player2NameLabel = new DarkBlueLabel
             {
-                Text = Settings.Player2Name,
+                Text = PreferencesService.Player2Name,
                 HorizontalOptions = LayoutOptions.Center,
             };
 
