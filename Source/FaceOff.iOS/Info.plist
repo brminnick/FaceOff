@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>FaceOff</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.minnick.faceoffapp</string>
+	<string>com.minnick.faceoff</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
