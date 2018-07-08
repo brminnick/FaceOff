@@ -9,6 +9,8 @@ using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
 
+using Xamarin.Essentials;
+
 namespace FaceOff
 {
     static class EmotionService
@@ -75,11 +77,11 @@ namespace FaceOff
             }
         }
 
-        public static async Task<string> GetPhotoEmotionScore(List<Emotion> emotionResults, int emotionResultNumber, EmotionType currentEmotionType)
+        public static string GetPhotoEmotionScore(List<Emotion> emotionResults, int emotionResultNumber, EmotionType currentEmotionType)
         {
             double rawEmotionScore;
 
-            var isInternetConnectionAvilable = await ConnectionService.IsInternetConnectionAvailable().ConfigureAwait(false);
+            var isInternetConnectionAvilable = Connectivity.NetworkAccess.Equals(NetworkAccess.Internet);
 
             if (!isInternetConnectionAvilable)
                 return ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];

@@ -75,12 +75,6 @@
     <Reference Include="Mono.Android.Export" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="Plugin.Connectivity.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Connectivity.3.1.1\lib\MonoAndroid10\Plugin.Connectivity.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Connectivity">
-      <HintPath>..\packages\Xam.Plugin.Connectivity.3.1.1\lib\MonoAndroid10\Plugin.Connectivity.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Permissions.Abstractions">
       <HintPath>..\packages\Plugin.Permissions.2.2.1\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
     </Reference>
@@ -90,9 +84,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
-      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.1.0.2-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.CurrentActivity">
       <HintPath>..\packages\Plugin.CurrentActivity.2.1.0.4\lib\monoandroid44\Plugin.CurrentActivity.dll</HintPath>
@@ -166,9 +157,6 @@
     <Reference Include="Xamarin.Android.Support.CustomTabs">
       <HintPath>..\packages\Xamarin.Android.Support.CustomTabs.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.CustomTabs.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Essentials">
-      <HintPath>..\packages\Xamarin.Essentials.0.7.0.17-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
-    </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
@@ -211,6 +199,12 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.4.0.1.1\lib\monoandroid71\Plugin.Media.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
+      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.1.1.0-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.0.8.0-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

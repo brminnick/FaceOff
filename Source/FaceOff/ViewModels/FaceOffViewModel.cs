@@ -338,7 +338,7 @@ namespace FaceOff
             try
             {
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
-                emotionScore = await EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType).ConfigureAwait(false);
+                emotionScore = EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType);
             }
 			catch (HttpRequestException e) when (e.Message.Contains("401"))
             {

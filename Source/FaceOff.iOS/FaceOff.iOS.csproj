@@ -118,21 +118,12 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="Plugin.Connectivity.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Connectivity.3.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Connectivity">
-      <HintPath>..\packages\Xam.Plugin.Connectivity.3.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Calabash">
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.21.5\lib\Xamarin.iOS\Calabash.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
-      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.1.0.2-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Permissions">
       <HintPath>..\packages\Plugin.Permissions.3.0.0.12\lib\xamarinios10\Plugin.Permissions.dll</HintPath>
@@ -142,9 +133,6 @@
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Essentials">
-      <HintPath>..\packages\Xamarin.Essentials.0.7.0.17-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
@@ -185,6 +173,12 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.4.0.1.1\lib\xamarinios10\Plugin.Media.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.0.8.0-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
+      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.1.1.0-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

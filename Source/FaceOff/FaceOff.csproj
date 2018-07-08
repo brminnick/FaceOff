@@ -5,16 +5,15 @@
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="1.0.2-preview" />
         <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.0" />
-        <PackageReference Include="Xamarin.Essentials" Version="0.7.0.17-preview" />
         <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.7.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.7.0" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.7.0" />
         <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.1" />
+        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="1.1.0-preview" />
+        <PackageReference Include="Xamarin.Essentials" Version="0.8.0-preview" />
     </ItemGroup>
     <ItemGroup>
       <Compile Remove="Models\Emotion.cs" />
