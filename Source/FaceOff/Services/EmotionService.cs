@@ -16,8 +16,8 @@ namespace FaceOff
     static class EmotionService
     {
         #region Constant Fields
-        readonly static Lazy<FaceAPI> _faceApiClientHolder =
-            new Lazy<FaceAPI>(() => new FaceAPI(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)));
+        readonly static Lazy<FaceClient> _faceApiClientHolder =
+            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { BaseUri = new Uri("https://westus.api.cognitive.microsoft.com/face/v1.0") });
 
         readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
             new Dictionary<ErrorMessageType, string>{
@@ -50,7 +50,7 @@ namespace FaceOff
         #region Properties
         public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
         public static Dictionary<EmotionType, string> EmotionDictionary => _emotionDictionaryHolder.Value;
-        static FaceAPI FaceApiClient => _faceApiClientHolder.Value;
+        static FaceClient FaceApiClient => _faceApiClientHolder.Value;
         #endregion
 
         #region Methods

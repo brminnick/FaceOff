@@ -178,7 +178,7 @@
       <HintPath>..\packages\Xamarin.Essentials.0.8.0-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
-      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.1.1.0-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.2.0.0-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

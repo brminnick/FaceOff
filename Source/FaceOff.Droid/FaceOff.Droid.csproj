@@ -200,11 +200,11 @@
       <HintPath>..\packages\Xam.Plugin.Media.4.0.1.1\lib\monoandroid71\Plugin.Media.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
-      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.1.1.0-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Essentials">
       <HintPath>..\packages\Xamarin.Essentials.0.8.0-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.Face">
+      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.Face.2.0.0-preview\lib\netstandard1.4\Microsoft.Azure.CognitiveServices.Vision.Face.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
