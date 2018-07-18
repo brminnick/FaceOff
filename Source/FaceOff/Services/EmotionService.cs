@@ -9,6 +9,7 @@ using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
 
+using Xamarin.Forms;
 using Xamarin.Essentials;
 
 namespace FaceOff
@@ -69,11 +70,20 @@ namespace FaceOff
 
         public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
         {
-            using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
+            Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = true);
+
+            try
             {
-                var faceApiResponseList = await FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
-                                                                                     returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
-                return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
+                using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
+                {
+                    var faceApiResponseList = await FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
+                                                                                         returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
+                    return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
+                }
+            }
+            finally
+            {
+                Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = false);
             }
         }
 
