@@ -18,7 +18,7 @@ namespace FaceOff
     {
         #region Constant Fields
         readonly static Lazy<FaceClient> _faceApiClientHolder =
-            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { BaseUri = new Uri("https://westus.api.cognitive.microsoft.com/face/v1.0") });
+            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
 
         readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
             new Dictionary<ErrorMessageType, string>{
