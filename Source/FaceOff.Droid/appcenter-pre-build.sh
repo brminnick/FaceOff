@@ -7,7 +7,7 @@ echo APIScriptPath = $APIScriptPath
 echo PostBuildScriptFile = $PostBuildScriptFile
 echo CognitiveServicesConstantsFile = $CognitiveServicesConstantsFile
 
-bash $APIScriptPath $CognitiveServicesConstantsFile $CognitiveServicesAPIKey
+bash $APIScriptPath $CognitiveServicesConstantsFile $CognitiveServicesAPIKey $CognitiveServicesBaseUri
 
 echo "Finished Injecting Cognitive Services API Key"
 
