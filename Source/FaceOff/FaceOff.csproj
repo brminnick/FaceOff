@@ -6,9 +6,9 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-        <PackageReference Include="Xamarin.Essentials" Version="0.10.0-preview" />
+        <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
         <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
-        <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
+        <PackageReference Include="Xamarin.Forms" Version="3.4.0.925479-pre1" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.10.0" />
