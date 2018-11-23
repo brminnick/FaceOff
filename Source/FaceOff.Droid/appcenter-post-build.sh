@@ -6,12 +6,10 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     SolutionFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name FaceOff.sln`
     SolutionFileFolder=`dirname $SolutionFile`
 
-    MSBuild=`find /Applications -name MSBuild | grep bin | head -1`
     UITestProject=`find "$APPCENTER_SOURCE_DIRECTORY" -name FaceOff.UITests.csproj`
 
     echo SolutionFile: $SolutionFile
     echo SolutionFileFolder: $SolutionFileFolder
-    echo MSBuild: $MSBuild
     echo UITestProject: $UITestProject
 
     chmod -R 777 $SolutionFileFolder
@@ -19,7 +17,28 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     msbuild "$UITestProject" /property:Configuration=$APPCENTER_XAMARIN_CONFIGURATION
 
     UITestDLL=`find "$APPCENTER_SOURCE_DIRECTORY" -name "FaceOff.UITests.dll" | grep bin`
+    echo UITestDLL: $UITestDLL
+
     UITestBuildDir=`dirname $UITestDLL`
+    echo UITestBuildDir: $UITestBuildDir
+
+    UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,10\}\-'dev`
+    echo UITestPrereleaseVersionNumber: $UITestVersionNumber
+
+    UITestVersionNumberSize=${#UITestVersionNumber} 
+    echo UITestVersionNumberSize: $UITestVersionNumberSize
+
+    if [ $UITestVersionNumberSize == 0 ]
+    then
+        UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+        echo UITestVersionNumber: $UITestVersionNumber
+    fi
+
+    TestCloudExe=`find ~/.nuget | grep test-cloud.exe | grep $UITestVersionNumber | head -1`
+    echo TestCloudExe: $TestCloudExe
+
+    TestCloudExeDirectory=`dirname $TestCloudExe`
+    echo TestCloudExeDirectory: $TestCloudExeDirectory
 
     APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.apk | head -1`
 
@@ -27,5 +46,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token token
 
-    appcenter test run uitest --app "FaceOff/FaceOff-Android" --devices "FaceOff/android5-plus" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --async
+    appcenter test run uitest --app "FaceOff/FaceOff-Android" --devices "FaceOff/android5-plus" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
 fi
