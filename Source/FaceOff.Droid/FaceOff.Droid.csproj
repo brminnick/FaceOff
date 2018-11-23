@@ -207,6 +207,12 @@
     <Reference Include="System.Threading.Tasks.Extensions">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="AsyncAwaitBestPractices">
+      <HintPath>..\packages\AsyncAwaitBestPractices.0.9.0\lib\netstandard\AsyncAwaitBestPractices.dll</HintPath>
+    </Reference>
+    <Reference Include="AsyncAwaitBestPractices.MVVM">
+      <HintPath>..\packages\AsyncAwaitBestPractices.MVVM.0.9.0\lib\netstandard\AsyncAwaitBestPractices.MVVM.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

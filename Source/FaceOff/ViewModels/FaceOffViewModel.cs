@@ -6,6 +6,8 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+using AsyncAwaitBestPractices.MVVM;
+
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
@@ -42,8 +44,7 @@ namespace FaceOff
         EmotionType _currentEmotionType;
         ICommand _takePhoto1ButtonPressed, _takePhoto2ButtonPressed;
         ICommand _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
-        ICommand _resetButtonPressed;
-        Command<EmotionPopupResponseModel> _emotionPopUpAlertResponseCommand;
+        ICommand _resetButtonPressed, _emotionPopUpAlertResponseCommand;
         #endregion
 
         #region Constructors
@@ -56,8 +57,8 @@ namespace FaceOff
         #endregion
 
         #region Properties
-        public Command<EmotionPopupResponseModel> EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
-            (_emotionPopUpAlertResponseCommand = new Command<EmotionPopupResponseModel>(async response => await ExecuteEmotionPopUpAlertResponseCommand(response).ConfigureAwait(false)));
+        public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
+            (_emotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand, false));
 
         public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
             (_takePhoto1ButtonPressed = new Command(ExecuteTakePhoto1ButtonPressed));
@@ -340,7 +341,7 @@ namespace FaceOff
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
                 emotionScore = EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType);
             }
-			catch (HttpRequestException e) when (e.Message.Contains("401"))
+            catch (HttpRequestException e) when (e.Message.Contains("401"))
             {
                 AnalyticsHelpers.Report(e);
 
