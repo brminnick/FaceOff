@@ -58,7 +58,7 @@ namespace FaceOff
 
         #region Properties
         public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
-            (_emotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand, false));
+            (_emotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand, continueOnCapturedContext: false));
 
         public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
             (_takePhoto1ButtonPressed = new Command(ExecuteTakePhoto1ButtonPressed));
