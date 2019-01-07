@@ -2,13 +2,22 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsyncAwaitBestPractices;
 
 namespace FaceOff
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Constant Fields
+        readonly WeakEventManager _notifyProprtyChangedEventManager = new WeakEventManager();
+        #endregion
+
         #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
+        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+        {
+            add => _notifyProprtyChangedEventManager.AddEventHandler(value);
+            remove => _notifyProprtyChangedEventManager.RemoveEventHandler(value);
+        }
         #endregion
 
         #region Methods
@@ -25,7 +34,7 @@ namespace FaceOff
         }
 
         void OnPropertyChanged([CallerMemberName]string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            _notifyProprtyChangedEventManager.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
         #endregion
     }
 }
