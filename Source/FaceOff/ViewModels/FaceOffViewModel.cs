@@ -236,9 +236,9 @@ namespace FaceOff
         #region Methods
         #region UITest Backdoor Methods
 #if DEBUG
-        public Task SetPhotoImageForUITest(EmotionType emotion, PlayerModel player)
+        public Task SubmitPhoto(EmotionType emotion, PlayerModel player)
         {
-            _currentEmotionType = EmotionType.Happiness;
+            _currentEmotionType = emotion;
             SetPageTitle(_currentEmotionType);
 
             return ExecuteGetPhotoResultsWorkflow(player);

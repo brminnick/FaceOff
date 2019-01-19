@@ -16,10 +16,6 @@
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.0" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Remove="Models\Emotion.cs" />
-      <Compile Remove="Services\Base\BaseHttpClientService.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.xaml.cs">
             <DependentUpon>*.xaml</DependentUpon>
         </Compile>
@@ -34,9 +30,8 @@
     <ItemGroup>
       <EmbeddedResource Include="Happiness.png" />
       <EmbeddedResource Include="Sadness.png" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Remove="Sadness.png" />
+      <EmbeddedResource Include="Anger.png" />
+      <EmbeddedResource Include="Contempt.png" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>

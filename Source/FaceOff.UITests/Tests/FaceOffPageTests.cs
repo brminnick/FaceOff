@@ -90,9 +90,11 @@ namespace FaceOff.UITests
             Assert.AreNotEqual(firstEmotion, secondEmotion);
         }
 
-        [TestCase(EmotionType.Sadness, 100)]
+        [TestCase(EmotionType.Anger, 100)]
+        //[TestCase(EmotionType.Contempt, 83.5)]
         [TestCase(EmotionType.Happiness, 100)]
-        public void VerifyPhoto1Results(EmotionType emotion, int expectedScore)
+        [TestCase(EmotionType.Sadness, 100)]
+        public void VerifyPhoto1Results(EmotionType emotion, double expectedScore)
         {
             //Arrange 
 
@@ -113,8 +115,10 @@ namespace FaceOff.UITests
             Assert.IsTrue(doesPopupContainCorrectResults);
         }
 
-        [TestCase(EmotionType.Sadness, 100)]
+        [TestCase(EmotionType.Anger, 100)]
+        //[TestCase(EmotionType.Contempt, 83.5)]
         [TestCase(EmotionType.Happiness, 100)]
+        [TestCase(EmotionType.Sadness, 100)]
         public void VerifyPhoto2Results(EmotionType emotion, int expectedScore)
         {
             //Arrange
