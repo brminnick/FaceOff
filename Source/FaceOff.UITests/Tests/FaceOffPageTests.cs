@@ -92,7 +92,7 @@ namespace FaceOff.UITests
 
         [TestCase(EmotionType.Anger, 100)]
         [TestCase(EmotionType.Contempt, 52.7)]
-        [TestCase(EmotionType.Disgust, 85.3)]
+        [TestCase(EmotionType.Disgust, 98.8)]
         [TestCase(EmotionType.Happiness, 100)]
         [TestCase(EmotionType.Sadness, 100)]
         public void VerifyPhoto1Results(EmotionType emotion, double expectedScore)
@@ -118,7 +118,7 @@ namespace FaceOff.UITests
 
         [TestCase(EmotionType.Anger, 100)]
         [TestCase(EmotionType.Contempt, 52.7)]
-        [TestCase(EmotionType.Disgust, 85.3)]
+        [TestCase(EmotionType.Disgust, 98.8)]
         [TestCase(EmotionType.Happiness, 100)]
         [TestCase(EmotionType.Sadness, 100)]
         public void VerifyPhoto2Results(EmotionType emotion, double expectedScore)
