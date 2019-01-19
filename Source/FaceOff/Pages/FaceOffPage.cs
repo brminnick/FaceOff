@@ -103,7 +103,6 @@ namespace FaceOff
             var photo2Stack = new StackLayout
             {
                 Spacing = 50,
-                Style = StylesConstants.StackLayoutStyle,
                 Children = {
                     _photoImage2,
                     _photo2ScoreButton,
