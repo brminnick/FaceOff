@@ -52,7 +52,7 @@ namespace FaceOff
                 ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player1photo", () => _applicationTypeInfo.Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.{emotion.ToString()}.png"))
             };
 
-            return FaceOffViewModel.SetPhotoImageForUITest(player1);
+            return FaceOffViewModel.SetPhotoImageForUITest(emotion, player1);
         }
 
         public static Task SubmitImageForPhoto2(string playerName, EmotionType emotion)
@@ -62,7 +62,7 @@ namespace FaceOff
                 ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player2photo", () => _applicationTypeInfo.GetTypeInfo().Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.{emotion.ToString()}.png"))
             };
 
-            return FaceOffViewModel.SetPhotoImageForUITest(player2);
+            return FaceOffViewModel.SetPhotoImageForUITest(emotion, player2);
         }
 
         static Page GetCurrentPage()
