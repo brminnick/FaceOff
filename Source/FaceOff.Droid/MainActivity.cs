@@ -4,6 +4,10 @@ using Android.Content.PM;
 
 using Java.Interop;
 
+using Newtonsoft.Json;
+
+using FaceOff.Shared;
+
 namespace FaceOff.Droid
 {
     [Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
@@ -42,11 +46,21 @@ namespace FaceOff.Droid
             return mainNavigationPage.CurrentPage.Title;
         }
 
-        [Export(nameof(UseDefaultImageForPhoto1))]
-        public void UseDefaultImageForPhoto1() => UITestBackdoorService.UseDefaultImageForPhoto1();
+        [Export(nameof(SubmitImageForPhoto1))]
+        public void SubmitImageForPhoto1(string serializedInput)
+        {
+            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput);
 
-        [Export(nameof(UseDefaultImageForPhoto2))]
-        public void UseDefaultImageForPhoto2() => UITestBackdoorService.UseDefaultImageForPhoto2();
+            UITestBackdoorService.SubmitImageForPhoto1(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
+        }
+
+        [Export(nameof(SubmitImageForPhoto2))]
+        public void SubmitImageForPhoto2(string serializedInput)
+        {
+            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput);
+
+            UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
+        }
 #endif
         #endregion
     }

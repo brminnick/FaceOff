@@ -235,7 +235,6 @@
     <Compile Include="CustomRenderers\NavigationPageCustomRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Happy.png" Condition="'$(Configuration)'=='Debug'" />
     <BundleResource Include="Resources\Camera-Face-Overlay.png" />
     <BundleResource Include="Resources\FaceOff_Icon%403x.png" />
   </ItemGroup>

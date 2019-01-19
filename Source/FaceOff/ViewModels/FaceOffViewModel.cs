@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Linq;
 using System.Net.Http;
 using System.Windows.Input;
@@ -14,6 +13,8 @@ using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 using Plugin.Media.Abstractions;
 
 using Xamarin.Forms;
+
+using FaceOff.Shared;
 
 namespace FaceOff
 {
@@ -235,56 +236,12 @@ namespace FaceOff
         #region Methods
         #region UITest Backdoor Methods
 #if DEBUG
-        public void SetPhotoImage1ToHappyForUITest(string photo1ImageString)
+        public Task SetPhotoImageForUITest(PlayerModel player)
         {
-            Photo1ImageSource = photo1ImageString;
+            _currentEmotionType = EmotionType.Happiness;
+            SetPageTitle(_currentEmotionType);
 
-            var allEmotionsStringBuilder = new StringBuilder();
-            allEmotionsStringBuilder.AppendLine($"Anger: 0%");
-            allEmotionsStringBuilder.AppendLine($"Contempt: 0%");
-            allEmotionsStringBuilder.AppendLine($"Disgust: 0%");
-            allEmotionsStringBuilder.AppendLine($"Fear: 0%");
-            allEmotionsStringBuilder.AppendLine($"Happiness: 100%");
-            allEmotionsStringBuilder.AppendLine($"Neutral: 0%");
-            allEmotionsStringBuilder.AppendLine($"Sadness: 0%");
-            allEmotionsStringBuilder.AppendLine($"Surprise: 0%");
-
-            _photo1Results = allEmotionsStringBuilder.ToString();
-            ScoreButton1Text = "Score: 100%";
-
-            SetEmotion(EmotionType.Happiness);
-
-            IsTakeLeftPhotoButtonEnabled = false;
-            IsTakeLeftPhotoButtonStackVisible = false;
-
-            OnPhotoImage1RevealTriggered();
-            OnScoreButton1RevealTriggered();
-        }
-
-        public void SetPhotoImage2ToHappyForUITest(string photo2ImageString)
-        {
-            Photo2ImageSource = photo2ImageString;
-
-            var allEmotionsStringBuilder = new StringBuilder();
-            allEmotionsStringBuilder.AppendLine($"Anger: 0%");
-            allEmotionsStringBuilder.AppendLine($"Contempt: 0%");
-            allEmotionsStringBuilder.AppendLine($"Disgust: 0%");
-            allEmotionsStringBuilder.AppendLine($"Fear: 0%");
-            allEmotionsStringBuilder.AppendLine($"Happiness: 100%");
-            allEmotionsStringBuilder.AppendLine($"Neutral: 0%");
-            allEmotionsStringBuilder.AppendLine($"Sadness: 0%");
-            allEmotionsStringBuilder.AppendLine($"Surprise: 0%");
-
-            _photo2Results = allEmotionsStringBuilder.ToString();
-            ScoreButton2Text = "Score: 100%";
-
-            SetEmotion(EmotionType.Happiness);
-
-            IsTakeRightPhotoButtonEnabled = false;
-            IsTakeRightPhotoButtonStackVisible = false;
-
-            OnPhotoImage2RevealTriggered();
-            OnScoreButton2RevealTriggered();
+            return ExecuteGetPhotoResultsWorkflow(player);
         }
 #endif
         #endregion
@@ -299,7 +256,7 @@ namespace FaceOff
             LogPhotoButtonTapped(playerModel.PlayerNumber);
             DisableButtons(playerModel.PlayerNumber);
 
-            var title = EmotionService.EmotionDictionary[_currentEmotionType];
+            var title = EmotionConstants.EmotionDictionary[_currentEmotionType];
             var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {EmotionStringsForAlertMessage[(int)_currentEmotionType]}";
             OnPopUpAlertAboutEmotionTriggered(title, message, playerModel);
         }
@@ -662,7 +619,7 @@ namespace FaceOff
         }
 
         void SetPageTitle(EmotionType emotionType) =>
-            PageTitle = EmotionService.EmotionDictionary[emotionType];
+            PageTitle = EmotionConstants.EmotionDictionary[emotionType];
 
         Task WaitForAnimationsToFinish(int waitTimeInSeconds) => Task.Delay(waitTimeInSeconds);
 

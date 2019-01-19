@@ -1,7 +1,11 @@
 ﻿using UIKit;
 using Foundation;
 
+using Newtonsoft.Json;
+
 using Xamarin.Forms;
+
+using FaceOff.Shared;
 
 namespace FaceOff.iOS
 {
@@ -10,7 +14,7 @@ namespace FaceOff.iOS
     {
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            global::Xamarin.Forms.Forms.Init();
+            Forms.Init();
             Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
 
 #if DEBUG
@@ -28,21 +32,25 @@ namespace FaceOff.iOS
         [Export("getPicturePageTitle:")]
         public NSString GetPicturePageTitle(NSString noValue)
         {
-            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as Xamarin.Forms.NavigationPage;
+            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as NavigationPage;
             return new NSString(mainNavigationPage.CurrentPage.Title);
         }
 
-        [Export("useDefaultImageForPhoto1:")]
-        public NSString UseDefaultImageForPhoto1(NSString noValue)
+        [Export("submitImageForPhoto1:")]
+        public NSString SubmitImageForPhoto1(NSString serializedInput)
         {
-            UITestBackdoorService.UseDefaultImageForPhoto1();
+            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput.ToString());
+
+            UITestBackdoorService.SubmitImageForPhoto1(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
             return new NSString();
         }
 
-        [Export("useDefaultImageForPhoto2:")]
-        public NSString UseDefaultImageForPhoto2(NSString noValue)
+        [Export("submitImageForPhoto2:")]
+        public NSString SubmitImageForPhoto2(NSString serializedInput)
         {
-            UITestBackdoorService.UseDefaultImageForPhoto2();
+            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput.ToString());
+
+            UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
             return new NSString();
         }
 #endif

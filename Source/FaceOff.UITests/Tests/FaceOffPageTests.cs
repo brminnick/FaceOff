@@ -3,8 +3,9 @@
 using NUnit.Framework;
 
 using Xamarin.UITest;
-using Xamarin.UITest.iOS;
 using Xamarin.UITest.Android;
+
+using FaceOff.Shared;
 
 namespace FaceOff.UITests
 {
@@ -89,38 +90,48 @@ namespace FaceOff.UITests
             Assert.AreNotEqual(firstEmotion, secondEmotion);
         }
 
-        [Test]
-        public void VerifyPhoto1Results()
+        [TestCase(EmotionType.Happiness, 100)]
+        public void VerifyPhoto1Results(EmotionType emotion, int expectedScore)
         {
-            //Arrange
-            if (App is iOSApp)
-                App.Invoke("useDefaultImageForPhoto1:", "");
-            else
-                App.Invoke("UseDefaultImageForPhoto1");
+            //Arrange 
 
             //Act
+            FaceOffPage.SubmitImageForPhoto1(emotion);
             App.Screenshot("Test Image Loaded");
-            FaceOffPage.TapScoreButton1();
 
             //Assert
-            Assert.IsTrue(App.Query("Results").Any());
+            Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
+            Assert.IsTrue(FaceOffPage.ScoreButton1Text.Contains(expectedScore.ToString()));
+
+            //Act
+            FaceOffPage.TapScoreButton1();
+            FaceOffPage.WaitForResultsPopup();
+
+            //Assert
+            var doesPopupContainCorrectResults = App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore.ToString()}") ?? false);
+            Assert.IsTrue(doesPopupContainCorrectResults);
         }
 
-        [Test]
-        public void VerifyPhoto2Results()
+        [TestCase(EmotionType.Happiness, 100)]
+        public void VerifyPhoto2Results(EmotionType emotion, int expectedScore)
         {
             //Arrange
-            if (App is iOSApp)
-                App.Invoke("useDefaultImageForPhoto2:", "");
-            else
-                App.Invoke("UseDefaultImageForPhoto2");
 
             //Act
+            FaceOffPage.SubmitImageForPhoto2(emotion);
             App.Screenshot("Test Image Loaded");
-            FaceOffPage.TapScoreButton2();
 
             //Assert
-            Assert.IsTrue(App.Query("Results").Any());
+            Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
+            Assert.IsTrue(FaceOffPage.ScoreButton2Text.Contains(expectedScore.ToString()));
+
+            //Act
+            FaceOffPage.TapScoreButton2();
+            FaceOffPage.WaitForResultsPopup();
+
+            //Assert
+            var doesPopupContainCorrectResults = App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore.ToString()}") ?? false);
+            Assert.IsTrue(doesPopupContainCorrectResults);
         }
     }
 }

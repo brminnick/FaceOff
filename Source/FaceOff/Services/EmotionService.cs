@@ -14,6 +14,8 @@ using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 
+using FaceOff.Shared;
+
 namespace FaceOff
 {
     static class EmotionService
@@ -32,19 +34,6 @@ namespace FaceOff
                 { ErrorMessageType.DeviceOffline, "Device is Offline"}
             });
 
-        readonly static Lazy<Dictionary<EmotionType, string>> _emotionDictionaryHolder = new Lazy<Dictionary<EmotionType, string>>(() =>
-            new Dictionary<EmotionType, string>
-            {
-                { EmotionType.Anger, "Anger" },
-                { EmotionType.Contempt, "Contempt" },
-                { EmotionType.Disgust, "Disgust"},
-                { EmotionType.Fear, "Fear" },
-                { EmotionType.Happiness, "Happiness" },
-                { EmotionType.Neutral, "Neutral" },
-                { EmotionType.Sadness, "Sadness" },
-                { EmotionType.Surprise, "Surprise" }
-            });
-
         readonly static WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new WeakEventManager();
         #endregion
 
@@ -58,7 +47,6 @@ namespace FaceOff
 
         #region Properties
         public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
-        public static Dictionary<EmotionType, string> EmotionDictionary => _emotionDictionaryHolder.Value;
         static FaceClient FaceApiClient => _faceApiClientHolder.Value;
         #endregion
 
@@ -70,7 +58,7 @@ namespace FaceOff
 
             do
             {
-                randomNumber = rnd.Next(0, EmotionDictionary.Count);
+                randomNumber = rnd.Next(0, EmotionConstants.EmotionDictionary.Count);
             } while (randomNumber == (int)currentEmotionType);
 
             return (EmotionType)randomNumber;

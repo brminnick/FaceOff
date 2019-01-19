@@ -27,9 +27,7 @@ namespace FaceOff.UITests
 
         #region Properties
         public string Player1EntryPlaceholderText => GetPlaceholderText(AutomationIdConstants.Player1Entry);
-
         public string Player2EntryPlaceholderText => GetPlaceholderText(AutomationIdConstants.Player2Entry);
-
         public bool IsErrorMessageDisplayed => GetErrorMessageQuery().Any();
         #endregion
 

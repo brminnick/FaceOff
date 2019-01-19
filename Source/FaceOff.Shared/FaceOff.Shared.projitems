@@ -11,8 +11,13 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Constants\AutomationIdConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\PlaceholderConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\EmotionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\EmotionConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerEmotionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
 </Project>

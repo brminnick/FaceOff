@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
 using FaceOff.Shared;
-using System.Threading.Tasks;
 
 namespace FaceOff
 {
@@ -47,6 +47,7 @@ namespace FaceOff
 
             var player1NameLabel = new DarkBlueLabel
             {
+                AutomationId = AutomationIdConstants.Player1NameLabel,
                 Text = PreferencesService.Player1Name,
                 HorizontalOptions = LayoutOptions.Center
             };
@@ -68,6 +69,7 @@ namespace FaceOff
 
             var player2NameLabel = new DarkBlueLabel
             {
+                AutomationId = AutomationIdConstants.Player2NameLabel,
                 Text = PreferencesService.Player2Name,
                 HorizontalOptions = LayoutOptions.Center,
             };

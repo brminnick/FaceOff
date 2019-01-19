@@ -1,26 +1,28 @@
 ﻿namespace FaceOff.Shared
 {
-	public static class AutomationIdConstants
-	{
+    public static class AutomationIdConstants
+    {
 
-		#region Puzzle Page
-		public const string EmotionLabel = "EmotionLabel";
-		public const string Photo1ActivityIndicator = "Photo1ActivityIndicator";
-		public const string Photo2ActivityIndicator = "Photo2ActivityIndicator";
-		public const string PhotoImage1 = "PhotoImage1";
-		public const string PhotoImage2 = "PhotoImage1";
-		public const string ResetButton = "ResetButton";
-		public const string ScoreButton1 = "ScoreButton1";
-		public const string ScoreButton2 = "ScoreButton2";
-		public const string TakePhoto1Button = "TakePhoto1Button";
-		public const string TakePhoto2Button = "TakePhoto2Button";
-		#endregion
+        #region Puzzle Page
+        public const string EmotionLabel = nameof(EmotionLabel);
+        public const string Player1NameLabel = nameof(Player1NameLabel);
+        public const string Player2NameLabel = nameof(Player2NameLabel);
+        public const string Photo1ActivityIndicator = nameof(Photo1ActivityIndicator);
+        public const string Photo2ActivityIndicator = nameof(Photo2ActivityIndicator);
+        public const string PhotoImage1 = nameof(PhotoImage1);
+        public const string PhotoImage2 = nameof(PhotoImage2);
+        public const string ResetButton = nameof(ResetButton);
+        public const string ScoreButton1 = nameof(ScoreButton1);
+        public const string ScoreButton2 = nameof(ScoreButton2);
+        public const string TakePhoto1Button = nameof(TakePhoto1Button);
+        public const string TakePhoto2Button = nameof(TakePhoto2Button);
+        #endregion
 
-		#region Welcome Page
-		public const string StartGameButton = "StartGameButton";
-		public const string Player1Entry = "Player1Entry";
-		public const string Player2Entry = "Player2Entry";
-		#endregion
-	}
+        #region Welcome Page
+        public const string StartGameButton = nameof(StartGameButton);
+        public const string Player1Entry = nameof(Player1Entry);
+        public const string Player2Entry = nameof(Player2Entry);
+        #endregion
+    }
 }
 
