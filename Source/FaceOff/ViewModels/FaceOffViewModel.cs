@@ -320,8 +320,6 @@ namespace FaceOff
 
             SetResetButtonIsEnabled();
 
-            player.ImageMediaFile.Dispose();
-
             return WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.DefaultAnimationTime * 2.5));
         }
 

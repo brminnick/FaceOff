@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-APIScriptPath=`find "$APPCENTER_SOURCE_DIRECTORY" -name injectCognitiveServicesAPI.sh | head -1`
-PostBuildScriptFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name appcenter-post-build.sh | grep Droid | head -1`
+PostBuildScriptFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name appcenter-post-build.sh | grep iOS | head -1`
 CognitiveServicesConstantsFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name CognitiveServicesConstants.cs | head -1`
-
-echo APIScriptPath = $APIScriptPath
 echo PostBuildScriptFile = $PostBuildScriptFile
 echo CognitiveServicesConstantsFile = $CognitiveServicesConstantsFile
 
-bash $APIScriptPath $CognitiveServicesConstantsFile $CognitiveServicesAPIKey $CognitiveServicesBaseUri
+sed -i '' "s/Add Face API Key Here/$CognitiveServicesAPIKey/g" "$CognitiveServicesConstantsFile"
+sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "$CognitiveServicesConstantsFile"
+
+sed -i '' "s/Add Face API Base Url Here/$CognitiveServicesBaseUri/g" "$CognitiveServicesConstantsFile"
+sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "$CognitiveServicesConstantsFile"
 
 echo "Finished Injecting Cognitive Services API Key"
 

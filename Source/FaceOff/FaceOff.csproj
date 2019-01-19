@@ -32,9 +32,6 @@
         <Folder Include="Enums\" />
     </ItemGroup>
     <ItemGroup>
-      <None Remove="Happy.png" />
-    </ItemGroup>
-    <ItemGroup>
       <EmbeddedResource Include="Happiness.png" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />

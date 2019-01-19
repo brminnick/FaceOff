@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
 
+using Newtonsoft.Json;
+
 using Xamarin.UITest;
+using Xamarin.UITest.Android;
 using Xamarin.UITest.iOS;
 using Xamarin.UITest.Queries;
 
 using FaceOff.Shared;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
-using Newtonsoft.Json;
-using Xamarin.UITest.Android;
 
 namespace FaceOff.UITests
 {

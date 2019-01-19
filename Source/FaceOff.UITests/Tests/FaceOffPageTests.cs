@@ -90,6 +90,7 @@ namespace FaceOff.UITests
             Assert.AreNotEqual(firstEmotion, secondEmotion);
         }
 
+        [TestCase(EmotionType.Sadness, 100)]
         [TestCase(EmotionType.Happiness, 100)]
         public void VerifyPhoto1Results(EmotionType emotion, int expectedScore)
         {
@@ -97,7 +98,7 @@ namespace FaceOff.UITests
 
             //Act
             FaceOffPage.SubmitImageForPhoto1(emotion);
-            App.Screenshot("Test Image Loaded");
+            App.Screenshot($"Player 1 Image Submitted: {emotion.ToString()}");
 
             //Assert
             Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
@@ -112,6 +113,7 @@ namespace FaceOff.UITests
             Assert.IsTrue(doesPopupContainCorrectResults);
         }
 
+        [TestCase(EmotionType.Sadness, 100)]
         [TestCase(EmotionType.Happiness, 100)]
         public void VerifyPhoto2Results(EmotionType emotion, int expectedScore)
         {
@@ -119,7 +121,7 @@ namespace FaceOff.UITests
 
             //Act
             FaceOffPage.SubmitImageForPhoto2(emotion);
-            App.Screenshot("Test Image Loaded");
+            App.Screenshot($"Player 2 Image Submitted: {emotion.ToString()}");
 
             //Assert
             Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
