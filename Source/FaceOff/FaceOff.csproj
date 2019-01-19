@@ -32,6 +32,7 @@
       <EmbeddedResource Include="Sadness.png" />
       <EmbeddedResource Include="Anger.png" />
       <EmbeddedResource Include="Contempt.png" />
+      <EmbeddedResource Include="Disgust.png" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>
