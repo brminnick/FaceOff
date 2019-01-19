@@ -158,6 +158,8 @@ namespace FaceOff
                 Constraint.RelativeToParent(parent => parent.Height * 1 / 8)
             );
 
+            SubscribeEventHandlers();
+
             Content = buttonImageRelativeLayout;
         }
         #endregion
