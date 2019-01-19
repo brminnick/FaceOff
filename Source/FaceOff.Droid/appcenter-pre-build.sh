@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PostBuildScriptFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name appcenter-post-build.sh | grep iOS | head -1`
+PostBuildScriptFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name appcenter-post-build.sh | grep Droid | head -1`
 CognitiveServicesConstantsFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name CognitiveServicesConstants.cs | head -1`
 echo PostBuildScriptFile = $PostBuildScriptFile
 echo CognitiveServicesConstantsFile = $CognitiveServicesConstantsFile
