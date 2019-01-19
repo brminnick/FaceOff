@@ -318,7 +318,7 @@ namespace FaceOff
         {
             player.ImageMediaFile = await MediaService.GetMediaFileFromCamera("FaceOff", player.PlayerNumber).ConfigureAwait(false);
 
-            if (player.ImageMediaFile == null)
+            if (player.ImageMediaFile is null)
                 EnableButtons(player.PlayerNumber);
             else
                 await ExecuteGetPhotoResultsWorkflow(player).ConfigureAwait(false);
@@ -326,7 +326,7 @@ namespace FaceOff
 
         async Task ExecuteGetPhotoResultsWorkflow(PlayerModel player)
         {
-            AnalyticsHelpers.Track(AnalyticsConstants.PhotoTaken);
+            AnalyticsService.Track(AnalyticsConstants.PhotoTaken);
 
             await ConfigureUIForPendingEmotionResults(player).ConfigureAwait(false);
 
@@ -380,21 +380,21 @@ namespace FaceOff
             }
             catch (HttpRequestException e) when (e.Message.Contains("401"))
             {
-                AnalyticsHelpers.Report(e);
+                AnalyticsService.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
             }
             catch (Exception e) when (e.Message.Contains("offline"))
             {
-                AnalyticsHelpers.Report(e);
+                AnalyticsService.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.DeviceOffline];
             }
             catch (Exception e)
             {
-                AnalyticsHelpers.Report(e);
+                AnalyticsService.Report(e);
 
                 emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
@@ -409,13 +409,13 @@ namespace FaceOff
                 switch (errorMessageKey)
                 {
                     case ErrorMessageType.NoFaceDetected:
-                        AnalyticsHelpers.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.NoFaceDetected]);
+                        AnalyticsService.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.NoFaceDetected]);
                         break;
                     case ErrorMessageType.MultipleFacesDetected:
-                        AnalyticsHelpers.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+                        AnalyticsService.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
                         break;
                     case ErrorMessageType.GenericError:
-                        AnalyticsHelpers.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
+                        AnalyticsService.Track(EmotionService.ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected]);
                         break;
                 }
 
@@ -429,7 +429,7 @@ namespace FaceOff
 
         void ExecuteResetButtonPressed()
         {
-            AnalyticsHelpers.Track(AnalyticsConstants.ResetButtonTapped);
+            AnalyticsService.Track(AnalyticsConstants.ResetButtonTapped);
 
             SetRandomEmotion();
 
@@ -460,13 +460,13 @@ namespace FaceOff
 
         void ExecutePhoto1ScoreButtonPressed()
         {
-            AnalyticsHelpers.Track(AnalyticsConstants.ResultsButton1Tapped);
+            AnalyticsService.Track(AnalyticsConstants.ResultsButton1Tapped);
             OnAllEmotionResultsAlertTriggered(_photo1Results);
         }
 
         void ExecutePhoto2ScoreButtonPressed()
         {
-            AnalyticsHelpers.Track(AnalyticsConstants.ResultsButton2Tapped);
+            AnalyticsService.Track(AnalyticsConstants.ResultsButton2Tapped);
             OnAllEmotionResultsAlertTriggered(_photo2Results);
         }
 
@@ -651,10 +651,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    AnalyticsHelpers.Track(AnalyticsConstants.PhotoButton1Tapped);
+                    AnalyticsService.Track(AnalyticsConstants.PhotoButton1Tapped);
                     break;
                 case PlayerNumberType.Player2:
-                    AnalyticsHelpers.Track(AnalyticsConstants.PhotoButton2Tapped);
+                    AnalyticsService.Track(AnalyticsConstants.PhotoButton2Tapped);
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);

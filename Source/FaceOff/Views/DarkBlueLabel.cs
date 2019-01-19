@@ -2,11 +2,8 @@
 
 namespace FaceOff
 {
-	public class DarkBlueLabel : Label
-	{
-		public DarkBlueLabel()
-		{
-			Style = StylesConstants.LabelStyle;
-		}
-	}
+    public class DarkBlueLabel : Label
+    {
+        public DarkBlueLabel() => TextColor = Color.FromHex("2C7797");
+    }
 }

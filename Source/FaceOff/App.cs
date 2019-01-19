@@ -21,7 +21,7 @@ namespace FaceOff
 		{
 			base.OnStart();
 
-			AnalyticsHelpers.Start();
+			AnalyticsService.Start();
 		}
 	}
 }

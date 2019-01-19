@@ -1,25 +1,31 @@
-﻿using Xamarin.UITest;
+﻿using System;
+using Xamarin.UITest;
 
 namespace FaceOff.UITests
 {
     public static class AppInitializer
-	{
-		public static IApp StartApp(Platform platform)
-		{
-			if (platform == Platform.Android)
-			{
-				return ConfigureApp
-					.Android
-                    .EnableLocalScreenshots()
-					.PreferIdeSettings()
-					.StartApp();
-			}
+    {
+        public static IApp StartApp(Platform platform)
+        {
+            switch (platform)
+            {
+                case Platform.Android:
+                    return ConfigureApp
+                        .Android
+                        .EnableLocalScreenshots()
+                        .PreferIdeSettings()
+                        .StartApp();
 
-			return ConfigureApp
-				.iOS
-				.PreferIdeSettings()
-				.StartApp();
-		}
-	}
+                case Platform.iOS:
+                    return ConfigureApp
+                        .iOS
+                        .PreferIdeSettings()
+                        .StartApp();
+
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+    }
 }
 

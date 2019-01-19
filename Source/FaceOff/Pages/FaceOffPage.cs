@@ -3,7 +3,6 @@
 using Xamarin.Forms;
 
 using FaceOff.Shared;
-using Plugin.Permissions;
 
 namespace FaceOff
 {
@@ -93,7 +92,7 @@ namespace FaceOff
 
             var photo1Stack = new StackLayout
             {
-                Style = StylesConstants.StackLayoutStyle,
+                Spacing = 50,
                 Children = {
                     _photoImage1,
                     _photo1ScoreButton,
@@ -103,6 +102,7 @@ namespace FaceOff
 
             var photo2Stack = new StackLayout
             {
+                Spacing = 50,
                 Style = StylesConstants.StackLayoutStyle,
                 Children = {
                     _photoImage2,
@@ -192,7 +192,7 @@ namespace FaceOff
             {
                 var isAlertAccepted = await DisplayAlert("Open Settings?", "Storage and Camera Permission Need To Be Enabled", "Ok", "Cancel");
                 if (isAlertAccepted)
-                    CrossPermissions.Current.OpenAppSettings();
+                    Xamarin.Essentials.AppInfo.ShowSettingsUI();
             });
         }
 
@@ -257,6 +257,21 @@ namespace FaceOff
                 await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
                 await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
             });
+        }
+        #endregion
+
+        #region Classes
+        class FrameImage : Frame
+        {
+            public FrameImage(string automationId)
+            {
+                AutomationId = automationId;
+                HasShadow = false;
+                ContentImage = new Image();
+                Content = ContentImage;
+            }
+
+            public Image ContentImage { get; set; }
         }
         #endregion
     }

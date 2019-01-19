@@ -9,7 +9,7 @@ using Microsoft.AppCenter.Crashes;
 
 namespace FaceOff
 {
-    public static class AnalyticsHelpers
+    public static class AnalyticsService
     {
         #region Methods
         public static void Start() => Start(AnalyticsConstants.AppCenterApiKey);
@@ -69,7 +69,7 @@ namespace FaceOff
         {
             _stopwatch.Stop();
             Data.Add("Timed Event", $"{_stopwatch.Elapsed.ToString(@"ss\.fff")}s");
-            AnalyticsHelpers.Track($"{_trackIdentifier} [Timed Event]", Data);
+            AnalyticsService.Track($"{_trackIdentifier} [Timed Event]", Data);
         }
     }
     #endregion

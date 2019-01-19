@@ -43,10 +43,10 @@ namespace FaceOff.Droid
         }
 
         [Export(nameof(UseDefaultImageForPhoto1))]
-        public void UseDefaultImageForPhoto1() => BackdoorHelpers.UseDefaultImageForPhoto1();
+        public void UseDefaultImageForPhoto1() => UITestBackdoorService.UseDefaultImageForPhoto1();
 
         [Export(nameof(UseDefaultImageForPhoto2))]
-        public void UseDefaultImageForPhoto2() => BackdoorHelpers.UseDefaultImageForPhoto2();
+        public void UseDefaultImageForPhoto2() => UITestBackdoorService.UseDefaultImageForPhoto2();
 #endif
         #endregion
     }

@@ -35,14 +35,14 @@ namespace FaceOff.iOS
         [Export("useDefaultImageForPhoto1:")]
         public NSString UseDefaultImageForPhoto1(NSString noValue)
         {
-            BackdoorHelpers.UseDefaultImageForPhoto1();
+            UITestBackdoorService.UseDefaultImageForPhoto1();
             return new NSString();
         }
 
         [Export("useDefaultImageForPhoto2:")]
         public NSString UseDefaultImageForPhoto2(NSString noValue)
         {
-            BackdoorHelpers.UseDefaultImageForPhoto2();
+            UITestBackdoorService.UseDefaultImageForPhoto2();
             return new NSString();
         }
 #endif

@@ -35,10 +35,9 @@ namespace FaceOff
                 ReturnCommand = new Command(() => StartGame())
             };
             _player2Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player2));
-
-            var startGameButton = new BounceButton
+            
+            var startGameButton = new BounceButton(AutomationIdConstants.StartGameButton)
             {
-                AutomationId = AutomationIdConstants.StartGameButton,
                 Margin = new Thickness(0, 20, 0, 0),
                 Text = "Start"
             };
@@ -76,17 +75,17 @@ namespace FaceOff
 
             if (isPlayer1EntryTextEmpty)
             {
-                AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player1NameEmpty);
+                AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player1NameEmpty);
                 DisplayEmptyPlayerNameAlert(1);
             }
             else if (isPlayer2EntryTextEmpty)
             {
-                AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player2NameEmpty);
+                AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player2NameEmpty);
                 DisplayEmptyPlayerNameAlert(2);
             }
             else
             {
-                AnalyticsHelpers.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
+                AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
                 Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new FaceOffPage()));
             }
         }

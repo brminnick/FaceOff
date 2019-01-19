@@ -82,7 +82,7 @@ namespace FaceOff
 
             try
             {
-                using (var handle = AnalyticsHelpers.TrackTime(AnalyticsConstants.AnalyzeEmotion))
+                using (var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion))
                 {
                     var faceApiResponseList = await FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
                                                                                          returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
@@ -104,7 +104,7 @@ namespace FaceOff
             if (!isInternetConnectionAvilable)
                 return ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
 
-            if (emotionResults == null || emotionResults.Count < 1)
+            if (emotionResults is null || emotionResults.Count < 1)
                 return ErrorMessageDictionary[ErrorMessageType.NoFaceDetected];
 
             if (emotionResults.Count > 1)
@@ -151,14 +151,14 @@ namespace FaceOff
             }
             catch (Exception e)
             {
-                AnalyticsHelpers.Report(e);
+                AnalyticsService.Report(e);
                 return ErrorMessageDictionary[ErrorMessageType.GenericError];
             }
         }
 
         public static string GetStringOfAllPhotoEmotionScores(List<Emotion> emotionResults, int emotionResultNumber)
         {
-            if (emotionResults == null || emotionResults.Count < 1)
+            if (emotionResults is null || emotionResults.Count < 1)
                 return ErrorMessageDictionary[ErrorMessageType.GenericError];
 
             var allEmotionsString = new StringBuilder();
