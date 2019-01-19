@@ -10,7 +10,6 @@ namespace FaceOff
     {
         #region Constant Fields
         readonly Entry _player1Entry, _player2Entry;
-        readonly BounceButton _startGameButton;
         #endregion
 
         #region Constructors
@@ -37,12 +36,13 @@ namespace FaceOff
             };
             _player2Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player2));
 
-            _startGameButton = new BounceButton
+            var startGameButton = new BounceButton
             {
                 AutomationId = AutomationIdConstants.StartGameButton,
                 Margin = new Thickness(0, 20, 0, 0),
                 Text = "Start"
             };
+            startGameButton.Clicked += HandleStartGameButtonClicked;
 
             NavigationPage.SetBackButtonTitle(this, "");
 
@@ -57,16 +57,13 @@ namespace FaceOff
                     _player1Entry,
                     player2Label,
                     _player2Entry,
-                    _startGameButton
+                    startGameButton
                 }
             };
         }
         #endregion
 
         #region Methods
-        protected override void SubscribeEventHandlers() => _startGameButton.Clicked += HandleStartGameButtonClicked;
-        protected override void UnsubscribeEventHandlers() => _startGameButton.Clicked -= HandleStartGameButtonClicked;
-
         void DisplayEmptyPlayerNameAlert(int playerNumber) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
 

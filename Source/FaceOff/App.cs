@@ -24,6 +24,5 @@ namespace FaceOff
 			AnalyticsHelpers.Start();
 		}
 	}
-
 }
 

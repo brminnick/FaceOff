@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+using AsyncAwaitBestPractices;
+
 using Microsoft.Azure.CognitiveServices.Vision.Face;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
@@ -42,10 +44,16 @@ namespace FaceOff
                 { EmotionType.Sadness, "Sadness" },
                 { EmotionType.Surprise, "Surprise" }
             });
+
+        readonly static WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new WeakEventManager();
         #endregion
 
         #region Events
-        public static event EventHandler MultipleFacesDetectedAlertTriggered;
+        public static event EventHandler MultipleFacesDetectedAlertTriggered
+        {
+            add => _multipleFacesDetectedAlertTriggeredEventManager.AddEventHandler(value);
+            remove => _multipleFacesDetectedAlertTriggeredEventManager.RemoveEventHandler(value);
+        }
         #endregion
 
         #region Properties
@@ -137,7 +145,7 @@ namespace FaceOff
                         return ErrorMessageDictionary[ErrorMessageType.GenericError];
                 }
 
-                var emotionScoreAsPercentage = ConversionService.ConvertDoubleToPercentage(rawEmotionScore);
+                var emotionScoreAsPercentage = rawEmotionScore.ConvertToPercentage();
 
                 return emotionScoreAsPercentage;
             }
@@ -155,14 +163,14 @@ namespace FaceOff
 
             var allEmotionsString = new StringBuilder();
 
-            allEmotionsString.AppendLine($"Anger: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Anger)}");
-            allEmotionsString.AppendLine($"Contempt: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Contempt)}");
-            allEmotionsString.AppendLine($"Disgust: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Disgust)}");
-            allEmotionsString.AppendLine($"Fear: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Fear)}");
-            allEmotionsString.AppendLine($"Happiness: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Happiness)}");
-            allEmotionsString.AppendLine($"Neutral: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Neutral)}");
-            allEmotionsString.AppendLine($"Sadness: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Sadness)}");
-            allEmotionsString.Append($"Surprise: {ConversionService.ConvertDoubleToPercentage(emotionResults[emotionResultNumber].Surprise)}");
+            allEmotionsString.AppendLine($"Anger: {emotionResults[emotionResultNumber].Anger.ConvertToPercentage()}");
+            allEmotionsString.AppendLine($"Contempt: {emotionResults[emotionResultNumber].Contempt.ConvertToPercentage()}");
+            allEmotionsString.AppendLine($"Disgust: {emotionResults[emotionResultNumber].Disgust.ConvertToPercentage()}");
+            allEmotionsString.AppendLine($"Fear: {emotionResults[emotionResultNumber].Fear.ConvertToPercentage()}");
+            allEmotionsString.AppendLine($"Happiness: {emotionResults[emotionResultNumber].Happiness.ConvertToPercentage()}");
+            allEmotionsString.AppendLine($"Neutral: {emotionResults[emotionResultNumber].Neutral.ConvertToPercentage()}");
+            allEmotionsString.AppendLine($"Sadness: {emotionResults[emotionResultNumber].Sadness.ConvertToPercentage()}");
+            allEmotionsString.Append($"Surprise: {emotionResults[emotionResultNumber].Surprise.ConvertToPercentage()}");
 
             return allEmotionsString.ToString();
         }
@@ -179,7 +187,7 @@ namespace FaceOff
         }
 
         static void OnMultipleFacesDetectedAlertTriggered() =>
-            MultipleFacesDetectedAlertTriggered?.Invoke(null, EventArgs.Empty);
+            _multipleFacesDetectedAlertTriggeredEventManager.HandleEvent(null, EventArgs.Empty, nameof(MultipleFacesDetectedAlertTriggered));
         #endregion
     }
 }

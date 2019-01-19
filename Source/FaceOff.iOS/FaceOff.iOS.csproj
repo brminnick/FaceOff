@@ -133,7 +133,7 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Essentials">
-      <HintPath>..\packages\Xamarin.Essentials.1.0.0\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Essentials.1.0.1\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Calabash">
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.21.7\lib\Xamarin.iOS\Calabash.dll</HintPath>
@@ -178,10 +178,10 @@
       <HintPath>..\packages\Xamarin.Forms.3.4.0.1009999\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="AsyncAwaitBestPractices">
-      <HintPath>..\packages\AsyncAwaitBestPractices.2.1.0-pre1\lib\netstandard\AsyncAwaitBestPractices.dll</HintPath>
+      <HintPath>..\packages\AsyncAwaitBestPractices.2.1.0\lib\netstandard\AsyncAwaitBestPractices.dll</HintPath>
     </Reference>
     <Reference Include="AsyncAwaitBestPractices.MVVM">
-      <HintPath>..\packages\AsyncAwaitBestPractices.MVVM.2.1.0-pre1\lib\netstandard\AsyncAwaitBestPractices.MVVM.dll</HintPath>
+      <HintPath>..\packages\AsyncAwaitBestPractices.MVVM.2.1.0\lib\netstandard\AsyncAwaitBestPractices.MVVM.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

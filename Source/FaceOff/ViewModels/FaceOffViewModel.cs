@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
 
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
@@ -26,6 +27,13 @@ namespace FaceOff
         const string _calculatingScoreMessage = "Analyzing";
 
         const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
+
+        readonly WeakEventManager<AlertMessageEventArgs> _popUpAlertAboutEmotionTriggeredEventManager = new WeakEventManager<AlertMessageEventArgs>();
+        readonly WeakEventManager<string> _allEmotionResultsAlertTriggeredEventManager = new WeakEventManager<string>();
+        readonly WeakEventManager _scoreButton1RevealTriggeredEventManager = new WeakEventManager();
+        readonly WeakEventManager _scoreButton2RevealTriggeredEventManager = new WeakEventManager();
+        readonly WeakEventManager _photoImage1RevealTriggeredEventManager = new WeakEventManager();
+        readonly WeakEventManager _photoImage2RevealTriggeredEventManager = new WeakEventManager();
         #endregion
 
         #region Fields
@@ -187,12 +195,41 @@ namespace FaceOff
         #endregion
 
         #region Events
-        public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered;
-        public event EventHandler<string> AllEmotionResultsAlertTriggered;
-        public event EventHandler ScoreButton1RevealTriggered;
-        public event EventHandler ScoreButton2RevealTriggered;
-        public event EventHandler PhotoImage1RevealTriggered;
-        public event EventHandler PhotoImage2RevealTriggered;
+        public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered
+        {
+            add => _popUpAlertAboutEmotionTriggeredEventManager.AddEventHandler(value);
+            remove => _popUpAlertAboutEmotionTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler<string> AllEmotionResultsAlertTriggered
+        {
+            add => _allEmotionResultsAlertTriggeredEventManager.AddEventHandler(value);
+            remove => _allEmotionResultsAlertTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler ScoreButton1RevealTriggered
+        {
+            add => _scoreButton1RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _scoreButton1RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler ScoreButton2RevealTriggered
+        {
+            add => _scoreButton2RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _scoreButton2RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler PhotoImage1RevealTriggered
+        {
+            add => _photoImage1RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _photoImage1RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler PhotoImage2RevealTriggered
+        {
+            add => _photoImage2RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _photoImage2RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
         #endregion
 
         #region Methods
@@ -639,22 +676,22 @@ namespace FaceOff
             IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
         void OnAllEmotionResultsAlertTriggered(string emotionResults) =>
-            AllEmotionResultsAlertTriggered?.Invoke(this, emotionResults);
+            _allEmotionResultsAlertTriggeredEventManager?.HandleEvent(this, emotionResults, nameof(AllEmotionResultsAlertTriggered));
 
         void OnPhotoImage1RevealTriggered() =>
-            PhotoImage1RevealTriggered?.Invoke(this, EventArgs.Empty);
+            _photoImage1RevealTriggeredEventManager?.HandleEvent(this, EventArgs.Empty, nameof(PhotoImage1RevealTriggered));
 
         void OnScoreButton1RevealTriggered() =>
-            ScoreButton1RevealTriggered?.Invoke(this, EventArgs.Empty);
+            _scoreButton1RevealTriggeredEventManager?.HandleEvent(this, EventArgs.Empty, nameof(ScoreButton1RevealTriggered));
 
         void OnPhotoImage2RevealTriggered() =>
-            PhotoImage2RevealTriggered?.Invoke(this, EventArgs.Empty);
+            _photoImage2RevealTriggeredEventManager?.HandleEvent(this, EventArgs.Empty, nameof(PhotoImage2RevealTriggered));
 
         void OnScoreButton2RevealTriggered() =>
-            ScoreButton2RevealTriggered?.Invoke(this, EventArgs.Empty);
+            _scoreButton2RevealTriggeredEventManager?.HandleEvent(this, EventArgs.Empty, nameof(ScoreButton2RevealTriggered));
 
         void OnPopUpAlertAboutEmotionTriggered(string title, string message, PlayerModel player) =>
-            PopUpAlertAboutEmotionTriggered?.Invoke(this, new AlertMessageEventArgs(title, message, player));
+            _popUpAlertAboutEmotionTriggeredEventManager?.HandleEvent(this, new AlertMessageEventArgs(title, message, player), nameof(PopUpAlertAboutEmotionTriggered));
         #endregion
     }
 }

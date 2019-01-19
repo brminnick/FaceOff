@@ -2,6 +2,8 @@
 using System.IO;
 using System.Threading.Tasks;
 
+using AsyncAwaitBestPractices;
+
 using Plugin.Media;
 using Plugin.Permissions;
 using Plugin.Media.Abstractions;
@@ -13,9 +15,23 @@ namespace FaceOff
 {
     public static class MediaService
     {
+        #region Constant Fields
+        readonly static WeakEventManager _noCameraDetectedEventManager = new WeakEventManager();
+        readonly static WeakEventManager _permissionsDeniedEventManager = new WeakEventManager();
+        #endregion
+
         #region Events 
-        public static event EventHandler NoCameraDetected;
-        public static event EventHandler PermissionsDenied;
+        public static event EventHandler NoCameraDetected
+        {
+            add => _noCameraDetectedEventManager.AddEventHandler(value);
+            remove => _noCameraDetectedEventManager.RemoveEventHandler(value);
+        }
+
+        public static event EventHandler PermissionsDenied
+        {
+            add => _permissionsDeniedEventManager.AddEventHandler(value);
+            remove => _permissionsDeniedEventManager.RemoveEventHandler(value);
+        }
         #endregion
 
         #region Methods
@@ -31,10 +47,10 @@ namespace FaceOff
 
         public static async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
         {
-			await CrossMedia.Current.Initialize().ConfigureAwait(false);
+            await CrossMedia.Current.Initialize().ConfigureAwait(false);
 
             var arePermissionsGranted = await ArePermissionsGranted().ConfigureAwait(false);
-            if(!arePermissionsGranted)
+            if (!arePermissionsGranted)
             {
                 OnPermissionsDenied();
                 return null;
@@ -48,7 +64,7 @@ namespace FaceOff
 
             var mediaFileTCS = new TaskCompletionSource<MediaFile>();
 
-            Device.BeginInvokeOnMainThread(async()=>
+            Device.BeginInvokeOnMainThread(async () =>
             {
                 var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                 {
@@ -60,7 +76,7 @@ namespace FaceOff
                 });
 
                 mediaFileTCS.SetResult(file);
-			});
+            });
 
             return await mediaFileTCS.Task;
         }
@@ -79,12 +95,12 @@ namespace FaceOff
 
             if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
                 return true;
-            
+
             return false;
         }
 
-        static void OnNoCameraDetected() => NoCameraDetected?.Invoke(null, EventArgs.Empty);
-        static void OnPermissionsDenied() => PermissionsDenied?.Invoke(null, EventArgs.Empty);
+        static void OnNoCameraDetected() => _noCameraDetectedEventManager.HandleEvent(null, EventArgs.Empty, nameof(NoCameraDetected));
+        static void OnPermissionsDenied() => _permissionsDeniedEventManager.HandleEvent(null, EventArgs.Empty, nameof(PermissionsDenied));
         #endregion
     }
 }

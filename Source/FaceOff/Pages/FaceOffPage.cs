@@ -164,7 +164,7 @@ namespace FaceOff
         #endregion
 
         #region Methods
-        protected override void SubscribeEventHandlers()
+        void SubscribeEventHandlers()
         {
             ViewModel.PhotoImage1RevealTriggered += HandlePhotoImage1RevealTriggered;
             ViewModel.PhotoImage2RevealTriggered += HandlePhotoImage2RevealTriggered;
@@ -175,19 +175,6 @@ namespace FaceOff
             EmotionService.MultipleFacesDetectedAlertTriggered += HandleMultipleFacesDetectedAlertTriggered;
             MediaService.NoCameraDetected += HandleNoCameraDetected;
             MediaService.PermissionsDenied += HandlePermissionsDenied;
-        }
-
-        protected override void UnsubscribeEventHandlers()
-        {
-            ViewModel.PhotoImage1RevealTriggered -= HandlePhotoImage1RevealTriggered;
-            ViewModel.PhotoImage2RevealTriggered -= HandlePhotoImage2RevealTriggered;
-            ViewModel.AllEmotionResultsAlertTriggered -= HandleAllEmotionResultsAlertTriggered;
-            ViewModel.PopUpAlertAboutEmotionTriggered -= HandlePopUpAlertAboutEmotionTriggered;
-            ViewModel.ScoreButton1RevealTriggered -= HandleScoreButton1RevealTriggered;
-            ViewModel.ScoreButton2RevealTriggered -= HandleScoreButton2RevealTriggered;
-            EmotionService.MultipleFacesDetectedAlertTriggered -= HandleMultipleFacesDetectedAlertTriggered;
-            MediaService.NoCameraDetected -= HandleNoCameraDetected;
-            MediaService.PermissionsDenied -= HandlePermissionsDenied;
         }
 
         void HandleAllEmotionResultsAlertTriggered(object sender, string message) =>
