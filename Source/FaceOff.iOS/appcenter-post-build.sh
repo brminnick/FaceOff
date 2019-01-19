@@ -40,6 +40,9 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     TestCloudExeDirectory=`dirname $TestCloudExe`
     echo TestCloudExeDirectory: $TestCloudExeDirectory
 
+    IPAFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.ipa | head -1`
+    echo IPAFile: $IPAFile
+
     DSYMFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.dsym | head -1`
     DSYMDirectory=`dirname $DSYMFile`
 
