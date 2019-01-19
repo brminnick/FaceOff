@@ -33,6 +33,10 @@
     </ItemGroup>
     <ItemGroup>
       <EmbeddedResource Include="Happiness.png" />
+      <EmbeddedResource Include="Sadness.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Sadness.png" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>
