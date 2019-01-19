@@ -350,7 +350,7 @@ namespace FaceOff
 
             SetResetButtonIsEnabled();
 
-            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.PhotoImageAninmationTime * 2.5)).ConfigureAwait(false);
+            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.DefaultAnimationTime * 2.5)).ConfigureAwait(false);
 
             RevealPhotoButton(player.PlayerNumber);
         }
@@ -365,7 +365,7 @@ namespace FaceOff
 
             player.ImageMediaFile.Dispose();
 
-            return WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.ScoreButonAninmationTime * 2.5));
+            return WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.DefaultAnimationTime * 2.5));
         }
 
         async Task<string> GenerateEmotionResults(PlayerModel player)

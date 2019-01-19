@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 
 using FaceOff.Shared;
+using System.Threading.Tasks;
 
 namespace FaceOff
 {
@@ -206,58 +207,30 @@ namespace FaceOff
             });
         }
 
-        void HandleScoreButton1RevealTriggered(object sender, EventArgs e)
+        async void HandleScoreButton1RevealTriggered(object sender, EventArgs e) => await RevealView(_photo1ScoreButton);
+        async void HandleScoreButton2RevealTriggered(object sender, EventArgs e) => await RevealView(_photo2ScoreButton);
+        async void HandlePhotoImage1RevealTriggered(object sender, EventArgs e) => await RevealView(_photoImage1);
+        async void HandlePhotoImage2RevealTriggered(object sender, EventArgs e) => await RevealView(_photoImage2);
+
+        Task RevealView(View view, 
+                        uint animationTime = AnimationConstants.DefaultAnimationTime, 
+                        double maxImageSize = AnimationConstants.DefaultMaxImageSize, 
+                        double normalImageSize = AnimationConstants.DefaultNormalSize)
         {
+            var tcs = new TaskCompletionSource<object>();
+
             Device.BeginInvokeOnMainThread(async () =>
             {
-                _photo1ScoreButton.Scale = 0;
-                ViewModel.IsScore1ButtonVisable = true;
+                view.Scale = 0;
+                view.IsVisible = true;
 
-                await _photo1ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonMaxSize, AnimationConstants.ScoreButonAninmationTime);
-                await _photo1ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonNormalSize, AnimationConstants.ScoreButonAninmationTime);
+                await view.ScaleTo(maxImageSize, animationTime);
+                await view.ScaleTo(normalImageSize, animationTime);
 
-                ViewModel.IsScore1ButtonEnabled = true;
-                ViewModel.IsTakeRightPhotoButtonEnabled = !ViewModel.IsPhotoImage2Enabled;
+                tcs.SetResult(null);
             });
-        }
 
-        void HandleScoreButton2RevealTriggered(object sender, EventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                _photo2ScoreButton.Scale = 0;
-                ViewModel.IsScore2ButtonVisable = true;
-
-                await _photo2ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonMaxSize, AnimationConstants.ScoreButonAninmationTime);
-                await _photo2ScoreButton?.ScaleTo(AnimationConstants.ScoreButtonNormalSize, AnimationConstants.ScoreButonAninmationTime);
-
-                ViewModel.IsScore2ButtonEnabled = true;
-                ViewModel.IsTakeLeftPhotoButtonEnabled = !ViewModel.IsPhotoImage1Enabled;
-            });
-        }
-
-        void HandlePhotoImage1RevealTriggered(object sender, EventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                _photoImage1.Scale = 0;
-                ViewModel.IsPhotoImage1Enabled = true;
-
-                await _photoImage1?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
-                await _photoImage1?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
-            });
-        }
-
-        void HandlePhotoImage2RevealTriggered(object sender, EventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                _photoImage2.Scale = 0;
-                ViewModel.IsPhotoImage2Enabled = true;
-
-                await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageMaxSize, AnimationConstants.PhotoImageAninmationTime);
-                await _photoImage2?.ScaleTo(AnimationConstants.PhotoImageNormalSize, AnimationConstants.PhotoImageAninmationTime);
-            });
+            return tcs.Task;
         }
         #endregion
 
