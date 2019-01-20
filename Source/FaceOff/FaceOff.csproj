@@ -16,23 +16,14 @@
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.0" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.xaml.cs">
-            <DependentUpon>*.xaml</DependentUpon>
-        </Compile>
-        <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Pages\WelcomePage.cs">
-            <DependentUpon>*.xaml</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="Pages\Base\" />
-        <Folder Include="Enums\" />
-    </ItemGroup>
-    <ItemGroup>
-      <EmbeddedResource Include="Happiness.png" />
-      <EmbeddedResource Include="Sadness.png" />
       <EmbeddedResource Include="Anger.png" />
       <EmbeddedResource Include="Contempt.png" />
       <EmbeddedResource Include="Disgust.png" />
+      <EmbeddedResource Include="Fear.png" />
+      <EmbeddedResource Include="Happiness.png" />
+      <EmbeddedResource Include="Neutral.png" />
+      <EmbeddedResource Include="Sadness.png" />
+      <EmbeddedResource Include="Surprise.png" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>
