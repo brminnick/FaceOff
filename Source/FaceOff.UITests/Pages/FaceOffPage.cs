@@ -63,6 +63,11 @@ namespace FaceOff.UITests
         public void WaitForPhotoImage2() => App.WaitForElement(_photoImage2);
         public void WaitForPicturePageToLoad() => App.WaitForElement(_takePhoto1Button);
         public void WaitForResultsPopup() => App.WaitForElement("Results");
+        public bool DoesResultsPopupContainExpectedResults(EmotionType emotion, double expectedScore)
+        {
+            WaitForResultsPopup();
+            return App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore.ToString()}") ?? false);
+        }
 
         public void TapResetButton()
         {

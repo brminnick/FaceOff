@@ -115,8 +115,7 @@ namespace FaceOff.UITests
             FaceOffPage.WaitForResultsPopup();
 
             //Assert
-            var doesPopupContainCorrectResults = App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore.ToString()}") ?? false);
-            Assert.IsTrue(doesPopupContainCorrectResults);
+            Assert.IsTrue(FaceOffPage.DoesResultsPopupContainExpectedResults(emotion, expectedScore));
         }
 
         [TestCase(EmotionType.Anger, 100)]
@@ -144,8 +143,7 @@ namespace FaceOff.UITests
             FaceOffPage.WaitForResultsPopup();
 
             //Assert
-            var doesPopupContainCorrectResults = App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore.ToString()}") ?? false);
-            Assert.IsTrue(doesPopupContainCorrectResults);
+            Assert.IsTrue(FaceOffPage.DoesResultsPopupContainExpectedResults(emotion, expectedScore));
         }
     }
 }
