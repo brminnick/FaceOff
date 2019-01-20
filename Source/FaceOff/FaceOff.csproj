@@ -16,14 +16,27 @@
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.0" />
     </ItemGroup>
     <ItemGroup>
-      <EmbeddedResource Include="Anger.png" />
-      <EmbeddedResource Include="Contempt.png" />
-      <EmbeddedResource Include="Disgust.png" />
-      <EmbeddedResource Include="Fear.png" />
-      <EmbeddedResource Include="Happiness.png" />
-      <EmbeddedResource Include="Neutral.png" />
-      <EmbeddedResource Include="Sadness.png" />
-      <EmbeddedResource Include="Surprise.png" />
+      <EmbeddedResource Include="Images\Anger.png" />
+      <EmbeddedResource Include="Images\Contempt.png" />
+      <EmbeddedResource Include="Images\Disgust.png" />
+      <EmbeddedResource Include="Images\Fear.png" />
+      <EmbeddedResource Include="Images\Happiness.png" />
+      <EmbeddedResource Include="Images\Neutral.png" />
+      <EmbeddedResource Include="Images\Sadness.png" />
+      <EmbeddedResource Include="Images\Surprise.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Images\" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Test Imagaes\Anger.png" />
+      <None Remove="Test Imagaes\Contempt.png" />
+      <None Remove="Test Imagaes\Disgust.png" />
+      <None Remove="Test Imagaes\Fear.png" />
+      <None Remove="Test Imagaes\Happiness.png" />
+      <None Remove="Test Imagaes\Neutral.png" />
+      <None Remove="Test Imagaes\Sadness.png" />
+      <None Remove="Test Imagaes\Surprise.png" />
     </ItemGroup>
     <Import Project="..\FaceOff.Shared\FaceOff.Shared.projitems" Label="Shared" Condition="Exists('..\FaceOff.Shared\FaceOff.Shared.projitems')" />
 </Project>

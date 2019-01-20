@@ -1,6 +1,4 @@
 ﻿#if DEBUG
-using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -37,19 +35,11 @@ namespace FaceOff
         #endregion
 
         #region Methods
-        public static (string playerName, EmotionType emotion) ParseBackdoorMethodParameters(object[] inputs)
-        {
-            var playerName = inputs[0].ToString();
-            Enum.TryParse<EmotionType>(inputs[1].ToString(), out var emotion);
-
-            return (playerName, emotion);
-        }
-
         public static Task SubmitImageForPhoto1(string playerName, EmotionType emotion)
         {
             var player1 = new PlayerModel(PlayerNumberType.Player1, playerName)
             {
-                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player1photo", () => _applicationTypeInfo.Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.{emotion.ToString()}.png"))
+                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player1photo", () => _applicationTypeInfo.Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion.ToString()}.png"))
             };
 
             return FaceOffViewModel.SubmitPhoto(emotion, player1);
@@ -59,7 +49,7 @@ namespace FaceOff
         {
             var player2 = new PlayerModel(PlayerNumberType.Player2, playerName)
             {
-                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player2photo", () => _applicationTypeInfo.GetTypeInfo().Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.{emotion.ToString()}.png"))
+                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player2photo", () => _applicationTypeInfo.GetTypeInfo().Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion.ToString()}.png"))
             };
 
             return FaceOffViewModel.SubmitPhoto(emotion, player2);
@@ -69,15 +59,6 @@ namespace FaceOff
         {
             return Application.Current?.MainPage?.Navigation?.ModalStack?.LastOrDefault()
                  ?? Application.Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
-        }
-
-        static byte[] ConvertStreamToByteArrary(Stream stream)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                stream.CopyTo(memoryStream);
-                return memoryStream.ToArray();
-            }
         }
         #endregion
     }
