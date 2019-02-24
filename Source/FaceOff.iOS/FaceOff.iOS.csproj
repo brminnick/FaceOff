@@ -114,7 +114,7 @@
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.0" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.13.0" />
         <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
-        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.2.0-preview" />
+        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.3.0-preview" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.0" />
         <PackageReference Include="Xamarin.TestCloud.Agent">
           <Version>0.21.7</Version>
