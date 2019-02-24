@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 using NUnit.Framework;
 
@@ -88,6 +88,10 @@ namespace FaceOff.UITests
             //Assert
             secondEmotion = FaceOffPage.Emotion;
             Assert.AreNotEqual(firstEmotion, secondEmotion);
+            Assert.IsFalse(FaceOffPage.IsScoreButton1Visible);
+            Assert.IsFalse(FaceOffPage.IsScoreButton2Visible);
+            Assert.IsFalse(FaceOffPage.IsPhotoImage1Visible);
+            Assert.IsFalse(FaceOffPage.IsPhotoImage2Visible);
         }
 
         [TestCase(EmotionType.Anger, 100)]

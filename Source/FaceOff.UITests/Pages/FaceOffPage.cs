@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Newtonsoft.Json;
@@ -54,6 +54,8 @@ namespace FaceOff.UITests
         public string Player2Name => App.Query(_player2NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player2NameLabel)?.FirstOrDefault()?.Label;
         public bool IsScoreButton1Visible => ScoreButton1Query().Any();
         public bool IsScoreButton2Visible => ScoreButton2Query().Any();
+        public bool IsPhotoImage1Visible => PhotoImage1Query().Any();
+        public bool IsPhotoImage2Visible => PhotoImage2Query().Any();
         #endregion
 
         #region Methods
@@ -163,6 +165,18 @@ namespace FaceOff.UITests
         {
             App.WaitForElement(_scoreButton2, "Score Button 2 Did Not Appear", new TimeSpan(0, 0, 5));
             return App.Query(_scoreButton2);
+        }
+
+        AppResult[] PhotoImage1Query()
+        {
+            App.WaitForElement(_photoImage1, "Photo Image 1 Did Not Appear", new TimeSpan(0, 0, 5));
+            return App.Query(_photoImage1);
+        }
+
+        AppResult[] PhotoImage2Query()
+        {
+            App.WaitForElement(_photoImage2, "Photo Image 2 Did Not Appear", new TimeSpan(0, 0, 5));
+            return App.Query(_photoImage2);
         }
         #endregion
     }
