@@ -52,8 +52,8 @@ namespace FaceOff.UITests
         public string ScoreButton2Text => App.Query(_scoreButton2)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton2)?.FirstOrDefault()?.Label;
         public string Player1Name => App.Query(_player1NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player1NameLabel)?.FirstOrDefault()?.Label;
         public string Player2Name => App.Query(_player2NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player2NameLabel)?.FirstOrDefault()?.Label;
-        public bool IsScoreButton1Visible => ScoreButton1Query().Any();
-        public bool IsScoreButton2Visible => ScoreButton2Query().Any();
+        public bool IsScoreButton1Visible => App.Query(_scoreButton1).Any();
+        public bool IsScoreButton2Visible => App.Query(_scoreButton2).Any();
         public bool IsPhotoImage1Visible => App.Query(_photoImage1).Any();
         public bool IsPhotoImage2Visible => App.Query(_photoImage2).Any();
         #endregion
@@ -153,18 +153,6 @@ namespace FaceOff.UITests
                 return App.Invoke("getPicturePageTitle:", "").ToString();
 
             return App.Invoke("GetPicturePageTitle").ToString();
-        }
-
-        AppResult[] ScoreButton1Query()
-        {
-            App.WaitForElement(_scoreButton1, "Score Button 1 Did Not Appear", new TimeSpan(0, 0, 5));
-            return App.Query(_scoreButton1);
-        }
-
-        AppResult[] ScoreButton2Query()
-        {
-            App.WaitForElement(_scoreButton2, "Score Button 2 Did Not Appear", new TimeSpan(0, 0, 5));
-            return App.Query(_scoreButton2);
         }
         #endregion
     }
