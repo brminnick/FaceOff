@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -21,15 +21,18 @@ namespace FaceOff
         {
             this.SetBinding(TitleProperty, nameof(ViewModel.PageTitle));
 
-            _photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1) { Padding = new Thickness(24, 12) };
+            _photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1)
+            {
+                Padding = new Thickness(24, 12),
+                IsVisible = false,
+                Scale = 0,
+            };
             _photo1ScoreButton.SetBinding(IsEnabledProperty, nameof(ViewModel.IsScore1ButtonEnabled));
-            _photo1ScoreButton.SetBinding(IsVisibleProperty, nameof(ViewModel.IsScore1ButtonVisable));
             _photo1ScoreButton.SetBinding(Button.TextProperty, nameof(ViewModel.ScoreButton1Text));
             _photo1ScoreButton.SetBinding(Button.CommandProperty, nameof(ViewModel.Photo1ScoreButtonPressed));
 
-            _photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2) { Padding = new Thickness(24, 12) };
+            _photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2) { Padding = new Thickness(24, 12), IsVisible = false };
             _photo2ScoreButton.SetBinding(IsEnabledProperty, nameof(ViewModel.IsScore2ButtonEnabled));
-            _photo2ScoreButton.SetBinding(IsVisibleProperty, nameof(ViewModel.IsScore2ButtonVisable));
             _photo2ScoreButton.SetBinding(Button.TextProperty, nameof(ViewModel.ScoreButton2Text));
             _photo2ScoreButton.SetBinding(Button.CommandProperty, nameof(ViewModel.Photo2ScoreButtonPressed));
 
@@ -85,12 +88,18 @@ namespace FaceOff
             };
             takePhoto2ButtonStack.SetBinding(IsVisibleProperty, nameof(ViewModel.IsTakeRightPhotoButtonStackVisible));
 
-            _photoImage1 = new FrameImage(AutomationIdConstants.PhotoImage1);
-            _photoImage1.SetBinding(IsVisibleProperty, nameof(ViewModel.IsPhotoImage1Enabled));
+            _photoImage1 = new FrameImage(AutomationIdConstants.PhotoImage1)
+            {
+                IsVisible = false,
+                Scale = 0,
+            };
             _photoImage1.ContentImage.SetBinding(Image.SourceProperty, nameof(ViewModel.Photo1ImageSource));
 
-            _photoImage2 = new FrameImage(AutomationIdConstants.PhotoImage2);
-            _photoImage2.SetBinding(IsVisibleProperty, nameof(ViewModel.IsPhotoImage2Enabled));
+            _photoImage2 = new FrameImage(AutomationIdConstants.PhotoImage2)
+            {
+                IsVisible = false,
+                Scale = 0,
+            };
             _photoImage2.ContentImage.SetBinding(Image.SourceProperty, nameof(ViewModel.Photo2ImageSource));
 
             var photo1Stack = new StackLayout
@@ -172,10 +181,14 @@ namespace FaceOff
         {
             ViewModel.PhotoImage1RevealTriggered += HandlePhotoImage1RevealTriggered;
             ViewModel.PhotoImage2RevealTriggered += HandlePhotoImage2RevealTriggered;
-            ViewModel.AllEmotionResultsAlertTriggered += HandleAllEmotionResultsAlertTriggered;
-            ViewModel.PopUpAlertAboutEmotionTriggered += HandlePopUpAlertAboutEmotionTriggered;
             ViewModel.ScoreButton1RevealTriggered += HandleScoreButton1RevealTriggered;
             ViewModel.ScoreButton2RevealTriggered += HandleScoreButton2RevealTriggered;
+            ViewModel.PhotoImage1HideTriggered += HandlePhotoImage1HideTriggered;
+            ViewModel.PhotoImage2HideTriggered += HandlePhotoImage2HideTriggered;
+            ViewModel.ScoreButton1HideTriggered += HandleScoreButton1HideTriggered;
+            ViewModel.ScoreButton2HideTriggered += HandleScoreButton2HideTriggered;
+            ViewModel.AllEmotionResultsAlertTriggered += HandleAllEmotionResultsAlertTriggered;
+            ViewModel.PopUpAlertAboutEmotionTriggered += HandlePopUpAlertAboutEmotionTriggered;
             EmotionService.MultipleFacesDetectedAlertTriggered += HandleMultipleFacesDetectedAlertTriggered;
             MediaService.NoCameraDetected += HandleNoCameraDetected;
             MediaService.PermissionsDenied += HandlePermissionsDenied;
@@ -213,10 +226,14 @@ namespace FaceOff
         async void HandleScoreButton2RevealTriggered(object sender, EventArgs e) => await RevealView(_photo2ScoreButton);
         async void HandlePhotoImage1RevealTriggered(object sender, EventArgs e) => await RevealView(_photoImage1);
         async void HandlePhotoImage2RevealTriggered(object sender, EventArgs e) => await RevealView(_photoImage2);
+        async void HandleScoreButton1HideTriggered(object sender, EventArgs e) => await HideView(_photo1ScoreButton);
+        async void HandleScoreButton2HideTriggered(object sender, EventArgs e) => await HideView(_photo2ScoreButton);
+        async void HandlePhotoImage1HideTriggered(object sender, EventArgs e) => await HideView(_photoImage1);
+        async void HandlePhotoImage2HideTriggered(object sender, EventArgs e) => await HideView(_photoImage2);
 
-        Task RevealView(View view, 
-                        uint animationTime = AnimationConstants.DefaultAnimationTime, 
-                        double maxImageSize = AnimationConstants.DefaultMaxImageSize, 
+        Task RevealView(View view,
+                        uint animationTime = AnimationConstants.DefaultAnimationTime,
+                        double maxImageSize = AnimationConstants.DefaultMaxImageSize,
                         double normalImageSize = AnimationConstants.DefaultNormalSize)
         {
             var tcs = new TaskCompletionSource<object>();
@@ -228,6 +245,24 @@ namespace FaceOff
 
                 await view.ScaleTo(maxImageSize, animationTime);
                 await view.ScaleTo(normalImageSize, animationTime);
+
+                tcs.SetResult(null);
+            });
+
+            return tcs.Task;
+        }
+
+        Task HideView(View view,
+                uint animationTime = AnimationConstants.DefaultAnimationTime,
+                double maxImageSize = AnimationConstants.DefaultMaxImageSize,
+                double normalImageSize = AnimationConstants.DefaultNormalSize)
+        {
+            var tcs = new TaskCompletionSource<object>();
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                view.Scale = 0;
+                view.IsVisible = false;
 
                 tcs.SetResult(null);
             });
