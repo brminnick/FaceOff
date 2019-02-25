@@ -59,6 +59,8 @@ namespace FaceOff.UITests
         #endregion
 
         #region Methods
+        public void WaitForScoreButton1() => App.WaitForElement(_scoreButton1);
+        public void WaitForScoreButton2() => App.WaitForElement(_scoreButton2);
         public void WaitForNoPhoto1ActivityIndicator() => App.WaitForNoElement(_photo1ActivityIndicator);
         public void WaitForNoPhoto2ActivityIndicator() => App.WaitForNoElement(_photo2ActivityIndicator);
         public void WaitForPhotoImage1() => App.WaitForElement(_photoImage1);

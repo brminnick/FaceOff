@@ -42,6 +42,8 @@ namespace FaceOff.UITests
             CameraPage.TapPhotoCaptureButton();
             CameraPage.TapUsePhotoButton();
 
+            FaceOffPage.WaitForScoreButton1();
+
             //Assert
             Assert.IsTrue(FaceOffPage.IsScoreButton1Visible);
         }
@@ -60,6 +62,8 @@ namespace FaceOff.UITests
 
             CameraPage.TapPhotoCaptureButton();
             CameraPage.TapUsePhotoButton();
+
+            FaceOffPage.WaitForScoreButton2();
 
             //Assert
             Assert.IsTrue(FaceOffPage.IsScoreButton2Visible);
