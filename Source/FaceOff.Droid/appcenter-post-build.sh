@@ -46,5 +46,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token token
 
-    appcenter test run uitest --app "FaceOff/FaceOff-Android" --devices "FaceOff/android5-plus" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
+    appcenter test run uitest --app "FaceOff/FaceOff-Android" --devices "FaceOff/android5-plus" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory
 fi

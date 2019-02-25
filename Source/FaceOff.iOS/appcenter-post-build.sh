@@ -50,5 +50,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token token
 
-    appcenter test run uitest --app "FaceOff/FaceOff-iOS" --devices "FaceOff/onedevicefromeachos" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory --async
+    appcenter test run uitest --app "FaceOff/FaceOff-iOS" --devices "FaceOff/onedevicefromeachos" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory
 fi
