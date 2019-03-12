@@ -35,15 +35,7 @@ namespace FaceOff
         #endregion
 
         #region Methods
-        public static Stream GetPhotoStream(MediaFile mediaFile, bool disposeMediaFile)
-        {
-            var stream = mediaFile.GetStream();
-
-            if (disposeMediaFile)
-                mediaFile.Dispose();
-
-            return stream;
-        }
+        public static Stream GetPhotoStream(MediaFile mediaFile) => mediaFile.GetStream();
 
         public static async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
         {

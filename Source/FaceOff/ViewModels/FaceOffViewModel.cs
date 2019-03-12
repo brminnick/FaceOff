@@ -338,7 +338,7 @@ namespace FaceOff
 
             try
             {
-                emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
+                emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile).ConfigureAwait(false);
                 emotionScore = EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType);
             }
             catch (HttpRequestException e) when (e.Message.Contains("401"))
@@ -547,16 +547,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    Photo1ImageSource = ImageSource.FromStream(() =>
-                    {
-                        return MediaService.GetPhotoStream(imageMediaFile, false);
-                    });
+                    Photo1ImageSource = ImageSource.FromStream(() => MediaService.GetPhotoStream(imageMediaFile));
                     break;
                 case PlayerNumberType.Player2:
-                    Photo2ImageSource = ImageSource.FromStream(() =>
-                    {
-                        return MediaService.GetPhotoStream(imageMediaFile, false);
-                    });
+                    Photo2ImageSource = ImageSource.FromStream(() => MediaService.GetPhotoStream(imageMediaFile));
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
