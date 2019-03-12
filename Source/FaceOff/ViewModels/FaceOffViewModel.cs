@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
 
-using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+using Amazon.Rekognition.Model;
 
 using Plugin.Media.Abstractions;
 
@@ -21,9 +21,6 @@ namespace FaceOff
     public class FaceOffViewModel : BaseViewModel
     {
         #region Constant Fields
-        readonly Lazy<string[]> _emotionStringsForAlertMessageHolder = new Lazy<string[]>(() =>
-            new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" });
-
         const string _makeAFaceAlertMessage = "take a selfie looking";
         const string _calculatingScoreMessage = "Analyzing";
 
@@ -170,8 +167,6 @@ namespace FaceOff
             get => _isScore2ButtonEnabled;
             set => SetProperty(ref _isScore2ButtonEnabled, value);
         }
-
-        string[] EmotionStringsForAlertMessage => _emotionStringsForAlertMessageHolder.Value;
         #endregion
 
         #region Events
@@ -260,7 +255,7 @@ namespace FaceOff
             DisableButtons(playerModel.PlayerNumber);
 
             var title = EmotionConstants.EmotionDictionary[_currentEmotionType];
-            var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {EmotionStringsForAlertMessage[(int)_currentEmotionType]}";
+            var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {EmotionConstants.EmotionDictionary[_currentEmotionType].ToLower()}";
             OnPopUpAlertAboutEmotionTriggered(title, message, playerModel);
         }
 
@@ -338,8 +333,8 @@ namespace FaceOff
 
             try
             {
-                emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile, false).ConfigureAwait(false);
-                emotionScore = EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType);
+                emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile).ConfigureAwait(false);
+                emotionScore = EmotionService.GetPhotoEmotionScore(emotionArray, _currentEmotionType);
             }
             catch (HttpRequestException e) when (e.Message.Contains("401"))
             {
@@ -387,7 +382,7 @@ namespace FaceOff
             else
                 SetScoreButtonText($"Score: {emotionScore}", player.PlayerNumber);
 
-            return EmotionService.GetStringOfAllPhotoEmotionScores(emotionArray, 0);
+            return EmotionService.GetStringOfAllPhotoEmotionScores(emotionArray);
         }
 
         void ExecuteResetButtonPressed()

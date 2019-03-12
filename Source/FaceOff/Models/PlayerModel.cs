@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-
-using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+using Amazon.Rekognition.Model;
 
 using Plugin.Media.Abstractions;
 
 namespace FaceOff
 {
-	public class PlayerModel
+    public class PlayerModel
 	{
         public PlayerModel(PlayerNumberType playerNumber, string playerName)
 		{

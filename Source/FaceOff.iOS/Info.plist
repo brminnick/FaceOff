@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>FaceOff</string>
+	<string>FaceOff&#x2007;AWS</string>
 	<key>CFBundleName</key>
 	<string>FaceOff</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.minnick.faceoff</string>
+	<string>com.minnick.faceoffaws</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>

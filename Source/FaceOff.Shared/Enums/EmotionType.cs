@@ -2,13 +2,13 @@
 {
     public enum EmotionType
     {
-        Anger,
-        Contempt,
-        Disgust,
-        Fear,
-        Happiness,
-        Neutral,
-        Sadness,
-        Surprise
+        HAPPY,
+        SAD,
+        ANGRY,
+        CONFUSED,
+        DISGUSTED,
+        SURPRISED,
+        CALM,
+        UNKNOWN
     };
 }

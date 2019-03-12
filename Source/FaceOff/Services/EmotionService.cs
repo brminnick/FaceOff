@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using AsyncAwaitBestPractices;
+using Amazon.Runtime;
+using Amazon.Rekognition;
+using Amazon.Rekognition.Model;
 
-using Microsoft.Azure.CognitiveServices.Vision.Face;
-using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+using AsyncAwaitBestPractices;
 
 using Plugin.Media.Abstractions;
 
@@ -15,14 +16,16 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 
 using FaceOff.Shared;
+using System.IO;
+using Amazon;
 
 namespace FaceOff
 {
     static class EmotionService
     {
         #region Constant Fields
-        readonly static Lazy<FaceClient> _faceApiClientHolder =
-            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
+        readonly static Lazy<AmazonRekognitionClient> _rekognitionClientHolder =
+            new Lazy<AmazonRekognitionClient>(() => new AmazonRekognitionClient(new BasicAWSCredentials(AwsConstants.AccessKey, AwsConstants.AccessSecret), RegionEndpoint.USWest2));
 
         readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
             new Dictionary<ErrorMessageType, string>{
@@ -47,7 +50,7 @@ namespace FaceOff
 
         #region Properties
         public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
-        static FaceClient FaceApiClient => _faceApiClientHolder.Value;
+        static AmazonRekognitionClient RekognitionClient => _rekognitionClientHolder.Value;
         #endregion
 
         #region Methods
@@ -59,22 +62,37 @@ namespace FaceOff
             do
             {
                 randomNumber = rnd.Next(0, EmotionConstants.EmotionDictionary.Count);
-            } while (randomNumber == (int)currentEmotionType);
+            } while (randomNumber == (int)currentEmotionType || randomNumber == (int)EmotionType.UNKNOWN);
 
             return (EmotionType)randomNumber;
         }
 
-        public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile, bool disposeMediaFile)
+        public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile)
         {
             Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.IsBusy = true);
 
             try
             {
+                using (var imageStream = mediaFile.GetStream())
+                using (var imageMemoryStream = new MemoryStream())
                 using (var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion))
                 {
-                    var faceApiResponseList = await FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile, disposeMediaFile),
-                                                                                         returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
-                    return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
+                    imageStream.CopyTo(imageMemoryStream);
+
+                    var detectFacesRequest = new DetectFacesRequest
+                    {
+                        Attributes = new List<string> { { "ALL" } },
+                        Image = new Amazon.Rekognition.Model.Image { Bytes = imageMemoryStream }
+                    };
+                    var detectFacesResponse = await RekognitionClient.DetectFacesAsync(detectFacesRequest).ConfigureAwait(false);
+
+                    if (detectFacesResponse.FaceDetails.Count > 1)
+                    {
+                        OnMultipleFacesDetectedAlertTriggered();
+                        throw new Exception("Multiple Faces Detected");
+                    }
+
+                    return detectFacesResponse.FaceDetails.SelectMany(x => x.Emotions).ToList();
                 }
             }
             finally
@@ -83,10 +101,8 @@ namespace FaceOff
             }
         }
 
-        public static string GetPhotoEmotionScore(List<Emotion> emotionResults, int emotionResultNumber, EmotionType currentEmotionType)
+        public static string GetPhotoEmotionScore(List<Emotion> emotionResults, EmotionType currentEmotionName)
         {
-            double rawEmotionScore;
-
             var isInternetConnectionAvilable = Connectivity.NetworkAccess.Equals(NetworkAccess.Internet);
 
             if (!isInternetConnectionAvilable)
@@ -95,43 +111,9 @@ namespace FaceOff
             if (emotionResults is null || emotionResults.Count < 1)
                 return ErrorMessageDictionary[ErrorMessageType.NoFaceDetected];
 
-            if (emotionResults.Count > 1)
-            {
-                OnMultipleFacesDetectedAlertTriggered();
-                return ErrorMessageDictionary[ErrorMessageType.MultipleFacesDetected];
-            }
-
             try
             {
-                switch (currentEmotionType)
-                {
-                    case EmotionType.Anger:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Anger;
-                        break;
-                    case EmotionType.Contempt:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Contempt;
-                        break;
-                    case EmotionType.Disgust:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Disgust;
-                        break;
-                    case EmotionType.Fear:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Fear;
-                        break;
-                    case EmotionType.Happiness:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Happiness;
-                        break;
-                    case EmotionType.Neutral:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Neutral;
-                        break;
-                    case EmotionType.Sadness:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Sadness;
-                        break;
-                    case EmotionType.Surprise:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Surprise;
-                        break;
-                    default:
-                        return ErrorMessageDictionary[ErrorMessageType.GenericError];
-                }
+                var rawEmotionScore = emotionResults.First(x => x.Type.Equals(EmotionConstants.EmotionDictionary[currentEmotionName])).Confidence;
 
                 var emotionScoreAsPercentage = rawEmotionScore.ConvertToPercentage();
 
@@ -144,21 +126,27 @@ namespace FaceOff
             }
         }
 
-        public static string GetStringOfAllPhotoEmotionScores(List<Emotion> emotionResults, int emotionResultNumber)
+        public static string GetStringOfAllPhotoEmotionScores(List<Emotion> emotionResults)
         {
             if (emotionResults is null || emotionResults.Count < 1)
                 return ErrorMessageDictionary[ErrorMessageType.GenericError];
 
             var allEmotionsString = new StringBuilder();
 
-            allEmotionsString.AppendLine($"Anger: {emotionResults[emotionResultNumber].Anger.ConvertToPercentage()}");
-            allEmotionsString.AppendLine($"Contempt: {emotionResults[emotionResultNumber].Contempt.ConvertToPercentage()}");
-            allEmotionsString.AppendLine($"Disgust: {emotionResults[emotionResultNumber].Disgust.ConvertToPercentage()}");
-            allEmotionsString.AppendLine($"Fear: {emotionResults[emotionResultNumber].Fear.ConvertToPercentage()}");
-            allEmotionsString.AppendLine($"Happiness: {emotionResults[emotionResultNumber].Happiness.ConvertToPercentage()}");
-            allEmotionsString.AppendLine($"Neutral: {emotionResults[emotionResultNumber].Neutral.ConvertToPercentage()}");
-            allEmotionsString.AppendLine($"Sadness: {emotionResults[emotionResultNumber].Sadness.ConvertToPercentage()}");
-            allEmotionsString.Append($"Surprise: {emotionResults[emotionResultNumber].Surprise.ConvertToPercentage()}");
+            if (emotionResults.Any(x => x.Type.Equals(EmotionType.UNKNOWN)))
+            {
+                allEmotionsString.Append($"Unknown: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.UNKNOWN]))?.Confidence.ConvertToPercentage()}");
+            }
+            else
+            {
+                allEmotionsString.AppendLine($"Angry: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.ANGRY]))?.Confidence.ConvertToPercentage()}");
+                allEmotionsString.AppendLine($"Calm: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.CALM]))?.Confidence.ConvertToPercentage()}");
+                allEmotionsString.AppendLine($"Confused: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.CONFUSED]))?.Confidence.ConvertToPercentage()}");
+                allEmotionsString.AppendLine($"Disgusted: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.DISGUSTED]))?.Confidence.ConvertToPercentage()}");
+                allEmotionsString.AppendLine($"Happy: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.HAPPY]))?.Confidence.ConvertToPercentage()}");
+                allEmotionsString.AppendLine($"Sad: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.SAD]))?.Confidence.ConvertToPercentage()}");
+                allEmotionsString.Append($"Surprised: {emotionResults.FirstOrDefault(x => x.Type.Equals(EmotionConstants.EmotionDictionary[EmotionType.SURPRISED]))?.Confidence.ConvertToPercentage()}");
+            }
 
             return allEmotionsString.ToString();
         }
