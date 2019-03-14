@@ -11,6 +11,8 @@ using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 using Plugin.Media.Abstractions;
 
+using Polly;
+
 using Xamarin.Forms;
 using Xamarin.Essentials;
 
@@ -72,8 +74,8 @@ namespace FaceOff
             {
                 using (var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion))
                 {
-                    var faceApiResponseList = await FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile),
-                                                                                         returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } }).ConfigureAwait(false);
+                    var faceApiResponseList = await ExecutePollyFunction(() => FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile),
+                                                                                         returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
                     return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
                 }
             }
@@ -172,6 +174,19 @@ namespace FaceOff
             }
 
             return false;
+        }
+
+        static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 3)
+        {
+            return Policy
+                    .Handle<Exception>()
+                    .WaitAndRetryAsync
+                    (
+                        numRetries,
+                        pollyRetryAttempt
+                    ).ExecuteAsync(action);
+
+            TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
 
         static void OnMultipleFacesDetectedAlertTriggered() =>
