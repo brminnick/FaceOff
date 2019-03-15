@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+using Amazon;
 using Amazon.Runtime;
 using Amazon.Rekognition;
 using Amazon.Rekognition.Model;
@@ -16,8 +18,6 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 
 using FaceOff.Shared;
-using System.IO;
-using Amazon;
 
 namespace FaceOff
 {
