@@ -14,10 +14,5 @@ This is an Android, iOS and UWP app created using [Xamarin.Forms](https://www.xa
 ## ToDo
 To use AWS's Rekognition from this app, sign up for a [free AWS Account](https://aws.amazon.com) and insert it to the code [here](./Source/FaceOff/Constants/AwsConstants.cs#L7).
 
-### Author
-Brandon Minnick
-
-Xamarin Customer Success Engineer
-
 
 ![FaceOff Demo](https://github.com/brminnick/Videos/blob/master/FaceOff/FaceOff_GifDemo.gif)
