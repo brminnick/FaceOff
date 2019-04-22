@@ -10,7 +10,7 @@ namespace FaceOff.UITests
         {
         }
 
-        [Test, Ignore]
+        [Test, Ignore("REPL used for manually exploring the app")]
         public void Repl() => App.Repl();
     }
 }
