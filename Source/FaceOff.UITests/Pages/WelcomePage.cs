@@ -36,16 +36,16 @@ namespace FaceOff.UITests
 
         public void EnterPlayer1Name(string name)
         {
-            App.Tap(_player1Entry);
-            App.EnterText(name);
+            App.ClearText(_player1Entry);
+            App.EnterText(_player1Entry, name);
             App.DismissKeyboard();
             App.Screenshot("Entered Player 1 Name");
         }
 
         public void EnterPlayer2Name(string name)
         {
-            App.Tap(_player2Entry);
-            App.EnterText(name);
+            App.ClearText(_player2Entry);
+            App.EnterText(_player2Entry, name);
             App.DismissKeyboard();
             App.Screenshot("Entered Player 1 Name");
         }

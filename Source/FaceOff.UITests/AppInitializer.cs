@@ -13,13 +13,13 @@ namespace FaceOff.UITests
                     return ConfigureApp
                         .Android
                         .PreferIdeSettings()
-                        .StartApp();
+                        .StartApp(Xamarin.UITest.Configuration.AppDataMode.Clear);
 
                 case Platform.iOS:
                     return ConfigureApp
                         .iOS
                         .PreferIdeSettings()
-                        .StartApp();
+                        .StartApp(Xamarin.UITest.Configuration.AppDataMode.Clear);
 
                 default:
                     throw new NotSupportedException();
