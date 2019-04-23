@@ -22,17 +22,8 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     UITestBuildDir=`dirname $UITestDLL`
     echo UITestBuildDir: $UITestBuildDir
 
-    UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,10\}\-'dev`
-    echo UITestPrereleaseVersionNumber: $UITestVersionNumber
-
-    UITestVersionNumberSize=${#UITestVersionNumber} 
-    echo UITestVersionNumberSize: $UITestVersionNumberSize
-
-    if [ $UITestVersionNumberSize == 0 ]
-    then
-        UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
-        echo UITestVersionNumber: $UITestVersionNumber
-    fi
+    UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+    echo UITestVersionNumber: $UITestVersionNumber
 
     TestCloudExe=`find ~/.nuget | grep test-cloud.exe | grep $UITestVersionNumber | head -1`
     echo TestCloudExe: $TestCloudExe
