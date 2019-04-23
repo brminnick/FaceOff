@@ -27,6 +27,8 @@ namespace FaceOff.UITests
             WelcomePage = new WelcomePage(App);
 
             WelcomePage.WaitForPageToLoad();
+            WelcomePage.ClearPlayer1EntryText();
+            WelcomePage.ClearPlayer2EntryText();
 
             App.Screenshot("App Launched");
         }

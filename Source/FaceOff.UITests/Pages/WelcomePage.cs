@@ -33,6 +33,8 @@ namespace FaceOff.UITests
 
         #region Methods
         public void WaitForPageToLoad() => App.WaitForElement("FaceOff");
+        public void ClearPlayer1EntryText() => App.ClearText(_player1Entry);
+        public void ClearPlayer2EntryText() => App.ClearText(_player2Entry);
 
         public void EnterPlayer1Name(string name)
         {
