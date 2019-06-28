@@ -58,7 +58,7 @@ namespace FaceOff
             var takePhoto1ButtonStack = new StackLayout
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Padding = new Thickness(24, 24, 24, 24),
+                Padding = new Thickness(24),
                 Children = {
                     player1NameLabel,
                     takePhoto1Button
@@ -80,7 +80,7 @@ namespace FaceOff
             var takePhoto2ButtonStack = new StackLayout
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Padding = new Thickness(24, 24, 24, 24),
+                Padding = new Thickness(24),
                 Children = {
                     player2NameLabel,
                     takePhoto2Button
@@ -252,22 +252,13 @@ namespace FaceOff
             return tcs.Task;
         }
 
-        Task HideView(View view,
-                uint animationTime = AnimationConstants.DefaultAnimationTime,
-                double maxImageSize = AnimationConstants.DefaultMaxImageSize,
-                double normalImageSize = AnimationConstants.DefaultNormalSize)
+        Task HideView(View view)
         {
-            var tcs = new TaskCompletionSource<object>();
-
-            Device.BeginInvokeOnMainThread(() =>
+            return Device.InvokeOnMainThreadAsync(() =>
             {
                 view.Scale = 0;
                 view.IsVisible = false;
-
-                tcs.SetResult(null);
             });
-
-            return tcs.Task;
         }
         #endregion
 
@@ -282,7 +273,7 @@ namespace FaceOff
                 Content = ContentImage;
             }
 
-            public Image ContentImage { get; set; }
+            public Image ContentImage { get; }
         }
         #endregion
     }

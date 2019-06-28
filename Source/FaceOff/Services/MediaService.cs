@@ -54,11 +54,9 @@ namespace FaceOff
                 return null;
             }
 
-            var mediaFileTCS = new TaskCompletionSource<MediaFile>();
-
-            Device.BeginInvokeOnMainThread(async () =>
+            return await Device.InvokeOnMainThreadAsync(() =>
             {
-                var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                return CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                 {
                     PhotoSize = PhotoSize.Small,
                     Directory = directory,
@@ -66,11 +64,7 @@ namespace FaceOff
                     DefaultCamera = CameraDevice.Front,
                     OverlayViewProvider = DependencyService.Get<ICameraService>()?.GetCameraOverlay()
                 });
-
-                mediaFileTCS.SetResult(file);
-            });
-
-            return await mediaFileTCS.Task;
+            }).ConfigureAwait(false);
         }
 
         static async Task<bool> ArePermissionsGranted()

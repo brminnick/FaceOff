@@ -3,8 +3,6 @@ using Foundation;
 
 using Newtonsoft.Json;
 
-using Xamarin.Forms;
-
 using FaceOff.Shared;
 
 namespace FaceOff.iOS
@@ -14,7 +12,7 @@ namespace FaceOff.iOS
     {
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            Forms.Init();
+            Xamarin.Forms.Forms.Init();
             Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
 
 #if DEBUG
@@ -32,7 +30,7 @@ namespace FaceOff.iOS
         [Export("getPicturePageTitle:")]
         public NSString GetPicturePageTitle(NSString noValue)
         {
-            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as NavigationPage;
+            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as Xamarin.Forms.NavigationPage;
             return new NSString(mainNavigationPage.CurrentPage.Title);
         }
 

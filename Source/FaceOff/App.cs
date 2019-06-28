@@ -1,28 +1,32 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FaceOff
 {
-	public class App : Application
-	{
-		public App()
-		{
-			var welcomePage = new NavigationPage(new WelcomePage())
-			{
-				BarBackgroundColor = Color.FromHex("1FAECE"),
-				BarTextColor = Color.White
-			};
+    public class App : Xamarin.Forms.Application
+    {
+        public App()
+        {
+            var navigationPage = new Xamarin.Forms.NavigationPage(new WelcomePage())
+            {
+                BarBackgroundColor = Color.FromHex("1FAECE"),
+                BarTextColor = Color.White
+            };
 
-			MainPage = welcomePage;
-		}
+            navigationPage.On<iOS>().SetPrefersLargeTitles(true);
 
-		protected override void OnStart()
-		{
-			base.OnStart();
+            MainPage = navigationPage;
+        }
 
-			AnalyticsService.Start();
-		}
-	}
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            AnalyticsService.Start();
+        }
+    }
 }
 

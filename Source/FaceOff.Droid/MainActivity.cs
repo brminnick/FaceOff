@@ -13,6 +13,33 @@ namespace FaceOff.Droid
     [Activity(Label = "FaceOff.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        #region Xamarin Test Cloud Back Door Methods
+#if DEBUG
+        [Export(nameof(GetPicturePageTitle))]
+        public string GetPicturePageTitle()
+        {
+            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as Xamarin.Forms.NavigationPage;
+            return mainNavigationPage.CurrentPage.Title;
+        }
+
+        [Export(nameof(SubmitImageForPhoto1))]
+        public async void SubmitImageForPhoto1(string serializedInput)
+        {
+            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput);
+
+            await UITestBackdoorService.SubmitImageForPhoto1(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).ConfigureAwait(false);
+        }
+
+        [Export(nameof(SubmitImageForPhoto2))]
+        public async void SubmitImageForPhoto2(string serializedInput)
+        {
+            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput);
+
+            await UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).ConfigureAwait(false);
+        }
+#endif
+        #endregion
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -36,33 +63,6 @@ namespace FaceOff.Droid
 
             LoadApplication(new App());
         }
-
-        #region Xamarin Test Cloud Back Door Methods
-#if DEBUG
-        [Export(nameof(GetPicturePageTitle))]
-        public string GetPicturePageTitle()
-        {
-            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as Xamarin.Forms.NavigationPage;
-            return mainNavigationPage.CurrentPage.Title;
-        }
-
-        [Export(nameof(SubmitImageForPhoto1))]
-        public void SubmitImageForPhoto1(string serializedInput)
-        {
-            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput);
-
-            UITestBackdoorService.SubmitImageForPhoto1(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
-        }
-
-        [Export(nameof(SubmitImageForPhoto2))]
-        public void SubmitImageForPhoto2(string serializedInput)
-        {
-            var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput);
-
-            UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
-        }
-#endif
-        #endregion
     }
 }
 
