@@ -236,20 +236,14 @@ namespace FaceOff
                         double maxImageSize = AnimationConstants.DefaultMaxImageSize,
                         double normalImageSize = AnimationConstants.DefaultNormalSize)
         {
-            var tcs = new TaskCompletionSource<object>();
-
-            Device.BeginInvokeOnMainThread(async () =>
+            return Device.InvokeOnMainThreadAsync(async () =>
             {
                 view.Scale = 0;
                 view.IsVisible = true;
 
                 await view.ScaleTo(maxImageSize, animationTime);
                 await view.ScaleTo(normalImageSize, animationTime);
-
-                tcs.SetResult(null);
             });
-
-            return tcs.Task;
         }
 
         Task HideView(View view)
