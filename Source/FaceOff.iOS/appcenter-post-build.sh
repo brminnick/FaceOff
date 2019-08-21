@@ -37,9 +37,9 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     DSYMFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.dsym | head -1`
     DSYMDirectory=`dirname $DSYMFile`
 
-    npm install -g appcenter-cli
+    npm install -g appcenter-cli@1.2.2
 
     appcenter login --token token
 
-    appcenter test run uitest --app "FaceOff/FaceOff-iOS" --devices "FaceOff/onedevicefromeachos" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory
+    appcenter test run uitest --app "CDA-Global-Beta/FaceOff-iOS" --devices "CDA-Global-Beta/current-ios-minus-1" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory
 fi

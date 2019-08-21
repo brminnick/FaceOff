@@ -33,9 +33,9 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.apk | head -1`
 
-    npm install -g appcenter-cli
+    npm install -g appcenter-cli@1.2.2
 
     appcenter login --token token
 
-    appcenter test run uitest --app "FaceOff/FaceOff-Android" --devices "FaceOff/android5-plus" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory
+    appcenter test run uitest --app "CDA-Global-Beta/FaceOff-Android" --devices "CDA-Global-Beta/android-os-v5-10" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory
 fi
