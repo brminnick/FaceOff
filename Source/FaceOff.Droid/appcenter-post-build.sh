@@ -16,7 +16,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     msbuild "$UITestProject" /property:Configuration=$APPCENTER_XAMARIN_CONFIGURATION
 
-    UITestDLL=`find "$APPCENTER_SOURCE_DIRECTORY" -name "FaceOff.UITests.dll" | grep bin`
+    UITestDLL=`find "$APPCENTER_SOURCE_DIRECTORY" -name "FaceOff.UITests.dll" | grep bin | head -1`
     echo UITestDLL: $UITestDLL
 
     UITestBuildDir=`dirname $UITestDLL`
