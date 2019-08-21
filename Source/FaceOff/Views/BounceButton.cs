@@ -6,7 +6,6 @@ namespace FaceOff
 {
     public class BounceButton : Button
     {
-        #region Constructors
         public BounceButton(string automationId)
         {
             Clicked += HandleButtonClick;
@@ -14,19 +13,13 @@ namespace FaceOff
             TextColor = Color.White;
             AutomationId = automationId;
         }
-        #endregion
 
-        #region Methods
-        void HandleButtonClick(object sender, EventArgs e)
+        async void HandleButtonClick(object sender, EventArgs e)
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                Unfocus();
-                await this.ScaleTo(AnimationConstants.BounceButtonMaxSize, AnimationConstants.BounceButonAninmationTime);
-                await this.ScaleTo(AnimationConstants.BounceButtonNormalSize, AnimationConstants.BounceButonAninmationTime);
-            });
+            Unfocus();
+            await this.ScaleTo(AnimationConstants.BounceButtonMaxSize, AnimationConstants.BounceButonAninmationTime);
+            await this.ScaleTo(AnimationConstants.BounceButtonNormalSize, AnimationConstants.BounceButonAninmationTime);
         }
-        #endregion
     }
 }
 

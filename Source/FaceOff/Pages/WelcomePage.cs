@@ -8,11 +8,8 @@ namespace FaceOff
 {
     public class WelcomePage : BaseContentPage<WelcomeViewModel>
     {
-        #region Constant Fields
         readonly Entry _player1Entry, _player2Entry;
-        #endregion
 
-        #region Constructors
         public WelcomePage()
         {
             var player1Label = new DarkBlueLabel { Text = "Player 1" };
@@ -60,9 +57,7 @@ namespace FaceOff
                 }
             };
         }
-        #endregion
 
-        #region Methods
         void DisplayEmptyPlayerNameAlert(int playerNumber) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
 
@@ -89,6 +84,5 @@ namespace FaceOff
                 Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new FaceOffPage()));
             }
         }
-        #endregion
     }
 }

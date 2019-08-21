@@ -9,14 +9,11 @@ namespace FaceOff
 {
     public class FaceOffPage : BaseContentPage<FaceOffViewModel>
     {
-        #region Constant Fields
         const int _frameImagePadding = 10;
 
         readonly FrameImage _photoImage1, _photoImage2;
         readonly BounceButton _photo1ScoreButton, _photo2ScoreButton;
-        #endregion
 
-        #region Constructors
         public FaceOffPage()
         {
             this.SetBinding(TitleProperty, nameof(ViewModel.PageTitle));
@@ -174,9 +171,7 @@ namespace FaceOff
 
             Content = buttonImageRelativeLayout;
         }
-        #endregion
 
-        #region Methods
         void SubscribeEventHandlers()
         {
             ViewModel.PhotoImage1RevealTriggered += HandlePhotoImage1RevealTriggered;
@@ -254,9 +249,7 @@ namespace FaceOff
                 view.IsVisible = false;
             });
         }
-        #endregion
 
-        #region Classes
         class FrameImage : Frame
         {
             public FrameImage(string automationId)
@@ -269,7 +262,6 @@ namespace FaceOff
 
             public Image ContentImage { get; }
         }
-        #endregion
     }
 }
 

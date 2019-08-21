@@ -9,9 +9,8 @@ using Microsoft.AppCenter.Crashes;
 
 namespace FaceOff
 {
-    public static class AnalyticsService
+    static class AnalyticsService
     {
-        #region Methods
         public static void Start() => Start(AnalyticsConstants.AppCenterApiKey);
 
         public static void Track(string trackIdentifier, IDictionary<string, string> table = null) => Analytics.TrackEvent(trackIdentifier, table);
@@ -46,11 +45,9 @@ namespace FaceOff
         }
 
         static void Start(string appCenterAPIKey) => AppCenter.Start(appCenterAPIKey, typeof(Crashes), typeof(Analytics));
-        #endregion
     }
 
-    #region Classes
-    public class TimedEvent : IDisposable
+    class TimedEvent : IDisposable
     {
         readonly Stopwatch _stopwatch;
         readonly string _trackIdentifier;
@@ -72,6 +69,5 @@ namespace FaceOff
             AnalyticsService.Track($"{_trackIdentifier} [Timed Event]", Data);
         }
     }
-    #endregion
 }
 

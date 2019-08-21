@@ -35,21 +35,19 @@ namespace FaceOff.iOS
         }
 
         [Export("submitImageForPhoto1:")]
-        public NSString SubmitImageForPhoto1(NSString serializedInput)
+        public async void SubmitImageForPhoto1(NSString serializedInput)
         {
             var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput.ToString());
 
-            UITestBackdoorService.SubmitImageForPhoto1(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
-            return new NSString();
+            await UITestBackdoorService.SubmitImageForPhoto1(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).ConfigureAwait(false);
         }
 
         [Export("submitImageForPhoto2:")]
-        public NSString SubmitImageForPhoto2(NSString serializedInput)
+        public async void SubmitImageForPhoto2(NSString serializedInput)
         {
             var playerEmotionModel = JsonConvert.DeserializeObject<PlayerEmotionModel>(serializedInput.ToString());
 
-            UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).GetAwaiter().GetResult();
-            return new NSString();
+            await UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).ConfigureAwait(false);
         }
 #endif
         #endregion

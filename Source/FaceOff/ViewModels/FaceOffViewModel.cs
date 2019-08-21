@@ -20,7 +20,6 @@ namespace FaceOff
 {
     public class FaceOffViewModel : BaseViewModel
     {
-        #region Constant Fields
         readonly Lazy<string[]> _emotionStringsForAlertMessageHolder = new Lazy<string[]>(() =>
             new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" });
 
@@ -39,9 +38,7 @@ namespace FaceOff
         readonly WeakEventManager _scoreButton2HidelTriggeredEventManager = new WeakEventManager();
         readonly WeakEventManager _photoImage1HideTriggeredEventManager = new WeakEventManager();
         readonly WeakEventManager _photoImage2HideTriggeredEventManager = new WeakEventManager();
-        #endregion
 
-        #region Fields
         ImageSource _photo1ImageSource, _photo2ImageSource;
         string _scoreButton1Text, _scoreButton2Text;
         bool _isTakeLeftPhotoButtonEnabled = true;
@@ -57,20 +54,16 @@ namespace FaceOff
         ICommand _takePhoto1ButtonPressed, _takePhoto2ButtonPressed;
         ICommand _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
         ICommand _resetButtonPressed, _emotionPopUpAlertResponseCommand;
-        #endregion
 
-        #region Constructors
         public FaceOffViewModel()
         {
             IsResetButtonEnabled = false;
 
             SetRandomEmotion();
         }
-        #endregion
 
-        #region Properties
         public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
-            (_emotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand, continueOnCapturedContext: false));
+            (_emotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand));
 
         public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
             (_takePhoto1ButtonPressed = new Command(ExecuteTakePhoto1ButtonPressed));
@@ -172,9 +165,7 @@ namespace FaceOff
         }
 
         string[] EmotionStringsForAlertMessage => _emotionStringsForAlertMessageHolder.Value;
-        #endregion
 
-        #region Events
         public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered
         {
             add => _popUpAlertAboutEmotionTriggeredEventManager.AddEventHandler(value);
@@ -234,9 +225,7 @@ namespace FaceOff
             add => _photoImage2HideTriggeredEventManager.AddEventHandler(value);
             remove => _photoImage2HideTriggeredEventManager.RemoveEventHandler(value);
         }
-        #endregion
 
-        #region Methods
         #region UITest Backdoor Methods
 #if DEBUG
         public Task SubmitPhoto(EmotionType emotion, PlayerModel player)
@@ -660,7 +649,6 @@ namespace FaceOff
 
         void OnPopUpAlertAboutEmotionTriggered(string title, string message, PlayerModel player) =>
             _popUpAlertAboutEmotionTriggeredEventManager.HandleEvent(this, new AlertMessageEventArgs(title, message, player), nameof(PopUpAlertAboutEmotionTriggered));
-        #endregion
     }
 }
 

@@ -13,15 +13,10 @@ namespace FaceOff
 {
     public static class UITestBackdoorService
     {
-        #region Constant Fields
         static readonly TypeInfo _applicationTypeInfo = Application.Current.GetType().GetTypeInfo();
-        #endregion
 
-        #region Fields
         static FaceOffViewModel _faceOffViewModel;
-        #endregion
 
-        #region Properties
         static FaceOffViewModel FaceOffViewModel
         {
             get
@@ -32,9 +27,7 @@ namespace FaceOff
                 return _faceOffViewModel;
             }
         }
-        #endregion
 
-        #region Methods
         public static Task SubmitImageForPhoto1(string playerName, EmotionType emotion)
         {
             var player1 = new PlayerModel(PlayerNumberType.Player1, playerName)
@@ -60,7 +53,6 @@ namespace FaceOff
             return Application.Current?.MainPage?.Navigation?.ModalStack?.LastOrDefault()
                  ?? Application.Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
         }
-        #endregion
     }
 }
 #endif

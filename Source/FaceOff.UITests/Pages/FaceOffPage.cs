@@ -132,6 +132,8 @@ namespace FaceOff.UITests
                 default:
                     throw new NotSupportedException();
             }
+
+            App.WaitForElement(_photoImage1);
         }
 
         public void SubmitImageForPhoto2(EmotionType emotion)
@@ -148,6 +150,8 @@ namespace FaceOff.UITests
                     androidApp.Invoke("SubmitImageForPhoto2", serializedInput);
                     break;
             }
+
+            App.WaitForElement(_photoImage2);
         }
 
         string GetEmotionUsingBackdoors()

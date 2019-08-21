@@ -114,6 +114,8 @@ namespace FaceOff.UITests
             FaceOffPage.SubmitImageForPhoto1(emotion);
             App.Screenshot($"Player 1 Image Submitted: {emotion.ToString()}");
 
+            FaceOffPage.WaitForNoPhoto1ActivityIndicator();
+
             //Assert
             Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
             Assert.IsTrue(FaceOffPage.ScoreButton1Text.Contains(expectedScore.ToString()));
@@ -141,6 +143,8 @@ namespace FaceOff.UITests
             //Act
             FaceOffPage.SubmitImageForPhoto2(emotion);
             App.Screenshot($"Player 2 Image Submitted: {emotion.ToString()}");
+
+            FaceOffPage.WaitForNoPhoto2ActivityIndicator();
 
             //Assert
             Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);

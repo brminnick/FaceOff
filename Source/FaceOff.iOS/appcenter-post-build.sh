@@ -41,5 +41,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token token
 
-    appcenter test run uitest --app "CDA-Global-Beta/FaceOff-iOS" --devices "CDA-Global-Beta/current-ios-minus-1" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory
+    appcenter test run uitest --app "CDA-Global-Beta/FaceOff-iOS" --devices "CDA-Global-Beta/current-ios-minus-1" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory --async
 fi

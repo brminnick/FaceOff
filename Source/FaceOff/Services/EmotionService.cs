@@ -22,7 +22,6 @@ namespace FaceOff
 {
     static class EmotionService
     {
-        #region Constant Fields
         readonly static Lazy<FaceClient> _faceApiClientHolder =
             new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
 
@@ -37,22 +36,16 @@ namespace FaceOff
             });
 
         readonly static WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new WeakEventManager();
-        #endregion
 
-        #region Events
         public static event EventHandler MultipleFacesDetectedAlertTriggered
         {
             add => _multipleFacesDetectedAlertTriggeredEventManager.AddEventHandler(value);
             remove => _multipleFacesDetectedAlertTriggeredEventManager.RemoveEventHandler(value);
         }
-        #endregion
 
-        #region Properties
         public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
         static FaceClient FaceApiClient => _faceApiClientHolder.Value;
-        #endregion
 
-        #region Methods
         public static EmotionType GetRandomEmotionType(EmotionType currentEmotionType)
         {
             var rnd = new Random((int)DateTime.UtcNow.Ticks);
@@ -81,7 +74,7 @@ namespace FaceOff
             }
             finally
             {
-               await  Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = false);
+                await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = false);
             }
         }
 
@@ -178,19 +171,12 @@ namespace FaceOff
 
         static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 3)
         {
-            return Policy
-                    .Handle<Exception>()
-                    .WaitAndRetryAsync
-                    (
-                        numRetries,
-                        pollyRetryAttempt
-                    ).ExecuteAsync(action);
+            return Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action);
 
             TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
 
         static void OnMultipleFacesDetectedAlertTriggered() =>
             _multipleFacesDetectedAlertTriggeredEventManager.HandleEvent(null, EventArgs.Empty, nameof(MultipleFacesDetectedAlertTriggered));
-        #endregion
     }
 }
