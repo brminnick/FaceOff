@@ -9,8 +9,12 @@
         <RootNamespace>FaceOff.iOS</RootNamespace>
         <AssemblyName>FaceOffiOS</AssemblyName>
         <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+        <LangVersion>8.0</LangVersion>
+        <Nullable>enable</Nullable>
         <NuGetPackageImportStamp>
         </NuGetPackageImportStamp>
+        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
         <DebugSymbols>true</DebugSymbols>
@@ -27,8 +31,6 @@
         <MtouchProfiling>true</MtouchProfiling>
         <MtouchLink>SdkOnly</MtouchLink>
         <MtouchArch>x86_64</MtouchArch>
-        <PlatformTarget>x86</PlatformTarget>
-        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
         <Optimize>true</Optimize>
@@ -39,8 +41,7 @@
         <CodesignKey>iPhone Distribution</CodesignKey>
         <MtouchFloat32>true</MtouchFloat32>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-        <MtouchArch>ARMv7, ARM64</MtouchArch>
-        <PlatformTarget>x86</PlatformTarget>
+        <MtouchArch>ARM64</MtouchArch>
         <MtouchUseLlvm>true</MtouchUseLlvm>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
         <CodesignProvision>
@@ -55,7 +56,6 @@
         <CodesignKey>iPhone Developer</CodesignKey>
         <MtouchLink>SdkOnly</MtouchLink>
         <MtouchArch>x86_64</MtouchArch>
-        <PlatformTarget>x86</PlatformTarget>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -75,7 +75,7 @@
         <MtouchFloat32>false</MtouchFloat32>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchLink>SdkOnly</MtouchLink>
-        <MtouchArch>ARMv7, ARM64</MtouchArch>
+        <MtouchArch>ARM64</MtouchArch>
         <PlatformTarget>x86</PlatformTarget>
         <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
         <OptimizePNGs>true</OptimizePNGs>
@@ -92,7 +92,7 @@
         <MtouchUseLlvm>true</MtouchUseLlvm>
         <MtouchFloat32>true</MtouchFloat32>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-        <MtouchArch>ARMv7, ARM64</MtouchArch>
+        <MtouchArch>ARM64</MtouchArch>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
         <AssemblyName>FaceOff.iOS</AssemblyName>
     </PropertyGroup>
@@ -166,6 +166,8 @@
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
         <Compile Include="Services\CameraService_iOS.cs" />
+        <Compile Include="CustomRenderers\EntryCustomRederer.cs" />
+        <Compile Include="CustomRenderers\NavigationPageCustomRenderer.cs" />
     </ItemGroup>
     <ItemGroup>
         <BundleResource Include="Resources\Camera-Face-Overlay.png" />
@@ -180,6 +182,9 @@
     <ItemGroup />
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="CustomRenderers\" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
