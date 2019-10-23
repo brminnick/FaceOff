@@ -14,26 +14,19 @@ namespace FaceOff.UITests
 {
     public class WelcomePage : BasePage
     {
-        #region Constant Fields
         readonly Query _player1Entry, _player2Entry, _startGameButton;
-        #endregion
 
-        #region Constructors
         public WelcomePage(IApp app) : base(app)
         {
             _player1Entry = x => x.Marked(AutomationIdConstants.Player1Entry);
             _player2Entry = x => x.Marked(AutomationIdConstants.Player2Entry);
             _startGameButton = x => x.Marked(AutomationIdConstants.StartGameButton);
         }
-        #endregion
 
-        #region Properties
         public string Player1EntryPlaceholderText => GetPlaceholderText(AutomationIdConstants.Player1Entry);
         public string Player2EntryPlaceholderText => GetPlaceholderText(AutomationIdConstants.Player2Entry);
         public bool IsErrorMessageDisplayed => GetErrorMessageQuery().Any();
-        #endregion
 
-        #region Methods
         public void WaitForPageToLoad() => App.WaitForElement("FaceOff");
         public void ClearPlayer1EntryText() => App.ClearText(_player1Entry);
         public void ClearPlayer2EntryText() => App.ClearText(_player2Entry);
@@ -72,7 +65,6 @@ namespace FaceOff.UITests
             iOSApp iosApp => iosApp.Query(x => x.Marked(entryAutomationId).Invoke("placeholder")).First().ToString(),
             _ => throw new NotSupportedException(),
         };
-        #endregion
     }
 }
 
