@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
-
+﻿using FaceOff.Shared;
+using NUnit.Framework;
 using Xamarin.UITest;
-
-using FaceOff.Shared;
 
 namespace FaceOff.UITests
 {
-	public class WelcomePageTests : BaseTest
+    public class WelcomePageTests : BaseTest
 	{
 		public WelcomePageTests(Platform platform) : base(platform)
 		{

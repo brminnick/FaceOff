@@ -1,11 +1,7 @@
-using System.Linq;
-
+using FaceOff.Shared;
 using NUnit.Framework;
-
 using Xamarin.UITest;
 using Xamarin.UITest.Android;
-
-using FaceOff.Shared;
 
 namespace FaceOff.UITests
 {
