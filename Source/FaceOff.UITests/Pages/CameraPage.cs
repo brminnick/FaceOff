@@ -1,5 +1,4 @@
 ﻿using Xamarin.UITest;
-using Xamarin.UITest.iOS;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 
@@ -11,13 +10,10 @@ namespace FaceOff.UITests
 
         public CameraPage(IApp app) : base(app)
         {
-            if (App is iOSApp)
-            {
-                _photoCaptureButton = x => x.Marked("PhotoCapture");
-                _cancelPhotoButton = x => x.Marked("Cancel");
-                _retakePhotoButton = x => x.Marked("Retake");
-                _usePhotoButton = x => x.Marked("Use Photo");
-            }
+            _photoCaptureButton = x => x.Marked("PhotoCapture");
+            _cancelPhotoButton = x => x.Marked("Cancel");
+            _retakePhotoButton = x => x.Marked("Retake");
+            _usePhotoButton = x => x.Marked("Use Photo");
         }
 
         public void TapPhotoCaptureButton()

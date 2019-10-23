@@ -39,21 +39,25 @@ namespace FaceOff
         readonly WeakEventManager _photoImage1HideTriggeredEventManager = new WeakEventManager();
         readonly WeakEventManager _photoImage2HideTriggeredEventManager = new WeakEventManager();
 
-        ImageSource _photo1ImageSource, _photo2ImageSource;
-        string _scoreButton1Text, _scoreButton2Text;
+        ImageSource? _photo1ImageSource, _photo2ImageSource;
+
         bool _isTakeLeftPhotoButtonEnabled = true;
         bool _isTakeLeftPhotoButtonStackVisible = true;
         bool _isTakeRightPhotoButtonEnabled = true;
         bool _isTakeRightPhotoButtonStackVisible = true;
         bool _isResetButtonEnabled;
-        string _pageTitle;
         bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
         bool _isScore1ButtonEnabled, _isScore2ButtonEnabled;
-        string _photo1Results, _photo2Results;
         EmotionType _currentEmotionType;
-        ICommand _takePhoto1ButtonPressed, _takePhoto2ButtonPressed;
-        ICommand _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
-        ICommand _resetButtonPressed, _emotionPopUpAlertResponseCommand;
+
+        string _photo1Results = string.Empty,
+            _photo2Results = string.Empty,
+            _pageTitle = string.Empty,
+            _scoreButton1Text = string.Empty,
+            _scoreButton2Text = string.Empty;
+
+        ICommand? _resetButtonPressed, _emotionPopUpAlertResponseCommand, _takePhoto1ButtonPressed,
+            _takePhoto2ButtonPressed, _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
 
         public FaceOffViewModel()
         {
@@ -62,31 +66,20 @@ namespace FaceOff
             SetRandomEmotion();
         }
 
-        public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??
-            (_emotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand));
+        public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??= new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand);
+        public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??= new Command(ExecuteTakePhoto1ButtonPressed);
+        public ICommand TakePhoto2ButtonPressed => _takePhoto2ButtonPressed ??= new Command(ExecuteTakePhoto2ButtonPressed);
+        public ICommand ResetButtonPressed => _resetButtonPressed ??= new Command(ExecuteResetButtonPressed);
+        public ICommand Photo1ScoreButtonPressed => _photo1ScoreButtonPressed ??= new Command(ExecutePhoto1ScoreButtonPressed);
+        public ICommand Photo2ScoreButtonPressed => _photo2ScoreButtonPressed ??= new Command(ExecutePhoto2ScoreButtonPressed);
 
-        public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??
-            (_takePhoto1ButtonPressed = new Command(ExecuteTakePhoto1ButtonPressed));
-
-        public ICommand TakePhoto2ButtonPressed => _takePhoto2ButtonPressed ??
-            (_takePhoto2ButtonPressed = new Command(ExecuteTakePhoto2ButtonPressed));
-
-        public ICommand ResetButtonPressed => _resetButtonPressed ??
-            (_resetButtonPressed = new Command(ExecuteResetButtonPressed));
-
-        public ICommand Photo1ScoreButtonPressed => _photo1ScoreButtonPressed ??
-            (_photo1ScoreButtonPressed = new Command(ExecutePhoto1ScoreButtonPressed));
-
-        public ICommand Photo2ScoreButtonPressed => _photo2ScoreButtonPressed ??
-            (_photo2ScoreButtonPressed = new Command(ExecutePhoto2ScoreButtonPressed));
-
-        public ImageSource Photo1ImageSource
+        public ImageSource? Photo1ImageSource
         {
             get => _photo1ImageSource;
             set => SetProperty(ref _photo1ImageSource, value);
         }
 
-        public ImageSource Photo2ImageSource
+        public ImageSource? Photo2ImageSource
         {
             get => _photo2ImageSource;
             set => SetProperty(ref _photo2ImageSource, value);
@@ -322,7 +315,7 @@ namespace FaceOff
 
         async Task<string> GenerateEmotionResults(PlayerModel player)
         {
-            List<Emotion> emotionArray;
+            List<Emotion> emotionArray = Enumerable.Empty<Emotion>().ToList();
             string emotionScore;
 
             try
@@ -334,21 +327,18 @@ namespace FaceOff
             {
                 AnalyticsService.Report(e);
 
-                emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
             }
             catch (Exception e) when (e.Message.Contains("offline"))
             {
                 AnalyticsService.Report(e);
 
-                emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.DeviceOffline];
             }
             catch (Exception e)
             {
                 AnalyticsService.Report(e);
 
-                emotionArray = null;
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.ConnectionToCognitiveServicesFailed];
             }
 
@@ -394,14 +384,14 @@ namespace FaceOff
             IsTakeRightPhotoButtonEnabled = true;
             IsTakeRightPhotoButtonStackVisible = true;
 
-            ScoreButton1Text = null;
-            ScoreButton2Text = null;
+            ScoreButton1Text = string.Empty;
+            ScoreButton2Text = string.Empty;
 
             IsScore1ButtonEnabled = false;
             IsScore2ButtonEnabled = false;
 
-            _photo1Results = null;
-            _photo2Results = null;
+            _photo1Results = string.Empty;
+            _photo2Results = string.Empty;
 
             OnPhotoImage1HideTriggered();
             OnPhotoImage2HideTriggered();
@@ -531,7 +521,7 @@ namespace FaceOff
             }
         }
 
-        void SetPhotoImageSource(MediaFile imageMediaFile, PlayerNumberType playerNumber)
+        void SetPhotoImageSource(MediaFile? imageMediaFile, PlayerNumberType playerNumber)
         {
             switch (playerNumber)
             {

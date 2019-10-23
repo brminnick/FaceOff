@@ -1,8 +1,8 @@
 ﻿using System;
-
-using Xamarin.Forms;
-
+using System.Threading.Tasks;
+using AsyncAwaitBestPractices.MVVM;
 using FaceOff.Shared;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -15,24 +15,19 @@ namespace FaceOff
             var player1Label = new DarkBlueLabel { Text = "Player 1" };
             var player2Label = new DarkBlueLabel { Text = "Player 2" };
 
-            _player1Entry = new Entry
-            {
-                AutomationId = AutomationIdConstants.Player1Entry,
-                Placeholder = PlaceholderConstants.WelcomePagePlaceholderText,
-                ReturnType = ReturnType.Next,
-                ReturnCommand = new Command(() => _player2Entry.Focus())
+            _player1Entry = new WelcomePageEntry(AutomationIdConstants.Player1Entry)
+            {     
+                ReturnType = ReturnType.Next
             };
-            _player1Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player1));
+            _player1Entry.SetBinding(Entry.TextProperty, nameof(WelcomeViewModel.Player1));
 
-            _player2Entry = new Entry
+            _player2Entry = new WelcomePageEntry(AutomationIdConstants.Player2Entry)
             {
-                AutomationId = AutomationIdConstants.Player2Entry,
-                Placeholder = PlaceholderConstants.WelcomePagePlaceholderText,
                 ReturnType = ReturnType.Go,
-                ReturnCommand = new Command(() => StartGame())
+                ReturnCommand = new AsyncCommand(StartGame)
             };
-            _player2Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Player2));
-            
+            _player2Entry.SetBinding(Entry.TextProperty, nameof(WelcomeViewModel.Player2));
+
             var startGameButton = new BounceButton(AutomationIdConstants.StartGameButton)
             {
                 Margin = new Thickness(0, 20, 0, 0),
@@ -61,9 +56,9 @@ namespace FaceOff
         void DisplayEmptyPlayerNameAlert(int playerNumber) =>
             Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
 
-        void HandleStartGameButtonClicked(object sender, EventArgs e) => StartGame();
+        async void HandleStartGameButtonClicked(object sender, EventArgs e) => await StartGame();
 
-        void StartGame()
+        async Task StartGame()
         {
             var isPlayer1EntryTextEmpty = string.IsNullOrWhiteSpace(_player1Entry.Text);
             var isPlayer2EntryTextEmpty = string.IsNullOrWhiteSpace(_player2Entry.Text);
@@ -81,7 +76,18 @@ namespace FaceOff
             else
             {
                 AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
-                Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new FaceOffPage()));
+                await Device.InvokeOnMainThreadAsync(() => Navigation.PushAsync(new FaceOffPage()));
+            }
+        }
+
+        class WelcomePageEntry : Entry
+        {
+            public WelcomePageEntry(in string automationId)
+            {
+                ClearButtonVisibility = ClearButtonVisibility.WhileEditing;
+                BackgroundColor = Device.RuntimePlatform is Device.iOS ? Color.White : default;
+                AutomationId = automationId;
+                Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
             }
         }
     }

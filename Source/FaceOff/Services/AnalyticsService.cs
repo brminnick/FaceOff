@@ -13,16 +13,16 @@ namespace FaceOff
     {
         public static void Start() => Start(AnalyticsConstants.AppCenterApiKey);
 
-        public static void Track(string trackIdentifier, IDictionary<string, string> table = null) => Analytics.TrackEvent(trackIdentifier, table);
+        public static void Track(string trackIdentifier, IDictionary<string, string>? table = null) => Analytics.TrackEvent(trackIdentifier, table);
 
         public static void Track(string trackIdentifier, string key, string value) => Analytics.TrackEvent(trackIdentifier, new Dictionary<string, string> { { key, value } });
 
-        public static TimedEvent TrackTime(string trackIdentifier, IDictionary<string, string> table = null) => new TimedEvent(trackIdentifier, table);
+        public static TimedEvent TrackTime(string trackIdentifier, IDictionary<string, string>? table = null) => new TimedEvent(trackIdentifier, table);
 
         public static TimedEvent TrackTime(string trackIdentifier, string key, string value) => TrackTime(trackIdentifier, new Dictionary<string, string> { { key, value } });
 
         public static void Report(Exception exception,
-                                  IDictionary<string, string> properties = null,
+                                  IDictionary<string, string>? properties = null,
                                   [CallerMemberName] string callerMemberName = "",
                                   [CallerLineNumber] int lineNumber = 0,
                                   [CallerFilePath] string filePath = "")
@@ -52,7 +52,7 @@ namespace FaceOff
         readonly Stopwatch _stopwatch;
         readonly string _trackIdentifier;
 
-        public TimedEvent(string trackIdentifier, IDictionary<string, string> dictionary)
+        public TimedEvent(string trackIdentifier, IDictionary<string, string>? dictionary)
         {
             Data = dictionary ?? new Dictionary<string, string>();
             _trackIdentifier = trackIdentifier;

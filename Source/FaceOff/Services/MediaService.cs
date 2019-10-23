@@ -30,9 +30,9 @@ namespace FaceOff
             remove => _permissionsDeniedEventManager.RemoveEventHandler(value);
         }
 
-        public static Stream GetPhotoStream(MediaFile mediaFile) => mediaFile.GetStream();
+        public static Stream GetPhotoStream(MediaFile? mediaFile) => mediaFile?.GetStream() ?? Stream.Null;
 
-        public static async Task<MediaFile> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
+        public static async Task<MediaFile?> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
         {
             await CrossMedia.Current.Initialize().ConfigureAwait(false);
 

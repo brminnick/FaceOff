@@ -59,18 +59,17 @@ namespace FaceOff
             return (EmotionType)randomNumber;
         }
 
-        public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile mediaFile)
+        public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile? mediaFile)
         {
             await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = true);
 
             try
             {
-                using (var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion))
-                {
-                    var faceApiResponseList = await ExecutePollyFunction(() => FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile),
-                                                                                         returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
-                    return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
-                }
+                using var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion);
+                var faceApiResponseList = await ExecutePollyFunction(() => FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile),
+                                                                            returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
+
+                return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
             }
             finally
             {

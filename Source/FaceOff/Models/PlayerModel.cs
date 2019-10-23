@@ -16,8 +16,8 @@ namespace FaceOff
 
         public PlayerNumberType PlayerNumber { get; }
         public string PlayerName { get; }
-        public MediaFile ImageMediaFile { get; set; }
-		public List<Emotion>EmotionResults { get; set; }
+        public MediaFile? ImageMediaFile { get; set; }
+		public List<Emotion>? EmotionResults { get; set; }
 	}
 
 	public enum PlayerNumberType

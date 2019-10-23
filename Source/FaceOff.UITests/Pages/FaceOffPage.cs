@@ -16,13 +16,10 @@ namespace FaceOff.UITests
 {
     public class FaceOffPage : BasePage
     {
-        #region Constant Fields
         readonly Query _emotionLabel, _photo1ActivityIndicator, _photo2ActivityIndicator,
             _photoImage1, _photoImage2, _resetButton, _scoreButton1, _scoreButton2,
             _takePhoto1Button, _takePhoto2Button, _player1NameLabel, _player2NameLabel;
-        #endregion
 
-        #region Constructors
         public FaceOffPage(IApp app) : base(app)
         {
             _emotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
@@ -44,21 +41,17 @@ namespace FaceOff.UITests
             _player1NameLabel = x => x.Marked(AutomationIdConstants.Player1NameLabel);
             _player2NameLabel = x => x.Marked(AutomationIdConstants.Player2NameLabel);
         }
-        #endregion
 
-        #region Properties
         public string Emotion => GetEmotionUsingBackdoors();
-        public string ScoreButton1Text => App.Query(_scoreButton1)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton1)?.FirstOrDefault()?.Label;
-        public string ScoreButton2Text => App.Query(_scoreButton2)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton2)?.FirstOrDefault()?.Label;
-        public string Player1Name => App.Query(_player1NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player1NameLabel)?.FirstOrDefault()?.Label;
-        public string Player2Name => App.Query(_player2NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player2NameLabel)?.FirstOrDefault()?.Label;
+        public string ScoreButton1Text => App.Query(_scoreButton1)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton1).First().Label;
+        public string ScoreButton2Text => App.Query(_scoreButton2)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton2).First().Label;
+        public string Player1Name => App.Query(_player1NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player1NameLabel).First().Label;
+        public string Player2Name => App.Query(_player2NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player2NameLabel).First().Label;
         public bool IsScoreButton1Visible => App.Query(_scoreButton1).Any();
         public bool IsScoreButton2Visible => App.Query(_scoreButton2).Any();
         public bool IsPhotoImage1Visible => App.Query(_photoImage1).Any();
         public bool IsPhotoImage2Visible => App.Query(_photoImage2).Any();
-        #endregion
 
-        #region Methods
         public void WaitForScoreButton1() => App.WaitForElement(_scoreButton1);
         public void WaitForScoreButton2() => App.WaitForElement(_scoreButton2);
         public void WaitForNoPhoto1ActivityIndicator() => App.WaitForNoElement(_photo1ActivityIndicator);
@@ -149,19 +142,20 @@ namespace FaceOff.UITests
                 case AndroidApp androidApp:
                     androidApp.Invoke("SubmitImageForPhoto2", serializedInput);
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
 
             App.WaitForElement(_photoImage2);
         }
 
-        string GetEmotionUsingBackdoors()
+        string GetEmotionUsingBackdoors() => App switch
         {
-            if (App is iOSApp)
-                return App.Invoke("getPicturePageTitle:", "").ToString();
-
-            return App.Invoke("GetPicturePageTitle").ToString();
-        }
-        #endregion
+            iOSApp iOSApp => iOSApp.Invoke("getPicturePageTitle:", "").ToString(),
+            AndroidApp androidApp => androidApp.Invoke("GetPicturePageTitle").ToString(),
+            _ => throw new NotSupportedException(),
+        };
     }
 }
 

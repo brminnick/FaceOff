@@ -15,18 +15,8 @@ namespace FaceOff
     {
         static readonly TypeInfo _applicationTypeInfo = Application.Current.GetType().GetTypeInfo();
 
-        static FaceOffViewModel _faceOffViewModel;
-
-        static FaceOffViewModel FaceOffViewModel
-        {
-            get
-            {
-                if (_faceOffViewModel is null && GetCurrentPage().BindingContext is FaceOffViewModel faceOffViewModel)
-                    _faceOffViewModel = faceOffViewModel;
-
-                return _faceOffViewModel;
-            }
-        }
+        static FaceOffViewModel? _faceOffViewModel;
+        static FaceOffViewModel FaceOffViewModel => _faceOffViewModel ??= (FaceOffViewModel)GetCurrentPage().BindingContext;
 
         public static Task SubmitImageForPhoto1(string playerName, EmotionType emotion)
         {
@@ -50,8 +40,8 @@ namespace FaceOff
 
         static Page GetCurrentPage()
         {
-            return Application.Current?.MainPage?.Navigation?.ModalStack?.LastOrDefault()
-                 ?? Application.Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
+            return Application.Current.MainPage.Navigation.ModalStack.LastOrDefault()
+                 ?? Application.Current.MainPage.Navigation.NavigationStack.Last();
         }
     }
 }

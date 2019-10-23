@@ -7,6 +7,8 @@ using Xamarin.UITest.Queries;
 using FaceOff.Shared;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
+using Xamarin.UITest.iOS;
+using System;
 
 namespace FaceOff.UITests
 {
@@ -64,13 +66,12 @@ namespace FaceOff.UITests
             return App.Query("Error");
         }
 
-        string GetPlaceholderText(string entryAutomationId)
+        string GetPlaceholderText(string entryAutomationId) => App switch
         {
-            if (App is AndroidApp)
-                return App.Query(x => x.Marked(entryAutomationId)?.Invoke("getHint"))?.FirstOrDefault()?.ToString();
-
-            return App.Query(x => x.Marked(entryAutomationId)?.Invoke("placeholder"))?.FirstOrDefault()?.ToString();
-        }
+            AndroidApp androidApp => androidApp.Query(x => x.Marked(entryAutomationId).Invoke("getHint")).First().ToString(),
+            iOSApp iosApp => iosApp.Query(x => x.Marked(entryAutomationId).Invoke("placeholder")).First().ToString(),
+            _ => throw new NotSupportedException(),
+        };
         #endregion
     }
 }
