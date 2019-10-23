@@ -108,15 +108,15 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
-        <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+        <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.1.1" />
         <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
         <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.5.0-preview.1" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0-pre5" />
-        <PackageReference Include="Polly" Version="7.1.0" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0" />
+        <PackageReference Include="Polly" Version="7.1.1" />
         <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.8" />
     </ItemGroup>
     <ItemGroup>
@@ -173,7 +173,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\FaceOff\FaceOff.csproj">
-            <Project>{463970cd-bbfa-41f8-8ce9-6e5f9fccb148}</Project>
+            <Project>{9885FF8D-7DCE-4D19-A09A-D3BA8BAB9E29}</Project>
             <Name>FaceOff</Name>
         </ProjectReference>
     </ItemGroup>
