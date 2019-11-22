@@ -30,8 +30,6 @@ namespace FaceOff
             remove => _permissionsDeniedEventManager.RemoveEventHandler(value);
         }
 
-        public static Stream GetPhotoStream(MediaFile? mediaFile) => mediaFile?.GetStream() ?? Stream.Null;
-
         public static async Task<MediaFile?> GetMediaFileFromCamera(string directory, PlayerNumberType playerNumber)
         {
             await CrossMedia.Current.Initialize().ConfigureAwait(false);
@@ -53,6 +51,7 @@ namespace FaceOff
             {
                 return CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                 {
+                    ModalPresentationStyle = MediaPickerModalPresentationStyle.OverFullScreen,
                     PhotoSize = PhotoSize.Small,
                     Directory = directory,
                     Name = playerNumber.ToString(),
@@ -74,10 +73,7 @@ namespace FaceOff
                 storageStatus = results[Permission.Storage];
             }
 
-            if (cameraStatus is PermissionStatus.Granted && storageStatus is PermissionStatus.Granted)
-                return true;
-
-            return false;
+            return cameraStatus is PermissionStatus.Granted && storageStatus is PermissionStatus.Granted;
         }
 
         static void OnNoCameraDetected() => _noCameraDetectedEventManager.HandleEvent(null, EventArgs.Empty, nameof(NoCameraDetected));

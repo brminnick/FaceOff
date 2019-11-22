@@ -16,7 +16,7 @@ namespace FaceOff
             var player2Label = new DarkBlueLabel { Text = "Player 2" };
 
             _player1Entry = new WelcomePageEntry(AutomationIdConstants.Player1Entry)
-            {     
+            {
                 ReturnType = ReturnType.Next
             };
             _player1Entry.SetBinding(Entry.TextProperty, nameof(WelcomeViewModel.Player1));
@@ -88,6 +88,7 @@ namespace FaceOff
                 BackgroundColor = Device.RuntimePlatform is Device.iOS ? Color.White : default;
                 AutomationId = automationId;
                 Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
+                TextColor = Color.Black;
             }
         }
     }

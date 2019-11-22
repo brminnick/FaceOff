@@ -2,11 +2,8 @@
 {
     public class EmotionPopupResponseModel
     {
-        public EmotionPopupResponseModel(bool isPopUpConfirmed, PlayerModel player)
-        {
-            IsPopUpConfirmed = isPopUpConfirmed;
-            Player = player;
-        }
+        public EmotionPopupResponseModel(bool isPopUpConfirmed, PlayerModel player) =>
+            (IsPopUpConfirmed, Player) = (isPopUpConfirmed, player);
 
         public bool IsPopUpConfirmed { get; }
         public PlayerModel Player { get; }

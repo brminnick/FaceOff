@@ -1,29 +1,24 @@
 ﻿using System;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
-
+using FaceOff.Shared;
 using Microsoft.Azure.CognitiveServices.Vision.Face;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
-
 using Plugin.Media.Abstractions;
-
 using Polly;
-
-using Xamarin.Forms;
 using Xamarin.Essentials;
-
-using FaceOff.Shared;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
     static class EmotionService
     {
         readonly static Lazy<FaceClient> _faceApiClientHolder =
-            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey)) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
+            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey), new HttpClient(), false) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
 
         readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
             new Dictionary<ErrorMessageType, string>{
@@ -61,26 +56,24 @@ namespace FaceOff
 
         public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile? mediaFile)
         {
-            await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = true);
+            await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = true).ConfigureAwait(false);
 
             try
             {
                 using var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion);
-                var faceApiResponseList = await ExecutePollyFunction(() => FaceApiClient.Face.DetectWithStreamAsync(MediaService.GetPhotoStream(mediaFile),
+                var faceApiResponseList = await AttemptAndRetry(() => FaceApiClient.Face.DetectWithStreamAsync(mediaFile?.GetStream(),
                                                                             returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
 
                 return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
             }
             finally
             {
-                await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = false);
+                await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = false).ConfigureAwait(false);
             }
         }
 
-        public static string GetPhotoEmotionScore(List<Emotion> emotionResults, int emotionResultNumber, EmotionType currentEmotionType)
+        public static string GetPhotoEmotionScore(IList<Emotion> emotionResults, int emotionResultNumber, EmotionType currentEmotionType)
         {
-            double rawEmotionScore;
-
             var isInternetConnectionAvilable = Connectivity.NetworkAccess.Equals(NetworkAccess.Internet);
 
             if (!isInternetConnectionAvilable)
@@ -97,35 +90,18 @@ namespace FaceOff
 
             try
             {
-                switch (currentEmotionType)
+                double rawEmotionScore = currentEmotionType switch
                 {
-                    case EmotionType.Anger:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Anger;
-                        break;
-                    case EmotionType.Contempt:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Contempt;
-                        break;
-                    case EmotionType.Disgust:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Disgust;
-                        break;
-                    case EmotionType.Fear:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Fear;
-                        break;
-                    case EmotionType.Happiness:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Happiness;
-                        break;
-                    case EmotionType.Neutral:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Neutral;
-                        break;
-                    case EmotionType.Sadness:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Sadness;
-                        break;
-                    case EmotionType.Surprise:
-                        rawEmotionScore = emotionResults[emotionResultNumber].Surprise;
-                        break;
-                    default:
-                        return ErrorMessageDictionary[ErrorMessageType.GenericError];
-                }
+                    EmotionType.Anger => emotionResults[emotionResultNumber].Anger,
+                    EmotionType.Contempt => emotionResults[emotionResultNumber].Contempt,
+                    EmotionType.Disgust => rawEmotionScore = emotionResults[emotionResultNumber].Disgust,
+                    EmotionType.Fear => emotionResults[emotionResultNumber].Fear,
+                    EmotionType.Happiness => emotionResults[emotionResultNumber].Happiness,
+                    EmotionType.Neutral => emotionResults[emotionResultNumber].Neutral,
+                    EmotionType.Sadness => emotionResults[emotionResultNumber].Sadness,
+                    EmotionType.Surprise => emotionResults[emotionResultNumber].Surprise,
+                    _ => throw new NotSupportedException($"{nameof(EmotionType)} Not Supported: {currentEmotionType}")
+                };
 
                 var emotionScoreAsPercentage = rawEmotionScore.ConvertToPercentage();
 
@@ -138,7 +114,7 @@ namespace FaceOff
             }
         }
 
-        public static string GetStringOfAllPhotoEmotionScores(List<Emotion> emotionResults, int emotionResultNumber)
+        public static string GetStringOfAllPhotoEmotionScores(IList<Emotion> emotionResults, int emotionResultNumber)
         {
             if (emotionResults is null || emotionResults.Count < 1)
                 return ErrorMessageDictionary[ErrorMessageType.GenericError];
@@ -168,11 +144,11 @@ namespace FaceOff
             return false;
         }
 
-        static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 3)
+        static Task<T> AttemptAndRetry<T>(Func<Task<T>> action, int numRetries = 3)
         {
             return Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action);
 
-            TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
+            static TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
 
         static void OnMultipleFacesDetectedAlertTriggered() =>

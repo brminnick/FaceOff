@@ -1,20 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Windows.Input;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-
+using System.Windows.Input;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
-
-using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
-
-using Plugin.Media.Abstractions;
-
-using Xamarin.Forms;
-
 using FaceOff.Shared;
+using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+using Plugin.Media.Abstractions;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -64,6 +59,66 @@ namespace FaceOff
             IsResetButtonEnabled = false;
 
             SetRandomEmotion();
+        }
+
+        public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered
+        {
+            add => _popUpAlertAboutEmotionTriggeredEventManager.AddEventHandler(value);
+            remove => _popUpAlertAboutEmotionTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler<string> AllEmotionResultsAlertTriggered
+        {
+            add => _allEmotionResultsAlertTriggeredEventManager.AddEventHandler(value);
+            remove => _allEmotionResultsAlertTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler ScoreButton1RevealTriggered
+        {
+            add => _scoreButton1RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _scoreButton1RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler ScoreButton2RevealTriggered
+        {
+            add => _scoreButton2RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _scoreButton2RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler PhotoImage1RevealTriggered
+        {
+            add => _photoImage1RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _photoImage1RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler PhotoImage2RevealTriggered
+        {
+            add => _photoImage2RevealTriggeredEventManager.AddEventHandler(value);
+            remove => _photoImage2RevealTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler ScoreButton1HideTriggered
+        {
+            add => _scoreButton1HideTriggeredEventManager.AddEventHandler(value);
+            remove => _scoreButton1HideTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler ScoreButton2HideTriggered
+        {
+            add => _scoreButton2HidelTriggeredEventManager.AddEventHandler(value);
+            remove => _scoreButton2HidelTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler PhotoImage1HideTriggered
+        {
+            add => _photoImage1HideTriggeredEventManager.AddEventHandler(value);
+            remove => _photoImage1HideTriggeredEventManager.RemoveEventHandler(value);
+        }
+
+        public event EventHandler PhotoImage2HideTriggered
+        {
+            add => _photoImage2HideTriggeredEventManager.AddEventHandler(value);
+            remove => _photoImage2HideTriggeredEventManager.RemoveEventHandler(value);
         }
 
         public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??= new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand);
@@ -158,66 +213,6 @@ namespace FaceOff
         }
 
         string[] EmotionStringsForAlertMessage => _emotionStringsForAlertMessageHolder.Value;
-
-        public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered
-        {
-            add => _popUpAlertAboutEmotionTriggeredEventManager.AddEventHandler(value);
-            remove => _popUpAlertAboutEmotionTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler<string> AllEmotionResultsAlertTriggered
-        {
-            add => _allEmotionResultsAlertTriggeredEventManager.AddEventHandler(value);
-            remove => _allEmotionResultsAlertTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton1RevealTriggered
-        {
-            add => _scoreButton1RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton1RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton2RevealTriggered
-        {
-            add => _scoreButton2RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton2RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage1RevealTriggered
-        {
-            add => _photoImage1RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage1RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage2RevealTriggered
-        {
-            add => _photoImage2RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage2RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton1HideTriggered
-        {
-            add => _scoreButton1HideTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton1HideTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton2HideTriggered
-        {
-            add => _scoreButton2HidelTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton2HidelTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage1HideTriggered
-        {
-            add => _photoImage1HideTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage1HideTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage2HideTriggered
-        {
-            add => _photoImage2HideTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage2HideTriggeredEventManager.RemoveEventHandler(value);
-        }
 
         #region UITest Backdoor Methods
 #if DEBUG
@@ -323,13 +318,13 @@ namespace FaceOff
                 emotionArray = await EmotionService.GetEmotionResultsFromMediaFile(player.ImageMediaFile).ConfigureAwait(false);
                 emotionScore = EmotionService.GetPhotoEmotionScore(emotionArray, 0, _currentEmotionType);
             }
-            catch (HttpRequestException e) when (e.Message.Contains("401"))
+            catch (APIErrorException e) when (e.Response.StatusCode is System.Net.HttpStatusCode.Unauthorized)
             {
                 AnalyticsService.Report(e);
 
                 emotionScore = EmotionService.ErrorMessageDictionary[ErrorMessageType.InvalidAPIKey];
             }
-            catch (Exception e) when (e.Message.Contains("offline"))
+            catch (HttpRequestException e) when (e.Message.Contains("offline"))
             {
                 AnalyticsService.Report(e);
 
@@ -346,7 +341,7 @@ namespace FaceOff
 
             if (doesEmotionScoreContainErrorMessage)
             {
-                var errorMessageKey = EmotionService.ErrorMessageDictionary.FirstOrDefault(x => x.Value.Contains(emotionScore)).Key;
+                var errorMessageKey = EmotionService.ErrorMessageDictionary.First(x => x.Value.Contains(emotionScore)).Key;
 
                 switch (errorMessageKey)
                 {
@@ -411,12 +406,8 @@ namespace FaceOff
             OnAllEmotionResultsAlertTriggered(_photo2Results);
         }
 
-        void SetRandomEmotion()
-        {
-            _currentEmotionType = EmotionService.GetRandomEmotionType(_currentEmotionType);
+        void SetRandomEmotion() => SetEmotion(EmotionService.GetRandomEmotionType(_currentEmotionType));
 
-            SetPageTitle(_currentEmotionType);
-        }
 
         void SetEmotion(EmotionType emotionType)
         {
@@ -526,10 +517,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    Photo1ImageSource = ImageSource.FromStream(() => MediaService.GetPhotoStream(imageMediaFile));
+                    Photo1ImageSource = ImageSource.FromStream(() => imageMediaFile?.GetStream());
                     break;
                 case PlayerNumberType.Player2:
-                    Photo2ImageSource = ImageSource.FromStream(() => MediaService.GetPhotoStream(imageMediaFile));
+                    Photo2ImageSource = ImageSource.FromStream(() => imageMediaFile?.GetStream());
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
