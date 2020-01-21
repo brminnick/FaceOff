@@ -39,8 +39,7 @@ namespace FaceOff.iOS
             if (Control.Subviews.OfType<UIButton>().FirstOrDefault() is UIButton clearButton
                 && clearButton.CurrentImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate) is UIImage clearButtonImage)
             {
-                var currentUIViewController = GetVisibleViewController();
-                var userInterfaceStyle = currentUIViewController.TraitCollection.UserInterfaceStyle;
+                var userInterfaceStyle = Xamarin.Essentials.Platform.GetCurrentUIViewController().TraitCollection.UserInterfaceStyle;
 
                 switch (userInterfaceStyle)
                 {
@@ -58,19 +57,6 @@ namespace FaceOff.iOS
                         throw new NotSupportedException();
                 }
             }
-        }
-
-        static UIViewController GetVisibleViewController()
-        {
-            var rootController = UIApplication.SharedApplication.KeyWindow.RootViewController;
-
-            return rootController.PresentedViewController switch
-            {
-                UINavigationController navigationController => navigationController.TopViewController,
-                UITabBarController tabBarController => tabBarController.SelectedViewController,
-                null => rootController,
-                _ => rootController.PresentedViewController,
-            };
         }
     }
 }

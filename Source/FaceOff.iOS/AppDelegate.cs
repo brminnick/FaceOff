@@ -30,7 +30,7 @@ namespace FaceOff.iOS
         [Export("getPicturePageTitle:")]
         public NSString GetPicturePageTitle(NSString noValue)
         {
-            var mainNavigationPage = Xamarin.Forms.Application.Current.MainPage as Xamarin.Forms.NavigationPage;
+            var mainNavigationPage = (Xamarin.Forms.NavigationPage)Xamarin.Forms.Application.Current.MainPage;
             return new NSString(mainNavigationPage.CurrentPage.Title);
         }
 
