@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-
 using AsyncAwaitBestPractices;
-
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-
-using Xamarin.Forms;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
@@ -45,7 +42,7 @@ namespace FaceOff
                 return null;
             }
 
-            return await Device.InvokeOnMainThreadAsync(() =>
+            return await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 return CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                 {

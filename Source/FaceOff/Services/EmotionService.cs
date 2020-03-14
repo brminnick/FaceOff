@@ -56,7 +56,7 @@ namespace FaceOff
 
         public static async Task<List<Emotion>> GetEmotionResultsFromMediaFile(MediaFile? mediaFile)
         {
-            await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = true).ConfigureAwait(false);
+            await MainThread.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = true).ConfigureAwait(false);
 
             try
             {
@@ -68,7 +68,7 @@ namespace FaceOff
             }
             finally
             {
-                await Device.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = false).ConfigureAwait(false);
+                await MainThread.InvokeOnMainThreadAsync(() => Application.Current.MainPage.IsBusy = false).ConfigureAwait(false);
             }
         }
 

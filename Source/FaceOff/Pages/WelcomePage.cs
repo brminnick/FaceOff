@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AsyncAwaitBestPractices.MVVM;
 using FaceOff.Shared;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FaceOff
@@ -53,8 +54,8 @@ namespace FaceOff
             };
         }
 
-        void DisplayEmptyPlayerNameAlert(int playerNumber) =>
-            Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
+        async void DisplayEmptyPlayerNameAlert(int playerNumber) =>
+            await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
 
         async void HandleStartGameButtonClicked(object sender, EventArgs e) => await StartGame();
 
@@ -76,7 +77,7 @@ namespace FaceOff
             else
             {
                 AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
-                await Device.InvokeOnMainThreadAsync(() => Navigation.PushAsync(new FaceOffPage()));
+                await MainThread.InvokeOnMainThreadAsync(() => Navigation.PushAsync(new FaceOffPage()));
             }
         }
 

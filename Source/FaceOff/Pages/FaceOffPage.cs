@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using FaceOff.Shared;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FaceOff
@@ -195,28 +196,28 @@ namespace FaceOff
             MediaService.PermissionsDenied += HandlePermissionsDenied;
         }
 
-        void HandleAllEmotionResultsAlertTriggered(object sender, string message) =>
-            Device.BeginInvokeOnMainThread(() => DisplayAlert("Results", message, "OK"));
+        async void HandleAllEmotionResultsAlertTriggered(object sender, string message) =>
+            await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Results", message, "OK"));
 
-        void HandleNoCameraDetected(object sender, EventArgs e) =>
-            Device.BeginInvokeOnMainThread(() => DisplayAlert("Error", "No Camera Available", "OK"));
+        async void HandleNoCameraDetected(object sender, EventArgs e) =>
+            await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Error", "No Camera Available", "OK"));
 
-        void HandleMultipleFacesDetectedAlertTriggered(object sender, EventArgs e) =>
-            Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error: Multiple Faces Detected", "Ensure only one face is captured in the photo", "Ok"));
+        async void HandleMultipleFacesDetectedAlertTriggered(object sender, EventArgs e) =>
+            await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Error: Multiple Faces Detected", "Ensure only one face is captured in the photo", "Ok"));
 
         void HandlePermissionsDenied(object sender, EventArgs e)
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
                 var isAlertAccepted = await DisplayAlert("Open Settings?", "Storage and Camera Permission Need To Be Enabled", "Ok", "Cancel");
                 if (isAlertAccepted)
-                    Xamarin.Essentials.AppInfo.ShowSettingsUI();
+                    AppInfo.ShowSettingsUI();
             });
         }
 
         void HandlePopUpAlertAboutEmotionTriggered(object sender, AlertMessageEventArgs e)
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
                 var userResponseToAlert = await DisplayAlert(e.Title, e.Message, "OK", "Cancel");
                 ViewModel.EmotionPopUpAlertResponseCommand?.Execute(new EmotionPopupResponseModel(userResponseToAlert, e.Player));
@@ -237,7 +238,7 @@ namespace FaceOff
                         double maxImageSize = AnimationConstants.DefaultMaxImageSize,
                         double normalImageSize = AnimationConstants.DefaultNormalSize)
         {
-            return Device.InvokeOnMainThreadAsync(async () =>
+            return MainThread.InvokeOnMainThreadAsync(async () =>
             {
                 view.Scale = 0;
                 view.IsVisible = true;
@@ -249,7 +250,7 @@ namespace FaceOff
 
         Task HideView(View view)
         {
-            return Device.InvokeOnMainThreadAsync(() =>
+            return MainThread.InvokeOnMainThreadAsync(() =>
             {
                 view.Scale = 0;
                 view.IsVisible = false;
