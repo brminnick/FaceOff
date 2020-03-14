@@ -1,15 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 
 using AsyncAwaitBestPractices;
 
 using Plugin.Media;
-using Plugin.Permissions;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions.Abstractions;
 
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace FaceOff
 {
@@ -63,17 +61,15 @@ namespace FaceOff
 
         static async Task<bool> ArePermissionsGranted()
         {
-            var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-            var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+            var cameraStatus = await Permissions.RequestAsync<Permissions.Camera>().ConfigureAwait(false);
+            var storageWriteStatus = await Permissions.RequestAsync<Permissions.StorageWrite>().ConfigureAwait(false);
+            var storageReadStatus = await Permissions.RequestAsync<Permissions.StorageRead>().ConfigureAwait(false);
+            var photosPermission = await Permissions.RequestAsync<Permissions.StorageRead>().ConfigureAwait(false);
 
-            if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
-            {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
-                cameraStatus = results[Permission.Camera];
-                storageStatus = results[Permission.Storage];
-            }
-
-            return cameraStatus is PermissionStatus.Granted && storageStatus is PermissionStatus.Granted;
+            return cameraStatus is PermissionStatus.Granted
+                    && storageWriteStatus is PermissionStatus.Granted
+                    && storageReadStatus is PermissionStatus.Granted
+                    && photosPermission is PermissionStatus.Granted;
         }
 
         static void OnNoCameraDetected() => _noCameraDetectedEventManager.HandleEvent(null, EventArgs.Empty, nameof(NoCameraDetected));

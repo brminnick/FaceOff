@@ -31,11 +31,19 @@ namespace FaceOff
             _photo2ScoreButton.SetBinding(Button.TextProperty, nameof(FaceOffViewModel.ScoreButton2Text));
             _photo2ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo2ScoreButtonPressed));
 
-            var photo1ActivityIndicator = new ActivityIndicator { AutomationId = AutomationIdConstants.Photo1ActivityIndicator };
+            var photo1ActivityIndicator = new ActivityIndicator
+            {
+                AutomationId = AutomationIdConstants.Photo1ActivityIndicator,
+                Color = Color.FromHex("2C7797")
+            };
             photo1ActivityIndicator.SetBinding(IsVisibleProperty, nameof(FaceOffViewModel.IsCalculatingPhoto1Score));
             photo1ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(FaceOffViewModel.IsCalculatingPhoto1Score));
 
-            var photo2ActivityIndicator = new ActivityIndicator { AutomationId = AutomationIdConstants.Photo2ActivityIndicator };
+            var photo2ActivityIndicator = new ActivityIndicator
+            {
+                AutomationId = AutomationIdConstants.Photo2ActivityIndicator,
+                Color = Color.FromHex("2C7797")
+            };
             photo2ActivityIndicator.SetBinding(IsVisibleProperty, nameof(FaceOffViewModel.IsCalculatingPhoto2Score));
             photo2ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(FaceOffViewModel.IsCalculatingPhoto2Score));
 
