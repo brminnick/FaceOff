@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace FaceOff
 {
-    public class WelcomePage : BaseContentPage<WelcomeViewModel>
+    class WelcomePage : BaseContentPage<WelcomeViewModel>
     {
         readonly Entry _player1Entry, _player2Entry;
 
@@ -31,15 +31,14 @@ namespace FaceOff
 
             var startGameButton = new BounceButton(AutomationIdConstants.StartGameButton)
             {
+                Text = "Start",
                 Margin = new Thickness(0, 20, 0, 0),
-                Text = "Start"
             };
             startGameButton.Clicked += HandleStartGameButtonClicked;
 
             NavigationPage.SetBackButtonTitle(this, "");
 
             Title = "FaceOff";
-            BackgroundColor = Color.FromHex("#91E2F4");
 
             Content = new StackLayout
             {

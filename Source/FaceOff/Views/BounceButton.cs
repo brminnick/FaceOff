@@ -1,17 +1,17 @@
 ﻿using System;
-
 using Xamarin.Forms;
 
 namespace FaceOff
 {
     public class BounceButton : Button
     {
-        public BounceButton(string automationId)
+        public BounceButton(in string automationId)
         {
-            Clicked += HandleButtonClick;
-            BackgroundColor = Color.FromHex("3192B3");
-            TextColor = Color.White;
             AutomationId = automationId;
+            TextColor = ColorConstants.ButtonTextColor;
+            BackgroundColor = ColorConstants.ButtonBackgroundColor;
+
+            Clicked += HandleButtonClick;
         }
 
         async void HandleButtonClick(object sender, EventArgs e)

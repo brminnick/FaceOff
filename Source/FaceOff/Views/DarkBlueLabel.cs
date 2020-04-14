@@ -7,7 +7,7 @@ namespace FaceOff
         public DarkBlueLabel(in string text)
         {
             Text = text;
-            TextColor = Color.FromHex("2C7797");
+            TextColor = ColorConstants.LabelTextColor;
         }
     }
 }

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace FaceOff
 {
-    public class FaceOffPage : BaseContentPage<FaceOffViewModel>
+    class FaceOffPage : BaseContentPage<FaceOffViewModel>
     {
         const int _frameImagePadding = 10;
 
@@ -39,7 +39,7 @@ namespace FaceOff
             var photo1ActivityIndicator = new ActivityIndicator
             {
                 AutomationId = AutomationIdConstants.Photo1ActivityIndicator,
-                Color = Color.FromHex("2C7797")
+                Color = ColorConstants.ActivityIndicatorColor
             };
             photo1ActivityIndicator.SetBinding(IsVisibleProperty, nameof(FaceOffViewModel.IsCalculatingPhoto1Score));
             photo1ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(FaceOffViewModel.IsCalculatingPhoto1Score));
@@ -47,7 +47,7 @@ namespace FaceOff
             var photo2ActivityIndicator = new ActivityIndicator
             {
                 AutomationId = AutomationIdConstants.Photo2ActivityIndicator,
-                Color = Color.FromHex("2C7797")
+                Color = ColorConstants.ActivityIndicatorColor
             };
             photo2ActivityIndicator.SetBinding(IsVisibleProperty, nameof(FaceOffViewModel.IsCalculatingPhoto2Score));
             photo2ActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(FaceOffViewModel.IsCalculatingPhoto2Score));

@@ -12,8 +12,8 @@ namespace FaceOff
         {
             var navigationPage = new Xamarin.Forms.NavigationPage(new WelcomePage())
             {
-                BarBackgroundColor = Color.FromHex("1FAECE"),
-                BarTextColor = Color.White
+                BarBackgroundColor = ColorConstants.NavigationBarBackgroundColor,
+                BarTextColor = ColorConstants.NaviagtionBarTextColor
             };
 
             navigationPage.On<iOS>().SetPrefersLargeTitles(true);
