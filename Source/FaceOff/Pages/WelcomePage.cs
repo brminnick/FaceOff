@@ -13,8 +13,8 @@ namespace FaceOff
 
         public WelcomePage()
         {
-            var player1Label = new DarkBlueLabel { Text = "Player 1" };
-            var player2Label = new DarkBlueLabel { Text = "Player 2" };
+            var player1Label = new DarkBlueLabel("Player 1");
+            var player2Label = new DarkBlueLabel("Player 2");
 
             _player1Entry = new WelcomePageEntry(AutomationIdConstants.Player1Entry)
             {
@@ -54,9 +54,6 @@ namespace FaceOff
             };
         }
 
-        async void DisplayEmptyPlayerNameAlert(int playerNumber) =>
-            await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
-
         async void HandleStartGameButtonClicked(object sender, EventArgs e) => await StartGame();
 
         async Task StartGame()
@@ -67,18 +64,21 @@ namespace FaceOff
             if (isPlayer1EntryTextEmpty)
             {
                 AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player1NameEmpty);
-                DisplayEmptyPlayerNameAlert(1);
+                await DisplayEmptyPlayerNameAlert(1);
             }
             else if (isPlayer2EntryTextEmpty)
             {
                 AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.Player2NameEmpty);
-                DisplayEmptyPlayerNameAlert(2);
+                await DisplayEmptyPlayerNameAlert(2);
             }
             else
             {
                 AnalyticsService.Track(AnalyticsConstants.StartGameButtonTapped, AnalyticsConstants.StartGameButtonTappedStatus, AnalyticsConstants.GameStarted);
                 await MainThread.InvokeOnMainThreadAsync(() => Navigation.PushAsync(new FaceOffPage()));
             }
+
+            Task DisplayEmptyPlayerNameAlert(int playerNumber) =>
+                MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Error", $"Player {playerNumber} Name is Blank", "OK"));
         }
 
         class WelcomePageEntry : Entry

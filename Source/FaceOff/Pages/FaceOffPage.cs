@@ -19,15 +19,19 @@ namespace FaceOff
 
             _photo1ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton1)
             {
-                Padding = new Thickness(24, 12),
-                IsVisible = false,
                 Scale = 0,
+                IsVisible = false,
+                Padding = new Thickness(24, 12),
             };
             _photo1ScoreButton.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsScore1ButtonEnabled));
             _photo1ScoreButton.SetBinding(Button.TextProperty, nameof(FaceOffViewModel.ScoreButton1Text));
             _photo1ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo1ScoreButtonPressed));
 
-            _photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2) { Padding = new Thickness(24, 12), IsVisible = false };
+            _photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2)
+            {
+                IsVisible = false,
+                Padding = new Thickness(24, 12)
+            };
             _photo2ScoreButton.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsScore2ButtonEnabled));
             _photo2ScoreButton.SetBinding(Button.TextProperty, nameof(FaceOffViewModel.ScoreButton2Text));
             _photo2ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo2ScoreButtonPressed));
@@ -52,11 +56,10 @@ namespace FaceOff
             takePhoto1Button.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsTakeLeftPhotoButtonEnabled));
             takePhoto1Button.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.TakePhoto1ButtonPressed));
 
-            var player1NameLabel = new DarkBlueLabel
+            var player1NameLabel = new DarkBlueLabel(PreferencesService.Player1Name)
             {
+                HorizontalOptions = LayoutOptions.Center,
                 AutomationId = AutomationIdConstants.Player1NameLabel,
-                Text = PreferencesService.Player1Name,
-                HorizontalOptions = LayoutOptions.Center
             };
 
             var takePhoto1ButtonStack = new StackLayout
@@ -74,11 +77,10 @@ namespace FaceOff
             takePhoto2Button.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsTakeRightPhotoButtonEnabled));
             takePhoto2Button.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.TakePhoto2ButtonPressed));
 
-            var player2NameLabel = new DarkBlueLabel
+            var player2NameLabel = new DarkBlueLabel(PreferencesService.Player2Name)
             {
-                AutomationId = AutomationIdConstants.Player2NameLabel,
-                Text = PreferencesService.Player2Name,
                 HorizontalOptions = LayoutOptions.Center,
+                AutomationId = AutomationIdConstants.Player2NameLabel
             };
 
             var takePhoto2ButtonStack = new StackLayout
@@ -248,26 +250,23 @@ namespace FaceOff
             });
         }
 
-        Task HideView(View view)
+        Task HideView(View view) => MainThread.InvokeOnMainThreadAsync(() =>
         {
-            return MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                view.Scale = 0;
-                view.IsVisible = false;
-            });
-        }
+            view.Scale = 0;
+            view.IsVisible = false;
+        });
 
         class FrameImage : Frame
         {
-            public FrameImage(string automationId)
+            public FrameImage(in string automationId)
             {
                 AutomationId = automationId;
+                BackgroundColor = Color.White;
                 HasShadow = false;
-                ContentImage = new Image();
                 Content = ContentImage;
             }
 
-            public Image ContentImage { get; }
+            public Image ContentImage { get; } = new Image();
         }
     }
 }

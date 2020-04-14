@@ -4,6 +4,10 @@ namespace FaceOff
 {
     public class DarkBlueLabel : Label
     {
-        public DarkBlueLabel() => TextColor = Color.FromHex("2C7797");
+        public DarkBlueLabel(in string text)
+        {
+            Text = text;
+            TextColor = Color.FromHex("2C7797");
+        }
     }
 }
