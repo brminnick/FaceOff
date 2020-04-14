@@ -99,6 +99,10 @@
         <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
         <AndroidResource Include="Resources\drawable\icon.png" />
         <AndroidResource Include="Resources\xml\file_paths.xml" />
+        <AndroidResource Include="Resources\xml\auto_backup_rules.xml">
+          <SubType></SubType>
+          <Generator></Generator>
+        </AndroidResource>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\FaceOff\FaceOff.csproj">

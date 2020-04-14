@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="3.3.0" package="com.minnick.faceoff" android:versionCode="30">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
-	<uses-permission android:name="android.permission.CAMERA" />
-	<application android:label="FaceOff">
-		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
-			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
-		</provider>
-	</application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="3.4.0" package="com.minnick.faceoff" android:versionCode="31">
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <application android:label="FaceOff" android:fullBackupContent="@xml/auto_backup_rules">
+        <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+    </application>
 </manifest>

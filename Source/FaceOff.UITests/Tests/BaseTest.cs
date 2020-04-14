@@ -16,10 +16,7 @@ namespace FaceOff.UITests
         CameraPage? _cameraPage;
         WelcomePage? _welcomePage;
 
-        protected BaseTest(Platform platform)
-        {
-            _platform = platform;
-        }
+        protected BaseTest(Platform platform) => _platform = platform;
 
         protected IApp App => _app ?? throw new NullReferenceException();
         protected FaceOffPage FaceOffPage => _faceOffPage ?? throw new NullReferenceException();

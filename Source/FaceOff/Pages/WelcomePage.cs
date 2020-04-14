@@ -13,15 +13,15 @@ namespace FaceOff
 {
     class WelcomePage : BaseContentPage<WelcomeViewModel>
     {
+        const int _labelRowHeight = 20;
+        const int _entryRowHeight = 45;
+        const int _buttonHeight = 40;
+        const int _buttonVerticalMargin = 20;
+
         readonly Entry _player1Entry, _player2Entry;
 
         public WelcomePage()
         {
-            const int labelRowHeight = 20;
-            const int entryRowHeight = 35;
-            const int buttonHeight = 40;
-            const int buttonVerticalMargin = 20;
-
             NavigationPage.SetBackButtonTitle(this, "");
 
             Title = "FaceOff";
@@ -31,11 +31,11 @@ namespace FaceOff
                 Padding = 20,
 
                 RowDefinitions = Rows.Define(
-                        (Row.Player1Label, AbsoluteGridLength(labelRowHeight)),
-                        (Row.Player1Entry, AbsoluteGridLength(entryRowHeight)),
-                        (Row.Player2Label, AbsoluteGridLength(labelRowHeight)),
-                        (Row.Player2Entry, AbsoluteGridLength(entryRowHeight)),
-                        (Row.Start, AbsoluteGridLength(buttonHeight + buttonVerticalMargin * 2))),
+                        (Row.Player1Label, AbsoluteGridLength(_labelRowHeight)),
+                        (Row.Player1Entry, AbsoluteGridLength(_entryRowHeight)),
+                        (Row.Player2Label, AbsoluteGridLength(_labelRowHeight)),
+                        (Row.Player2Entry, AbsoluteGridLength(_entryRowHeight)),
+                        (Row.Start, AbsoluteGridLength(_buttonHeight + _buttonVerticalMargin * 2))),
 
                 Children =
                 {
@@ -49,7 +49,7 @@ namespace FaceOff
                     new WelcomePageEntry(AutomationIdConstants.Player2Entry, ReturnType.Go, new AsyncCommand(StartGame)).Assign(out _player2Entry).Row(Row.Player2Entry)
                         .Bind(Entry.TextProperty, nameof(WelcomeViewModel.Player2)),
 
-                    new BounceButton(AutomationIdConstants.StartGameButton) { Text = "Start" }.Assign(out Button startGameButton).Row(Row.Start).Margin(new Thickness(0, buttonVerticalMargin))
+                    new BounceButton(AutomationIdConstants.StartGameButton) { Text = "Start" }.Assign(out Button startGameButton).Row(Row.Start).Margin(new Thickness(0, _buttonVerticalMargin))
                 }
             };
 
@@ -95,9 +95,8 @@ namespace FaceOff
                 ReturnCommand = returnCommand;
 
                 TextColor = Color.Black;
-                BackgroundColor = Device.RuntimePlatform is Device.iOS ? Color.White : default;
-
                 Margin = new Thickness(0, 0, 0, 5);
+                BackgroundColor = Device.RuntimePlatform is Device.iOS ? Color.White : default;
 
                 Placeholder = PlaceholderConstants.WelcomePagePlaceholderText;
                 ClearButtonVisibility = ClearButtonVisibility.WhileEditing;
