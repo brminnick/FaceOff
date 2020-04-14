@@ -25,7 +25,7 @@ namespace FaceOff
             };
             _photo1ScoreButton.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsScore1ButtonEnabled));
             _photo1ScoreButton.SetBinding(Button.TextProperty, nameof(FaceOffViewModel.ScoreButton1Text));
-            _photo1ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo1ScoreButtonPressed));
+            _photo1ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo1ScoreButtonTapped));
 
             _photo2ScoreButton = new BounceButton(AutomationIdConstants.ScoreButton2)
             {
@@ -34,7 +34,7 @@ namespace FaceOff
             };
             _photo2ScoreButton.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsScore2ButtonEnabled));
             _photo2ScoreButton.SetBinding(Button.TextProperty, nameof(FaceOffViewModel.ScoreButton2Text));
-            _photo2ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo2ScoreButtonPressed));
+            _photo2ScoreButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.Photo2ScoreButtonTapped));
 
             var photo1ActivityIndicator = new ActivityIndicator
             {
@@ -54,7 +54,7 @@ namespace FaceOff
 
             var takePhoto1Button = new BounceButton(AutomationIdConstants.TakePhoto1Button) { Text = "Take Photo" };
             takePhoto1Button.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsTakeLeftPhotoButtonEnabled));
-            takePhoto1Button.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.TakePhoto1ButtonPressed));
+            takePhoto1Button.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.TakePhoto1ButtonTapped));
 
             var player1NameLabel = new DarkBlueLabel(PreferencesService.Player1Name)
             {
@@ -75,7 +75,7 @@ namespace FaceOff
 
             var takePhoto2Button = new BounceButton(AutomationIdConstants.TakePhoto2Button) { Text = "Take Photo" };
             takePhoto2Button.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsTakeRightPhotoButtonEnabled));
-            takePhoto2Button.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.TakePhoto2ButtonPressed));
+            takePhoto2Button.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.TakePhoto2ButtonTapped));
 
             var player2NameLabel = new DarkBlueLabel(PreferencesService.Player2Name)
             {
@@ -128,18 +128,15 @@ namespace FaceOff
                 }
             };
 
-            var resetButton = new BounceButton(AutomationIdConstants.ResetButton) { Text = "Reset" };
+            var resetButton = new BounceButton(AutomationIdConstants.ResetButton)
+            {
+                Text = "Reset",
+                Margin = new Thickness(24)
+            };
+            resetButton.Clicked += HandleResetButtonClicked;
             resetButton.SetBinding(IsEnabledProperty, nameof(FaceOffViewModel.IsResetButtonEnabled));
             resetButton.SetBinding(IsVisibleProperty, nameof(FaceOffViewModel.IsResetButtonEnabled));
-            resetButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.ResetButtonPressed));
-
-            var resetButtonStack = new StackLayout
-            {
-                Padding = new Thickness(24, 24, 24, 24),
-                Children = {
-                    resetButton
-                }
-            };
+            resetButton.SetBinding(Button.CommandProperty, nameof(FaceOffViewModel.ResetButtonTapped));
 
             var buttonImageRelativeLayout = new RelativeLayout();
 
@@ -169,9 +166,9 @@ namespace FaceOff
                 Constraint.RelativeToParent(parent => parent.Width / 2)
             );
 
-            buttonImageRelativeLayout.Children.Add(resetButtonStack,
+            buttonImageRelativeLayout.Children.Add(resetButton,
                 Constraint.RelativeToParent(parent => parent.X),
-                Constraint.RelativeToParent(parent => parent.Height * 7 / 8 - resetButtonStack.Height),
+                Constraint.RelativeToParent(parent => parent.Height * 7 / 8 - getHeight(parent, resetButton)),
                 Constraint.RelativeToParent(parent => parent.Width),
                 Constraint.RelativeToParent(parent => parent.Height * 1 / 8)
             );
@@ -179,26 +176,30 @@ namespace FaceOff
             SubscribeEventHandlers();
 
             Content = buttonImageRelativeLayout;
+
+            static double getWidth(RelativeLayout parent, View? view) => view?.Measure(parent.Width, parent.Height).Request.Width ?? -1;
+            static double getHeight(RelativeLayout parent, View? view) => view?.Measure(parent.Width, parent.Height).Request.Height ?? -1;
         }
 
         void SubscribeEventHandlers()
         {
-            ViewModel.PhotoImage1RevealTriggered += HandlePhotoImage1RevealTriggered;
-            ViewModel.PhotoImage2RevealTriggered += HandlePhotoImage2RevealTriggered;
-            ViewModel.ScoreButton1RevealTriggered += HandleScoreButton1RevealTriggered;
-            ViewModel.ScoreButton2RevealTriggered += HandleScoreButton2RevealTriggered;
-            ViewModel.PhotoImage1HideTriggered += HandlePhotoImage1HideTriggered;
-            ViewModel.PhotoImage2HideTriggered += HandlePhotoImage2HideTriggered;
-            ViewModel.ScoreButton1HideTriggered += HandleScoreButton1HideTriggered;
-            ViewModel.ScoreButton2HideTriggered += HandleScoreButton2HideTriggered;
-            ViewModel.AllEmotionResultsAlertTriggered += HandleAllEmotionResultsAlertTriggered;
-            ViewModel.PopUpAlertAboutEmotionTriggered += HandlePopUpAlertAboutEmotionTriggered;
-            EmotionService.MultipleFacesDetectedAlertTriggered += HandleMultipleFacesDetectedAlertTriggered;
+            ViewModel.GameInitialized += HandleGameInitialized;
+            ViewModel.EmotionResultsGathered += HandleEmotionResultsGathered;
+            ViewModel.GenerateEmotionResultsStarted += HandleGenerateEmotionResultsStarted;
             MediaService.NoCameraDetected += HandleNoCameraDetected;
             MediaService.PermissionsDenied += HandlePermissionsDenied;
+            EmotionService.MultipleFacesDetectedAlertTriggered += HandleMultipleFacesDetectedAlertTriggered;
         }
 
-        async void HandleAllEmotionResultsAlertTriggered(object sender, string message) =>
+        async void HandleResetButtonClicked(object sender, EventArgs e)
+        {
+            await Task.WhenAll(HideView(_photo1ScoreButton),
+                                HideView(_photo2ScoreButton),
+                                HideView(_photoImage1),
+                                HideView(_photoImage2));
+        }
+
+        async void HandleEmotionResultsGathered(object sender, string message) =>
             await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Results", message, "OK"));
 
         async void HandleNoCameraDetected(object sender, EventArgs e) =>
@@ -217,7 +218,7 @@ namespace FaceOff
             });
         }
 
-        void HandlePopUpAlertAboutEmotionTriggered(object sender, AlertMessageEventArgs e)
+        void HandleGameInitialized(object sender, GameInitializedEventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
@@ -225,15 +226,22 @@ namespace FaceOff
                 ViewModel.EmotionPopUpAlertResponseCommand?.Execute(new EmotionPopupResponseModel(userResponseToAlert, e.Player));
             });
         }
-
-        async void HandleScoreButton1RevealTriggered(object sender, EventArgs e) => await RevealView(_photo1ScoreButton);
-        async void HandleScoreButton2RevealTriggered(object sender, EventArgs e) => await RevealView(_photo2ScoreButton);
-        async void HandlePhotoImage1RevealTriggered(object sender, EventArgs e) => await RevealView(_photoImage1);
-        async void HandlePhotoImage2RevealTriggered(object sender, EventArgs e) => await RevealView(_photoImage2);
-        async void HandleScoreButton1HideTriggered(object sender, EventArgs e) => await HideView(_photo1ScoreButton);
-        async void HandleScoreButton2HideTriggered(object sender, EventArgs e) => await HideView(_photo2ScoreButton);
-        async void HandlePhotoImage1HideTriggered(object sender, EventArgs e) => await HideView(_photoImage1);
-        async void HandlePhotoImage2HideTriggered(object sender, EventArgs e) => await HideView(_photoImage2);
+        async void HandleGenerateEmotionResultsStarted(object sender, PlayerNumberType playerNumber)
+        {
+            switch (playerNumber)
+            {
+                case PlayerNumberType.Player1:
+                    await RevealView(_photoImage1);
+                    await RevealView(_photo1ScoreButton);
+                    break;
+                case PlayerNumberType.Player2:
+                    await RevealView(_photoImage2);
+                    await RevealView(_photo2ScoreButton);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
 
         Task RevealView(View view,
                         uint animationTime = AnimationConstants.DefaultAnimationTime,

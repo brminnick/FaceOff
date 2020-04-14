@@ -29,7 +29,7 @@ namespace FaceOff
             OnPropertyChanged(propertyname);
         }
 
-        void OnPropertyChanged([CallerMemberName] in string name = "") =>
+        protected void OnPropertyChanged([CallerMemberName] in string name = "") =>
             _notifyProprtyChangedEventManager.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }

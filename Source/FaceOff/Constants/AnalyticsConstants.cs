@@ -25,23 +25,13 @@ namespace FaceOff
 
         public static string AppCenterApiKey => GetApiKey();
 
-        static string GetApiKey()
+        static string GetApiKey() => Device.RuntimePlatform switch
         {
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    return AppCenterApiKey_iOS;
-
-                case Device.Android:
-                    return AppCenterApiKey_Android;
-
-                case Device.UWP:
-                    return AppCenterApiKey_UWP;
-
-                default:
-                    throw new NotSupportedException($"{nameof(Device.RuntimePlatform)}, { Device.RuntimePlatform }, not supported");
-            }
-        }
+            Device.iOS => AppCenterApiKey_iOS,
+            Device.Android => AppCenterApiKey_Android,
+            Device.UWP => AppCenterApiKey_UWP,
+            _ => throw new NotSupportedException($"{nameof(Device.RuntimePlatform)}, {Device.RuntimePlatform}, not supported"),
+        };
     }
 }
 

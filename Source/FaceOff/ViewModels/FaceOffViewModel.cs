@@ -23,16 +23,10 @@ namespace FaceOff
 
         const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
 
-        readonly WeakEventManager<AlertMessageEventArgs> _popUpAlertAboutEmotionTriggeredEventManager = new WeakEventManager<AlertMessageEventArgs>();
-        readonly WeakEventManager<string> _allEmotionResultsAlertTriggeredEventManager = new WeakEventManager<string>();
-        readonly WeakEventManager _scoreButton1RevealTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _scoreButton2RevealTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _photoImage1RevealTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _photoImage2RevealTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _scoreButton1HideTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _scoreButton2HidelTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _photoImage1HideTriggeredEventManager = new WeakEventManager();
-        readonly WeakEventManager _photoImage2HideTriggeredEventManager = new WeakEventManager();
+        readonly WeakEventManager<GameInitializedEventArgs> _gameInitializedEventManager = new WeakEventManager<GameInitializedEventArgs>();
+        readonly WeakEventManager<string> _emotionResultsGatheredEventManager = new WeakEventManager<string>();
+        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsCompletedEventManager = new WeakEventManager<PlayerNumberType>();
+        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsStartedEventManager = new WeakEventManager<PlayerNumberType>();
 
         ImageSource? _photo1ImageSource, _photo2ImageSource;
 
@@ -40,7 +34,6 @@ namespace FaceOff
         bool _isTakeLeftPhotoButtonStackVisible = true;
         bool _isTakeRightPhotoButtonEnabled = true;
         bool _isTakeRightPhotoButtonStackVisible = true;
-        bool _isResetButtonEnabled;
         bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
         bool _isScore1ButtonEnabled, _isScore2ButtonEnabled;
         EmotionType _currentEmotionType;
@@ -51,82 +44,43 @@ namespace FaceOff
             _scoreButton1Text = string.Empty,
             _scoreButton2Text = string.Empty;
 
-        ICommand? _resetButtonPressed, _emotionPopUpAlertResponseCommand, _takePhoto1ButtonPressed,
-            _takePhoto2ButtonPressed, _photo1ScoreButtonPressed, _photo2ScoreButtonPressed;
+        ICommand? _resetButtonTapped, _emotionPopUpAlertResponseCommand, _takePhoto1ButtonTapped,
+            _takePhoto2ButtonTapped, _photo1ScoreButtonTapped, _photo2ScoreButtonTapped;
 
-        public FaceOffViewModel()
+        public FaceOffViewModel() => SetRandomEmotion();
+
+        public event EventHandler<GameInitializedEventArgs> GameInitialized
         {
-            IsResetButtonEnabled = false;
-
-            SetRandomEmotion();
+            add => _gameInitializedEventManager.AddEventHandler(value);
+            remove => _gameInitializedEventManager.RemoveEventHandler(value);
         }
 
-        public event EventHandler<AlertMessageEventArgs> PopUpAlertAboutEmotionTriggered
+        public event EventHandler<string> EmotionResultsGathered
         {
-            add => _popUpAlertAboutEmotionTriggeredEventManager.AddEventHandler(value);
-            remove => _popUpAlertAboutEmotionTriggeredEventManager.RemoveEventHandler(value);
+            add => _emotionResultsGatheredEventManager.AddEventHandler(value);
+            remove => _emotionResultsGatheredEventManager.RemoveEventHandler(value);
         }
 
-        public event EventHandler<string> AllEmotionResultsAlertTriggered
+        public event EventHandler<PlayerNumberType> GenerateEmotionsResultsCompleted
         {
-            add => _allEmotionResultsAlertTriggeredEventManager.AddEventHandler(value);
-            remove => _allEmotionResultsAlertTriggeredEventManager.RemoveEventHandler(value);
+            add => _generateEmotionResultsCompletedEventManager.AddEventHandler(value);
+            remove => _generateEmotionResultsCompletedEventManager.RemoveEventHandler(value);
         }
 
-        public event EventHandler ScoreButton1RevealTriggered
+        public event EventHandler<PlayerNumberType> GenerateEmotionResultsStarted
         {
-            add => _scoreButton1RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton1RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton2RevealTriggered
-        {
-            add => _scoreButton2RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton2RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage1RevealTriggered
-        {
-            add => _photoImage1RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage1RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage2RevealTriggered
-        {
-            add => _photoImage2RevealTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage2RevealTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton1HideTriggered
-        {
-            add => _scoreButton1HideTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton1HideTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler ScoreButton2HideTriggered
-        {
-            add => _scoreButton2HidelTriggeredEventManager.AddEventHandler(value);
-            remove => _scoreButton2HidelTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage1HideTriggered
-        {
-            add => _photoImage1HideTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage1HideTriggeredEventManager.RemoveEventHandler(value);
-        }
-
-        public event EventHandler PhotoImage2HideTriggered
-        {
-            add => _photoImage2HideTriggeredEventManager.AddEventHandler(value);
-            remove => _photoImage2HideTriggeredEventManager.RemoveEventHandler(value);
+            add => _generateEmotionResultsStartedEventManager.AddEventHandler(value);
+            remove => _generateEmotionResultsStartedEventManager.RemoveEventHandler(value);
         }
 
         public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??= new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand);
-        public ICommand TakePhoto1ButtonPressed => _takePhoto1ButtonPressed ??= new Command(ExecuteTakePhoto1ButtonPressed);
-        public ICommand TakePhoto2ButtonPressed => _takePhoto2ButtonPressed ??= new Command(ExecuteTakePhoto2ButtonPressed);
-        public ICommand ResetButtonPressed => _resetButtonPressed ??= new Command(ExecuteResetButtonPressed);
-        public ICommand Photo1ScoreButtonPressed => _photo1ScoreButtonPressed ??= new Command(ExecutePhoto1ScoreButtonPressed);
-        public ICommand Photo2ScoreButtonPressed => _photo2ScoreButtonPressed ??= new Command(ExecutePhoto2ScoreButtonPressed);
+        public ICommand TakePhoto1ButtonTapped => _takePhoto1ButtonTapped ??= new Command(ExecuteTakePhoto1ButtonTapped);
+        public ICommand TakePhoto2ButtonTapped => _takePhoto2ButtonTapped ??= new Command(ExecuteTakePhoto2ButtonTapped);
+        public ICommand ResetButtonTapped => _resetButtonTapped ??= new Command(ExecuteResetButtonTapped);
+        public ICommand Photo1ScoreButtonTapped => _photo1ScoreButtonTapped ??= new Command(ExecutePhoto1ScoreButtonTapped);
+        public ICommand Photo2ScoreButtonTapped => _photo2ScoreButtonTapped ??= new Command(ExecutePhoto2ScoreButtonTapped);
+
+        public bool IsResetButtonEnabled => !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
 
         public ImageSource? Photo1ImageSource
         {
@@ -185,19 +139,13 @@ namespace FaceOff
         public bool IsCalculatingPhoto1Score
         {
             get => _isCalculatingPhoto1Score;
-            set => SetProperty(ref _isCalculatingPhoto1Score, value);
+            set => SetProperty(ref _isCalculatingPhoto1Score, value, () => OnPropertyChanged(nameof(IsResetButtonEnabled)));
         }
 
         public bool IsCalculatingPhoto2Score
         {
             get => _isCalculatingPhoto2Score;
-            set => SetProperty(ref _isCalculatingPhoto2Score, value);
-        }
-
-        public bool IsResetButtonEnabled
-        {
-            get => _isResetButtonEnabled;
-            set => SetProperty(ref _isResetButtonEnabled, value);
+            set => SetProperty(ref _isCalculatingPhoto2Score, value, () => OnPropertyChanged(nameof(IsResetButtonEnabled)));
         }
 
         public bool IsScore1ButtonEnabled
@@ -225,20 +173,35 @@ namespace FaceOff
         }
 #endif
         #endregion
-        void ExecuteTakePhoto1ButtonPressed() =>
+        void ExecuteTakePhoto1ButtonTapped() =>
             ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player1, PreferencesService.Player1Name));
 
-        void ExecuteTakePhoto2ButtonPressed() =>
+        void ExecuteTakePhoto2ButtonTapped() =>
             ExecutePopUpAlert(new PlayerModel(PlayerNumberType.Player2, PreferencesService.Player2Name));
 
         void ExecutePopUpAlert(PlayerModel playerModel)
         {
-            LogPhotoButtonTapped(playerModel.PlayerNumber);
+            logPhotoButtonTapped(playerModel.PlayerNumber);
             DisableButtons(playerModel.PlayerNumber);
 
             var title = EmotionConstants.EmotionDictionary[_currentEmotionType];
             var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {EmotionStringsForAlertMessage[(int)_currentEmotionType]}";
-            OnPopUpAlertAboutEmotionTriggered(title, message, playerModel);
+            OnGameInitialized(title, message, playerModel);
+
+            static void logPhotoButtonTapped(PlayerNumberType playerNumber)
+            {
+                switch (playerNumber)
+                {
+                    case PlayerNumberType.Player1:
+                        AnalyticsService.Track(AnalyticsConstants.PhotoButton1Tapped);
+                        break;
+                    case PlayerNumberType.Player2:
+                        AnalyticsService.Track(AnalyticsConstants.PhotoButton2Tapped);
+                        break;
+                    default:
+                        throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
+                }
+            }
         }
 
         Task ExecuteEmotionPopUpAlertResponseCommand(EmotionPopupResponseModel response)
@@ -266,16 +229,16 @@ namespace FaceOff
         {
             AnalyticsService.Track(AnalyticsConstants.PhotoTaken);
 
-            await ConfigureUIForPendingEmotionResults(player).ConfigureAwait(false);
+            ConfigureUIForPendingEmotionResults(player);
 
             var results = await GenerateEmotionResults(player).ConfigureAwait(false);
 
-            await ConfigureUIForFinalizedEmotionResults(player, results).ConfigureAwait(false);
+            ConfigureUIForFinalizedEmotionResults(player, results);
         }
 
-        async Task ConfigureUIForPendingEmotionResults(PlayerModel player)
+        void ConfigureUIForPendingEmotionResults(PlayerModel player)
         {
-            RevealPhoto(player.PlayerNumber);
+            OnGenerateEmotionResultsStarted(player.PlayerNumber);
 
             SetIsEnabledForOppositePhotoButton(true, player.PlayerNumber);
 
@@ -287,25 +250,17 @@ namespace FaceOff
             SetPhotoImageSource(player.ImageMediaFile, player.PlayerNumber);
 
             SetIsCalculatingPhotoScore(true, player.PlayerNumber);
-
-            SetResetButtonIsEnabled();
-
-            await WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.DefaultAnimationTime * 2.5)).ConfigureAwait(false);
-
-            RevealPhotoButton(player.PlayerNumber);
         }
 
-        Task ConfigureUIForFinalizedEmotionResults(PlayerModel player, string results)
+        void ConfigureUIForFinalizedEmotionResults(PlayerModel player, string results)
         {
+            OnGenerateEmotionsResultsCompleted(player.PlayerNumber);
+
             SetPhotoResultsText(results, player.PlayerNumber);
 
             SetIsCalculatingPhotoScore(false, player.PlayerNumber);
 
-            SetResetButtonIsEnabled();
-
             SetIsEnabledForCurrentPlayerScoreButton(true, player.PlayerNumber);
-
-            return WaitForAnimationsToFinish((int)Math.Ceiling(AnimationConstants.DefaultAnimationTime * 2.5));
         }
 
         async Task<string> GenerateEmotionResults(PlayerModel player)
@@ -364,7 +319,7 @@ namespace FaceOff
             return EmotionService.GetStringOfAllPhotoEmotionScores(emotionArray, 0);
         }
 
-        void ExecuteResetButtonPressed()
+        void ExecuteResetButtonTapped()
         {
             AnalyticsService.Track(AnalyticsConstants.ResetButtonTapped);
 
@@ -387,23 +342,18 @@ namespace FaceOff
 
             _photo1Results = string.Empty;
             _photo2Results = string.Empty;
-
-            OnPhotoImage1HideTriggered();
-            OnPhotoImage2HideTriggered();
-            OnScoreButton1HideTriggered();
-            OnScoreButton2HideTriggered();
         }
 
-        void ExecutePhoto1ScoreButtonPressed()
+        void ExecutePhoto1ScoreButtonTapped()
         {
             AnalyticsService.Track(AnalyticsConstants.ResultsButton1Tapped);
-            OnAllEmotionResultsAlertTriggered(_photo1Results);
+            OnEmotionResultsGathered(_photo1Results);
         }
 
-        void ExecutePhoto2ScoreButtonPressed()
+        void ExecutePhoto2ScoreButtonTapped()
         {
             AnalyticsService.Track(AnalyticsConstants.ResultsButton2Tapped);
-            OnAllEmotionResultsAlertTriggered(_photo2Results);
+            OnEmotionResultsGathered(_photo2Results);
         }
 
         void SetRandomEmotion() => SetEmotion(EmotionService.GetRandomEmotionType(_currentEmotionType));
@@ -414,21 +364,6 @@ namespace FaceOff
             _currentEmotionType = emotionType;
 
             SetPageTitle(_currentEmotionType);
-        }
-
-        void RevealPhoto(PlayerNumberType playerNumber)
-        {
-            switch (playerNumber)
-            {
-                case PlayerNumberType.Player1:
-                    OnPhotoImage1RevealTriggered();
-                    break;
-                case PlayerNumberType.Player2:
-                    OnPhotoImage2RevealTriggered();
-                    break;
-                default:
-                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
-            }
         }
 
         void SetIsEnabledForOppositePhotoButton(bool isEnabled, PlayerNumberType playerNumber)
@@ -542,21 +477,6 @@ namespace FaceOff
             }
         }
 
-        void RevealPhotoButton(PlayerNumberType playerNumber)
-        {
-            switch (playerNumber)
-            {
-                case PlayerNumberType.Player1:
-                    OnScoreButton1RevealTriggered();
-                    break;
-                case PlayerNumberType.Player2:
-                    OnScoreButton2RevealTriggered();
-                    break;
-                default:
-                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
-            }
-        }
-
         void SetPhotoResultsText(string results, PlayerNumberType playerNumber)
         {
             switch (playerNumber)
@@ -572,25 +492,10 @@ namespace FaceOff
             }
         }
 
-        void LogPhotoButtonTapped(PlayerNumberType playerNumber)
-        {
-            switch (playerNumber)
-            {
-                case PlayerNumberType.Player1:
-                    AnalyticsService.Track(AnalyticsConstants.PhotoButton1Tapped);
-                    break;
-                case PlayerNumberType.Player2:
-                    AnalyticsService.Track(AnalyticsConstants.PhotoButton2Tapped);
-                    break;
-                default:
-                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
-            }
-        }
-
         void SetPageTitle(EmotionType emotionType) =>
             PageTitle = EmotionConstants.EmotionDictionary[emotionType];
 
-        Task WaitForAnimationsToFinish(int waitTimeInSeconds) => Task.Delay(waitTimeInSeconds);
+        Task WaitForAnimationsToFinish(int waitTimeInMilliseconds) => Task.Delay(waitTimeInMilliseconds);
 
         void EnableButtons(PlayerNumberType playerNumber) =>
             SetIsEnabledForButtons(true, playerNumber);
@@ -598,38 +503,17 @@ namespace FaceOff
         void DisableButtons(PlayerNumberType playerNumber) =>
             SetIsEnabledForButtons(false, playerNumber);
 
-        void SetResetButtonIsEnabled() =>
-            IsResetButtonEnabled = !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
+        void OnEmotionResultsGathered(string emotionResults) =>
+            _emotionResultsGatheredEventManager.HandleEvent(this, emotionResults, nameof(EmotionResultsGathered));
 
-        void OnAllEmotionResultsAlertTriggered(string emotionResults) =>
-            _allEmotionResultsAlertTriggeredEventManager.HandleEvent(this, emotionResults, nameof(AllEmotionResultsAlertTriggered));
+        void OnGenerateEmotionResultsStarted(PlayerNumberType playerNumber) =>
+            _generateEmotionResultsStartedEventManager.HandleEvent(this, playerNumber, nameof(GenerateEmotionResultsStarted));
 
-        void OnPhotoImage1RevealTriggered() =>
-            _photoImage1RevealTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(PhotoImage1RevealTriggered));
+        void OnGenerateEmotionsResultsCompleted(PlayerNumberType playerNumber) =>
+            _generateEmotionResultsCompletedEventManager.HandleEvent(this, playerNumber, nameof(GenerateEmotionsResultsCompleted));
 
-        void OnScoreButton1RevealTriggered() =>
-            _scoreButton1RevealTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(ScoreButton1RevealTriggered));
-
-        void OnPhotoImage2RevealTriggered() =>
-            _photoImage2RevealTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(PhotoImage2RevealTriggered));
-
-        void OnScoreButton2RevealTriggered() =>
-            _scoreButton2RevealTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(ScoreButton2RevealTriggered));
-
-        void OnPhotoImage1HideTriggered() =>
-            _photoImage1HideTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(PhotoImage1HideTriggered));
-
-        void OnScoreButton1HideTriggered() =>
-            _scoreButton1HideTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(ScoreButton1HideTriggered));
-
-        void OnPhotoImage2HideTriggered() =>
-            _photoImage2HideTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(PhotoImage2HideTriggered));
-
-        void OnScoreButton2HideTriggered() =>
-            _scoreButton2HidelTriggeredEventManager.HandleEvent(this, EventArgs.Empty, nameof(ScoreButton2HideTriggered));
-
-        void OnPopUpAlertAboutEmotionTriggered(string title, string message, PlayerModel player) =>
-            _popUpAlertAboutEmotionTriggeredEventManager.HandleEvent(this, new AlertMessageEventArgs(title, message, player), nameof(PopUpAlertAboutEmotionTriggered));
+        void OnGameInitialized(string title, string message, PlayerModel player) =>
+            _gameInitializedEventManager.HandleEvent(this, new GameInitializedEventArgs(title, message, player), nameof(GameInitialized));
     }
 }
 
