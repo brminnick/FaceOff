@@ -50,6 +50,7 @@
     <Compile Include="Pages\CameraPage.cs" />
     <Compile Include="Pages\WelcomePage.cs" />
     <Compile Include="Tests\WelcomePageTests.cs" />
+    <Compile Include="BackdoorMethodService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

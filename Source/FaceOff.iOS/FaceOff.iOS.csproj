@@ -158,7 +158,6 @@
         </ImageAsset>
     </ItemGroup>
     <ItemGroup>
-        <None Include="app.config" />
         <None Include="Info.plist" />
         <None Include="Entitlements.plist" />
     </ItemGroup>
@@ -167,6 +166,7 @@
         <Compile Include="AppDelegate.cs" />
         <Compile Include="Services\CameraService_iOS.cs" />
         <Compile Include="CustomRenderers\EntryCustomRederer.cs" />
+        <Compile Include="AppDelegate.BackdoorMethods.cs" />
     </ItemGroup>
     <ItemGroup>
         <BundleResource Include="Resources\Camera-Face-Overlay.png" />

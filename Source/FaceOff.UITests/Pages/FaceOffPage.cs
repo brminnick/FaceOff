@@ -24,8 +24,8 @@ namespace FaceOff.UITests
         {
             _emotionLabel = x => x.Marked(AutomationIdConstants.EmotionLabel);
 
-            _photo1ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo1ActivityIndicator);
-            _photo2ActivityIndicator = x => x.Marked(AutomationIdConstants.Photo2ActivityIndicator);
+            _photo1ActivityIndicator = x => x.Marked(AutomationIdConstants.Player1ActivityIndicator);
+            _photo2ActivityIndicator = x => x.Marked(AutomationIdConstants.Player2ActivityIndicator);
 
             _photoImage1 = x => x.Marked(AutomationIdConstants.PhotoImage1);
             _photoImage2 = x => x.Marked(AutomationIdConstants.PhotoImage2);
@@ -42,11 +42,11 @@ namespace FaceOff.UITests
             _player2NameLabel = x => x.Marked(AutomationIdConstants.Player2NameLabel);
         }
 
-        public string Emotion => GetEmotionUsingBackdoors();
-        public string ScoreButton1Text => App.Query(_scoreButton1)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton1).First().Label;
-        public string ScoreButton2Text => App.Query(_scoreButton2)?.FirstOrDefault()?.Text ?? App.Query(_scoreButton2).First().Label;
-        public string Player1Name => App.Query(_player1NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player1NameLabel).First().Label;
-        public string Player2Name => App.Query(_player2NameLabel)?.FirstOrDefault()?.Text ?? App.Query(_player2NameLabel).First().Label;
+        public string Emotion => App.InvokeBackdoorMethod<string>(BackdoorMethodConstants.GetPicturePageTitle);
+        public string ScoreButton1Text => App.Query(_scoreButton1).FirstOrDefault()?.Text ?? App.Query(_scoreButton1).First().Label;
+        public string ScoreButton2Text => App.Query(_scoreButton2).FirstOrDefault()?.Text ?? App.Query(_scoreButton2).First().Label;
+        public string Player1Name => App.Query(_player1NameLabel).FirstOrDefault()?.Text ?? App.Query(_player1NameLabel).First().Label;
+        public string Player2Name => App.Query(_player2NameLabel).FirstOrDefault()?.Text ?? App.Query(_player2NameLabel).First().Label;
         public bool IsScoreButton1Visible => App.Query(_scoreButton1).Any();
         public bool IsScoreButton2Visible => App.Query(_scoreButton2).Any();
         public bool IsPhotoImage1Visible => App.Query(_photoImage1).Any();
@@ -64,7 +64,7 @@ namespace FaceOff.UITests
         public bool DoesResultsPopupContainExpectedResults(EmotionType emotion, double expectedScore)
         {
             WaitForResultsPopup();
-            return App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore.ToString()}") ?? false);
+            return App.Query().Any(x => x?.Text?.Contains($"{EmotionConstants.EmotionDictionary[emotion]}: {expectedScore}") ?? false);
         }
 
         public void TapResetButton()
@@ -114,18 +114,7 @@ namespace FaceOff.UITests
             var playerEmotionModel = new PlayerEmotionModel(Player1Name, emotion);
             var serializedInput = JsonConvert.SerializeObject(playerEmotionModel);
 
-            switch (App)
-            {
-                case iOSApp iOSApp:
-                    iOSApp.Invoke("submitImageForPhoto1:", serializedInput);
-                    break;
-                case AndroidApp androidApp:
-                    androidApp.Invoke("SubmitImageForPhoto1", serializedInput);
-                    break;
-                default:
-                    throw new NotSupportedException();
-            }
-
+            App.InvokeBackdoorMethod(BackdoorMethodConstants.SubmitImageForPhoto1, serializedInput);
             App.WaitForElement(_photoImage1);
         }
 
@@ -134,28 +123,9 @@ namespace FaceOff.UITests
             var playerEmotionModel = new PlayerEmotionModel(Player2Name, emotion);
             var serializedInput = JsonConvert.SerializeObject(playerEmotionModel);
 
-            switch (App)
-            {
-                case iOSApp iOSApp:
-                    iOSApp.Invoke("submitImageForPhoto2:", serializedInput);
-                    break;
-                case AndroidApp androidApp:
-                    androidApp.Invoke("SubmitImageForPhoto2", serializedInput);
-                    break;
-
-                default:
-                    throw new NotSupportedException();
-            }
-
+            App.InvokeBackdoorMethod(BackdoorMethodConstants.SubmitImageForPhoto2, serializedInput);
             App.WaitForElement(_photoImage2);
         }
-
-        string GetEmotionUsingBackdoors() => App switch
-        {
-            iOSApp iOSApp => iOSApp.Invoke("getPicturePageTitle:", "").ToString(),
-            AndroidApp androidApp => androidApp.Invoke("GetPicturePageTitle").ToString(),
-            _ => throw new NotSupportedException(),
-        };
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.PlatformConfiguration;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +10,8 @@ namespace FaceOff
     {
         public App()
         {
+            Device.SetFlags(new[] { "Markup_Experimental" });
+
             var navigationPage = new Xamarin.Forms.NavigationPage(new WelcomePage())
             {
                 BarBackgroundColor = ColorConstants.NavigationBarBackgroundColor,

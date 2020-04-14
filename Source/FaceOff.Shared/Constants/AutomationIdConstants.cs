@@ -7,8 +7,8 @@
         public const string EmotionLabel = nameof(EmotionLabel);
         public const string Player1NameLabel = nameof(Player1NameLabel);
         public const string Player2NameLabel = nameof(Player2NameLabel);
-        public const string Photo1ActivityIndicator = nameof(Photo1ActivityIndicator);
-        public const string Photo2ActivityIndicator = nameof(Photo2ActivityIndicator);
+        public const string Player1ActivityIndicator = nameof(Player1ActivityIndicator);
+        public const string Player2ActivityIndicator = nameof(Player2ActivityIndicator);
         public const string PhotoImage1 = nameof(PhotoImage1);
         public const string PhotoImage2 = nameof(PhotoImage2);
         public const string ResetButton = nameof(ResetButton);

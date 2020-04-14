@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\EmotionType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\EmotionConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerEmotionModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\BackdoorMethodConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />

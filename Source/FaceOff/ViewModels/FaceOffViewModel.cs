@@ -9,6 +9,7 @@ using AsyncAwaitBestPractices.MVVM;
 using FaceOff.Shared;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 using Plugin.Media.Abstractions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FaceOff
@@ -30,12 +31,10 @@ namespace FaceOff
 
         ImageSource? _photo1ImageSource, _photo2ImageSource;
 
-        bool _isTakeLeftPhotoButtonEnabled = true;
-        bool _isTakeLeftPhotoButtonStackVisible = true;
-        bool _isTakeRightPhotoButtonEnabled = true;
-        bool _isTakeRightPhotoButtonStackVisible = true;
+        bool _isTakePhotoButton1Enabled = true;
+        bool _isTakePhotoButton2Enabled = true;
         bool _isCalculatingPhoto1Score, _isCalculatingPhoto2Score;
-        bool _isScore1ButtonEnabled, _isScore2ButtonEnabled;
+        bool _isScore1ButtonEnabled, _isScoreButton2Enabled;
         EmotionType _currentEmotionType;
 
         string _photo1Results = string.Empty,
@@ -44,10 +43,17 @@ namespace FaceOff
             _scoreButton1Text = string.Empty,
             _scoreButton2Text = string.Empty;
 
-        ICommand? _resetButtonTapped, _emotionPopUpAlertResponseCommand, _takePhoto1ButtonTapped,
-            _takePhoto2ButtonTapped, _photo1ScoreButtonTapped, _photo2ScoreButtonTapped;
+        public FaceOffViewModel()
+        {
+            SetRandomEmotion();
 
-        public FaceOffViewModel() => SetRandomEmotion();
+            TakePhotoButton1Tapped = new Command(ExecuteTakePhoto1ButtonTapped, () => IsTakePhotoButton1Enabled);
+            TakePhotoButton2Tapped = new Command(ExecuteTakePhoto2ButtonTapped, () => IsTakePhotoButton2Enabled);
+            ScoreButton1Command = new Command(ExecutePhoto1ScoreButtonTapped, () => IsScoreButton1Enabled);
+            ScoreButton2Command = new Command(ExecutePhoto2ScoreButtonTapped, () => IsScoreButton2Enabled);
+            ResetButtonCommand = new Command(ExecuteResetButtonTapped, () => IsResetButtonEnabled);
+            EmotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand);
+        }
 
         public event EventHandler<GameInitializedEventArgs> GameInitialized
         {
@@ -73,49 +79,23 @@ namespace FaceOff
             remove => _generateEmotionResultsStartedEventManager.RemoveEventHandler(value);
         }
 
-        public ICommand EmotionPopUpAlertResponseCommand => _emotionPopUpAlertResponseCommand ??= new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand);
-        public ICommand TakePhoto1ButtonTapped => _takePhoto1ButtonTapped ??= new Command(ExecuteTakePhoto1ButtonTapped);
-        public ICommand TakePhoto2ButtonTapped => _takePhoto2ButtonTapped ??= new Command(ExecuteTakePhoto2ButtonTapped);
-        public ICommand ResetButtonTapped => _resetButtonTapped ??= new Command(ExecuteResetButtonTapped);
-        public ICommand Photo1ScoreButtonTapped => _photo1ScoreButtonTapped ??= new Command(ExecutePhoto1ScoreButtonTapped);
-        public ICommand Photo2ScoreButtonTapped => _photo2ScoreButtonTapped ??= new Command(ExecutePhoto2ScoreButtonTapped);
+        public Command ResetButtonCommand { get; }
+        public Command TakePhotoButton1Tapped { get; }
+        public Command TakePhotoButton2Tapped { get; }
+        public Command ScoreButton1Command { get; }
+        public Command ScoreButton2Command { get; }
+        public ICommand EmotionPopUpAlertResponseCommand { get; }
 
-        public bool IsResetButtonEnabled => !(IsCalculatingPhoto1Score || IsCalculatingPhoto2Score);
-
-        public ImageSource? Photo1ImageSource
+        public ImageSource? FrameImageSource1
         {
             get => _photo1ImageSource;
             set => SetProperty(ref _photo1ImageSource, value);
         }
 
-        public ImageSource? Photo2ImageSource
+        public ImageSource? FrameImageSource2
         {
             get => _photo2ImageSource;
             set => SetProperty(ref _photo2ImageSource, value);
-        }
-
-        public bool IsTakeLeftPhotoButtonEnabled
-        {
-            get => _isTakeLeftPhotoButtonEnabled;
-            set => SetProperty(ref _isTakeLeftPhotoButtonEnabled, value);
-        }
-
-        public bool IsTakeLeftPhotoButtonStackVisible
-        {
-            get => _isTakeLeftPhotoButtonStackVisible;
-            set => SetProperty(ref _isTakeLeftPhotoButtonStackVisible, value);
-        }
-
-        public bool IsTakeRightPhotoButtonEnabled
-        {
-            get => _isTakeRightPhotoButtonEnabled;
-            set => SetProperty(ref _isTakeRightPhotoButtonEnabled, value);
-        }
-
-        public bool IsTakeRightPhotoButtonStackVisible
-        {
-            get => _isTakeRightPhotoButtonStackVisible;
-            set => SetProperty(ref _isTakeRightPhotoButtonStackVisible, value);
         }
 
         public string PageTitle
@@ -136,28 +116,42 @@ namespace FaceOff
             set => SetProperty(ref _scoreButton2Text, value);
         }
 
-        public bool IsCalculatingPhoto1Score
+        public bool IsCalculatingPlayer1Score
         {
             get => _isCalculatingPhoto1Score;
-            set => SetProperty(ref _isCalculatingPhoto1Score, value, () => OnPropertyChanged(nameof(IsResetButtonEnabled)));
+            set => SetProperty(ref _isCalculatingPhoto1Score, value, () => MainThread.BeginInvokeOnMainThread(ResetButtonCommand.ChangeCanExecute));
         }
 
         public bool IsCalculatingPhoto2Score
         {
             get => _isCalculatingPhoto2Score;
-            set => SetProperty(ref _isCalculatingPhoto2Score, value, () => OnPropertyChanged(nameof(IsResetButtonEnabled)));
+            set => SetProperty(ref _isCalculatingPhoto2Score, value, () => MainThread.BeginInvokeOnMainThread(ResetButtonCommand.ChangeCanExecute));
         }
 
-        public bool IsScore1ButtonEnabled
+        bool IsResetButtonEnabled => !(IsCalculatingPlayer1Score || IsCalculatingPhoto2Score);
+
+        bool IsScoreButton1Enabled
         {
             get => _isScore1ButtonEnabled;
-            set => SetProperty(ref _isScore1ButtonEnabled, value);
+            set => SetProperty(ref _isScore1ButtonEnabled, value, () => MainThread.BeginInvokeOnMainThread(ScoreButton1Command.ChangeCanExecute));
         }
 
-        public bool IsScore2ButtonEnabled
+        bool IsScoreButton2Enabled
         {
-            get => _isScore2ButtonEnabled;
-            set => SetProperty(ref _isScore2ButtonEnabled, value);
+            get => _isScoreButton2Enabled;
+            set => SetProperty(ref _isScoreButton2Enabled, value, () => MainThread.BeginInvokeOnMainThread(ScoreButton2Command.ChangeCanExecute));
+        }
+
+        bool IsTakePhotoButton1Enabled
+        {
+            get => _isTakePhotoButton1Enabled;
+            set => SetProperty(ref _isTakePhotoButton1Enabled, value, () => MainThread.BeginInvokeOnMainThread(TakePhotoButton1Tapped.ChangeCanExecute));
+        }
+
+        bool IsTakePhotoButton2Enabled
+        {
+            get => _isTakePhotoButton2Enabled;
+            set => SetProperty(ref _isTakePhotoButton2Enabled, value, () => MainThread.BeginInvokeOnMainThread(TakePhotoButton2Tapped.ChangeCanExecute));
         }
 
         string[] EmotionStringsForAlertMessage => _emotionStringsForAlertMessageHolder.Value;
@@ -243,7 +237,6 @@ namespace FaceOff
             SetIsEnabledForOppositePhotoButton(true, player.PlayerNumber);
 
             SetIsEnabledForCurrentPhotoButton(false, player.PlayerNumber);
-            SetIsVisibleForCurrentPhotoStack(false, player.PlayerNumber);
 
             SetScoreButtonText(_calculatingScoreMessage, player.PlayerNumber);
 
@@ -325,20 +318,18 @@ namespace FaceOff
 
             SetRandomEmotion();
 
-            Photo1ImageSource = null;
-            Photo2ImageSource = null;
+            FrameImageSource1 = null;
+            FrameImageSource2 = null;
 
-            IsTakeLeftPhotoButtonEnabled = true;
-            IsTakeLeftPhotoButtonStackVisible = true;
+            IsTakePhotoButton1Enabled = true;
 
-            IsTakeRightPhotoButtonEnabled = true;
-            IsTakeRightPhotoButtonStackVisible = true;
+            IsTakePhotoButton2Enabled = true;
 
             ScoreButton1Text = string.Empty;
             ScoreButton2Text = string.Empty;
 
-            IsScore1ButtonEnabled = false;
-            IsScore2ButtonEnabled = false;
+            IsScoreButton1Enabled = false;
+            IsScoreButton2Enabled = false;
 
             _photo1Results = string.Empty;
             _photo2Results = string.Empty;
@@ -371,10 +362,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    IsTakeRightPhotoButtonEnabled = isEnabled;
+                    IsTakePhotoButton2Enabled = isEnabled;
                     break;
                 case PlayerNumberType.Player2:
-                    IsTakeLeftPhotoButtonEnabled = isEnabled;
+                    IsTakePhotoButton1Enabled = isEnabled;
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
@@ -386,10 +377,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    IsScore1ButtonEnabled = isEnabled;
+                    IsScoreButton1Enabled = isEnabled;
                     break;
                 case PlayerNumberType.Player2:
-                    IsScore2ButtonEnabled = isEnabled;
+                    IsScoreButton2Enabled = isEnabled;
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
@@ -407,10 +398,10 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    IsTakeLeftPhotoButtonEnabled = isEnabled;
+                    IsTakePhotoButton1Enabled = isEnabled;
                     break;
                 case PlayerNumberType.Player2:
-                    IsTakeRightPhotoButtonEnabled = isEnabled;
+                    IsTakePhotoButton2Enabled = isEnabled;
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
@@ -432,30 +423,15 @@ namespace FaceOff
             }
         }
 
-        void SetIsVisibleForCurrentPhotoStack(bool isVisible, PlayerNumberType playerNumber)
-        {
-            switch (playerNumber)
-            {
-                case PlayerNumberType.Player1:
-                    IsTakeLeftPhotoButtonStackVisible = isVisible;
-                    break;
-                case PlayerNumberType.Player2:
-                    IsTakeRightPhotoButtonStackVisible = isVisible;
-                    break;
-                default:
-                    throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
-            }
-        }
-
         void SetPhotoImageSource(MediaFile? imageMediaFile, PlayerNumberType playerNumber)
         {
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    Photo1ImageSource = ImageSource.FromStream(() => imageMediaFile?.GetStream());
+                    FrameImageSource1 = ImageSource.FromStream(() => imageMediaFile?.GetStream());
                     break;
                 case PlayerNumberType.Player2:
-                    Photo2ImageSource = ImageSource.FromStream(() => imageMediaFile?.GetStream());
+                    FrameImageSource2 = ImageSource.FromStream(() => imageMediaFile?.GetStream());
                     break;
                 default:
                     throw new NotSupportedException(_playerNumberNotImplentedExceptionText);
@@ -467,7 +443,7 @@ namespace FaceOff
             switch (playerNumber)
             {
                 case PlayerNumberType.Player1:
-                    IsCalculatingPhoto1Score = isCalculatingScore;
+                    IsCalculatingPlayer1Score = isCalculatingScore;
                     break;
                 case PlayerNumberType.Player2:
                     IsCalculatingPhoto2Score = isCalculatingScore;
