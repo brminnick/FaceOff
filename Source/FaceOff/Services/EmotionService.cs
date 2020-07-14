@@ -152,6 +152,6 @@ namespace FaceOff
         }
 
         static void OnMultipleFacesDetectedAlertTriggered() =>
-            _multipleFacesDetectedAlertTriggeredEventManager.HandleEvent(null, EventArgs.Empty, nameof(MultipleFacesDetectedAlertTriggered));
+            _multipleFacesDetectedAlertTriggeredEventManager.RaiseEvent(null, EventArgs.Empty, nameof(MultipleFacesDetectedAlertTriggered));
     }
 }

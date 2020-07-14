@@ -30,6 +30,6 @@ namespace FaceOff
         }
 
         protected void OnPropertyChanged([CallerMemberName] in string name = "") =>
-            _notifyProprtyChangedEventManager.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
+            _notifyProprtyChangedEventManager.RaiseEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }

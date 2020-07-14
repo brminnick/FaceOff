@@ -76,7 +76,7 @@ namespace FaceOff
                     && photosPermission is PermissionStatus.Granted;
         });
 
-        static void OnNoCameraDetected() => _noCameraDetectedEventManager.HandleEvent(null, EventArgs.Empty, nameof(NoCameraDetected));
-        static void OnPermissionsDenied() => _permissionsDeniedEventManager.HandleEvent(null, EventArgs.Empty, nameof(PermissionsDenied));
+        static void OnNoCameraDetected() => _noCameraDetectedEventManager.RaiseEvent(null, EventArgs.Empty, nameof(NoCameraDetected));
+        static void OnPermissionsDenied() => _permissionsDeniedEventManager.RaiseEvent(null, EventArgs.Empty, nameof(PermissionsDenied));
     }
 }

@@ -480,16 +480,16 @@ namespace FaceOff
             SetIsEnabledForButtons(false, playerNumber);
 
         void OnEmotionResultsGathered(string emotionResults) =>
-            _emotionResultsGatheredEventManager.HandleEvent(this, emotionResults, nameof(EmotionResultsGathered));
+            _emotionResultsGatheredEventManager.RaiseEvent(this, emotionResults, nameof(EmotionResultsGathered));
 
         void OnGenerateEmotionResultsStarted(PlayerNumberType playerNumber) =>
-            _generateEmotionResultsStartedEventManager.HandleEvent(this, playerNumber, nameof(GenerateEmotionResultsStarted));
+            _generateEmotionResultsStartedEventManager.RaiseEvent(this, playerNumber, nameof(GenerateEmotionResultsStarted));
 
         void OnGenerateEmotionsResultsCompleted(PlayerNumberType playerNumber) =>
-            _generateEmotionResultsCompletedEventManager.HandleEvent(this, playerNumber, nameof(GenerateEmotionsResultsCompleted));
+            _generateEmotionResultsCompletedEventManager.RaiseEvent(this, playerNumber, nameof(GenerateEmotionsResultsCompleted));
 
         void OnGameInitialized(string title, string message, PlayerModel player) =>
-            _gameInitializedEventManager.HandleEvent(this, new GameInitializedEventArgs(title, message, player), nameof(GameInitialized));
+            _gameInitializedEventManager.RaiseEvent(this, new GameInitializedEventArgs(title, message, player), nameof(GameInitialized));
     }
 }
 
