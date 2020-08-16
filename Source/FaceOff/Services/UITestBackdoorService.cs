@@ -22,7 +22,7 @@ namespace FaceOff
         {
             var player1 = new PlayerModel(PlayerNumberType.Player1, playerName)
             {
-                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player1photo", () => _applicationTypeInfo.Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion.ToString()}.png"))
+                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player1photo", () => _applicationTypeInfo.Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion}.png"))
             };
 
             return FaceOffViewModel.SubmitPhoto(emotion, player1);
@@ -32,7 +32,7 @@ namespace FaceOff
         {
             var player2 = new PlayerModel(PlayerNumberType.Player2, playerName)
             {
-                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player2photo", () => _applicationTypeInfo.GetTypeInfo().Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion.ToString()}.png"))
+                ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player2photo", () => _applicationTypeInfo.GetTypeInfo().Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion}.png"))
             };
 
             return FaceOffViewModel.SubmitPhoto(emotion, player2);
