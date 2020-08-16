@@ -1,7 +1,7 @@
 |CI Tool          |Build Status|
 |-----------------|------------|
 | App Center, iOS |  [![Build status](https://build.appcenter.ms/v0.1/apps/07eb9bfd-c818-4869-8870-90a6db8672d4/branches/main/badge)](https://appcenter.ms) |
-| App Center, Android | [[![Build status](https://build.appcenter.ms/v0.1/apps/95153c3a-8cd3-4d08-9b61-1bc9ad6a1bb4/branches/main/badge)](https://appcenter.ms) |
+| App Center, Android | [![Build status](https://build.appcenter.ms/v0.1/apps/95153c3a-8cd3-4d08-9b61-1bc9ad6a1bb4/branches/main/badge)](https://appcenter.ms) |
 | App Center, UWP | [![Build status](https://build.appcenter.ms/v0.1/apps/a8c124e2-8160-4715-8c72-2d6fc514d198/branches/main/badge)](https://appcenter.ms) |
 
 # FaceOff
