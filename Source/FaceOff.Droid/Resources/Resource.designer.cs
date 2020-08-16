@@ -1879,6 +1879,7 @@ namespace FaceOff.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.String.fab_transformation_sheet_behavior = global::FaceOff.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.hide_bottom_view_on_scroll_behavior = global::FaceOff.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.mtrl_chip_close_icon_content_description = global::FaceOff.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Android.Resource.String.overflow_tab_title = global::FaceOff.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Android.Resource.String.password_toggle_content_description = global::FaceOff.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye = global::FaceOff.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye_mask_strike_through = global::FaceOff.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -4557,6 +4558,7 @@ namespace FaceOff.Droid
 			global::Xamarin.Forms.Platform.Resource.String.fab_transformation_sheet_behavior = global::FaceOff.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.hide_bottom_view_on_scroll_behavior = global::FaceOff.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.mtrl_chip_close_icon_content_description = global::FaceOff.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Resource.String.overflow_tab_title = global::FaceOff.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Resource.String.password_toggle_content_description = global::FaceOff.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye = global::FaceOff.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye_mask_strike_through = global::FaceOff.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -10270,25 +10272,28 @@ namespace FaceOff.Droid
 			public const int mtrl_chip_close_icon_content_description = 2131492919;
 			
 			// aapt resource value: 0x7F0C0038
-			public const int password_toggle_content_description = 2131492920;
+			public const int overflow_tab_title = 2131492920;
 			
 			// aapt resource value: 0x7F0C0039
-			public const int path_password_eye = 2131492921;
+			public const int password_toggle_content_description = 2131492921;
 			
 			// aapt resource value: 0x7F0C003A
-			public const int path_password_eye_mask_strike_through = 2131492922;
+			public const int path_password_eye = 2131492922;
 			
 			// aapt resource value: 0x7F0C003B
-			public const int path_password_eye_mask_visible = 2131492923;
+			public const int path_password_eye_mask_strike_through = 2131492923;
 			
 			// aapt resource value: 0x7F0C003C
-			public const int path_password_strike_through = 2131492924;
+			public const int path_password_eye_mask_visible = 2131492924;
 			
 			// aapt resource value: 0x7F0C003D
-			public const int search_menu_title = 2131492925;
+			public const int path_password_strike_through = 2131492925;
 			
 			// aapt resource value: 0x7F0C003E
-			public const int status_bar_notification_info_overflow = 2131492926;
+			public const int search_menu_title = 2131492926;
+			
+			// aapt resource value: 0x7F0C003F
+			public const int status_bar_notification_info_overflow = 2131492927;
 			
 			static String()
 			{

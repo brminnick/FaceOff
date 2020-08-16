@@ -62,7 +62,7 @@ namespace FaceOff
             {
                 using var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion);
                 var faceApiResponseList = await AttemptAndRetry(() => FaceApiClient.Face.DetectWithStreamAsync(mediaFile?.GetStream(),
-                                                                            returnFaceAttributes: new List<FaceAttributeType> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
+                                                                            returnFaceAttributes: new List<FaceAttributeType?> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
 
                 return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
             }

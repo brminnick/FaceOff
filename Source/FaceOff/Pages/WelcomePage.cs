@@ -49,11 +49,10 @@ namespace FaceOff
                     new WelcomePageEntry(AutomationIdConstants.Player2Entry, ReturnType.Go, new AsyncCommand(StartGame)).Assign(out _player2Entry).Row(Row.Player2Entry)
                         .Bind(Entry.TextProperty, nameof(WelcomeViewModel.Player2)),
 
-                    new BounceButton(AutomationIdConstants.StartGameButton) { Text = "Start" }.Assign(out Button startGameButton).Row(Row.Start).Margin(new Thickness(0, _buttonVerticalMargin))
+                    new BounceButton(AutomationIdConstants.StartGameButton) { Text = "Start" }.Row(Row.Start).Margin(new Thickness(0, _buttonVerticalMargin))
+                        .Invoke(startGameButton => startGameButton.Clicked += HandleStartGameButtonClicked)
                 }
             };
-
-            startGameButton.Clicked += HandleStartGameButtonClicked;
         }
 
         enum Row { Player1Label, Player1Entry, Player2Label, Player2Entry, Start }

@@ -72,12 +72,11 @@ namespace FaceOff
                         .Bind(IsVisibleProperty, nameof(FaceOffViewModel.IsCalculatingPhoto2Score))
                         .Bind(ActivityIndicator.IsRunningProperty, nameof(FaceOffViewModel.IsCalculatingPhoto2Score)),
 
-                    new ResetButton().Assign(out ResetButton resetButton).Row(Row.Reset).ColumnSpan(All<Column>())
+                    new ResetButton().Row(Row.Reset).ColumnSpan(All<Column>())
                         .Bind(Button.CommandProperty, nameof(FaceOffViewModel.ResetButtonCommand))
+                        .Invoke(resetButton => resetButton.Clicked += HandleResetButtonClicked)
                 }
             };
-
-            resetButton.Clicked += HandleResetButtonClicked;
 
             void subscribeEventHandlers()
             {
