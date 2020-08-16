@@ -108,7 +108,7 @@ namespace FaceOff.UITests
 
             //Act
             FaceOffPage.SubmitImageForPhoto1(emotion);
-            App.Screenshot($"Player 1 Image Submitted: {emotion.ToString()}");
+            App.Screenshot($"Player 1 Image Submitted: {emotion}");
 
             FaceOffPage.WaitForNoPhoto1ActivityIndicator();
 
@@ -138,7 +138,7 @@ namespace FaceOff.UITests
 
             //Act
             FaceOffPage.SubmitImageForPhoto2(emotion);
-            App.Screenshot($"Player 2 Image Submitted: {emotion.ToString()}");
+            App.Screenshot($"Player 2 Image Submitted: {emotion}");
 
             FaceOffPage.WaitForNoPhoto2ActivityIndicator();
 

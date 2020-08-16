@@ -10,7 +10,7 @@ namespace FaceOff.Droid
         public string GetPicturePageTitle()
         {
             var mainNavigationPage = (Xamarin.Forms.NavigationPage)Xamarin.Forms.Application.Current.MainPage;
-            return mainNavigationPage.CurrentPage.Title;
+            return Serialize(mainNavigationPage.CurrentPage.Title);
         }
 
         [Export(BackdoorMethodConstants.SubmitImageForPhoto1)]
