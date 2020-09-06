@@ -7,11 +7,11 @@ namespace FaceOff.UITests
 {
     static class BackdoorMethodService
     {
-        public static object InvokeBackdoorMethod(this IApp app, string backdoorMethodName, string parameter = "") => app switch
+        public static object InvokeBackdoorMethod(this IApp app, string backdoorMethodName, string parameter = "") => (app, parameter) switch
         {
-            iOSApp iosApp => iosApp.Invoke(backdoorMethodName + ":", parameter),
-            AndroidApp androidApp when string.IsNullOrWhiteSpace(parameter) => androidApp.Invoke(backdoorMethodName),
-            AndroidApp androidApp => androidApp.Invoke(backdoorMethodName, parameter),
+            (iOSApp iosApp, _) => iosApp.Invoke(backdoorMethodName + ":", parameter),
+            (AndroidApp androidApp, "") => androidApp.Invoke(backdoorMethodName),
+            (AndroidApp androidApp, _) => androidApp.Invoke(backdoorMethodName, parameter),
             _ => throw new NotSupportedException("Platform Not Supported"),
         };
 
