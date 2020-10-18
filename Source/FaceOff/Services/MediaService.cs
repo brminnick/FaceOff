@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AsyncAwaitBestPractices;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Essentials;
@@ -10,8 +9,8 @@ namespace FaceOff
 {
     public static class MediaService
     {
-        readonly static WeakEventManager _noCameraDetectedEventManager = new WeakEventManager();
-        readonly static WeakEventManager _permissionsDeniedEventManager = new WeakEventManager();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _noCameraDetectedEventManager = new AsyncAwaitBestPractices.WeakEventManager();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _permissionsDeniedEventManager = new AsyncAwaitBestPractices.WeakEventManager();
 
         public static event EventHandler NoCameraDetected
         {

@@ -2,21 +2,15 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-
-using Plugin.Media.Abstractions;
-
-using Xamarin.Forms;
-
 using FaceOff.Shared;
+using Plugin.Media.Abstractions;
+using Xamarin.Forms;
 
 namespace FaceOff
 {
     public static class UITestBackdoorService
     {
         static readonly TypeInfo _applicationTypeInfo = Application.Current.GetType().GetTypeInfo();
-
-        static FaceOffViewModel? _faceOffViewModel;
-        static FaceOffViewModel FaceOffViewModel => _faceOffViewModel ??= (FaceOffViewModel)GetCurrentPage().BindingContext;
 
         public static Task SubmitImageForPhoto1(string playerName, EmotionType emotion)
         {
@@ -25,7 +19,7 @@ namespace FaceOff
                 ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player1photo", () => _applicationTypeInfo.Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion}.png"))
             };
 
-            return FaceOffViewModel.SubmitPhoto(emotion, player1);
+            return GetFaceOffViewModel().SubmitPhoto(emotion, player1);
         }
 
         public static Task SubmitImageForPhoto2(string playerName, EmotionType emotion)
@@ -35,8 +29,10 @@ namespace FaceOff
                 ImageMediaFile = new MediaFile($"{Xamarin.Essentials.FileSystem.AppDataDirectory}/player2photo", () => _applicationTypeInfo.GetTypeInfo().Assembly.GetManifestResourceStream($"{_applicationTypeInfo.Namespace}.Images.{emotion}.png"))
             };
 
-            return FaceOffViewModel.SubmitPhoto(emotion, player2);
+            return GetFaceOffViewModel().SubmitPhoto(emotion, player2);
         }
+
+        static FaceOffViewModel GetFaceOffViewModel() => (FaceOffViewModel)GetCurrentPage().BindingContext;
 
         static Page GetCurrentPage()
         {

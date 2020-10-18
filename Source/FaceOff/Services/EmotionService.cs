@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using AsyncAwaitBestPractices;
 using FaceOff.Shared;
 using Microsoft.Azure.CognitiveServices.Vision.Face;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
@@ -30,7 +29,7 @@ namespace FaceOff
                 { ErrorMessageType.DeviceOffline, "Device is Offline"}
             });
 
-        readonly static WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new WeakEventManager();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new AsyncAwaitBestPractices.WeakEventManager();
 
         public static event EventHandler MultipleFacesDetectedAlertTriggered
         {
