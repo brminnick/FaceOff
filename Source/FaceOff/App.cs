@@ -10,8 +10,6 @@ namespace FaceOff
     {
         public App()
         {
-            Device.SetFlags(new[] { "Markup_Experimental" });
-
             var navigationPage = new Xamarin.Forms.NavigationPage(new WelcomePage())
             {
                 BarBackgroundColor = ColorConstants.NavigationBarBackgroundColor,

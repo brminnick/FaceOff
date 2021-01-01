@@ -65,7 +65,7 @@ namespace FaceOff
             {
                 _stopwatch.Stop();
                 Data.Add("Timed Event", $"{_stopwatch.Elapsed:ss\\.fff}s");
-                AnalyticsService.Track($"{_trackIdentifier} [Timed Event]", Data);
+                Track($"{_trackIdentifier} [Timed Event]", Data);
             }
         }
     }

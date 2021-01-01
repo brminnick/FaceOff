@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using FaceOff.Shared;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Markup;
+using Xamarin.CommunityToolkit.Markup;
 using static Xamarin.Forms.Markup.GridLengths;
-using static Xamarin.Forms.Markup.GridRowsColumns;
+using static Xamarin.CommunityToolkit.Markup.GridRowsColumns;
 
 namespace FaceOff
 {
