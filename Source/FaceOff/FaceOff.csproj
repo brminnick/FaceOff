@@ -17,7 +17,7 @@
         <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.6.0-preview.1" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
         <PackageReference Include="Polly" Version="7.2.2" />
-        <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.0.2" />
+        <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
       <EmbeddedResource Include="Images\Anger.png" />
