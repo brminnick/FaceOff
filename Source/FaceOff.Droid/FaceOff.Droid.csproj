@@ -8,7 +8,7 @@
         <OutputType>Library</OutputType>
         <RootNamespace>FaceOff.Droid</RootNamespace>
         <AssemblyName>FaceOff.Droid</AssemblyName>
-        <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
         <AndroidApplication>True</AndroidApplication>
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
         <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -65,15 +65,15 @@
         <Reference Include="System.Numerics.Vectors" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.1.0" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
-        <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.1.0" />
+        <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.2.0" />
         <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
         <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.6.0-preview.1" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.1.0" />
         <PackageReference Include="Polly" Version="7.2.2" />
     </ItemGroup>
     <ItemGroup>
