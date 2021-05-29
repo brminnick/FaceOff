@@ -17,9 +17,9 @@ namespace FaceOff
     static class EmotionService
     {
         readonly static Lazy<FaceClient> _faceApiClientHolder =
-            new(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey), new HttpClient(), false) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
+            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey), new HttpClient(), false) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
 
-        readonly static AsyncAwaitBestPractices.WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new AsyncAwaitBestPractices.WeakEventManager();
 
         public static event EventHandler MultipleFacesDetectedAlertTriggered
         {

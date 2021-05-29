@@ -16,18 +16,17 @@ namespace FaceOff
 {
     public class FaceOffViewModel : BaseViewModel
     {
-        readonly IReadOnlyList<string> _emotionStringsForAlertMessage =
-            new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
-
         const string _makeAFaceAlertMessage = "take a selfie looking";
         const string _calculatingScoreMessage = "Analyzing";
 
         const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
 
-        readonly WeakEventManager<string> _emotionResultsGatheredEventManager = new();
-        readonly WeakEventManager<GameInitializedEventArgs> _gameInitializedEventManager = new();
-        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsStartedEventManager = new();
-        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsCompletedEventManager = new();
+        readonly IReadOnlyList<string> _emotionStringsForAlertMessage = new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
+
+        readonly WeakEventManager<string> _emotionResultsGatheredEventManager = new WeakEventManager<string>();
+        readonly WeakEventManager<GameInitializedEventArgs> _gameInitializedEventManager = new WeakEventManager<GameInitializedEventArgs>();
+        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsStartedEventManager = new WeakEventManager<PlayerNumberType>();
+        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsCompletedEventManager = new WeakEventManager<PlayerNumberType>();
 
         ImageSource? _photo1ImageSource, _photo2ImageSource;
 
