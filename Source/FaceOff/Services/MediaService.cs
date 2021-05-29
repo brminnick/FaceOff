@@ -9,8 +9,8 @@ namespace FaceOff
 {
     public static class MediaService
     {
-        readonly static AsyncAwaitBestPractices.WeakEventManager _noCameraDetectedEventManager = new AsyncAwaitBestPractices.WeakEventManager();
-        readonly static AsyncAwaitBestPractices.WeakEventManager _permissionsDeniedEventManager = new AsyncAwaitBestPractices.WeakEventManager();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _noCameraDetectedEventManager = new();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _permissionsDeniedEventManager = new();
 
         public static event EventHandler NoCameraDetected
         {

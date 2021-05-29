@@ -1,11 +1,12 @@
 ﻿#if DEBUG
 using FaceOff.Shared;
 using Java.Interop;
+using Newtonsoft.Json;
 
 namespace FaceOff.Droid
 {
-	public partial class MainActivity
-	{
+    public partial class MainActivity
+    {
         [Export(BackdoorMethodConstants.GetPicturePageTitle)]
         public string GetPicturePageTitle()
         {
@@ -29,9 +30,8 @@ namespace FaceOff.Droid
             await UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).ConfigureAwait(false);
         }
 
-
-        static string Serialize<T>(T data) => Newtonsoft.Json.JsonConvert.SerializeObject(data);
-        static T Deserialize<T>(string data) => Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data.ToString());
+        static string Serialize<T>(T data) => JsonConvert.SerializeObject(data);
+        static T Deserialize<T>(string data) => JsonConvert.DeserializeObject<T>(data.ToString()) ?? throw new JsonException();
     }
 }
 #endif

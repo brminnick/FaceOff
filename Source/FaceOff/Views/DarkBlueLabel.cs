@@ -2,7 +2,7 @@
 
 namespace FaceOff
 {
-    public class DarkBlueLabel : Label
+    class DarkBlueLabel : Label
     {
         public DarkBlueLabel(in string text)
         {

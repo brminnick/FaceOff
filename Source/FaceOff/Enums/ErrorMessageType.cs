@@ -1,9 +1,12 @@
-﻿public enum ErrorMessageType
+﻿namespace FaceOff
 {
-    NoFaceDetected,
-    MultipleFacesDetected,
-    ConnectionToCognitiveServicesFailed,
-    DeviceOffline,
-    InvalidAPIKey,
-    GenericError
+    public enum ErrorMessageType
+    {
+        NoFaceDetected,
+        MultipleFacesDetected,
+        ConnectionToCognitiveServicesFailed,
+        DeviceOffline,
+        InvalidAPIKey,
+        GenericError
+    }
 }

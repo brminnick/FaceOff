@@ -174,7 +174,7 @@
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.1.0" />
         <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
-        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.6.0-preview.1" />
+        <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.7.0-preview.1" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
         <PackageReference Include="Polly" Version="7.2.2" />
         <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />

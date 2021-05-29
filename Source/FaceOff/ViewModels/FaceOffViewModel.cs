@@ -16,18 +16,18 @@ namespace FaceOff
 {
     public class FaceOffViewModel : BaseViewModel
     {
-        readonly Lazy<string[]> _emotionStringsForAlertMessageHolder = new Lazy<string[]>(() =>
-            new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" });
+        readonly IReadOnlyList<string> _emotionStringsForAlertMessage =
+            new string[] { "angry", "disrespectful", "disgusted", "scared", "happy", "blank", "sad", "surprised" };
 
         const string _makeAFaceAlertMessage = "take a selfie looking";
         const string _calculatingScoreMessage = "Analyzing";
 
         const string _playerNumberNotImplentedExceptionText = "Player Number Not Implemented";
 
-        readonly WeakEventManager<GameInitializedEventArgs> _gameInitializedEventManager = new WeakEventManager<GameInitializedEventArgs>();
-        readonly WeakEventManager<string> _emotionResultsGatheredEventManager = new WeakEventManager<string>();
-        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsCompletedEventManager = new WeakEventManager<PlayerNumberType>();
-        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsStartedEventManager = new WeakEventManager<PlayerNumberType>();
+        readonly WeakEventManager<string> _emotionResultsGatheredEventManager = new();
+        readonly WeakEventManager<GameInitializedEventArgs> _gameInitializedEventManager = new();
+        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsStartedEventManager = new();
+        readonly WeakEventManager<PlayerNumberType> _generateEmotionResultsCompletedEventManager = new();
 
         ImageSource? _photo1ImageSource, _photo2ImageSource;
 
@@ -52,7 +52,11 @@ namespace FaceOff
             ScoreButton1Command = new Command(ExecutePhoto1ScoreButtonTapped, () => IsScoreButton1Enabled);
             ScoreButton2Command = new Command(ExecutePhoto2ScoreButtonTapped, () => IsScoreButton2Enabled);
             ResetButtonCommand = new Command(ExecuteResetButtonTapped, () => IsResetButtonEnabled);
-            EmotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(ExecuteEmotionPopUpAlertResponseCommand);
+            EmotionPopUpAlertResponseCommand = new AsyncCommand<EmotionPopupResponseModel>(response => response switch
+            {
+                null => Task.CompletedTask,
+                _ => ExecuteEmotionPopUpAlertResponseCommand(response)
+            });
         }
 
         public event EventHandler<GameInitializedEventArgs> GameInitialized
@@ -154,8 +158,6 @@ namespace FaceOff
             set => SetProperty(ref _isTakePhotoButton2Enabled, value, () => MainThread.BeginInvokeOnMainThread(TakePhotoButton2Tapped.ChangeCanExecute));
         }
 
-        string[] EmotionStringsForAlertMessage => _emotionStringsForAlertMessageHolder.Value;
-
         #region UITest Backdoor Methods
 #if DEBUG
         public Task SubmitPhoto(EmotionType emotion, PlayerModel player)
@@ -179,7 +181,7 @@ namespace FaceOff
             DisableButtons(playerModel.PlayerNumber);
 
             var title = EmotionConstants.EmotionDictionary[_currentEmotionType];
-            var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {EmotionStringsForAlertMessage[(int)_currentEmotionType]}";
+            var message = $"{playerModel.PlayerName}, {_makeAFaceAlertMessage} {_emotionStringsForAlertMessage[(int)_currentEmotionType]}";
             OnGameInitialized(title, message, playerModel);
 
             static void logPhotoButtonTapped(PlayerNumberType playerNumber)
@@ -206,6 +208,7 @@ namespace FaceOff
                 return ExecuteTakePhotoWorkflow(player);
 
             EnableButtons(player.PlayerNumber);
+
             return Task.CompletedTask;
         }
 
@@ -349,7 +352,6 @@ namespace FaceOff
 
         void SetRandomEmotion() => SetEmotion(EmotionService.GetRandomEmotionType(_currentEmotionType));
 
-
         void SetEmotion(EmotionType emotionType)
         {
             _currentEmotionType = emotionType;
@@ -470,8 +472,6 @@ namespace FaceOff
 
         void SetPageTitle(EmotionType emotionType) =>
             PageTitle = EmotionConstants.EmotionDictionary[emotionType];
-
-        Task WaitForAnimationsToFinish(int waitTimeInMilliseconds) => Task.Delay(waitTimeInMilliseconds);
 
         void EnableButtons(PlayerNumberType playerNumber) =>
             SetIsEnabledForButtons(true, playerNumber);

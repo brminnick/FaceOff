@@ -1,10 +1,7 @@
 ﻿using System;
-
-using UIKit;
-
-using Xamarin.Forms;
-
 using FaceOff.iOS;
+using UIKit;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(CameraService_iOS))]
 namespace FaceOff.iOS

@@ -6,7 +6,6 @@ using FaceOff.Shared;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Markup;
-using static Xamarin.Forms.Markup.GridLengths;
 using static Xamarin.CommunityToolkit.Markup.GridRowsColumns;
 
 namespace FaceOff
@@ -31,11 +30,11 @@ namespace FaceOff
                 Padding = 20,
 
                 RowDefinitions = Rows.Define(
-                        (Row.Player1Label, AbsoluteGridLength(_labelRowHeight)),
-                        (Row.Player1Entry, AbsoluteGridLength(_entryRowHeight)),
-                        (Row.Player2Label, AbsoluteGridLength(_labelRowHeight)),
-                        (Row.Player2Entry, AbsoluteGridLength(_entryRowHeight)),
-                        (Row.Start, AbsoluteGridLength(_buttonHeight + _buttonVerticalMargin * 2))),
+                        (Row.Player1Label, _labelRowHeight),
+                        (Row.Player1Entry, _entryRowHeight),
+                        (Row.Player2Label, _labelRowHeight),
+                        (Row.Player2Entry, _entryRowHeight),
+                        (Row.Start, _buttonHeight + _buttonVerticalMargin * 2)),
 
                 Children =
                 {

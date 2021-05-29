@@ -1,6 +1,7 @@
 ﻿#if DEBUG
 using FaceOff.Shared;
 using Foundation;
+using Newtonsoft.Json;
 
 namespace FaceOff.iOS
 {
@@ -31,8 +32,8 @@ namespace FaceOff.iOS
             await UITestBackdoorService.SubmitImageForPhoto2(playerEmotionModel.PlayerName, playerEmotionModel.Emotion).ConfigureAwait(false);
         }
 
-        static NSString Serialize<T>(T data) => new NSString(Newtonsoft.Json.JsonConvert.SerializeObject(data));
-        static T Deserialize<T>(NSString data) => Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data.ToString());
+        static NSString Serialize<T>(T data) => new NSString(JsonConvert.SerializeObject(data));
+        static T Deserialize<T>(NSString data) => JsonConvert.DeserializeObject<T>(data.ToString()) ?? throw new JsonException();
     }
 }
 #endif

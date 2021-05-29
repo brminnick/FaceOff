@@ -4,7 +4,6 @@ using FaceOff.Shared;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Markup;
-using static Xamarin.Forms.Markup.GridLengths;
 using static Xamarin.CommunityToolkit.Markup.GridRowsColumns;
 
 namespace FaceOff
@@ -28,17 +27,17 @@ namespace FaceOff
                 ColumnSpacing = 24,
 
                 RowDefinitions = Rows.Define(
-                    (Row.PlayerName, StarGridLength(1)),
-                    (Row.TakePhoto, StarGridLength(2)),
-                    (Row.PhotoImage, StarGridLength(2)),
-                    (Row.PhotoImagePadding, StarGridLength(2)),
-                    (Row.Results, StarGridLength(2)),
-                    (Row.ActivityIndicator, StarGridLength(2)),
-                    (Row.Reset, StarGridLength(12))),
+                    (Row.PlayerName, Stars(1)),
+                    (Row.TakePhoto, Stars(2)),
+                    (Row.PhotoImage, Stars(2)),
+                    (Row.PhotoImagePadding, Stars(2)),
+                    (Row.Results, Stars(2)),
+                    (Row.ActivityIndicator, Stars(2)),
+                    (Row.Reset, Stars(12))),
 
                 ColumnDefinitions = Columns.Define(
-                    (Column.Player1, StarGridLength(1)),
-                    (Column.Player2, StarGridLength(1))),
+                    (Column.Player1, Stars(1)),
+                    (Column.Player2, Stars(1))),
 
                 Children =
                 {
@@ -127,6 +126,7 @@ namespace FaceOff
                 ViewModel.EmotionPopUpAlertResponseCommand.Execute(new EmotionPopupResponseModel(userResponseToAlert, e.Player));
             });
         }
+
         async void HandleGenerateEmotionResultsStarted(object sender, PlayerNumberType playerNumber)
         {
             switch (playerNumber)

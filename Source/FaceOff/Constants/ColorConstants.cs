@@ -9,7 +9,6 @@ namespace FaceOff
         const string _darkBlueHex = "3192B3";
         const string _darkestBlueHex = "2C7797";
 
-
         public static Color ActivityIndicatorColor { get; } = Color.FromHex(_darkestBlueHex);
         public static Color ButtonBackgroundColor { get; } = Color.FromHex(_darkBlueHex);
         public static Color ButtonTextColor { get; } = Color.White;

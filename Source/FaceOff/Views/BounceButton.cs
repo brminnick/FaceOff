@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace FaceOff
 {
-    public class BounceButton : Button
+    class BounceButton : Button
     {
         public BounceButton(in string automationId)
         {

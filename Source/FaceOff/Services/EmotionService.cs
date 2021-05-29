@@ -17,19 +17,9 @@ namespace FaceOff
     static class EmotionService
     {
         readonly static Lazy<FaceClient> _faceApiClientHolder =
-            new Lazy<FaceClient>(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey), new HttpClient(), false) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
+            new(() => new FaceClient(new ApiKeyServiceClientCredentials(CognitiveServicesConstants.FaceApiKey), new HttpClient(), false) { Endpoint = CognitiveServicesConstants.FaceApiBaseUrl });
 
-        readonly static Lazy<Dictionary<ErrorMessageType, string>> _errorMessageDictionaryHolder = new Lazy<Dictionary<ErrorMessageType, string>>(() =>
-            new Dictionary<ErrorMessageType, string>{
-                { ErrorMessageType.ConnectionToCognitiveServicesFailed, "Connection Failed" },
-                { ErrorMessageType.InvalidAPIKey, "Invalid API Key"},
-                { ErrorMessageType.NoFaceDetected, "No Face Detected" },
-                { ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
-                { ErrorMessageType.GenericError, "Error" },
-                { ErrorMessageType.DeviceOffline, "Device is Offline"}
-            });
-
-        readonly static AsyncAwaitBestPractices.WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new AsyncAwaitBestPractices.WeakEventManager();
+        readonly static AsyncAwaitBestPractices.WeakEventManager _multipleFacesDetectedAlertTriggeredEventManager = new();
 
         public static event EventHandler MultipleFacesDetectedAlertTriggered
         {
@@ -37,7 +27,15 @@ namespace FaceOff
             remove => _multipleFacesDetectedAlertTriggeredEventManager.RemoveEventHandler(value);
         }
 
-        public static Dictionary<ErrorMessageType, string> ErrorMessageDictionary => _errorMessageDictionaryHolder.Value;
+        public static IReadOnlyDictionary<ErrorMessageType, string> ErrorMessageDictionary = new Dictionary<ErrorMessageType, string>{
+            { ErrorMessageType.ConnectionToCognitiveServicesFailed, "Connection Failed" },
+            { ErrorMessageType.InvalidAPIKey, "Invalid API Key"},
+            { ErrorMessageType.NoFaceDetected, "No Face Detected" },
+            { ErrorMessageType.MultipleFacesDetected, "Multiple Faces Detected" },
+            { ErrorMessageType.GenericError, "Error" },
+            { ErrorMessageType.DeviceOffline, "Device is Offline"}
+        };
+
         static FaceClient FaceApiClient => _faceApiClientHolder.Value;
 
         public static EmotionType GetRandomEmotionType(EmotionType currentEmotionType)
@@ -61,7 +59,7 @@ namespace FaceOff
             {
                 using var handle = AnalyticsService.TrackTime(AnalyticsConstants.AnalyzeEmotion);
                 var faceApiResponseList = await AttemptAndRetry(() => FaceApiClient.Face.DetectWithStreamAsync(mediaFile?.GetStream(),
-                                                                            returnFaceAttributes: new List<FaceAttributeType?> { { FaceAttributeType.Emotion } })).ConfigureAwait(false);
+                                                                            returnFaceAttributes: new FaceAttributeType[] { FaceAttributeType.Emotion })).ConfigureAwait(false);
 
                 return faceApiResponseList.Select(x => x.FaceAttributes.Emotion).ToList();
             }
