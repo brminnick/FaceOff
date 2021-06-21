@@ -70,7 +70,7 @@
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
-        <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.2.0" />
+        <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.3.0" />
         <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
         <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.7.0-preview.1" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.1.0" />
