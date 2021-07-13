@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27009.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UWP", "FaceOff.UWP\FaceOff.UWP.csproj", "{7E3407D5-2430-4086-8852-4C20F5B6F78F}"
 EndProject
@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.iOS", "FaceOff.iOS\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff.UITests", "FaceOff.UITests\FaceOff.UITests.csproj", "{0A4CFB91-046F-4236-BB46-982FDADDA01D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceOff", "FaceOff\FaceOff.csproj", "{B4D0663E-E321-4689-A434-F9A50EC602C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceOff", "FaceOff\FaceOff.csproj", "{B4D0663E-E321-4689-A434-F9A50EC602C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9DBB1A5-A944-4C0C-88A7-61D438B3DC74}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,6 +22,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		FaceOff.Shared\FaceOff.Shared.projitems*{0a4cfb91-046f-4236-bb46-982fdadda01d}*SharedItemsImports = 4
+		FaceOff.Shared\FaceOff.Shared.projitems*{b4d0663e-e321-4689-a434-f9a50ec602c3}*SharedItemsImports = 5
 		FaceOff.Shared\FaceOff.Shared.projitems*{cdebc040-8abc-4393-84d8-75e5c8a049be}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
