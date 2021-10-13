@@ -176,7 +176,7 @@
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.7.0-preview.1" />
     <PackageReference Include="Polly" Version="7.2.2" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.13" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FaceOff\FaceOff.csproj">
