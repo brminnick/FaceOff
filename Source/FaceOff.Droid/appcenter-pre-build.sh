@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 PostBuildScriptFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name appcenter-post-build.sh | grep Droid | head -1`
 CognitiveServicesConstantsFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name CognitiveServicesConstants.cs | head -1`
-UWPCsproj=`find "$APPCENTER_SOURCE_DIRECTORY" -name FaceOff.UWP.csproj | head -1`
-SlnFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name FaceOff.sln | head -1`
 
 echo PostBuildScriptFile = $PostBuildScriptFile
 echo CognitiveServicesConstantsFile = $CognitiveServicesConstantsFile
@@ -17,8 +15,5 @@ sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "$CognitiveS
 echo "Finished Injecting Cognitive Services API Key"
 
 sed -i '' "s/--token token/--token $AppCenterLoginToken/g" "$PostBuildScriptFile"
-
-echo "Removing UWP Project"
-dotnet sln $SlnFile remove $UWPCsproj
 
 echo "Finished Injecting App Center Login Token"
