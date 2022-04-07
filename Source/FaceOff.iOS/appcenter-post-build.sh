@@ -39,7 +39,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     npm install -g appcenter-cli@1.2.2
 
-    appcenter login --token token
+    appcenter login --token $AppCenterAPIToken
 
     appcenter test run uitest --app "CDA-Global-Beta/FaceOff-iOS" --devices "CDA-Global-Beta/current-ios-minus-1" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --uitest-tools-dir $TestCloudExeDirectory --async
 fi
