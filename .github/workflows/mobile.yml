@@ -26,6 +26,9 @@ jobs:
       - name: Restore NuGet 
         run: |
           nuget restore ./Source
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
           
       - name: Build Android App
         run: |                    
@@ -47,6 +50,9 @@ jobs:
       - name: Restore NuGet 
         run: |
           nuget restore ./Source
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
           
       - name: Build Windows App
         run: |                    
@@ -68,6 +74,9 @@ jobs:
       - name: Restore NuGet 
         run: |
           nuget restore ./Source
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
           
       - name: Build UI Test App
         run: |                    
