@@ -29,6 +29,12 @@ jobs:
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
+
+      - name: Run Prebuild Script
+        run: |
+          chmod +x ./Source/FaceOff.Droid/appcenter-pre-build.sh
+          ./Source/FaceOff.Droid/appcenter-pre-build.sh
+        shell: bash        
           
       - name: Build Android App
         run: |                    
@@ -53,6 +59,12 @@ jobs:
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
+
+      - name: Run Prebuild Script
+        run: |
+          chmod +x ./Source/FaceOff.Droid/appcenter-pre-build.sh
+          ./Source/FaceOff.Droid/appcenter-pre-build.sh
+        shell: bash
           
       - name: Build Windows App
         run: |                    
@@ -77,6 +89,12 @@ jobs:
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
+
+      - name: Run Prebuild Script
+        run: |
+          chmod +x ./Source/FaceOff.Droid/appcenter-pre-build.sh
+          ./Source/FaceOff.Droid/appcenter-pre-build.sh
+        shell: bash
           
       - name: Build UI Test App
         run: |                    
