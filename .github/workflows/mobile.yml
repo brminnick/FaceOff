@@ -15,6 +15,12 @@ jobs:
 
       steps:
       - uses: actions/checkout@v3
+
+      - name: Remove API Key Errors
+        run: |
+          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+        shell: bash
         
       - name: Setup .NET 3.1 + .NET v6.0
         uses: actions/setup-dotnet@v3
@@ -22,15 +28,6 @@ jobs:
           dotnet-version: |
             6.0.x
             3.1.x
-
-      - name: Remove API Key Errors
-        run: |
-          sed -i '' "s/Add Face API Key Here//g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-
-          sed -i '' "s/Add Face API Base Url Here//g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-        shell: bash
         
       - name: Restore NuGet 
         run: |
@@ -48,6 +45,12 @@ jobs:
 
       steps:
       - uses: actions/checkout@v3
+
+      - name: Remove API Key Errors
+        run: |
+          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+        shell: bash
         
       - name: Setup .NET 3.1 + .NET v6.0
         uses: actions/setup-dotnet@v3
@@ -55,15 +58,6 @@ jobs:
           dotnet-version: |
             6.0.x
             3.1.x
-
-      - name: Remove API Key Errors
-        run: |
-          sed -i '' "s/Add Face API Key Here//g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-
-          sed -i '' "s/Add Face API Base Url Here//g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-        shell: bash
         
       - name: Restore NuGet 
         run: |
@@ -81,6 +75,12 @@ jobs:
 
       steps:
       - uses: actions/checkout@v3
+
+      - name: Remove API Key Errors
+        run: |
+          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+        shell: bash
         
       - name: Setup .NET 3.1 + .NET v6.0
         uses: actions/setup-dotnet@v3
@@ -88,15 +88,6 @@ jobs:
           dotnet-version: |
             6.0.x
             3.1.x
-
-      - name: Remove API Key Errors
-        run: |
-          sed -i '' "s/Add Face API Key Here//g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-
-          sed -i '' "s/Add Face API Base Url Here//g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
-        shell: bash
         
       - name: Restore NuGet 
         run: |
