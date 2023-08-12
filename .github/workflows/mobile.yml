@@ -30,11 +30,16 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
 
-      - name: Run Prebuild Script
+      - name: Remove Compiler Errors
         run: |
-          chmod +x ./Source/FaceOff.Droid/appcenter-pre-build.sh
-          ./Source/FaceOff.Droid/appcenter-pre-build.sh
-        shell: bash        
+          CognitiveServicesConstantsFile="./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+
+          sed -i '' "s/Add Face API Key Here/$CognitiveServicesAPIKey/g" ""
+          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "$CognitiveServicesConstantsFile"
+
+          sed -i '' "s/Add Face API Base Url Here/$CognitiveServicesBaseUri/g" "$CognitiveServicesConstantsFile"
+          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "$CognitiveServicesConstantsFile"
+        shell: bash
           
       - name: Build Android App
         run: |                    
@@ -60,10 +65,15 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
 
-      - name: Run Prebuild Script
+      - name: Remove Compiler Errors
         run: |
-          chmod +x ./Source/FaceOff.Droid/appcenter-pre-build.sh
-          ./Source/FaceOff.Droid/appcenter-pre-build.sh
+          CognitiveServicesConstantsFile="./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+
+          sed -i '' "s/Add Face API Key Here/$CognitiveServicesAPIKey/g" ""
+          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "$CognitiveServicesConstantsFile"
+
+          sed -i '' "s/Add Face API Base Url Here/$CognitiveServicesBaseUri/g" "$CognitiveServicesConstantsFile"
+          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "$CognitiveServicesConstantsFile"
         shell: bash
           
       - name: Build Windows App
@@ -90,10 +100,15 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
 
-      - name: Run Prebuild Script
+      - name: Remove Compiler Errors
         run: |
-          chmod +x ./Source/FaceOff.Droid/appcenter-pre-build.sh
-          ./Source/FaceOff.Droid/appcenter-pre-build.sh
+          CognitiveServicesConstantsFile="./Source/FaceOff/Constants/CognitiveServicesConstants.cs"
+
+          sed -i '' "s/Add Face API Key Here/$CognitiveServicesAPIKey/g" ""
+          sed -i '' "s/#error Face API Key Missing/\/\/#error Face API Key Missing/g" "$CognitiveServicesConstantsFile"
+
+          sed -i '' "s/Add Face API Base Url Here/$CognitiveServicesBaseUri/g" "$CognitiveServicesConstantsFile"
+          sed -i '' "s/#error Base Url Missing/\/\/#error Base Url Missing/g" "$CognitiveServicesConstantsFile"
         shell: bash
           
       - name: Build UI Test App
