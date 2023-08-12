@@ -5,154 +5,153 @@ using Xamarin.UITest.Android;
 
 namespace FaceOff.UITests
 {
-    public class FaceOffPageTests : BaseTest
-    {
-        public FaceOffPageTests(Platform platform) : base(platform)
-        {
-        }
+	public class FaceOffPageTests : BaseTest
+	{
+		public FaceOffPageTests(Platform platform) : base(platform)
+		{
+		}
 
-        public override void TestSetup()
-        {
-            base.TestSetup();
+		public override void TestSetup()
+		{
+			base.TestSetup();
 
-            WelcomePage.EnterPlayer1Name("First Player");
-            WelcomePage.EnterPlayer2Name("Second Player");
-            WelcomePage.TapStartGameButton();
+			WelcomePage.EnterPlayer1Name("First Player");
+			WelcomePage.EnterPlayer2Name("Second Player");
+			WelcomePage.TapStartGameButton();
 
-            FaceOffPage.WaitForPicturePageToLoad();
-        }
+			FaceOffPage.WaitForPicturePageToLoad();
+		}
 
 
-        [Test]
-        public void TakePictureOne()
-        {
-            //Arrange
+		[Test]
+		public void TakePictureOne()
+		{
+			//Arrange
 
-            //Act
-            FaceOffPage.TapTakePhoto1Button();
-            FaceOffPage.TapOK();
+			//Act
+			FaceOffPage.TapTakePhoto1Button();
+			FaceOffPage.TapOK();
 
-            if (App is AndroidApp)
-                return;
+			if (App is AndroidApp)
+				return;
 
-            CameraPage.TapPhotoCaptureButton();
-            CameraPage.TapUsePhotoButton();
+			CameraPage.TapPhotoCaptureButton();
+			CameraPage.TapUsePhotoButton();
 
-            FaceOffPage.WaitForScoreButton1();
+			FaceOffPage.WaitForScoreButton1();
 
-            //Assert
-            Assert.IsTrue(FaceOffPage.IsScoreButton1Visible);
-        }
+			//Assert
+			Assert.IsTrue(FaceOffPage.IsScoreButton1Visible);
+		}
 
-        [Test]
-        public void TakePictureTwo()
-        {
-            //Arrange
+		[Test]
+		public void TakePictureTwo()
+		{
+			//Arrange
 
-            //Act
-            FaceOffPage.TapTakePhoto2Button();
-            FaceOffPage.TapOK();
+			//Act
+			FaceOffPage.TapTakePhoto2Button();
+			FaceOffPage.TapOK();
 
-            if (App is AndroidApp)
-                return;
+			if (App is AndroidApp)
+				return;
 
-            CameraPage.TapPhotoCaptureButton();
-            CameraPage.TapUsePhotoButton();
+			CameraPage.TapPhotoCaptureButton();
+			CameraPage.TapUsePhotoButton();
 
-            FaceOffPage.WaitForScoreButton2();
+			FaceOffPage.WaitForScoreButton2();
 
-            //Assert
-            Assert.IsTrue(FaceOffPage.IsScoreButton2Visible);
-        }
+			//Assert
+			Assert.IsTrue(FaceOffPage.IsScoreButton2Visible);
+		}
 
-        [Test]
-        public void VerifyResetButton()
-        {
-            //Arrange
-            string firstEmotion = FaceOffPage.Emotion;
-            string secondEmotion;
+		[Test]
+		public void VerifyResetButton()
+		{
+			//Arrange
+			string firstEmotion = FaceOffPage.Emotion;
+			string secondEmotion;
 
-            //Act
-            if (App is AndroidApp)
-                return;
+			//Act
+			if (App is AndroidApp)
+				return;
 
-            FaceOffPage.TapTakePhoto1Button();
-            FaceOffPage.TapOK();
+			FaceOffPage.TapTakePhoto1Button();
+			FaceOffPage.TapOK();
 
-            CameraPage.TapPhotoCaptureButton();
-            CameraPage.TapUsePhotoButton();
+			CameraPage.TapPhotoCaptureButton();
+			CameraPage.TapUsePhotoButton();
 
-            FaceOffPage.WaitForPhotoImage1();
-            FaceOffPage.TapResetButton();
+			FaceOffPage.WaitForPhotoImage1();
+			FaceOffPage.TapResetButton();
 
-            //Assert
-            secondEmotion = FaceOffPage.Emotion;
-            Assert.AreNotEqual(firstEmotion, secondEmotion);
-            Assert.IsFalse(FaceOffPage.IsScoreButton1Visible);
-            Assert.IsFalse(FaceOffPage.IsScoreButton2Visible);
-            Assert.IsFalse(FaceOffPage.IsPhotoImage1Visible);
-            Assert.IsFalse(FaceOffPage.IsPhotoImage2Visible);
-        }
+			//Assert
+			secondEmotion = FaceOffPage.Emotion;
+			Assert.AreNotEqual(firstEmotion, secondEmotion);
+			Assert.IsFalse(FaceOffPage.IsScoreButton1Visible);
+			Assert.IsFalse(FaceOffPage.IsScoreButton2Visible);
+			Assert.IsFalse(FaceOffPage.IsPhotoImage1Visible);
+			Assert.IsFalse(FaceOffPage.IsPhotoImage2Visible);
+		}
 
-        [TestCase(EmotionType.Anger, 100)]
-        [TestCase(EmotionType.Contempt, 52.7)]
-        [TestCase(EmotionType.Disgust, 98.8)]
-        [TestCase(EmotionType.Fear, 99.6)]
-        [TestCase(EmotionType.Happiness, 100)]
-        [TestCase(EmotionType.Neutral, 99.9)]
-        [TestCase(EmotionType.Sadness, 100)]
-        [TestCase(EmotionType.Surprise, 81.2)]
-        public void VerifyPhoto1Results(EmotionType emotion, double expectedScore)
-        {
-            //Arrange 
+		[TestCase(EmotionType.Anger, 100)]
+		[TestCase(EmotionType.Contempt, 52.7)]
+		[TestCase(EmotionType.Disgust, 98.8)]
+		[TestCase(EmotionType.Fear, 99.6)]
+		[TestCase(EmotionType.Happiness, 100)]
+		[TestCase(EmotionType.Neutral, 99.9)]
+		[TestCase(EmotionType.Sadness, 100)]
+		[TestCase(EmotionType.Surprise, 81.2)]
+		public void VerifyPhoto1Results(EmotionType emotion, double expectedScore)
+		{
+			//Arrange 
 
-            //Act
-            FaceOffPage.SubmitImageForPhoto1(emotion);
-            App.Screenshot($"Player 1 Image Submitted: {emotion}");
+			//Act
+			FaceOffPage.SubmitImageForPhoto1(emotion);
+			App.Screenshot($"Player 1 Image Submitted: {emotion}");
 
-            FaceOffPage.WaitForNoPhoto1ActivityIndicator();
+			FaceOffPage.WaitForNoPhoto1ActivityIndicator();
 
-            //Assert
-            Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
-            Assert.IsTrue(FaceOffPage.ScoreButton1Text.Contains(expectedScore.ToString()));
+			//Assert
+			Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
+			Assert.IsTrue(FaceOffPage.ScoreButton1Text.Contains(expectedScore.ToString()));
 
-            //Act
-            FaceOffPage.TapScoreButton1();
-            FaceOffPage.WaitForResultsPopup();
+			//Act
+			FaceOffPage.TapScoreButton1();
+			FaceOffPage.WaitForResultsPopup();
 
-            //Assert
-            Assert.IsTrue(FaceOffPage.DoesResultsPopupContainExpectedResults(emotion, expectedScore));
-        }
+			//Assert
+			Assert.IsTrue(FaceOffPage.DoesResultsPopupContainExpectedResults(emotion, expectedScore));
+		}
 
-        [TestCase(EmotionType.Anger, 100)]
-        [TestCase(EmotionType.Contempt, 52.7)]
-        [TestCase(EmotionType.Disgust, 98.8)]
-        [TestCase(EmotionType.Fear, 99.6)]
-        [TestCase(EmotionType.Happiness, 100)]
-        [TestCase(EmotionType.Neutral, 99.9)]
-        [TestCase(EmotionType.Sadness, 100)]
-        [TestCase(EmotionType.Surprise, 81.2)]
-        public void VerifyPhoto2Results(EmotionType emotion, double expectedScore)
-        {
-            //Arrange
+		[TestCase(EmotionType.Anger, 100)]
+		[TestCase(EmotionType.Contempt, 52.7)]
+		[TestCase(EmotionType.Disgust, 98.8)]
+		[TestCase(EmotionType.Fear, 99.6)]
+		[TestCase(EmotionType.Happiness, 100)]
+		[TestCase(EmotionType.Neutral, 99.9)]
+		[TestCase(EmotionType.Sadness, 100)]
+		[TestCase(EmotionType.Surprise, 81.2)]
+		public void VerifyPhoto2Results(EmotionType emotion, double expectedScore)
+		{
+			//Arrange
 
-            //Act
-            FaceOffPage.SubmitImageForPhoto2(emotion);
-            App.Screenshot($"Player 2 Image Submitted: {emotion}");
+			//Act
+			FaceOffPage.SubmitImageForPhoto2(emotion);
+			App.Screenshot($"Player 2 Image Submitted: {emotion}");
 
-            FaceOffPage.WaitForNoPhoto2ActivityIndicator();
+			FaceOffPage.WaitForNoPhoto2ActivityIndicator();
 
-            //Assert
-            Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
-            Assert.IsTrue(FaceOffPage.ScoreButton2Text.Contains(expectedScore.ToString()));
+			//Assert
+			Assert.AreEqual(EmotionConstants.EmotionDictionary[emotion], FaceOffPage.Emotion);
+			Assert.IsTrue(FaceOffPage.ScoreButton2Text.Contains(expectedScore.ToString()));
 
-            //Act
-            FaceOffPage.TapScoreButton2();
-            FaceOffPage.WaitForResultsPopup();
+			//Act
+			FaceOffPage.TapScoreButton2();
+			FaceOffPage.WaitForResultsPopup();
 
-            //Assert
-            Assert.IsTrue(FaceOffPage.DoesResultsPopupContainExpectedResults(emotion, expectedScore));
-        }
-    }
+			//Assert
+			Assert.IsTrue(FaceOffPage.DoesResultsPopupContainExpectedResults(emotion, expectedScore));
+		}
+	}
 }
-

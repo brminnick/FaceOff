@@ -5,27 +5,26 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FaceOff
 {
-    public class App : Xamarin.Forms.Application
-    {
-        public App()
-        {
-            var navigationPage = new Xamarin.Forms.NavigationPage(new WelcomePage())
-            {
-                BarBackgroundColor = ColorConstants.NavigationBarBackgroundColor,
-                BarTextColor = ColorConstants.NaviagtionBarTextColor
-            };
+	public class App : Xamarin.Forms.Application
+	{
+		public App()
+		{
+			var navigationPage = new Xamarin.Forms.NavigationPage(new WelcomePage())
+			{
+				BarBackgroundColor = ColorConstants.NavigationBarBackgroundColor,
+				BarTextColor = ColorConstants.NaviagtionBarTextColor
+			};
 
-            navigationPage.On<iOS>().SetPrefersLargeTitles(true);
+			navigationPage.On<iOS>().SetPrefersLargeTitles(true);
 
-            MainPage = navigationPage;
-        }
+			MainPage = navigationPage;
+		}
 
-        protected override void OnStart()
-        {
-            base.OnStart();
+		protected override void OnStart()
+		{
+			base.OnStart();
 
-            AnalyticsService.Start();
-        }
-    }
+			AnalyticsService.Start();
+		}
+	}
 }
-
