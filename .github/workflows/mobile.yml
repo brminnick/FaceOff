@@ -11,7 +11,7 @@ on:
 jobs:
 
     Build_Android:
-      runs-on: macos-latest
+      runs-on: windows-latest
 
       steps:
       - uses: actions/checkout@v3
