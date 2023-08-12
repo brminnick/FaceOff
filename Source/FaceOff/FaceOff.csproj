@@ -5,6 +5,7 @@
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <BuildWithMSBuildOnMono>true</BuildWithMSBuildOnMono>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
