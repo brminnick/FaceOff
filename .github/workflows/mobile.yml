@@ -25,7 +25,7 @@ jobs:
         
       - name: Restore NuGet 
         run: |
-          nuget restore
+          nuget restore ./Source
           
       - name: Build Android App
         run: |                    
@@ -46,7 +46,7 @@ jobs:
         
       - name: Restore NuGet 
         run: |
-          nuget restore
+          nuget restore ./Source
           
       - name: Build Windows App
         run: |                    
@@ -67,7 +67,7 @@ jobs:
         
       - name: Restore NuGet 
         run: |
-          nuget restore
+          nuget restore ./Source
           
       - name: Build UI Test App
         run: |                    
