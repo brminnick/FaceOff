@@ -38,34 +38,6 @@ jobs:
         run: |                    
           msbuild ./Source/FaceOff.Droid/FaceOff.Droid.csproj /verbosity:normal /p:Configuration=Release
 
-    Build_Windows:
-      runs-on: windows-latest
-
-      steps:
-      - uses: actions/checkout@v3
-
-      - name: Remove API Key Errors
-        run: '(get-content .\Source\FaceOff\Constants\CognitiveServicesConstants.cs) | Foreach-Object {$_ -replace "#error","//#error"} | set-content .\Source\FaceOff\Constants\CognitiveServicesConstants.cs'
-        shell: powershell
-        
-      - name: Setup .NET 3.1 + .NET v6.0
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: |
-            6.0.x
-            3.1.x
-        
-      - name: Restore NuGet 
-        run: |
-          nuget restore ./Source
-
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
-          
-      - name: Build Windows App
-        run: |                    
-          msbuild ./Source/FaceOff.UWP/FaceOff.UWP.csproj /verbosity:normal /p:Configuration=Debug
-
     Build_UITest:
       runs-on: windows-latest
 
