@@ -4,7 +4,7 @@ using Xamarin.UITest;
 
 namespace FaceOff.UITests
 {
-    public class WelcomePageTests : BaseTest
+	public class WelcomePageTests : BaseTest
 	{
 		public WelcomePageTests(Platform platform) : base(platform)
 		{
@@ -72,8 +72,8 @@ namespace FaceOff.UITests
 			WelcomePage.EnterPlayer2Name(player2Name);
 			WelcomePage.TapStartGameButton();
 
-            //Assert
-            FaceOffPage.WaitForPicturePageToLoad();
+			//Assert
+			FaceOffPage.WaitForPicturePageToLoad();
 		}
 	}
 }

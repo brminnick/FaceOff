@@ -1,8 +1,8 @@
 ﻿namespace FaceOff
 {
-    public enum PlayerNumberType
-    {
-        Player1,
-        Player2
-    }
+	public enum PlayerNumberType
+	{
+		Player1,
+		Player2
+	}
 }
