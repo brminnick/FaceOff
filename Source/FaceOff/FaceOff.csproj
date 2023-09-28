@@ -17,7 +17,7 @@
         <PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
         <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.8.0-preview.3" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="6.0.6" />
-        <PackageReference Include="Polly" Version="7.2.4" />
+        <PackageReference Include="Polly" Version="8.0.0" />
         <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="2.0.6" />
     </ItemGroup>
     <ItemGroup>
