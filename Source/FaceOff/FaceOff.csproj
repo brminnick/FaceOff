@@ -10,7 +10,7 @@
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="5.0.3" />
